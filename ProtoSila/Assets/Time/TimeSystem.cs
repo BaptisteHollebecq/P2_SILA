@@ -213,7 +213,7 @@ public class TimeSystem : MonoBehaviour
                 MorningTime();
                 break;
         }
-        Debug.Log("test git modif");
+
     }
 
     private void Update()
