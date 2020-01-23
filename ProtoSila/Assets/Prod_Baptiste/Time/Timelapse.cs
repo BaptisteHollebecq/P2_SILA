@@ -44,6 +44,7 @@ public class Timelapse : MonoBehaviour
     private void Start()
     {
         CheckTime();
+        CheckTime();
     }
 
     void CheckTime()
