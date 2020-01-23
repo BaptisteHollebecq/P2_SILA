@@ -44,11 +44,11 @@ public class Timelapse : MonoBehaviour
     private void Start()
     {
         CheckTime();
-        Debug.Log("test");
     }
 
     void CheckTime()
     {
+        Debug.Log("test02");
         if (nightTime == 24)
             nightTime = 0;
         if (morningTime == 24)
