@@ -30,7 +30,7 @@ public class TimeStèle : MonoBehaviour
                 _oldCameraPosition = Camera.main.transform.position;
                 _oldCameraRotation = Camera.main.transform.rotation;
             }
-            if (Camera.main.transform.position != _cameraPosition && Camera.main.transform.rotation != )
+            if (Camera.main.transform.position != _cameraPosition)
                 Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _cameraPosition, _transition*Time.deltaTime);
 
         }
