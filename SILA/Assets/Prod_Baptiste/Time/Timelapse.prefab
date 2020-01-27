@@ -139,22 +139,24 @@ MonoBehaviour:
   _light: {fileID: 7066606308674863346}
   startingTime: 0
   actualTime: 0
-  _lightIntensityMorning: 0
-  _sunRotationMorning: {x: 0, y: 0, z: 0}
+  currentTime: 0
+  _transitionTime: 2
+  _lightIntensityMorning: 0.8
+  _sunRotationMorning: {x: 30, y: 0, z: 0}
   _colorMorning:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.3160377, g: 0.83745086, b: 1, a: 1}
+    key1: {r: 0.33615425, g: 0.83839756, b: 0.9804384, a: 1}
+    key2: {r: 1, g: 0.9294118, b: 0.627451, a: 0}
+    key3: {r: 1, g: 0.92766374, b: 0.6273585, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 14842
+    ctime2: 47802
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -168,24 +170,24 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  _lightIntensityDay: 0
-  _sunRotationDay: {x: 0, y: 0, z: 0}
+  _lightIntensityDay: 1
+  _sunRotationDay: {x: 90, y: 0, z: 0}
   _colorDay:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 1, g: 0.9294118, b: 0.627451, a: 1}
+    key1: {r: 1, g: 0.9294118, b: 0.627451, a: 1}
+    key2: {r: 0.9991044, g: 0.65513253, b: 0.88697517, a: 0}
+    key3: {r: 1, g: 0.6273585, b: 0.95733327, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 32768
+    ctime2: 53585
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -199,23 +201,23 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  _lightIntensityNoon: 0
-  _sunRotationNoon: {x: 0, y: 0, z: 0}
+  _lightIntensityNoon: 0.5
+  _sunRotationNoon: {x: 150, y: 0, z: 0}
   _colorNoon:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 1, g: 0.6313726, b: 0.9490197, a: 1}
+    key1: {r: 0.10591698, g: 0.16409457, b: 0.26833916, a: 1}
+    key2: {r: 0.04705883, g: 0.13333334, b: 0.22352943, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime1: 31457
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -230,24 +232,24 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  _lightIntensityNight: 0
-  _sunRotationNight: {x: 0, y: 0, z: 0}
+  _lightIntensityNight: 0.8
+  _sunRotationNight: {x: 30, y: 0, z: 0}
   _colorNight:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.046057317, g: 0.12927023, b: 0.21698111, a: 1}
+    key1: {r: 0.05345407, g: 0.1480629, b: 0.23750047, a: 1}
+    key2: {r: 0.3254902, g: 0.83921576, b: 0.9921569, a: 0}
+    key3: {r: 0.3254902, g: 0.83921576, b: 0.9921569, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 54066
+    ctime2: 65535
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -261,5 +263,5 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
