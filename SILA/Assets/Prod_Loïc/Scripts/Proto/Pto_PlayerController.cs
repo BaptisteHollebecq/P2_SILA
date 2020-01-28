@@ -52,6 +52,14 @@ public class Pto_PlayerController : MonoBehaviour
 		cameraUp = mainCamera.transform.up;
 		cameraUp.y = 0;
 	}   // set up les vector par rapport a ceux de la cam, utile pour le deplacement
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("Y"))
+		{
+			PlayerStateChanged?.Invoke(CameraLockState.LookAtPlayer);
+		}
+	}
 	void FixedUpdate()
     {
 		Debug.Log(controller.isGrounded);
