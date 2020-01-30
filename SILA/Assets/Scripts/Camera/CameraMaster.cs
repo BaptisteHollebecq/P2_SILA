@@ -295,13 +295,16 @@ public class CameraMaster : LockModeStateMachine
 
 			case CameraLockState.LookAtPlayer:
                 //Debug.Log(_lookAtPivot);
-                if (transform != _lookAtPivot)
+                if (Vector3.Distance(transform.position, _lookAtPivot.position) > 0.5f)
                 {
                     transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
                     transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
                 }
                 else
+                {
+                    Debug.Log("end transi");
                     DisplayTimeMenu?.Invoke();
+                }
 
                 return;
 		}
