@@ -8,7 +8,8 @@ public enum TimeOfDay { Morning, Day, Noon, Night, Null };
 
 public class TimeSystem : MonoBehaviour
 {
-   
+
+    public static event System.Action EndedTransition;
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -191,6 +192,7 @@ public class TimeSystem : MonoBehaviour
                 NoonTime();
             else if (from == TimeOfDay.Night)
                 NightTime();
+            EndedTransition?.Invoke();
             _transitionSlide = 0;
             targetTime = TimeOfDay.Null;
             return from;

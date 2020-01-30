@@ -7,6 +7,7 @@ public class TimeMenu : MonoBehaviour
 {
     private bool _isActive = false;
     private float _deadZone = 0.25f;
+    private bool _isChanging = false;
 
     private Transform _arrow;
     private float _arrowAngle;
@@ -23,8 +24,16 @@ public class TimeMenu : MonoBehaviour
     private void Initialize()
     {
         CameraMaster.MovedToPivot += DisplayMenu;
+        TimeSystem.EndedTransition += EndTransitionTime;
 		CanvasGroup.alpha = 0;
 		_arrow = transform.GetChild(transform.childCount - 1);
+        _timeManager = GetComponentInParent<TimeSystem>();
+    }
+
+    private void EndTransitionTime()
+    {
+        CanvasGroup.alpha = 1;
+        _isChanging = false;
     }
 
     private void DisplayMenu()
@@ -59,15 +68,18 @@ public class TimeMenu : MonoBehaviour
         if (_isActive)
         {
             Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            if (stickInput.magnitude < _deadZone)                                                                      
-                stickInput = Vector2.zero;                                                                         
+            if (stickInput.magnitude < _deadZone)
+                stickInput = Vector2.zero;
             else
-                TurnArrow(stickInput);
+            {
+                if (!_isChanging)
+                    TurnArrow(stickInput); 
+            }
 
             if (Input.GetButtonDown("B"))
             {
                 _isActive = false;
-                transform.gameObject.SetActive(false);
+                CanvasGroup.alpha = 0;
             }
             if (Input.GetButtonDown("A"))
             {
@@ -79,32 +91,41 @@ public class TimeMenu : MonoBehaviour
 
     private void CheckTime()
     {
+
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
             if (_timeManager.actualTime != TimeOfDay.Day)
             {
+                _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
+                CanvasGroup.alpha = 0;
             }
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
             if (_timeManager.actualTime != TimeOfDay.Morning)
             {
+                _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
+                CanvasGroup.alpha = 0;
             }
         }
-        else if (_arrowAngle > 135f && _arrowAngle <= 225f)
+        else if (_arrowAngle > 135f || _arrowAngle <= -135f)
         {
             if (_timeManager.actualTime != TimeOfDay.Night)
             {
+                _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
+                CanvasGroup.alpha = 0;
             }
         }
         else
         {
             if (_timeManager.actualTime != TimeOfDay.Noon)
             {
+                _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;
+                CanvasGroup.alpha = 0;
             }
         }
     }
