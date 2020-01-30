@@ -11,6 +11,7 @@ public class TimeMenu : MonoBehaviour
     private Transform _arrow;
     private float _arrowAngle;
     private TimeOfDay _actualTime;
+    private TimeSystem _timeManager;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class TimeMenu : MonoBehaviour
     {
         transform.gameObject.SetActive(false);
         _arrow = transform.GetChild(transform.childCount - 1);
+        _timeManager = transform.GetComponentInParent<TimeSystem>();
 
         CameraMaster.DisplayTimeMenu += DisplayMenu;
     }
@@ -42,7 +44,7 @@ public class TimeMenu : MonoBehaviour
                     _arrow.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
                     break;
                 case TimeOfDay.Noon:
-                    _arrow.rotation = Quaternion.AngleAxis(-90f, Vector3.forward);
+                    _arrow.rotation = Quaternion.AngleAxis(270f, Vector3.forward);
                     break;
                 case TimeOfDay.Night:
                     _arrow.rotation = Quaternion.AngleAxis(180f, Vector3.forward);
@@ -69,6 +71,7 @@ public class TimeMenu : MonoBehaviour
             }
             if (Input.GetButtonDown("A"))
             {
+                Debug.Log(_arrowAngle);
                 CheckTime();
             }
         }
@@ -76,7 +79,22 @@ public class TimeMenu : MonoBehaviour
 
     private void CheckTime()
     {
-        
+        if (_arrowAngle > -45f && _arrowAngle <= 45f)
+        {
+            _timeManager.targetTime = TimeOfDay.Day;
+        }
+        else if (_arrowAngle > 45f && _arrowAngle <= 135f)
+        {
+            _timeManager.targetTime = TimeOfDay.Morning;
+        }
+        else if (_arrowAngle > 135f && _arrowAngle <= 225f)
+        {
+            _timeManager.targetTime = TimeOfDay.Night;
+        }
+        else
+        {
+            _timeManager.targetTime = TimeOfDay.Noon;
+        }
     }
 
 
@@ -91,5 +109,6 @@ public class TimeMenu : MonoBehaviour
         _arrowAngle = (Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg) - 90f;
 
         _arrow.rotation = Quaternion.AngleAxis(_arrowAngle, Vector3.forward);
+
     }
 }

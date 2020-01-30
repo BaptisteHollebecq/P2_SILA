@@ -15,7 +15,7 @@ public class TimeSystem : MonoBehaviour
 
     [Header("")]
     public TimeOfDay startingTime;
-    private TimeOfDay _targetTime = TimeOfDay.Null;
+    [HideInInspector] public TimeOfDay targetTime = TimeOfDay.Null;
     [HideInInspector] public TimeOfDay actualTime;
     [HideInInspector] public float currentTime;                 // current time used in transition
     [SerializeField] private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
@@ -192,7 +192,7 @@ public class TimeSystem : MonoBehaviour
             else if (from == TimeOfDay.Night)
                 NightTime();
             _transitionSlide = 0;
-            _targetTime = TimeOfDay.Null;
+            targetTime = TimeOfDay.Null;
             return from;
         }
     }
@@ -238,9 +238,9 @@ public class TimeSystem : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_targetTime != TimeOfDay.Null)
+        if (targetTime != TimeOfDay.Null)
         {
-            actualTime = ChangeTime(actualTime, _targetTime);
+            actualTime = ChangeTime(actualTime, targetTime);
         }
     }
 }
