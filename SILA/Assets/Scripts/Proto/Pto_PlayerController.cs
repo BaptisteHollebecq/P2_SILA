@@ -61,7 +61,7 @@ public class Pto_PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Y"))
 		{
-			Collider[] cols = Physics.OverlapSphere (transform.position - transform.up, 1);
+			/*Collider[] cols = Physics.OverlapSphere (transform.position - transform.up, 1);
 			Debug.Log("surstele");
 			foreach (var c in cols)
 			{
@@ -70,10 +70,18 @@ public class Pto_PlayerController : MonoBehaviour
 
 				if (c.TryGetComponent(out Stele stele))
 				{
-					onStele = true;
-					canInput = false;
-					stele.Interact();
+					
 				}
+			}*/
+
+			RaycastHit hitStele;
+			Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
+			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
+			if(hitStele.transform.TryGetComponent(out Stele stele))
+			{
+				onStele = true;
+				canInput = false;
+				stele.Interact();
 			}
 		}
 		if(onStele && Input.GetButtonDown("B"))
