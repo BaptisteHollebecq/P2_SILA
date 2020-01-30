@@ -81,19 +81,31 @@ public class TimeMenu : MonoBehaviour
     {
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
-            _timeManager.targetTime = TimeOfDay.Day;
+            if (_timeManager.actualTime != TimeOfDay.Day)
+            {
+                _timeManager.targetTime = TimeOfDay.Day;
+            }
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
-            _timeManager.targetTime = TimeOfDay.Morning;
+            if (_timeManager.actualTime != TimeOfDay.Morning)
+            {
+                _timeManager.targetTime = TimeOfDay.Morning;
+            }
         }
         else if (_arrowAngle > 135f && _arrowAngle <= 225f)
         {
-            _timeManager.targetTime = TimeOfDay.Night;
+            if (_timeManager.actualTime != TimeOfDay.Night)
+            {
+                _timeManager.targetTime = TimeOfDay.Night;
+            }
         }
         else
         {
-            _timeManager.targetTime = TimeOfDay.Noon;
+            if (_timeManager.actualTime != TimeOfDay.Noon)
+            {
+                _timeManager.targetTime = TimeOfDay.Noon;
+            }
         }
     }
 
