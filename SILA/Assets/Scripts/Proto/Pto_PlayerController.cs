@@ -61,19 +61,6 @@ public class Pto_PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Y"))
 		{
-			/*Collider[] cols = Physics.OverlapSphere (transform.position - transform.up, 1);
-			Debug.Log("surstele");
-			foreach (var c in cols)
-			{
-				//if (c.GetComponent<Stele> ())
-				//	c.GetComponent<Stele>().Interact();
-
-				if (c.TryGetComponent(out Stele stele))
-				{
-					
-				}
-			}*/
-
 			RaycastHit hitStele;
 			Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
 			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
@@ -197,6 +184,11 @@ public class Pto_PlayerController : MonoBehaviour
 				PlayerStateChanged?.Invoke(CameraLockState.Idle);
 			}
 		
+			if(Input.GetButtonDown("Dash"))
+			{
+				moveSpeed = speedStore * 4f;
+				StartCoroutine(Dash());
+			}
 			/*if(Input.GetButtonDown("Jump")) Quand le player saute, double sa vitesse pour impulsion
 			 * 
 				moveSpeed = speedStore * 2;*/
@@ -204,7 +196,13 @@ public class Pto_PlayerController : MonoBehaviour
 
 			moveDirection.y += (Physics.gravity.y * gravityScale * Time.deltaTime);
 			controller.Move(moveDirection * Time.deltaTime);
+
 		}
 
+		IEnumerator Dash()
+		{
+			yield return new WaitForSeconds(4);
+			moveSpeed = speedStore;
+		}
 	}
 }
