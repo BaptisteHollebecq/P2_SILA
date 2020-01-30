@@ -1,10 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public static event System.Action<Transform> DisplayTimeMenu;
 
 
+    private void Awake()
+    {
+        CameraMaster.DisplayTimeMenu += Methode;
+    }
+
+    private void Methode()
+    {
+        
+    }
 }
