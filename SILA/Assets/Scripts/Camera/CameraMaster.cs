@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using EasedLerp = RSTools.EasedLerp;
 
@@ -295,16 +296,10 @@ public class CameraMaster : LockModeStateMachine
 
 			case CameraLockState.LookAtPlayer:
                 //Debug.Log(_lookAtPivot);
-                if (Vector3.Distance(transform.position, _lookAtPivot.position) > 0.5f)
-                {
-                    transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
-                }
-                else
-                {
-                    Debug.Log("end transi");
-                    DisplayTimeMenu?.Invoke();
-                }
+                transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
+                StartCoroutine(DisplayMenu());
+                
 
                 return;
 		}
@@ -319,7 +314,13 @@ public class CameraMaster : LockModeStateMachine
 		ApplyExtraMovements ();
 	}
 
-	void UpdateOutOfFightBehaviours ()
+    private IEnumerator DisplayMenu()
+    {
+        yield return new WaitForSeconds(3f);
+        DisplayTimeMenu?.Invoke();
+    }
+
+    void UpdateOutOfFightBehaviours ()
 	{
 
 	}

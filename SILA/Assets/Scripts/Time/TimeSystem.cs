@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum TimeOfDay { Morning, Day, Noon, Night, Null };
+
+
 public class TimeSystem : MonoBehaviour
 {
-    public enum TimeOfDay { Morning, Day, Noon, Night, Null };
+   
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -218,14 +222,14 @@ public class TimeSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Night"))
+/*        if (Input.GetButtonDown("Night"))
             _targetTime = TimeOfDay.Night;
         if (Input.GetButtonDown("Morning"))
             _targetTime = TimeOfDay.Morning;
         if (Input.GetButtonDown("Day"))
             _targetTime = TimeOfDay.Day;
         if (Input.GetButtonDown("Noon"))
-            _targetTime = TimeOfDay.Noon;
+            _targetTime = TimeOfDay.Noon;*/
 
         //Debug.Log(actualTime);
         //Debug.Log(_rotationScale);

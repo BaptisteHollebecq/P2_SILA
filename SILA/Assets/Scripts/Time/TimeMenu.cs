@@ -7,10 +7,17 @@ public class TimeMenu : MonoBehaviour
 {
     private bool _isActive = false;
     private float _deadZone = 0.25f;
+
     private Transform _arrow;
     private float _arrowAngle;
+    private TimeOfDay _actualTime;
 
     private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         transform.gameObject.SetActive(false);
         _arrow = transform.GetChild(transform.childCount - 1);
@@ -24,11 +31,29 @@ public class TimeMenu : MonoBehaviour
         {
             _isActive = true;
             transform.gameObject.SetActive(true);
+            _actualTime = transform.GetComponentInParent<TimeSystem>().actualTime;
+            //Debug.Log(_actualTime);
+            switch (_actualTime)
+            {
+                case TimeOfDay.Morning:
+                    _arrow.rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+                    break;
+                case TimeOfDay.Day:
+                    _arrow.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
+                    break;
+                case TimeOfDay.Noon:
+                    _arrow.rotation = Quaternion.AngleAxis(-90f, Vector3.forward);
+                    break;
+                case TimeOfDay.Night:
+                    _arrow.rotation = Quaternion.AngleAxis(180f, Vector3.forward);
+                    break;
+            }
         }
     }
 
     private void Update()
     {
+
         if (_isActive)
         {
             Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -42,10 +67,18 @@ public class TimeMenu : MonoBehaviour
                 _isActive = false;
                 transform.gameObject.SetActive(false);
             }
-
+            if (Input.GetButtonDown("A"))
+            {
+                CheckTime();
+            }
         }
-
     }
+
+    private void CheckTime()
+    {
+        
+    }
+
 
     public void TurnArrow(Vector2 stickInput)
     {
