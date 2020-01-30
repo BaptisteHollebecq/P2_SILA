@@ -297,8 +297,8 @@ public class CameraMaster : LockModeStateMachine
                 //Debug.Log(_lookAtPivot);
                 if (Vector3.Distance(transform.position, _lookAtPivot.position) > 0.5f)
                 {
-                    transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, 2 * Time.deltaTime);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, 2 * Time.deltaTime);
                 }
                 else
                 {
