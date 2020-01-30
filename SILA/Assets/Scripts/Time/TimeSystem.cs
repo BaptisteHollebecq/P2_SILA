@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum TimeOfDay { Morning, Day, Noon, Night, Null };
+
+
 public class TimeSystem : MonoBehaviour
 {
-    public enum TimeOfDay { Morning, Day, Noon, Night, Null };
+   
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
