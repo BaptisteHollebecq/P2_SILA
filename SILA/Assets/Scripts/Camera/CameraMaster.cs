@@ -292,6 +292,7 @@ public class CameraMaster : LockModeStateMachine
 				return;
 
 			case CameraLockState.LookAtPlayer:
+				Debug.Log(_lookAtPivot);
 				transform.position = Vector3.Lerp (transform.position, _lookAtPivot.position, Time.deltaTime);
 				transform.rotation = Quaternion.Lerp (transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
 				return;
