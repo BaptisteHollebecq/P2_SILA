@@ -4,9 +4,11 @@ using EasedLerp = RSTools.EasedLerp;
 
 public class CameraMaster : LockModeStateMachine
 {
-	#region Variables
+    #region Variables
 
-	ICameraExtraMovement[] _extraMovements;
+    public static event System.Action DisplayTimeMenu;
+
+    ICameraExtraMovement[] _extraMovements;
 	Camera m_Camera;
 	Transform m_Transform;
 	float _mouseX;
@@ -292,10 +294,19 @@ public class CameraMaster : LockModeStateMachine
 				return;
 
 			case CameraLockState.LookAtPlayer:
-				Debug.Log(_lookAtPivot);
-				transform.position = Vector3.Lerp (transform.position, _lookAtPivot.position, Time.deltaTime);
-				transform.rotation = Quaternion.Lerp (transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
-				return;
+                //Debug.Log(_lookAtPivot);
+                if (Vector3.Distance(transform.position, _lookAtPivot.position) > 0.5f)
+                {
+                    transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
+                }
+                else
+                {
+                    Debug.Log("end transi");
+                    DisplayTimeMenu?.Invoke();
+                }
+
+                return;
 		}
 
 		ResetPosition ();
