@@ -222,7 +222,7 @@ public class TimeSystem : MonoBehaviour
 
     private void Update()
     {
-/*        if (Input.GetButtonDown("Night"))
+        /*if (Input.GetButtonDown("Night"))
             _targetTime = TimeOfDay.Night;
         if (Input.GetButtonDown("Morning"))
             _targetTime = TimeOfDay.Morning;
