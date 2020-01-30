@@ -7,7 +7,7 @@ public class CameraMaster : LockModeStateMachine
 {
     #region Variables
 
-    public static event System.Action DisplayTimeMenu;
+    public static event Action MovedToPivot;
 
     ICameraExtraMovement[] _extraMovements;
 	Camera m_Camera;
@@ -43,6 +43,9 @@ public class CameraMaster : LockModeStateMachine
 
 	bool _isTransitingBehaviours = false;
 	IEnumerator _behavioursTransitionCoroutine;
+
+	bool _isMovingToPivot = false;
+	[SerializeField] float _moveToPivotDuration = 1;
 
 	CameraBehaviour _behaviour;
 	public CameraBehaviour Behaviour
@@ -130,6 +133,7 @@ public class CameraMaster : LockModeStateMachine
 		{
 			case CameraLockState.LookAtPlayer:
 				_lookAtPivot = null;
+				_isMovingToPivot = false;
 				break;
 		}
 	}
@@ -296,17 +300,10 @@ public class CameraMaster : LockModeStateMachine
 
 			case CameraLockState.LookAtPlayer:
 				//Debug.Log(_lookAtPivot);
-				if (Vector3.Distance(transform.position, _lookAtPivot.position) > 0.4f)
-				{
-					transform.position = Vector3.Lerp(transform.position, _lookAtPivot.position, Time.deltaTime);
-					transform.rotation = Quaternion.Lerp(transform.rotation, _lookAtPivot.rotation, Time.deltaTime);
-				}
-				else
-					DisplayTimeMenu?.Invoke();
-
+				if (!_isMovingToPivot)
+					StartCoroutine(MoveToPivot());
 				return;
 		}
-	}
 
 		ResetPosition ();
 		GoToPivotPosition ();
@@ -318,11 +315,25 @@ public class CameraMaster : LockModeStateMachine
 		ApplyExtraMovements ();
 	}
 
-    private IEnumerator DisplayMenu()
-    {
-        yield return new WaitForSeconds(3f);
-        DisplayTimeMenu?.Invoke();
-    }
+	IEnumerator MoveToPivot ()
+	{
+		_isMovingToPivot = true;
+		var initPos = m_Transform.position;
+		var initRot = m_Transform.rotation;
+
+		for (float f = 0; f < 1; f += Time.deltaTime / _moveToPivotDuration)
+		{
+			var lerp = EasedLerp.EaseLerp(f, 1);
+			m_Transform.position = Vector3.Lerp(initPos, _lookAtPivot.position, lerp);
+			m_Transform.rotation = Quaternion.Lerp(initRot, _lookAtPivot.rotation, lerp);
+			yield return null;
+		}
+
+		m_Transform.position = _lookAtPivot.position;
+		m_Transform.rotation = _lookAtPivot.rotation;
+
+		MovedToPivot?.Invoke ();
+	}
 
     void UpdateOutOfFightBehaviours ()
 	{

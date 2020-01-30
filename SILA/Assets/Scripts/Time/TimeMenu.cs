@@ -12,6 +12,8 @@ public class TimeMenu : MonoBehaviour
     private float _arrowAngle;
     private TimeOfDay _actualTime;
 
+	public CanvasGroup CanvasGroup;
+
     private void Awake()
     {
         Initialize();
@@ -19,10 +21,10 @@ public class TimeMenu : MonoBehaviour
 
     private void Initialize()
     {
-        transform.gameObject.SetActive(false);
-        _arrow = transform.GetChild(transform.childCount - 1);
+        CameraMaster.MovedToPivot += DisplayMenu;
 
-        CameraMaster.DisplayTimeMenu += DisplayMenu;
+		CanvasGroup.alpha = 0;
+		_arrow = transform.GetChild(transform.childCount - 1);
     }
 
     private void DisplayMenu()
@@ -30,8 +32,8 @@ public class TimeMenu : MonoBehaviour
         if (!_isActive)
         {
             _isActive = true;
-            transform.gameObject.SetActive(true);
-            _actualTime = transform.GetComponentInParent<TimeSystem>().actualTime;
+			CanvasGroup.alpha = 1;
+			_actualTime = GetComponentInParent<TimeSystem>().actualTime;
             //Debug.Log(_actualTime);
             switch (_actualTime)
             {
