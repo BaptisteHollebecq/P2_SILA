@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7114ab5bdb0fe554bb407310bb988c90, type: 3}
   m_Name: SO_CameraBlendSettings_EnterFlight
   m_EditorClassIdentifier: 
-  Duration: 2
+  Duration: 1
   Easing: 0.3
   WaitBeforeBlend: 0
   Priority: 1
