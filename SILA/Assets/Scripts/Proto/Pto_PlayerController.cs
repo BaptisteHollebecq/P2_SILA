@@ -61,7 +61,8 @@ public class Pto_PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Y"))
 		{
-			Collider[] cols = Physics.OverlapSphere (transform.position + transform.forward, 1);
+			Collider[] cols = Physics.OverlapSphere (transform.position - transform.up, 1);
+			Debug.Log("surstele");
 			foreach (var c in cols)
 			{
 				//if (c.GetComponent<Stele> ())
