@@ -20,6 +20,7 @@ public class Pto_PlayerController : MonoBehaviour
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 
+	bool _isDashing;
 	bool onStele;
 	bool canInput;
 	float deadZone = 0.25f;
@@ -30,8 +31,9 @@ public class Pto_PlayerController : MonoBehaviour
 	Vector3 moveInputR;
 
 	Vector3 moveDirection;
+	private float _arrowAngle;
 	public float gravityScale;
-    bool _canQuit = true;
+	bool _canQuit = true;
 
     private void Awake()
     {
@@ -58,6 +60,7 @@ public class Pto_PlayerController : MonoBehaviour
 		firstJump = false;
 		canInput = true;
 		onStele = false;
+		_isDashing = false;
     }
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -100,132 +103,126 @@ public class Pto_PlayerController : MonoBehaviour
             }
 		}
 
+		if(Input.GetButtonDown("Dash"))
+		{
+			_arrowAngle = (Mathf.Atan2(Input.GetAxis("Vertical"), (Input.GetAxis("Horizontal")) * Mathf.Rad2Deg)/* - 90f*/);
+			transform.rotation = Quaternion.Euler(0, _arrowAngle, 0);
+			_isDashing = true;
+			StartCoroutine(Dash());
+		}
+
+	}
+	IEnumerator Dash()
+	{
+		yield return new WaitForSeconds(0.25f);
+		_isDashing = false;
+		moveSpeed = speedStore;
 	}
 	void FixedUpdate()
     {
 		if(canInput)
 		{
-
-			if (moveDirection.y < 0)
-				controller.Move(Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
-			else if (moveDirection.y > 0 && !Input.GetButton("Jump"))
-				controller.Move( Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime);
-			//theRB.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, theRB.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-
-			/*if(Input.GetButtonDown("Jump")
+			if (!_isDashing)
 			{
-				theRB.velocity = new Vector3(theRB.velocity.x, jumpForce, theRB.velocity.z);
-			}*/
-
-			//moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);
-
-			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-			if (stickInput.magnitude < deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-				stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
-			else                                                                                                    //
-			{                                                                                                       //
-				difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-				if (difAngle > 4)                                                                                   //
-				{                                                                                                   //      SINON
-					transform.Rotate(new Vector3(0f, Mathf.Min(7f, difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
-				}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-				else if (difAngle < -4)                                                                             //
-				{                                                                                                   //
-					transform.Rotate(new Vector3(0f, Mathf.Max(-7f, difAngle), 0f));                                //
-				}
-			}
-
-
-			Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
-			if (stickInputR.magnitude < deadZone)
-				stickInputR = Vector2.zero;
-
-			GetCamSettings(); // RECUPERE LES VECTEUR DE LA CAMERA
-
-			if (controller.isGrounded)              // si le player est au sol
-			{
-				moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);              //                      DIRECTION DU PLAYER EN FONCTION DE LA CAMERA
-				moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));          //     SPEED  * (180 - X) / 180    //  calcule la speed en fonction de l'orientation par rapport au deplacement
-				moveDirection.y = 0;                                                                             //     reset y vector a 0 pour eviter de plaquer le player au sol 
-
-				moveInputR = (cameraRight * stickInputR.x) + (cameraForward * stickInputR.y);                //     stick droit pour deplacer le player en meme temps que el monde si il est grounded
-				moveInputR = moveInputR.normalized * 5f;
-		
-				if (Input.GetButtonDown("Jump"))
-				{
-					moveDirection.y = jumpForce;
-					jumpCount += 1;
-					firstJump = true;
-				}
-			}
-			else
-			{
-				float yStore = moveDirection.y;
-				moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-				moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));         // SPEED  * (180 - X) / 180
-				moveDirection.y = yStore;
-				moveDirection.y += (Physics.gravity.y * gravityScale * Time.deltaTime);
-				if (Input.GetButtonDown("Jump"))
-				{
-					jumpCount += 1;
-				}
-			}
-			if (!controller.isGrounded)
-			{
-				if (Input.GetButton("Jump") && jumpCount >= 2)
-				{
-					moveDirection.y = 0;
-					gravityScale = 1f;
-					moveSpeed = speedStore;
-
-					PlayerStateChanged?.Invoke(CameraLockState.Flight);
-				}
-				else if(Input.GetButton("Jump") && jumpCount == 1 && moveDirection.y < 0 && !firstJump)
-				{
-					moveDirection.y = 0;
-					gravityScale = 1f;
-					moveSpeed = speedStore;
-
-					PlayerStateChanged?.Invoke(CameraLockState.Flight);
-				}
-				else
-				{
-					gravityScale = 5;
-				}
-
 				if (moveDirection.y < 0)
 				{
-					moveSpeed = speedStore * 0.7f;
+					controller.Move(Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+					moveSpeed = speedStore * 0.5f;
 				}
+				else if (moveDirection.y > 0 && !Input.GetButton("Jump"))
+				{
+					controller.Move( Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime);
+				}
+
+				Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+				if (stickInput.magnitude < deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
+					stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
+				else                                                                                                    //
+				{                                                                                                       //
+					difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+					if (difAngle > 4)                                                                                   //
+					{                                                                                                   //      SINON
+						transform.Rotate(new Vector3(0f, Mathf.Min(7f, difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+					}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
+					else if (difAngle < -4)                                                                             //
+					{                                                                                                   //
+						transform.Rotate(new Vector3(0f, Mathf.Max(-7f, difAngle), 0f));                                //
+					}
+				}
+
+				Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+				if (stickInputR.magnitude < deadZone)
+					stickInputR = Vector2.zero;
+
+				GetCamSettings(); // RECUPERE LES VECTEUR DE LA CAMERA
+
+				if (controller.isGrounded)              // si le player est au sol
+				{
+
+					moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);              //                      DIRECTION DU PLAYER EN FONCTION DE LA CAMERA
+					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));          //     SPEED  * (180 - X) / 180    //  calcule la speed en fonction de l'orientation par rapport au deplacement
+					moveDirection.y = 0;                                                                             //     reset y vector a 0 pour eviter de plaquer le player au sol 
+
+					moveInputR = (cameraRight * stickInputR.x) + (cameraForward * stickInputR.y);                //     stick droit pour deplacer le player en meme temps que el monde si il est grounded
+					moveInputR = moveInputR.normalized * 5f;
+		
+					if (Input.GetButtonDown("Jump"))
+					{
+						moveDirection.y = jumpForce;
+						jumpCount += 1;
+						firstJump = true;
+					}
+					else
+					{
+						jumpCount = 0;
+						firstJump = false;
+					}
+
+					moveSpeed = speedStore;
+					PlayerStateChanged?.Invoke(CameraLockState.Idle);
+				}
+				
+				else
+				{
+					float yStore = moveDirection.y;
+					moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));         // SPEED  * (180 - X) / 180
+					moveDirection.y = yStore;
+
+
+					if (Input.GetButtonDown("Jump") && jumpCount >= 1)
+					{
+						moveDirection.y = 0;
+						gravityScale = 4f;
+						moveSpeed = speedStore;
+						jumpCount += 1;
+						firstJump = false;
+						PlayerStateChanged?.Invoke(CameraLockState.Flight);
+					}
+					else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !firstJump)
+					{
+						moveDirection.y = 0;
+						gravityScale = 4f;
+						moveSpeed = speedStore;
+
+						PlayerStateChanged?.Invoke(CameraLockState.Flight);
+					}
+					else
+					{
+						gravityScale = 5;
+					}
+
+				}
+				moveDirection.y += (Physics.gravity.y * gravityScale * Time.deltaTime);
+				controller.Move(moveDirection * Time.deltaTime);
 			}
 			else
 			{
-				moveSpeed = speedStore;
-				if(jumpCount >= 2)
-					jumpCount = 0;
-				firstJump = false;
-				PlayerStateChanged?.Invoke(CameraLockState.Idle);
+				moveSpeed = speedStore * 0.2f;
+				moveDirection.y = 0;
+				controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 			}
-		
-			if(Input.GetButtonDown("Dash"))
-			{
-				moveSpeed = speedStore * 4f;
-				StartCoroutine(Dash());
-			}
-			/*if(Input.GetButtonDown("Jump")) Quand le player saute, double sa vitesse pour impulsion
-			 * 
-				moveSpeed = speedStore * 2;*/
-
-
-			moveDirection.y += (Physics.gravity.y * gravityScale * Time.deltaTime);
-			controller.Move(moveDirection * Time.deltaTime);
-
-		}
-
-		IEnumerator Dash()
-		{
-			yield return new WaitForSeconds(4);
-			moveSpeed = speedStore;
+			//Debug.Log(controller.isGrounded);
 		}
 	}
 }
