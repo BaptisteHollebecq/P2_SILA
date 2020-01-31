@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Pto_PlayerController : MonoBehaviour
@@ -29,6 +31,24 @@ public class Pto_PlayerController : MonoBehaviour
 
 	Vector3 moveDirection;
 	public float gravityScale;
+    bool _canQuit = true;
+
+    private void Awake()
+    {
+        TimeSystem.StartedTransition += SwitchCanQuit;
+        TimeSystem.EndedTransition += EndTransitionTime;
+    }
+
+    private void EndTransitionTime()
+    {
+        _canQuit = true;
+    }
+
+    private void SwitchCanQuit()
+    {
+        _canQuit = false;
+    }
+
     void Start()
     {
 		//theRB = GetComponent<Rigidbody>();
@@ -86,8 +106,11 @@ public class Pto_PlayerController : MonoBehaviour
 		}
 		if(onStele && Input.GetButtonDown("B"))
 		{
-			PlayerStateChanged?.Invoke(CameraLockState.Idle);
-			canInput = true;
+            if (_canQuit)
+            {
+                PlayerStateChanged?.Invoke(CameraLockState.Idle);
+                canInput = true;
+            }
 		}
 
 	}

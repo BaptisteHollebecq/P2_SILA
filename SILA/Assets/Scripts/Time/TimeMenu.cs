@@ -78,8 +78,11 @@ public class TimeMenu : MonoBehaviour
 
             if (Input.GetButtonDown("B"))
             {
-                _isActive = false;
-                CanvasGroup.alpha = 0;
+                if (!_isChanging)
+                {
+                    _isActive = false;
+                    CanvasGroup.alpha = 0;
+                }
             }
             if (Input.GetButtonDown("A"))
             {
