@@ -10,6 +10,8 @@ public class TimeSystem : MonoBehaviour
 {
 
     public static event System.Action EndedTransition;
+    public static event System.Action StartedTransition;
+
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -242,6 +244,7 @@ public class TimeSystem : MonoBehaviour
     {
         if (targetTime != TimeOfDay.Null)
         {
+            StartedTransition?.Invoke();
             actualTime = ChangeTime(actualTime, targetTime);
         }
     }
