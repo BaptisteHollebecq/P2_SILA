@@ -31,6 +31,7 @@ public class Pto_PlayerController : MonoBehaviour
 	Vector3 moveInputR;
 
 	Vector3 moveDirection;
+	Vector3 dashDirection;
 	private float _arrowAngle;
 	public float gravityScale;
 	bool _canQuit = true;
@@ -105,16 +106,28 @@ public class Pto_PlayerController : MonoBehaviour
 
 		if(Input.GetButtonDown("Dash"))
 		{
-			_arrowAngle = (Mathf.Atan2(Input.GetAxis("Vertical"), (Input.GetAxis("Horizontal")) * Mathf.Rad2Deg)/* - 90f*/);
-			transform.rotation = Quaternion.Euler(0, _arrowAngle, 0);
+			/*_isDashing = true;
+			_arrowAngle = (Mathf.Atan2(Input.GetAxis("Horizontal"), (Input.GetAxis("Vertical")) * Mathf.Rad2Deg)*//* - 90f*//*);
+			transform.rotation = Quaternion.Euler(0, difAngle, 0);
+			StartCoroutine(Dash());*/
+			
+			//_arrowAngle = (Mathf.Atan2(Input.GetAxis("Vertical"), (Input.GetAxis("Horizontal")) * Mathf.Rad2Deg)/* - 90f*/);
+			//transform.rotation = Quaternion.Euler(0, _arrowAngle, 0);
+
+
+			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+			difAngle = SignedAngle(transform.forward, dashDirection , Vector3.up);
+			transform.Rotate(new Vector3(0f, difAngle, 0f));
+
 			_isDashing = true;
 			StartCoroutine(Dash());
-		}
 
+		}
 	}
 	IEnumerator Dash()
 	{
-		yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSeconds(0.2f);
 		_isDashing = false;
 		moveSpeed = speedStore;
 	}
@@ -122,7 +135,7 @@ public class Pto_PlayerController : MonoBehaviour
     {
 		if(canInput)
 		{
-			if (!_isDashing)
+			if(!_isDashing)
 			{
 				if (moveDirection.y < 0)
 				{
@@ -158,7 +171,7 @@ public class Pto_PlayerController : MonoBehaviour
 
 				if (controller.isGrounded)              // si le player est au sol
 				{
-
+					//Duplayeralakamera
 					moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);              //                      DIRECTION DU PLAYER EN FONCTION DE LA CAMERA
 					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));          //     SPEED  * (180 - X) / 180    //  calcule la speed en fonction de l'orientation par rapport au deplacement
 					moveDirection.y = 0;                                                                             //     reset y vector a 0 pour eviter de plaquer le player au sol 
@@ -218,11 +231,10 @@ public class Pto_PlayerController : MonoBehaviour
 			}
 			else
 			{
-				moveSpeed = speedStore * 0.2f;
-				moveDirection.y = 0;
-				controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+				moveSpeed = speedStore * 2;
+				controller.Move(dashDirection * moveSpeed * Time.deltaTime);
 			}
-			//Debug.Log(controller.isGrounded);
 		}
 	}
 }

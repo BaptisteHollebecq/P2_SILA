@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  jumpForce: 30
+  jumpForce: 20
   mainCamera: {fileID: 1333748637}
   fallMultiplier: 1.2
   lowJumpMultiplier: 2
