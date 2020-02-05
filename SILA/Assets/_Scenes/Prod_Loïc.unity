@@ -603,6 +603,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9165158453731612503, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: m_Name
+      value: TimeManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8849367353733179051, guid: 2cf65178479d3a94e9b9e08673809c4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -658,11 +663,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9165158453731612503, guid: 2cf65178479d3a94e9b9e08673809c4f,
-        type: 3}
-      propertyPath: m_Name
-      value: TimeManager
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf65178479d3a94e9b9e08673809c4f, type: 3}
 --- !u!1 &659922757
@@ -702,7 +702,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 073be4df591f4c843acc223e3ef51369, type: 2}
   - {fileID: 11400000, guid: 2f2889a9bb83a2f4bac4d77e953c6321, type: 2}
   - {fileID: 11400000, guid: 602da5b9fc1e8284fa0429dae1b803c0, type: 2}
-  - {fileID: 0}
   ShowDebug: 1
 --- !u!114 &659922759
 MonoBehaviour:
@@ -1016,7 +1015,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &819738353
@@ -1087,7 +1086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819738351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.81, y: -0.6, z: -0.14}
+  m_LocalPosition: {x: -11.1, y: -0.6, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1981954770}
@@ -1107,7 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101766cdf4c572f4486273268b1bb41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 20
   jumpForce: 30
   mainCamera: {fileID: 1333748637}
   fallMultiplier: 1.2
@@ -1524,13 +1523,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066994909}
-  m_LocalRotation: {x: 0.07208591, y: -0, z: -0, w: 0.99739844}
-  m_LocalPosition: {x: -80.7, y: 63.3, z: -169.2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.62, z: -2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 493947200}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.268001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067493428
 GameObject:
   m_ObjectHideFlags: 0
