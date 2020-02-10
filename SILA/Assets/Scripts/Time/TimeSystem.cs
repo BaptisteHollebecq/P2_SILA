@@ -194,7 +194,7 @@ public class TimeSystem : MonoBehaviour
                 NoonTime();
             else if (from == TimeOfDay.Night)
                 NightTime();
-            EndedTransition?.Invoke();
+            EndedTransition?.Invoke();              // NEED TO CREATE EVENT ON EACH TIME TO OBSERVE WITH PLATFORM
             _transitionSlide = 0;
             targetTime = TimeOfDay.Null;
             return from;
