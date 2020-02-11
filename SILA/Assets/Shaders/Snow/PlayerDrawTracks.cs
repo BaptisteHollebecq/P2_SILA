@@ -25,6 +25,7 @@ public class PlayerDrawTracks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         _layerMask = LayerMask.GetMask("Ground");
         _drawMaterial = new Material(drawShader);
 
@@ -34,18 +35,20 @@ public class PlayerDrawTracks : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        _drawMaterial.SetFloat("Time", TimeSystem.currentTime);
+        
         if (Physics.Raycast(Character.position, Vector3.down, out _groundHit, 1f, _layerMask))
         {
             _drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
             _drawMaterial.SetFloat("Strenght", brushStrenght);
             _drawMaterial.SetFloat("Size", brushSize);
-            RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-            Graphics.Blit(_splatMap, temp);
-            Graphics.Blit(temp, _splatMap, _drawMaterial);
-            RenderTexture.ReleaseTemporary(temp);
         }
+        RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+        Graphics.Blit(_splatMap, temp);
+        Graphics.Blit(temp, _splatMap, _drawMaterial);
+        RenderTexture.ReleaseTemporary(temp);
     }
 
     private void OnGUI()

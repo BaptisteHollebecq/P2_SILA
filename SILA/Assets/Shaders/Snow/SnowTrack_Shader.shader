@@ -15,6 +15,8 @@
 		
 		_Splat("Splat", 2D) = "black" {}
 		_Displacement("Height Snow", Range(0, 1.0)) = 0.3
+		Time("_time", Range(0,1)) = 0
+		
 		//_minDist("Minimum Distance", Range(0,100)) = 10
 		//_maxDist("Maximum Distance", Range (0,500)) = 25
         //_Glossiness ("Smoothness", Range(0,1)) = 0.5
@@ -33,6 +35,7 @@
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 4.6
 
+		#include "UnityCG.cginc"
 		#include "Tessellation.cginc"
 
 			struct appdata {
@@ -60,9 +63,11 @@
 
 			sampler2D _Splat;
 			float _Displacement;
+			float Time;
 
 			void disp(inout appdata v)
 			{
+				_Displacement *= Time;
 				float d = tex2Dlod(_Splat, float4(v.texcoord.xy,0,0)).r * _Displacement;
 				v.vertex.xyz -= v.normal * d;
 				v.vertex.xyz += v.normal * _Displacement;
