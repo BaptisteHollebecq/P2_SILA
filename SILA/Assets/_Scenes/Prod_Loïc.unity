@@ -461,6 +461,7 @@ Transform:
   m_GameObject: {fileID: 493947196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.45, z: -17}
+  m_LocalPosition: {x: -10.9, y: -15.9, z: -4}
   m_LocalScale: {x: 5, y: 2, z: 5}
   m_Children:
   - {fileID: 2066994910}
@@ -789,6 +790,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &751326352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5521996495790102415, guid: 6bcb3835c5f3fcb4da13da43841f64b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 228976774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &751326357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751326352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8f6c19434212048b7181ef12a8b538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &787315497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,12 +1433,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+  - component: {fileID: 1981954770}
+  m_Layer: 0
+  m_Name: CameraFollow
+=======
+>>>>>>> Prod_Guillaume
   - component: {fileID: 1922808497}
   - component: {fileID: 1922808496}
   - component: {fileID: 1922808495}
   - component: {fileID: 1922808494}
+<<<<<<< HEAD
   m_Layer: 8
   m_Name: Plane
+=======
+  - component: {fileID: 1922808498}
+  m_Layer: 8
+  m_Name: Plane_Snow
+>>>>>>> Stashed changes
+>>>>>>> Prod_Guillaume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1493,12 +1527,36 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922808493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -113.8, y: -9.4, z: -10.2}
   m_LocalScale: {x: 5, y: 5, z: 5}
+=======
+<<<<<<< Updated upstream
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalPosition: {x: -21.3, y: -15.7, z: -10.2}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+>>>>>>> Stashed changes
+>>>>>>> Prod_Guillaume
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922808498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922808493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d885f2edbbd9e449763f9f8ad205c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 35f895bb22354ba4db67951382af6c1b, type: 2}
+  time: 0
 --- !u!1 &2066994909
 GameObject:
   m_ObjectHideFlags: 0

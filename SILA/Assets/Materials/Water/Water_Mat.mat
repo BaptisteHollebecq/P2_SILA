@@ -81,7 +81,15 @@ Material:
     - _FoamDepth1: 0
     - _FoamFalloff: 10
     - _FoamFalloff1: 0
+<<<<<<< HEAD
     - _Glaciation: 0.06
+=======
+<<<<<<< Updated upstream
+    - _Glaciation: 0.978
+=======
+    - _Glaciation: 0.25249514
+>>>>>>> Stashed changes
+>>>>>>> Prod_Guillaume
     - _Glaciation1: -14.42
     - _IcePower: -1
     - _Metalness: 1
