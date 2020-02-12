@@ -12,7 +12,7 @@ public class Wind : MonoBehaviour
 
     private void Update()
     {
-        _windDirection = transform.GetChild(0).transform.rotation.eulerAngles + new Vector3(0, 0, 270);
+        _windDirection = transform.GetChild(0).transform.rotation.eulerAngles/* + new Vector3(0, 0, 270)*/;
         
         // -90 degrees
 
