@@ -15,6 +15,7 @@
 		
 		_Splat("Splat", 2D) = "black" {}
 		_Displacement("Height Snow", Range(0, 1.0)) = 0.3
+		Time("time", Range(0, 1.0)) = 0
 		//_minDist("Minimum Distance", Range(0,100)) = 10
 		//_maxDist("Maximum Distance", Range (0,500)) = 25
         //_Glossiness ("Smoothness", Range(0,1)) = 0.5
@@ -60,12 +61,14 @@
 
 			sampler2D _Splat;
 			float _Displacement;
+			float Time;
 
 			void disp(inout appdata v)
 			{
-				float d = tex2Dlod(_Splat, float4(v.texcoord.xy,0,0)).r * _Displacement;
+				
+				float d = tex2Dlod(_Splat, float4(v.texcoord.xy, 0, 0)).r * _Displacement * Time;
 				v.vertex.xyz -= v.normal * d;
-				v.vertex.xyz += v.normal * _Displacement;
+				v.vertex.xyz += v.normal * _Displacement * Time;
 			}
 
         sampler2D _GroundTex;
