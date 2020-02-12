@@ -20,7 +20,7 @@ public class TimeSystem : MonoBehaviour
     public TimeOfDay startingTime;
     [HideInInspector] public TimeOfDay targetTime = TimeOfDay.Null;
     [HideInInspector] public TimeOfDay actualTime;
-    [HideInInspector] public static float currentTime;                 // current time used in transition
+    [HideInInspector] public float currentTime;                 // current time used in transition
     [SerializeField] private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
     
 
