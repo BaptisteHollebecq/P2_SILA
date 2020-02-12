@@ -6,22 +6,35 @@ public class Wind : MonoBehaviour
 {
     private Vector3 _windDirection;
     private Rigidbody _rb;
+    private bool _isGrounded = false;
     
     public float windForce = 0.1f;
-    
+
+    private void Awake()
+    {
+        //Pto_PlayerController
+
+    }
+
+    private void PlayerIsGrounded()
+    {
+        _isGrounded = true;
+    }
+
+    private void PlayerAsJumped()
+    {
+        _isGrounded = false;
+    }
 
     private void Update()
     {
-        _windDirection = transform.GetChild(0).transform.rotation.eulerAngles/* + new Vector3(0, 0, 270)*/;
-        
-        // -90 degrees
+        _windDirection = transform.GetChild(0).transform.forward;
 
-        Debug.Log(_windDirection);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Rigidbody>() != null)
+        if (other.tag == "Player")
         {
             _rb = other.GetComponent<Rigidbody>();
         }
@@ -29,12 +42,16 @@ public class Wind : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        _rb = null;
+        if (other.tag == "Player")
+        {
+            _rb = null;
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        _rb.AddForce(_windDirection * windForce);
+        if (!_isGrounded)
+         _rb.AddForce(_windDirection * windForce);
     }
 
 }
