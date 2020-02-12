@@ -5,26 +5,31 @@ using UnityEngine;
 
 public class Pto_PlayerController : MonoBehaviour
 {
-	public static event System.Action<CameraLockState> PlayerStateChanged;
+	public static event Action<CameraLockState> PlayerStateChanged;
+	public static event Action PlayerIsGrounded;
+	public static event Action PlayerIsNotGrounded;
+
 
 	public float moveSpeed;
-	float speedStore;
-	//Rigidbody theRB;
+	float _speedStore;
+	Rigidbody theRB;
+	public LayerMask whatIsGround;
+	public float radiusCheck;
+	bool _isGrounded;
 	public float jumpForce;
-	int jumpCount;
-	bool firstJump;
-	CharacterController controller;
+	int _jumpCount;
+	bool _firstJump;
 	public Camera mainCamera;
 
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 
 	bool _isDashing;
-	bool onStele;
-	bool chouetteEyes;
-	bool canInput;
-	float deadZone = 0.25f;
-	float difAngle;
+	bool _onStele;
+	bool _chouetteEyes;
+	bool _canInput;
+	float _deadZone = 0.25f;
+	float _difAngle;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
@@ -54,14 +59,13 @@ public class Pto_PlayerController : MonoBehaviour
 
     void Start()
     {
-		//theRB = GetComponent<Rigidbody>();
-		controller = GetComponent<CharacterController>();
-		speedStore = moveSpeed;
-		jumpCount = 0;
-		firstJump = false;
-		canInput = true;
-		onStele = false;
-		chouetteEyes = false;
+		theRB = GetComponent<Rigidbody>();
+		_speedStore = moveSpeed;
+		_jumpCount = 0;
+		_firstJump = false;
+		_canInput = true;
+		_onStele = false;
+		_chouetteEyes = false;
 		_isDashing = false;
     }
 
@@ -82,8 +86,20 @@ public class Pto_PlayerController : MonoBehaviour
 		cameraUp.y = 0;
 	}   // set up les vector par rapport a ceux de la cam, utile pour le deplacement
 
+	public bool IsGrounded()
+	{
+		if (Physics.Raycast(transform.position, -Vector3.up, radiusCheck, whatIsGround))
+		{
+			PlayerIsGrounded?.Invoke();
+			return true;
+		}
+		PlayerIsNotGrounded?.Invoke();
+		return false;
+	}   //   return true si le player touche le sol
 	private void Update()
 	{
+		_isGrounded = IsGrounded();
+
 		if (Input.GetButtonDown("Y"))
 		{
 			RaycastHit hitStele;
@@ -92,29 +108,29 @@ public class Pto_PlayerController : MonoBehaviour
 			if(hitStele.transform.TryGetComponent(out Stele stele))
 			{
 				_canQuit = false;
-				onStele = true;
-				canInput = false;
+				_onStele = true;
+				_canInput = false;
 				stele.Interact();
 			}
-			else if(!chouetteEyes)
+			else if(!_chouetteEyes)
 			{
 				PlayerStateChanged?.Invoke(CameraLockState.Eyes);
-				chouetteEyes = true;
+				_chouetteEyes = true;
 
 			}
 		}
-		if(onStele && Input.GetButtonDown("B"))
+		if(_onStele && Input.GetButtonDown("B"))
 		{
             PlayerStateChanged?.Invoke(CameraLockState.Idle);
-            canInput = true;
+            _canInput = true;
 		}
 
 		if(Input.GetButtonDown("Dash"))
 		{
 			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-			difAngle = SignedAngle(transform.forward, dashDirection , Vector3.up);
-			transform.Rotate(new Vector3(0f, difAngle, 0f));
+			_difAngle = SignedAngle(transform.forward, dashDirection , Vector3.up);
+			transform.Rotate(new Vector3(0f, _difAngle, 0f));
 
 			_isDashing = true;
 			StartCoroutine(Dash());
@@ -125,51 +141,44 @@ public class Pto_PlayerController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.2f);
 		_isDashing = false;
-		moveSpeed = speedStore;
+		moveSpeed = _speedStore;
 	}
 	void FixedUpdate()
     {
-		if(canInput)
+		if(_canInput)
 		{
 			if(!_isDashing)
 			{
-				if (moveDirection.y < 0)
-				{
-					controller.Move(Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
-					moveSpeed = speedStore * 0.5f;
-				}
-				else if (moveDirection.y > 0 && !Input.GetButton("Jump"))
-				{
-					controller.Move( Vector3.up * Physics.gravity.y * 1f * Time.deltaTime);
-				}
 
 				Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-				if (stickInput.magnitude < deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
+				if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 					stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
 				else                                                                                                    //
 				{                                                                                                       //
-					difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-					if (difAngle > 4)                                                                                   //
+					_difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+					if (_difAngle > 4)                                                                                   //
 					{                                                                                                   //      SINON
-						transform.Rotate(new Vector3(0f, Mathf.Min(7f, difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+						transform.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
 					}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-					else if (difAngle < -4)                                                                             //
+					else if (_difAngle < -4)                                                                             //
 					{                                                                                                   //
-						transform.Rotate(new Vector3(0f, Mathf.Max(-7f, difAngle), 0f));                                //
+						transform.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
 					}
 				}
 
 				Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
-				if (stickInputR.magnitude < deadZone)
+				if (stickInputR.magnitude < _deadZone)
 					stickInputR = Vector2.zero;
 
 				GetCamSettings(); // RECUPERE LES VECTEUR DE LA CAMERA
 
-				if (controller.isGrounded)              // si le player est au sol
+				if (_isGrounded)              // si le player est au sol
 				{
+					moveSpeed = _speedStore;
+					
 					//Duplayeralakamera
 					moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);              //                      DIRECTION DU PLAYER EN FONCTION DE LA CAMERA
-					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));          //     SPEED  * (180 - X) / 180    //  calcule la speed en fonction de l'orientation par rapport au deplacement
+					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180));          //     SPEED  * (180 - X) / 180    //  calcule la speed en fonction de l'orientation par rapport au deplacement
 					moveDirection.y = 0;                                                                             //     reset y vector a 0 pour eviter de plaquer le player au sol 
 
 					moveInputR = (cameraRight * stickInputR.x) + (cameraForward * stickInputR.y);                //     stick droit pour deplacer le player en meme temps que el monde si il est grounded
@@ -177,67 +186,63 @@ public class Pto_PlayerController : MonoBehaviour
 		
 					if (Input.GetButtonDown("Jump"))
 					{
-						moveDirection.y = jumpForce;
-						jumpCount += 1;
-						firstJump = true;
+						Debug.Log("je jump");
+						moveDirection = Vector3.up * jumpForce;
+						_jumpCount += 1;
+						_firstJump = true;
 					}
 					else
 					{
-						jumpCount = 0;
-						firstJump = false;
+						_jumpCount = 0;
+						_firstJump = false;
 					}
 
-					moveSpeed = speedStore;
-					if(!chouetteEyes)
+					if(!_chouetteEyes)
 						PlayerStateChanged?.Invoke(CameraLockState.Idle);
-					else if(chouetteEyes && Input.GetButtonDown("Jump") || chouetteEyes && Input.GetAxis("Horizontal") != 0 || chouetteEyes && Input.GetAxis("Vertical") != 0 || chouetteEyes && Input.GetButtonDown("B"))
+					else if(_chouetteEyes && Input.GetButtonDown("Jump") || _chouetteEyes && Input.GetAxis("Horizontal") != 0 || _chouetteEyes && Input.GetAxis("Vertical") != 0 || _chouetteEyes && Input.GetButtonDown("B"))
 					{
 						PlayerStateChanged?.Invoke(CameraLockState.Idle);
 
-						chouetteEyes = false;
+						_chouetteEyes = false;
 					}
 				}
-				
 				else
 				{
 					float yStore = moveDirection.y;
 					moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(difAngle)) / 180));         // SPEED  * (180 - X) / 180
+					moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180));         // SPEED  * (180 - X) / 180
 					moveDirection.y = yStore;
+					moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
 
-					if (Input.GetButtonDown("Jump") && jumpCount >= 1)
+					if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
 					{
 						moveDirection.y = 0;
-						gravityScale = 4f;
-						moveSpeed = speedStore;
-						jumpCount += 1;
-						firstJump = false;
+						gravityScale = 1f;
+						moveSpeed = _speedStore / 2;
+						_jumpCount += 1;
+						_firstJump = false;
 						PlayerStateChanged?.Invoke(CameraLockState.Flight);
 					}
-					else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !firstJump)
+					else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
 					{
 						moveDirection.y = 0;
-						gravityScale = 4f;
-						moveSpeed = speedStore;
-
+						gravityScale = 1f;
+						moveSpeed = _speedStore / 2;
 						PlayerStateChanged?.Invoke(CameraLockState.Flight);
 					}
 					else
 					{
-						gravityScale = 5;
+						gravityScale = 1f;
 					}
-
 				}
-				moveDirection.y += (Physics.gravity.y * gravityScale * Time.deltaTime);
-				controller.Move(moveDirection * Time.deltaTime);
 			}
 			else
 			{
-
-				moveSpeed = speedStore * 2;
-				controller.Move(dashDirection * moveSpeed * Time.deltaTime);
+				moveSpeed = _speedStore * 2;		
 			}
 		}
+
+		theRB.velocity = moveDirection * moveSpeed;
 	}
 }
