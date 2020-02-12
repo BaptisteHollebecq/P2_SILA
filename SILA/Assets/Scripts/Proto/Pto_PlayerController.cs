@@ -21,7 +21,6 @@ public class Pto_PlayerController : MonoBehaviour
 
 	bool _isDashing;
 	bool onStele;
-	bool chouetteEyes;
 	bool canInput;
 	float deadZone = 0.25f;
 	float difAngle;
@@ -61,7 +60,6 @@ public class Pto_PlayerController : MonoBehaviour
 		firstJump = false;
 		canInput = true;
 		onStele = false;
-		chouetteEyes = false;
 		_isDashing = false;
     }
 
@@ -91,26 +89,31 @@ public class Pto_PlayerController : MonoBehaviour
 			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
 			if(hitStele.transform.TryGetComponent(out Stele stele))
 			{
-				_canQuit = false;
 				onStele = true;
 				canInput = false;
 				stele.Interact();
 			}
-			else if(!chouetteEyes)
-			{
-				PlayerStateChanged?.Invoke(CameraLockState.Eyes);
-				chouetteEyes = true;
-
-			}
 		}
 		if(onStele && Input.GetButtonDown("B"))
 		{
-            PlayerStateChanged?.Invoke(CameraLockState.Idle);
-            canInput = true;
+            if (_canQuit)
+            {
+                PlayerStateChanged?.Invoke(CameraLockState.Idle);
+                canInput = true;
+            }
 		}
 
 		if(Input.GetButtonDown("Dash"))
 		{
+			/*_isDashing = true;
+			_arrowAngle = (Mathf.Atan2(Input.GetAxis("Horizontal"), (Input.GetAxis("Vertical")) * Mathf.Rad2Deg)*//* - 90f*//*);
+			transform.rotation = Quaternion.Euler(0, difAngle, 0);
+			StartCoroutine(Dash());*/
+			
+			//_arrowAngle = (Mathf.Atan2(Input.GetAxis("Vertical"), (Input.GetAxis("Horizontal")) * Mathf.Rad2Deg)/* - 90f*/);
+			//transform.rotation = Quaternion.Euler(0, _arrowAngle, 0);
+
+
 			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
 			difAngle = SignedAngle(transform.forward, dashDirection , Vector3.up);
@@ -140,7 +143,7 @@ public class Pto_PlayerController : MonoBehaviour
 				}
 				else if (moveDirection.y > 0 && !Input.GetButton("Jump"))
 				{
-					controller.Move( Vector3.up * Physics.gravity.y * 1f * Time.deltaTime);
+					controller.Move( Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime);
 				}
 
 				Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -188,14 +191,7 @@ public class Pto_PlayerController : MonoBehaviour
 					}
 
 					moveSpeed = speedStore;
-					if(!chouetteEyes)
-						PlayerStateChanged?.Invoke(CameraLockState.Idle);
-					else if(chouetteEyes && Input.GetButtonDown("Jump") || chouetteEyes && Input.GetAxis("Horizontal") != 0 || chouetteEyes && Input.GetAxis("Vertical") != 0 || chouetteEyes && Input.GetButtonDown("B"))
-					{
-						PlayerStateChanged?.Invoke(CameraLockState.Idle);
-
-						chouetteEyes = false;
-					}
+					PlayerStateChanged?.Invoke(CameraLockState.Idle);
 				}
 				
 				else

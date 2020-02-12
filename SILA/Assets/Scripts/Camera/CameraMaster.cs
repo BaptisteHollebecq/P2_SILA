@@ -124,10 +124,6 @@ public class CameraMaster : LockModeStateMachine
 			case CameraLockState.Flight:
 				Behaviour = _behaviours[2];
 				break;
-
-			case CameraLockState.Eyes:
-				Behaviour = _behaviours[3];
-				break;
 		}
 	}
 
@@ -287,7 +283,6 @@ public class CameraMaster : LockModeStateMachine
 		switch (LockState)
 		{
 			case CameraLockState.Idle:
-				
 			case CameraLockState.Flight:
 				_mouseX = Input.GetAxis ("HorizontalCamera") * Behaviour.Sensitivity.x;
 				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;
@@ -308,13 +303,6 @@ public class CameraMaster : LockModeStateMachine
 				if (!_isMovingToPivot)
 					StartCoroutine(MoveToPivot());
 				return;
-
-			case CameraLockState.Eyes:
-				_mouseX = Input.GetAxis("HorizontalCamera") * Behaviour.Sensitivity.x;
-				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;
-				if (_mouseX != 0 || _mouseY != 0)
-					Rotate(_mouseY, _mouseX);
-				break;
 		}
 
 		ResetPosition ();
