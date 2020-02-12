@@ -5,7 +5,8 @@
 	Fight,
 	Flight,
 	Rail,
-	LookAtPlayer
+	LookAtPlayer,
+	Eyes
 }
 
 public abstract class LockModeStateMachine : UnityEngine.MonoBehaviour
