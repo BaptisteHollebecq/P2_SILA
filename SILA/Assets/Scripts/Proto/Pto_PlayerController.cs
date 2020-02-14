@@ -13,8 +13,9 @@ public class Pto_PlayerController : MonoBehaviour
 	public float moveSpeed;
 	float _speedStore;
 	Rigidbody theRB;
+	Collider collider;
 	public LayerMask whatIsGround;
-	public float radiusCheck;
+	float distToGround;
 	bool _isGrounded;
 	public float jumpForce;
 	int _jumpCount;
@@ -60,6 +61,7 @@ public class Pto_PlayerController : MonoBehaviour
     void Start()
     {
 		theRB = GetComponent<Rigidbody>();
+		collider = GetComponent<CapsuleCollider>();
 		_speedStore = moveSpeed;
 		_jumpCount = 0;
 		_firstJump = false;
@@ -67,7 +69,8 @@ public class Pto_PlayerController : MonoBehaviour
 		_onStele = false;
 		_chouetteEyes = false;
 		_isDashing = false;
-    }
+		distToGround = collider.bounds.extents.y;
+	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
 	{
@@ -88,7 +91,7 @@ public class Pto_PlayerController : MonoBehaviour
 
 	public bool IsGrounded()
 	{
-		if (Physics.Raycast(transform.position, -Vector3.up, radiusCheck, whatIsGround))
+		if (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f, whatIsGround))
 		{
 			PlayerIsGrounded?.Invoke();
 			return true;
@@ -187,7 +190,7 @@ public class Pto_PlayerController : MonoBehaviour
 					if (Input.GetButtonDown("Jump"))
 					{
 						Debug.Log("je jump");
-						moveDirection = Vector3.up * jumpForce;
+						moveDirection.y = theRB.velocity.y * jumpForce;
 						_jumpCount += 1;
 						_firstJump = true;
 					}

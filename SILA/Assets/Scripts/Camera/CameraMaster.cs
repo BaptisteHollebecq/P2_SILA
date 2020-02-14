@@ -5,9 +5,9 @@ using EasedLerp = RSTools.EasedLerp;
 
 public class CameraMaster : LockModeStateMachine
 {
-    #region Variables
+	#region Variables
 
-    public static event Action MovedToPivot;
+	public static event Action MovedToPivot;
 
     ICameraExtraMovement[] _extraMovements;
 	Camera m_Camera;

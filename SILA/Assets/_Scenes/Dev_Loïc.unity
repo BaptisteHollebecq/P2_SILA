@@ -368,13 +368,14 @@ PrefabInstance:
     - target: {fileID: 562108066677903803, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 562108066677903807, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 13400000, guid: c10e3803e1f826a42ba2a200be082005,
+        type: 2}
     - target: {fileID: 5301368344420543455, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Mass
@@ -550,6 +551,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5501c7f8e510b448fa203166ae480c, type: 3}
+--- !u!1 &534061197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 562108066677903777, guid: d827e12573fe081408d6b638a4bca02a,
+    type: 3}
+  m_PrefabInstance: {fileID: 375296083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &534061203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534061197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpForce: 7
+  gravityScale: 0
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
@@ -818,6 +843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -878,10 +908,5 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1242939176}
-    - target: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06dd765b536db64bb2314e3e31c2172, type: 3}
