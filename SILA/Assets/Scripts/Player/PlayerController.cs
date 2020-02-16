@@ -73,6 +73,16 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Dash"))
 			Dash();
 
+		if(Input.GetButtonDown("Y"))
+			Interact();
+  
+		if(Input.GetButtonDown("B"))
+		{
+			PlayerStateChanged?.Invoke(CameraLockState.Idle);
+			StopInteract();
+
+		}
+
 		Jump();
 		InputSettings();
 		Ground();
@@ -180,7 +190,7 @@ public class PlayerController : MonoBehaviour
 		dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
 		_difAngle = SignedAngle(transform.forward, dashDirection, Vector3.up);
 		transform.Rotate(new Vector3(0f, _difAngle, 0f));
-
+		moveSpeed = _speedStore * 2;
 		_isDashing = true;
 		StartCoroutine(EndDash());
 	}
@@ -192,10 +202,36 @@ public class PlayerController : MonoBehaviour
 	}
 	#endregion
 
-	void SteleInteract()
+	void Interact()
 	{
-
+		RaycastHit hitStele;
+		Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
+		Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
+		if (hitStele.transform.TryGetComponent(out Stele stele))
+		{
+			_canQuit = false;
+			_onStele = true;
+			_canInput = false;
+			stele.Interact();
+		}
+		else if (!_chouetteEyes && _isGrounded)
+		{
+			PlayerStateChanged?.Invoke(CameraLockState.Eyes);
+			_chouetteEyes = true;
+		}
 	}
+
+	void StopInteract()
+	{
+		PlayerStateChanged?.Invoke(CameraLockState.Idle);
+		if (_onStele)
+		{
+			_onStele = false;
+			_canInput = true;
+		}
+	}
+
+
 	void Jump()
 	{
 		if (_isGrounded && Input.GetButtonDown("Jump"))

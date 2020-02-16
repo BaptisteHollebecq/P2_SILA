@@ -287,7 +287,9 @@ public class CameraMaster : LockModeStateMachine
 		switch (LockState)
 		{
 			case CameraLockState.Idle:
-				
+				Debug.Log("Je repasse en IDLE");
+				break;
+
 			case CameraLockState.Flight:
 				_mouseX = Input.GetAxis ("HorizontalCamera") * Behaviour.Sensitivity.x;
 				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;
