@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 	Collider _collid;
 	Vector3 moveDirection;
 	Vector3 dashDirection;
-	float _gravityUp;
 	float _speedStore;
 	float _arrowAngle;
 	bool _isDashing;
@@ -36,6 +35,7 @@ public class PlayerController : MonoBehaviour
 	float _deadZone = 0.25f;
 	float _difAngle;
 	bool _canQuit;
+	bool _isFlying;
 
 	[Header("Camera")]
 	public Camera mainCamera;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 		_onStele = false;
 		_chouetteEyes = false;
 		_isDashing = false;
-		_gravityUp = 0;
+		_isFlying = false;
 		distToGround = _collid.bounds.extents.y;
 	}
 
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 		Interact();
 		StopInteract();
 		Jump();
+		Flight();
 		InputSettings();
 		Ground();
 		Move();
@@ -82,31 +83,31 @@ public class PlayerController : MonoBehaviour
 
 	private void AtkDown()
 	{
-		Debug.Log(_isGrounded);
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
 			_rb.velocity = Vector3.down * moveSpeed * 2;
-			Debug.Log(moveSpeed);
 		}
-
 	}
 
 	void Ground()
 	{
 		moveDirection.y = _rb.velocity.y;
 
-		if(!_isGrounded)
+		if(!_isGrounded && !_isFlying)
 		{
+			if (!_isDashing)
+				moveSpeed = _speedStore / 2;
+
 			if (_rb.velocity.y < 0)
 				moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 			else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
 				moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-			/*gravityScale = Mathf.Lerp(0, 1, _gravityUp);
-			moveDirection.y = Physics.gravity.y * gravityScale;*/
 		}
 		else
 		{
-			gravityScale = 0;
+			gravityScale = 2;
+			if(!_isDashing)
+				moveSpeed = _speedStore;
 		}
 	}
 
@@ -233,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
 	void StopInteract()
 	{
-		if (_onStele && Input.GetButtonDown("B"))
+		if (_canQuit && _onStele && Input.GetButtonDown("B"))
 		{
 			PlayerStateChanged?.Invoke(CameraLockState.Idle);
 			_onStele = false;
@@ -247,16 +248,34 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
 	void Jump()
 	{
 		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
 			_rb.velocity =  Vector3.up * jumpForce;
+			moveSpeed = _speedStore / 2;
+			Debug.Log(moveSpeed);
 			_jumpCount += 1;
 			_firstJump = true;
 		}
 	}
+	void Flight()
+	{
+		if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
+		{
+			Debug.Log("je vole");
+		}
+		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
+		{
+			
+		}
+		else
+		{
+			
+		}
+	}
+
+
 	void Move()
 	{
 		_rb.velocity = moveDirection;

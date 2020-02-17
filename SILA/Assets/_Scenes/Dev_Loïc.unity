@@ -345,12 +345,27 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 5301368344420543455, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 562108066677903807, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: c10e3803e1f826a42ba2a200be082005,
         type: 2}
+    - target: {fileID: 562108066677903807, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 562108066677903807, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 562108066677903803, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: mainCamera
@@ -564,6 +579,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.06
       objectReference: {fileID: 0}
+    - target: {fileID: 4710592787475467679, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7086472
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787475467679, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7055631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787475467679, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90.25001
+      objectReference: {fileID: 0}
     - target: {fileID: 4710592786881257698, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
       propertyPath: m_Layer
@@ -616,9 +646,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpForce: 7
-  gravityScale: 0
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  gravityScale: 2
+  fallMultiplier: 10
+  lowJumpMultiplier: 7.5
   mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:
@@ -782,6 +812,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762492105084057877, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762492105084057877, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762492105084057877, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fd6fb8ea51ad4548b9768d2a5b65482, type: 3}
