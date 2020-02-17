@@ -70,23 +70,25 @@ public class PlayerController : MonoBehaviour
 	{
 		_isGrounded = IsGrounded();
 
-		if (Input.GetButtonDown("Dash"))
-			Dash();
-
-		if(Input.GetButtonDown("Y"))
-			Interact();
-  
-		if(Input.GetButtonDown("B"))
-		{
-			PlayerStateChanged?.Invoke(CameraLockState.Idle);
-			StopInteract();
-
-		}
-
+		Dash();
+		Interact();
+		StopInteract();
 		Jump();
 		InputSettings();
 		Ground();
 		Move();
+		AtkDown();
+	}
+
+	private void AtkDown()
+	{
+		Debug.Log(_isGrounded);
+		if(!_isGrounded && Input.GetButtonDown("B"))
+		{
+			_rb.velocity = Vector3.down * moveSpeed * 2;
+			Debug.Log(moveSpeed);
+		}
+
 	}
 
 	void Ground()
@@ -110,39 +112,41 @@ public class PlayerController : MonoBehaviour
 
 	void InputSettings()
 	{
-		bool hasInput = Input.GetKey (KeyCode.I);
+		if(_canInput)
+		{
+			bool hasInput = Input.GetKey (KeyCode.I);
 
-		//_rb.constraints = RigidbodyConstraints.FreezeRotation;
-		//_rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+			//_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			//_rb.constraints |= RigidbodyConstraints.FreezePositionZ;
 
-		_rb.constraints = hasInput ?
-			(RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ) :
-			RigidbodyConstraints.FreezeRotation;
+			_rb.constraints = hasInput ?
+				(RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ) :
+				RigidbodyConstraints.FreezeRotation;
 
-		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
-		else                                                                                                    //
-		{                                                                                                       //
-			_difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-			if (_difAngle > 4)                                                                                   //
-			{                                                                                                   //      SINON
-				transform.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
-			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-			else if (_difAngle < -4)                                                                             //
-			{                                                                                                   //
-				transform.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
+			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+			if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
+				stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
+			else                                                                                                    //
+			{                                                                                                       //
+				_difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+				if (_difAngle > 4)                                                                                   //
+				{                                                                                                   //      SINON
+					transform.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+				}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
+				else if (_difAngle < -4)                                                                             //
+				{                                                                                                   //
+					transform.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
+				}
 			}
+
+			Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+			if (stickInputR.magnitude < _deadZone)
+				stickInputR = Vector2.zero;
+
+			GetCamSettings();
+			moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+			moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180));
 		}
-
-		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
-		if (stickInputR.magnitude < _deadZone)
-			stickInputR = Vector2.zero;
-
-		GetCamSettings();
-
-		moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-		moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180));
 	}
 
 	void EndTransitionTime()
@@ -186,13 +190,16 @@ public class PlayerController : MonoBehaviour
 	#region Dash
 	void Dash()
 	{
-		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-		_difAngle = SignedAngle(transform.forward, dashDirection, Vector3.up);
-		transform.Rotate(new Vector3(0f, _difAngle, 0f));
-		moveSpeed = _speedStore * 2;
-		_isDashing = true;
-		StartCoroutine(EndDash());
+		if (Input.GetButtonDown("Dash"))
+		{
+			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+			_difAngle = SignedAngle(transform.forward, dashDirection, Vector3.up);
+			transform.Rotate(new Vector3(0f, _difAngle, 0f));
+			moveSpeed = _speedStore * 2;
+			_isDashing = true;
+			StartCoroutine(EndDash());
+		}
 	}
 	IEnumerator EndDash()
 	{
@@ -204,37 +211,46 @@ public class PlayerController : MonoBehaviour
 
 	void Interact()
 	{
-		RaycastHit hitStele;
-		Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
-		Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
-		if (hitStele.transform.TryGetComponent(out Stele stele))
+		if (Input.GetButtonDown("Y"))
 		{
-			_canQuit = false;
-			_onStele = true;
-			_canInput = false;
-			stele.Interact();
-		}
-		else if (!_chouetteEyes && _isGrounded)
-		{
-			PlayerStateChanged?.Invoke(CameraLockState.Eyes);
-			_chouetteEyes = true;
+			RaycastHit hitStele;
+			Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
+			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
+			if (hitStele.transform.TryGetComponent(out Stele stele))
+			{
+				_canQuit = false;
+				_onStele = true;
+				_canInput = false;
+				stele.Interact();
+			}
+			else if (!_chouetteEyes && _isGrounded)
+			{
+				PlayerStateChanged?.Invoke(CameraLockState.Eyes);
+				_chouetteEyes = true;
+			}
 		}
 	}
 
 	void StopInteract()
 	{
-		PlayerStateChanged?.Invoke(CameraLockState.Idle);
-		if (_onStele)
+		if (_onStele && Input.GetButtonDown("B"))
 		{
+			PlayerStateChanged?.Invoke(CameraLockState.Idle);
 			_onStele = false;
 			_canInput = true;
+		}
+
+		if (_chouetteEyes && Input.GetButtonDown("Jump") || _chouetteEyes && Input.GetAxis("Horizontal") != 0 || _chouetteEyes && Input.GetAxis("Vertical") != 0 || _chouetteEyes && Input.GetButtonDown("B"))
+		{
+			PlayerStateChanged?.Invoke(CameraLockState.Idle);
+			_chouetteEyes = false;
 		}
 	}
 
 
 	void Jump()
 	{
-		if (_isGrounded && Input.GetButtonDown("Jump"))
+		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
 			_rb.velocity =  Vector3.up * jumpForce;
 			_jumpCount += 1;

@@ -384,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 562108066677903803, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4921737129866593943, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
@@ -474,6 +474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacles
       objectReference: {fileID: 0}
+    - target: {fileID: 4710592787828609327, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4710592787828609312, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -559,6 +564,36 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.06
       objectReference: {fileID: 0}
+    - target: {fileID: 4710592786881257698, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787001798558, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787019039473, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787160043177, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787475467678, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710592787771353461, guid: ac5501c7f8e510b448fa203166ae480c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5501c7f8e510b448fa203166ae480c, type: 3}
 --- !u!1 &534061197 stripped
@@ -574,7 +609,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534061197}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
   m_Name: 
@@ -951,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 5424354313221334437, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: ShowDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06dd765b536db64bb2314e3e31c2172, type: 3}
