@@ -18,7 +18,7 @@ public class PlayerDrawTracks : MonoBehaviour
     int _layerMask;
 
     [Header("Properties")]
-    [Range(1, 500)]
+    [Range(0.001f, 500)]
     public float brushSize;
     [Range(0, 1)]
     public float brushStrenght;

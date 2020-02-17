@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Aurora1
+  m_Name: Night
   m_Shader: {fileID: 4800000, guid: 86f4829d12213e54880ad281220eb019, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -94,7 +94,7 @@ Material:
     - _CloudHeightAdjust: -0.1
     - _CloudHeightContrast: 0.1
     - _CloudScale: 1
-    - _ColFactor: 20.97
+    - _ColFactor: 13.9
     - _ColPow: 2.4
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -121,7 +121,7 @@ Material:
     - _WaveDistort: -0.06
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.2587539, g: 1, b: 0, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.102636814, a: 1}
     - _Color2: {r: 0, g: 0.46069968, b: 0.8455882, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0.087045856, g: 0.17278662, b: 0.25735295, a: 1}
