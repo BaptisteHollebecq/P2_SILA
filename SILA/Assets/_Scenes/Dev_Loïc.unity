@@ -280,6 +280,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 562108066677903777, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 562108066677903802, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -288,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 562108066677903802, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.4
+      value: -14.8
       objectReference: {fileID: 0}
     - target: {fileID: 562108066677903802, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
@@ -406,7 +411,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.85
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 562108066210162996, guid: d827e12573fe081408d6b638a4bca02a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d827e12573fe081408d6b638a4bca02a, type: 3}
 --- !u!1001 &384047169
 PrefabInstance:
@@ -645,10 +651,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 20
-  gravityScale: 2
-  fallMultiplier: 10
-  lowJumpMultiplier: 7.5
+  jumpForce: 7.5
+  gravityScale: 7
+  fallMultiplier: 0
+  lowJumpMultiplier: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 307
   mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:
@@ -758,6 +767,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3762492105084057865, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3762492105084057877, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -827,6 +841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762492105084057866, guid: 1fd6fb8ea51ad4548b9768d2a5b65482,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fd6fb8ea51ad4548b9768d2a5b65482, type: 3}
