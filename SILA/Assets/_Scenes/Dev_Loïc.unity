@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 7
+  jumpForce: 20
   gravityScale: 2
   fallMultiplier: 10
   lowJumpMultiplier: 7.5

@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
 	{
 		moveDirection.y = _rb.velocity.y;
 
-		if(!_isGrounded && !_isFlying)
+		/*if(!_isGrounded && !_isFlying)
 		{
 			if (!_isDashing)
 				moveSpeed = _speedStore / 2;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 			gravityScale = 2;
 			if(!_isDashing)
 				moveSpeed = _speedStore;
-		}
+		}*/
 	}
 
 	void InputSettings()
@@ -252,9 +252,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
-			_rb.velocity =  Vector3.up * jumpForce;
+			//_rb.velocity += Vector3.up * jumpForce;
+			_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 			moveSpeed = _speedStore / 2;
-			Debug.Log(moveSpeed);
 			_jumpCount += 1;
 			_firstJump = true;
 		}
