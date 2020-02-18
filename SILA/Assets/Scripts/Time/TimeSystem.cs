@@ -330,6 +330,11 @@ public class TimeSystem : MonoBehaviour
         if (Input.GetKeyDown("n"))
             targetTime = TimeOfDay.Night;
         if (Input.GetKeyDown("a"))
+            targetTime = TimeOfDay.Morning;
+        if (Input.GetKeyDown("j"))
+            targetTime = TimeOfDay.Day;
+        if (Input.GetKeyDown("c"))
+            targetTime = TimeOfDay.Noon;
 
         //Debug.Log(actualTime);
         //Debug.Log(_rotationScale);
