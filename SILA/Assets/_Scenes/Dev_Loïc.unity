@@ -608,7 +608,7 @@ PrefabInstance:
     - target: {fileID: 4710592787001798558, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4710592787019039473, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
@@ -657,7 +657,7 @@ MonoBehaviour:
   lowJumpMultiplier: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 307
+    m_Bits: 288
   mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:

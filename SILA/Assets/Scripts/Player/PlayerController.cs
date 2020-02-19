@@ -72,18 +72,19 @@ public class PlayerController : MonoBehaviour
 		_isGrounded = IsGrounded();
 
 		MoveInput();
-		//Dash();
-		//Interact();
-		//StopInteract();
+		Dash();
+		Flight();
+		Interact();
+		StopInteract();
 		Jump();
-		//AtkDown();
+		AtkDown();
 	}
 
 	private void AtkDown()
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			_rb.velocity = Vector3.down * moveSpeed * 2;
+			moveDirection.y = Physics.gravity.y * moveSpeed;
 		}
 	}
 
@@ -119,15 +120,20 @@ public class PlayerController : MonoBehaviour
 		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
 
-		if (_isGrounded)
+		if (_isGrounded && !_isDashing)
 		{
-			//moveDirection.y = 0;
+			moveDirection.y = _rb.velocity.y;
+			moveSpeed = _speedStore;
 			_jumpCount = 0;
+		}
+		else if(_isDashing)
+		{
+			moveDirection.y = 0;
 		}
 		else
 		{
 			if (moveDirection.y < 0)
-				moveDirection.y *= 1.05f;
+				moveDirection.y *= 1.1f;
 		}
 	}
 
@@ -175,13 +181,15 @@ public class PlayerController : MonoBehaviour
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
 			_difAngle = SignedAngle(transform.forward, dashDirection, Vector3.up);
 			transform.Rotate(new Vector3(0f, _difAngle, 0f));
-			moveSpeed = _speedStore * 2;
-			_isDashing = true;
 			StartCoroutine(EndDash());
 		}
 	}
 	IEnumerator EndDash()
 	{
+		Vector3 dashDir = dashDirection.normalized;
+		moveDirection += dashDir * moveSpeed;
+		moveSpeed = _speedStore * 4;
+		_isDashing = true;
 		yield return new WaitForSeconds(0.2f);
 		_isDashing = false;
 		moveSpeed = _speedStore;
@@ -232,7 +240,6 @@ public class PlayerController : MonoBehaviour
 		{
 			moveDirection.y = jumpForce;
 			_rb.velocity += new Vector3 (0, jumpForce);
-
 			_jumpCount++;
 			_firstJump = true;
 		}
@@ -240,6 +247,24 @@ public class PlayerController : MonoBehaviour
 
 	void Flight()
 	{
+		if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
+		{
+			moveDirection.y = 0;
+			gravityScale = 1f;
+			_jumpCount += 1;
+			_firstJump = false;
+			//PlayerStateChanged?.Invoke(CameraLockState.Flight);
+		}
+		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
+		{
+			moveDirection.y = 0;
+			gravityScale = 1f;
+			//PlayerStateChanged?.Invoke(CameraLockState.Flight);
+		}
+		else
+		{
+			gravityScale = 1f;
+		}
 	}
 
 	void FixedUpdate()
