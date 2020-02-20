@@ -23,20 +23,19 @@ public class PlayerController : MonoBehaviour
 	Vector3 dashDirection;
 	float _speedStore;
 	float _arrowAngle;
-	bool _isDashing;
-	bool _onStele;
-	bool _chouetteEyes;
-	bool _canInput;
-	int _jumpCount;
-	bool _firstJump;
+	bool _isDashing = false;
+	bool _onStele = false;
+	bool _chouetteEyes = false;
+	bool _canInput = true;
+	bool _canDash = true;
+	int _jumpCount = 0;
+	bool _firstJump = false;
 	float distToGround;
 	bool _isGrounded;
 	float _deadZone = 0.25f;
 	float _difAngle;
 	bool _canQuit;
-	bool _isFlying;
-
-	bool tryJump;
+	bool _isFlying = false;
 
 	[Header("Camera")]
 	public Camera mainCamera;
@@ -57,13 +56,6 @@ public class PlayerController : MonoBehaviour
 		_rb = GetComponent<Rigidbody>();
 		_collid = GetComponent<CapsuleCollider>();
 		_speedStore = moveSpeed;
-		_jumpCount = 0;
-		_firstJump = false;
-		_canInput = true;
-		_onStele = false;
-		_chouetteEyes = false;
-		_isDashing = false;
-		_isFlying = false;
 		distToGround = _collid.bounds.extents.y;
 	}
 
@@ -84,7 +76,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			moveDirection.y = Physics.gravity.y * moveSpeed;
+			moveDirection.y = Physics.gravity.y * gravityScale;
 		}
 	}
 
@@ -120,21 +112,30 @@ public class PlayerController : MonoBehaviour
 		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
 
+		#region Gravity
 		if (_isGrounded && !_isDashing)
 		{
 			moveDirection.y = _rb.velocity.y;
 			moveSpeed = _speedStore;
 			_jumpCount = 0;
 		}
-		else if(_isDashing)
-		{
+		else if (_isDashing)
 			moveDirection.y = 0;
-		}
+		else if (_isFlying)
+			moveDirection.y = -gravityScale;
 		else
 		{
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
+			if (Mathf.Abs(moveDirection.y) > 100)
+				moveDirection.y = -100;
 		}
+
+		if (moveDirection.y < 0 && !_isDashing || moveDirection.y < 0 && !_isFlying)
+			moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		else if (moveDirection.y > 0 && !Input.GetButton("Jump") && !_isDashing || moveDirection.y > 0 && !Input.GetButton("Jump") && !_isFlying)
+			moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		#endregion
 	}
 
 	void EndTransitionTime()
@@ -188,7 +189,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Vector3 dashDir = dashDirection.normalized;
 		moveDirection += dashDir * moveSpeed;
-		moveSpeed = _speedStore * 4;
+		moveSpeed = _speedStore * 3;
 		_isDashing = true;
 		yield return new WaitForSeconds(0.2f);
 		_isDashing = false;
@@ -249,21 +250,33 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
 		{
-			moveDirection.y = 0;
-			gravityScale = 1f;
+			if (!_isDashing)
+				moveSpeed = _speedStore * 2;
+
 			_jumpCount += 1;
+			gravityScale = 3;
+			_isFlying = true;
 			_firstJump = false;
-			//PlayerStateChanged?.Invoke(CameraLockState.Flight);
 		}
 		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
 		{
-			moveDirection.y = 0;
-			gravityScale = 1f;
-			//PlayerStateChanged?.Invoke(CameraLockState.Flight);
+			if(!_isDashing)
+				moveSpeed = _speedStore * 2;
+
+			gravityScale = 3;
+			_isFlying = true;
+		}
+		else if(Input.GetButtonDown("Jump") && _jumpCount >= 1)
+		{
+
 		}
 		else
 		{
-			gravityScale = 1f;
+			if(!_isDashing)
+				moveSpeed = _speedStore;
+
+			gravityScale = 1;
+			_isFlying = false;
 		}
 	}
 

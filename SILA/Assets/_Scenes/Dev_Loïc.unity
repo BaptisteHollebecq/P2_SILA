@@ -608,7 +608,7 @@ PrefabInstance:
     - target: {fileID: 4710592787001798558, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4710592787019039473, guid: ac5501c7f8e510b448fa203166ae480c,
         type: 3}
@@ -653,11 +653,11 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 7.5
   gravityScale: 7
-  fallMultiplier: 0
-  lowJumpMultiplier: 0
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 288
+    m_Bits: 256
   mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:
@@ -1050,7 +1050,12 @@ PrefabInstance:
     - target: {fileID: 5424354313221334437, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: ShowDebug
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424354313221334436, guid: d06dd765b536db64bb2314e3e31c2172,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06dd765b536db64bb2314e3e31c2172, type: 3}
