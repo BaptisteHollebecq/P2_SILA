@@ -5,7 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinate("Coordinate", vector) = (0,0,0,0)
 		_Color("Color", Color) = (1, 0, 0, 0)
-		Size("Sire", Range(1,500)) = 1
+		Size("Size", Range(1,500)) = 1
 		Strenght("Strenght", Range(0,1)) = 1
     }
     SubShader
@@ -49,8 +49,13 @@
                 return o;
             }
 
+			
+
             fixed4 frag (v2f i) : SV_Target
             {
+				float2 UV;
+
+				
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
 				
