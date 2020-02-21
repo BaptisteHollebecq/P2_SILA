@@ -64,14 +64,6 @@ public class PlayerDrawTracks : MonoBehaviour
 
 	}
 
-	// Update is called once per frame
-	/*	void OnDrawGizmosSelected()
-		{
-			// Draw a yellow sphere at the transform's position
-			Gizmos.color = Color.red;
-			Gizmos.DrawSphere(transform.position, checkRadius);
-		}
-	*/
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Ground")
@@ -81,26 +73,11 @@ public class PlayerDrawTracks : MonoBehaviour
 		else
 			return;
 	}
-
 	private void OnTriggerExit(Collider other)
 	{
 		terrainRender.Remove(other.gameObject);
 	}
-	/*private void OnCollisionEnter(Collision other)
-	{
-		if (other.gameObject.tag == "Ground")
-		{
-			terrainRender.Add(other.gameObject);
-		}
-		else
-			return;
-	}
-
-	private void OnCollisionExit(Collision other)
-	{
-		terrainRender.Remove(other.gameObject);
-	}
-*/
+	
 	void Update()
     {
 		sphereCollid.radius = checkRadius;
@@ -124,15 +101,9 @@ public class PlayerDrawTracks : MonoBehaviour
                         RenderTexture.ReleaseTemporary(temp);
 
                     }
-                    
-
-
                 }
             }
-
         }
-
-
     }
 
     private void OnGUI()
@@ -146,5 +117,14 @@ public class PlayerDrawTracks : MonoBehaviour
 
         }
     }
+
+	void OnDrawGizmosSelected()
+	{
+		if(debug)
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawSphere(transform.position, checkRadius);
+		}
+	}
 }
 
