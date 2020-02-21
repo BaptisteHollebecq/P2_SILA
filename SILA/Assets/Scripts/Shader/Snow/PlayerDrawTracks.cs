@@ -17,6 +17,7 @@ public class PlayerDrawTracks : MonoBehaviour
     private Material[] _snowMaterial = new Material[3];
 
 	public List<GameObject> terrainRender = new List<GameObject>();
+	SphereCollider sphereCollid;
 	RaycastHit hitObject;
 	public float checkRadius;
 	public float maxDistance;
@@ -58,35 +59,53 @@ public class PlayerDrawTracks : MonoBehaviour
         }
 
         _snowMaterial[0].SetColor("_SnowColor", Color.red);
-    }
 
-    // Update is called once per frame
-	void OnDrawGizmosSelected()
-	{
-		// Draw a yellow sphere at the transform's position
-		Gizmos.color = Color.red;
-		Gizmos.DrawSphere(transform.position, checkRadius);
+		sphereCollid = GetComponent<SphereCollider>();
+
 	}
 
-    void Update()
-    {
-		/*Physics.SphereCast(transform.position, checkRadius, Vector3.down, out hitObject, maxDistance, whatIsRender);
-		terrainRender.Add(hitObject);*/
-
-
-
-
-		/*if (Physics.SphereCast(transform.position, checkRadius, Vector3.down, out hit, maxDistance, whatIsRender))
+	// Update is called once per frame
+	/*	void OnDrawGizmosSelected()
 		{
-			hitObject = hit.transform.gameObject;
-			if (!terrainRender.Contains(hitObject))
-				terrainRender.Add(hitObject);
+			// Draw a yellow sphere at the transform's position
+			Gizmos.color = Color.red;
+			Gizmos.DrawSphere(transform.position, checkRadius);
+		}
+	*/
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Ground")
+		{
+			terrainRender.Add(other.gameObject);
 		}
 		else
-		{
-		}*/
+			return;
+	}
 
-        for (int j = 0; j < terrain.Length; j++)
+	private void OnTriggerExit(Collider other)
+	{
+		terrainRender.Remove(other.gameObject);
+	}
+	/*private void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Ground")
+		{
+			terrainRender.Add(other.gameObject);
+		}
+		else
+			return;
+	}
+
+	private void OnCollisionExit(Collision other)
+	{
+		terrainRender.Remove(other.gameObject);
+	}
+*/
+	void Update()
+    {
+		sphereCollid.radius = checkRadius;
+
+		for (int j = 0; j < terrain.Length; j++)
         {
             for (int i = 0; i < ObjectsTracing.Length; i++)
             {
