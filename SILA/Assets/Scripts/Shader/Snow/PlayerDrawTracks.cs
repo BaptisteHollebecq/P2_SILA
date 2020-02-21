@@ -32,9 +32,9 @@ public class PlayerDrawTracks : MonoBehaviour
     [Range(0, 1)]
     public float brushStrenght;
     // Start is called before the first frame update
-    [ContextMenu("Get Every _ground layer")]
+    
 
-    [ContextMenu("Je récup les layers sa meurse")]
+    [ContextMenu("Get Every _ground layer")]
     void FindGameObjectWithTags()
     {
         terrain = GameObject.FindGameObjectsWithTag("Ground");
@@ -55,7 +55,7 @@ public class PlayerDrawTracks : MonoBehaviour
             _snowMaterial[i].SetTexture("_Splat", _splatMap[i] = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
         }
 
-        _snowMaterial[0].SetColor("_SnowColor", Color.red);
+        //debug -   _snowMaterial[0].SetColor("_SnowColor", Color.red);
     }
 
     // Update is called once per frame
