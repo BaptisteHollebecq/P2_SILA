@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			moveDirection.y = Physics.gravity.y * gravityScale;
+			moveDirection.y = Physics.gravity.y * gravityScale * 4;
 		}
 	}
 
