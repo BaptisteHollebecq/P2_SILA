@@ -6,8 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
-	public static event Action PlayerIsGrounded;
-	public static event Action PlayerIsNotGrounded;
 
 	#region Variables
 
@@ -17,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public float gravityScale;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
+	public LayerMask whatIsGround;
 
 	Rigidbody _rb;
 	Collider _collid;
@@ -24,18 +23,19 @@ public class PlayerController : MonoBehaviour
 	Vector3 dashDirection;
 	float _speedStore;
 	float _arrowAngle;
-	bool _isDashing;
-	bool _onStele;
-	bool _chouetteEyes;
-	bool _canInput;
-	int _jumpCount;
-	bool _firstJump;
+	bool _isDashing = false;
+	bool _onStele = false;
+	bool _chouetteEyes = false;
+	bool _canInput = true;
+	bool _canDash = true;
+	int _jumpCount = 0;
+	bool _firstJump = false;
 	float distToGround;
 	bool _isGrounded;
 	float _deadZone = 0.25f;
 	float _difAngle;
 	bool _canQuit;
-	bool _isFlying;
+	bool _isFlying = false;
 
 	[Header("Camera")]
 	public Camera mainCamera;
@@ -56,13 +56,6 @@ public class PlayerController : MonoBehaviour
 		_rb = GetComponent<Rigidbody>();
 		_collid = GetComponent<CapsuleCollider>();
 		_speedStore = moveSpeed;
-		_jumpCount = 0;
-		_firstJump = false;
-		_canInput = true;
-		_onStele = false;
-		_chouetteEyes = false;
-		_isDashing = false;
-		_isFlying = false;
 		distToGround = _collid.bounds.extents.y;
 	}
 
@@ -70,14 +63,12 @@ public class PlayerController : MonoBehaviour
 	{
 		_isGrounded = IsGrounded();
 
+		MoveInput();
 		Dash();
+		Flight();
 		Interact();
 		StopInteract();
 		Jump();
-		Flight();
-		InputSettings();
-		Ground();
-		Move();
 		AtkDown();
 	}
 
@@ -85,69 +76,66 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			_rb.velocity = Vector3.down * moveSpeed * 2;
+			moveDirection.y = Physics.gravity.y * gravityScale * 4;
 		}
 	}
 
-	void Ground()
+	void MoveInput()
 	{
-		moveDirection.y = _rb.velocity.y;
+		if (!_canInput)
+			return;
 
-		if(!_isGrounded && !_isFlying)
-		{
-			if (!_isDashing)
-				moveSpeed = _speedStore / 2;
-
-			if (_rb.velocity.y < 0)
-				moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-			else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
-				moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
+			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
+		else                                                                                                    //
+		{                                                                                                       //
+			_difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+			if (_difAngle > 4)                                                                                   //
+			{                                                                                                   //      SINON
+				transform.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
+			else if (_difAngle < -4)                                                                             //
+			{                                                                                                   //
+				transform.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
+			}
 		}
+
+		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+		if (stickInputR.magnitude < _deadZone)
+			stickInputR = Vector2.zero;
+
+		GetCamSettings();
+
+		float yStored = _rb.velocity.y;
+		moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
+		moveDirection.y = yStored;
+
+		#region Gravity
+		if (_isGrounded && !_isDashing)
+		{
+			moveDirection.y = _rb.velocity.y;
+			moveSpeed = _speedStore;
+			_jumpCount = 0;
+		}
+		else if (_isDashing)
+			moveDirection.y = 0;
+		else if (_isFlying)
+			moveDirection.y = -gravityScale;
 		else
 		{
-			gravityScale = 2;
-			if(!_isDashing)
-				moveSpeed = _speedStore;
+			if (moveDirection.y < 0)
+				moveDirection.y *= 1.1f;
+			if (Mathf.Abs(moveDirection.y) > 100)
+				moveDirection.y = -100;
 		}
-	}
 
-	void InputSettings()
-	{
-		if(_canInput)
-		{
-			bool hasInput = Input.GetKey (KeyCode.I);
-
-			//_rb.constraints = RigidbodyConstraints.FreezeRotation;
-			//_rb.constraints |= RigidbodyConstraints.FreezePositionZ;
-
-			_rb.constraints = hasInput ?
-				(RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ) :
-				RigidbodyConstraints.FreezeRotation;
-
-			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-			if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-				stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
-			else                                                                                                    //
-			{                                                                                                       //
-				_difAngle = SignedAngle(transform.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-				if (_difAngle > 4)                                                                                   //
-				{                                                                                                   //      SINON
-					transform.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
-				}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-				else if (_difAngle < -4)                                                                             //
-				{                                                                                                   //
-					transform.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
-				}
-			}
-
-			Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
-			if (stickInputR.magnitude < _deadZone)
-				stickInputR = Vector2.zero;
-
-			GetCamSettings();
-			moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-			moveDirection = moveDirection.normalized * (moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180));
-		}
+		if (moveDirection.y < 0 && !_isDashing || moveDirection.y < 0 && !_isFlying)
+			moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		else if (moveDirection.y > 0 && !Input.GetButton("Jump") && !_isDashing || moveDirection.y > 0 && !Input.GetButton("Jump") && !_isFlying)
+			moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		#endregion
 	}
 
 	void EndTransitionTime()
@@ -177,33 +165,32 @@ public class PlayerController : MonoBehaviour
 		cameraUp.y = 0;
 	}   // set up les vector par rapport a ceux de la cam, utile pour le deplacement
 
-	public bool IsGrounded()
+	public bool IsGrounded ()
 	{
-		if (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f))
-		{
-			PlayerIsGrounded?.Invoke();
+		if (Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.1f, whatIsGround))
 			return true;
-		}
-		PlayerIsNotGrounded?.Invoke();
 		return false;
-	}   //   return true si le player touche le sol
+	}
 
 	#region Dash
 	void Dash()
 	{
 		if (Input.GetButtonDown("Dash"))
 		{
+			//ajouter grav = 0
 			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
 			_difAngle = SignedAngle(transform.forward, dashDirection, Vector3.up);
 			transform.Rotate(new Vector3(0f, _difAngle, 0f));
-			moveSpeed = _speedStore * 2;
-			_isDashing = true;
 			StartCoroutine(EndDash());
 		}
 	}
 	IEnumerator EndDash()
 	{
+		Vector3 dashDir = dashDirection.normalized;
+		moveDirection += dashDir * moveSpeed;
+		moveSpeed = _speedStore * 3;
+		_isDashing = true;
 		yield return new WaitForSeconds(0.2f);
 		_isDashing = false;
 		moveSpeed = _speedStore;
@@ -252,31 +239,48 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
-			_rb.velocity =  Vector3.up * jumpForce;
-			moveSpeed = _speedStore / 2;
-			Debug.Log(moveSpeed);
-			_jumpCount += 1;
+			moveDirection.y = jumpForce;
+			_rb.velocity += new Vector3 (0, jumpForce);
+			_jumpCount++;
 			_firstJump = true;
 		}
 	}
+
 	void Flight()
 	{
 		if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
 		{
-			Debug.Log("je vole");
+			if (!_isDashing)
+				moveSpeed = _speedStore * 2;
+
+			_jumpCount += 1;
+			gravityScale = 3;
+			_isFlying = true;
+			_firstJump = false;
 		}
 		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
 		{
-			
+			if(!_isDashing)
+				moveSpeed = _speedStore * 2;
+
+			gravityScale = 3;
+			_isFlying = true;
+		}
+		else if(Input.GetButtonDown("Jump") && _jumpCount >= 1)
+		{
+
 		}
 		else
 		{
-			
+			if(!_isDashing)
+				moveSpeed = _speedStore;
+
+			gravityScale = 1;
+			_isFlying = false;
 		}
 	}
 
-
-	void Move()
+	void FixedUpdate()
 	{
 		_rb.velocity = moveDirection;
 	}

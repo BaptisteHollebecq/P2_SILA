@@ -249,7 +249,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  radiusCheck: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
   jumpForce: 20
   mainCamera: {fileID: 0}
   fallMultiplier: 1.2
