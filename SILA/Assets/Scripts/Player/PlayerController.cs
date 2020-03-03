@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
 		GetCamSettings();
 
 		float yStored = _rb.velocity.y;
-		moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
 
