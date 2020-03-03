@@ -2,29 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wind : MonoBehaviour
+public class WindPlatform : MonoBehaviour
 {
     private Vector3 _windDirection;
     private Rigidbody _rb;
+    private PlayerController _player;
     private bool _isGrounded = false;
-    
+
     public float windForce = 0.1f;
 
-    private void Awake()
-    {
-        //Pto_PlayerController
-
-    }
-
-    private void PlayerIsGrounded()
-    {
-        _isGrounded = true;
-    }
-
-    private void PlayerAsJumped()
-    {
-        _isGrounded = false;
-    }
 
     private void Update()
     {
@@ -37,6 +23,7 @@ public class Wind : MonoBehaviour
         if (other.tag == "Player")
         {
             _rb = other.GetComponent<Rigidbody>();
+            _player = other.GetComponent<PlayerController>();
         }
     }
 
@@ -45,13 +32,18 @@ public class Wind : MonoBehaviour
         if (other.tag == "Player")
         {
             _rb = null;
+            _player = null;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!_isGrounded)
-         _rb.AddForce(_windDirection * windForce);
+        if (_player != null)
+        {
+            if (!_player.IsGrounded())
+            {
+                _rb.AddForce(_windDirection * windForce);
+            }
+        }
     }
-
 }
