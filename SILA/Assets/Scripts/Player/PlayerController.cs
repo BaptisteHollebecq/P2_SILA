@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	public float moveSpeed;
 	public float jumpForce;
 	public float gravityScale;
+	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public LayerMask whatIsGround;
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			moveDirection.y = Physics.gravity.y * gravityScale * 4;
+			moveDirection.y = Physics.gravity.y * gravityScale * StompMtpl;
 		}
 	}
 
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
 		#region Gravity
 		if (_isGrounded && !_isDashing)
 		{
+			gravityScale = 1;
 			moveDirection.y = _rb.velocity.y;
 			moveSpeed = _speedStore;
 			_jumpCount = 0;
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour
 			moveDirection.y = -gravityScale;
 		else
 		{
+			moveDirection.y = _rb.velocity.y * gravityScale;
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
 			if (Mathf.Abs(moveDirection.y) > 100)
@@ -275,7 +278,6 @@ public class PlayerController : MonoBehaviour
 			if(!_isDashing)
 				moveSpeed = _speedStore;
 
-			gravityScale = 1;
 			_isFlying = false;
 		}
 	}

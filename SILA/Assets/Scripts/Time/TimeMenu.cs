@@ -32,8 +32,8 @@ public class TimeMenu : MonoBehaviour
 
     private void EndTransitionTime()
     {
-        CanvasGroup.alpha = 1;
         _isChanging = false;
+        CanvasGroup.alpha = 1;
     }
 
     private void DisplayMenu()
