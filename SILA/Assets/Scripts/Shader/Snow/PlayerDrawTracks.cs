@@ -78,51 +78,47 @@ public class PlayerDrawTracks : MonoBehaviour
         _snowMaterial.SetVector("_PositionPlayer", playerPos);
 
 
-        moveDirection = (transform.position - tempCoordinates) * 0.1f;
+        moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
         tempCoordinates = transform.position;
-        
 
         
-            for (int i = 0; i < ObjectsTracing.Length; i++)
+
+        for (int i = 0; i < ObjectsTracing.Length; i++)
+        {
+
+            if (Physics.Raycast(ObjectsTracing[i].position, Vector3.down, out _groundHit, 0.4f, _layerMask))
             {
+                tempgameobject = _groundHit.transform.gameObject;
 
-                if (Physics.Raycast(ObjectsTracing[i].position, Vector3.down, out _groundHit, 0.4f, _layerMask))
-                {
-                    
-                    tempgameobject = _groundHit.transform.gameObject;
-                    
-                        //_drawMaterial[j].SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
-                        
-                        _drawMaterial.SetVector("_Center", new Vector4(0.5f, 0.5f, 0, 0));
-                        _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x,moveDirection.z,0,0));
-                        
-                        //Debug.Log(new Vector4(Mathf.InverseLerp(0, 1, playercontroller.moveDirection.x), Mathf.InverseLerp(0, 1, playercontroller.moveDirection.y), 0, 0));
-                        
-                        //tempCoordinates = _groundHit.textureCoord;
-
-                        _drawMaterial.SetFloat("Strenght", brushStrenght);
-                        _drawMaterial.SetFloat("Size", brushSize);
-                        RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-                        Graphics.Blit(_splatMap, temp);
-                        Graphics.Blit(temp, _splatMap, _drawMaterial);
-                        RenderTexture.ReleaseTemporary(temp);
-                        
-
-                    
-
-
-
-                }
-                else
-                {
-                    _drawMaterial.SetFloat("Strenght", 0);
-                    RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-                        Graphics.Blit(_splatMap, temp);
-                        Graphics.Blit(temp, _splatMap, _drawMaterial);
-                        RenderTexture.ReleaseTemporary(temp);
-                }
+                //_drawMaterial[j].SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
                 
+                _drawMaterial.SetVector("_Center", new Vector4(0.5f, 0.5f, 0, 0));
+                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
+
+                //Debug.Log(new Vector4(Mathf.InverseLerp(0, 1, playercontroller.moveDirection.x), Mathf.InverseLerp(0, 1, playercontroller.moveDirection.y), 0, 0));
+
+                //tempCoordinates = _groundHit.textureCoord;
+
+                _drawMaterial.SetFloat("Strenght", brushStrenght);
+                _drawMaterial.SetFloat("Size", 100/brushSize);
+                RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(_splatMap, temp);
+                Graphics.Blit(temp, _splatMap, _drawMaterial);
+                RenderTexture.ReleaseTemporary(temp);
+
             }
+            else
+            {
+                _drawMaterial.SetFloat("Strenght", 0);
+                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
+                RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(_splatMap, temp);
+                Graphics.Blit(temp, _splatMap, _drawMaterial);
+                RenderTexture.ReleaseTemporary(temp);
+            }
+            
+
+        }
 
         
 
