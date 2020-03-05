@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c89eeff227ca2dd4b8917dc6cbde5eff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -82,7 +82,7 @@ Material:
     - _Cloud2Amount: 1
     - _CloudBias: -0.07
     - _CloudDensity: 1
-    - _CloudHeight: 500
+    - _CloudHeight: 400
     - _CloudScale: 0.01
     - _ColFactor: 0.65
     - _ColPow: 0.58
@@ -108,6 +108,7 @@ Material:
     - _SunDisk: 2
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
+    - _Time: 0
     - _UVSec: 0
     - _WaveAmount: 0
     - _WaveDistort: 0
