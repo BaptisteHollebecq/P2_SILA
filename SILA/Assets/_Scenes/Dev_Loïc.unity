@@ -828,8 +828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 7.5
+  moveSpeed: 8
+  jumpForce: 6
   gravityScale: 1
   StompMtpl: 4
   fallMultiplier: 2.5
@@ -1979,7 +1979,7 @@ PrefabInstance:
     - target: {fileID: 3093784983296573459, guid: 5369ad94f9a34b44a9dfcf06b54a8312,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.92
+      value: -18.1
       objectReference: {fileID: 0}
     - target: {fileID: 3093784983296573459, guid: 5369ad94f9a34b44a9dfcf06b54a8312,
         type: 3}
