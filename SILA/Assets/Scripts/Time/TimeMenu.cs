@@ -86,7 +86,6 @@ public class TimeMenu : MonoBehaviour
             }
             if (Input.GetButtonDown("A"))
             {
-                Debug.Log(_arrowAngle);
                 CheckTime();
             }
         }

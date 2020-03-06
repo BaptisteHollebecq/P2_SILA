@@ -9,12 +9,13 @@ public class WindPlatform : MonoBehaviour
     private PlayerController _player;
     private bool _isGrounded = false;
 
-    public float windForce = 0.1f;
+    public float windForce;
 
 
     private void Update()
     {
         _windDirection = transform.GetChild(0).transform.forward;
+        _windDirection = new Vector3(0,_windDirection.y,0);
 
     }
 
@@ -24,6 +25,7 @@ public class WindPlatform : MonoBehaviour
         {
             _rb = other.GetComponent<Rigidbody>();
             _player = other.GetComponent<PlayerController>();
+            Debug.Log("player aquired");
         }
     }
 
@@ -33,6 +35,7 @@ public class WindPlatform : MonoBehaviour
         {
             _rb = null;
             _player = null;
+            Debug.Log("null");
         }
     }
 
@@ -40,9 +43,12 @@ public class WindPlatform : MonoBehaviour
     {
         if (_player != null)
         {
+            Debug.Log("oui");
             if (!_player.IsGrounded())
             {
+                Debug.Log("jumped");
                 _rb.AddForce(_windDirection * windForce);
+                Debug.DrawLine(transform.position, _windDirection);
             }
         }
     }

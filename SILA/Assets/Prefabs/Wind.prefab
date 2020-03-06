@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453753779231559195}
   - component: {fileID: 1453753779231558117}
-  - component: {fileID: 6303564823537494799}
+  - component: {fileID: 8064112558853299394}
   m_Layer: 0
   m_Name: Wind
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6303564823537494799
+--- !u!114 &8064112558853299394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dfad0383b8f074ea119b60872b6d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windForce: 150
+  windForce: 50
 --- !u!1 &1453753780247620247
 GameObject:
   m_ObjectHideFlags: 0
