@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
 	bool _isJumping = false;
 	bool _hardGrounded = false;
 
-	RaycastHit hitInfo;
-
 	[Header("Camera")]
 	public Camera mainCamera;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
@@ -70,7 +68,6 @@ public class PlayerController : MonoBehaviour
 	{
 		_isGrounded = IsGrounded();
 
-		CalculateGroundAngle();
 		CheckResets();
 		MoveInput();
 		Dash();
@@ -81,23 +78,27 @@ public class PlayerController : MonoBehaviour
 		AtkDown();
 	}
 
-	private void CalculateGroundAngle()
-	{
-		groundAngle = Vector3.Angle(hitInfo.normal, transform.forward);
-		Debug.DrawLine(hitInfo.normal, transform.forward * 2, Color.blue);
-	}
-
 	private void CheckResets()
 	{
 		if (_isGrounded)
 		{
 			_isJumping = false;
+			if (!_canDash)
+				StartCoroutine(ResetDash());
 		}
 
-		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.2f, whatIsGround))
+		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.15f, whatIsGround))
 			_hardGrounded = true;
 		else
 			_hardGrounded = false;
+	}
+
+	IEnumerator ResetDash()
+	{
+		yield return new WaitForSeconds(0.5f);
+		if(_isGrounded)
+			_canDash = true;
+
 	}
 
 	private void AtkDown()
@@ -110,6 +111,9 @@ public class PlayerController : MonoBehaviour
 
 	void MoveInput()
 	{
+		if (_rb.velocity.y > 10 && !_isJumping)
+			_rb.velocity = Vector3.zero;
+
 		if (!_canInput)
 			return;
 
@@ -204,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsGrounded ()
 	{
-		if (Physics.Raycast (transform.position, -Vector3.up, out hitInfo, distToGround + 0.1f, whatIsGround))
+		if (Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.12f, whatIsGround))
 			return true;
 		return false;
 	}
@@ -212,8 +216,12 @@ public class PlayerController : MonoBehaviour
 	#region Dash
 	void Dash()
 	{
-		if (Input.GetButtonDown("Dash"))
+		if (_canInput && _canDash && Input.GetButtonDown("Dash"))
 		{
+			Debug.Log("bruh");
+			_canInput = false;
+			_canDash = false;
+			/*StartCoroutine(ResetDash());*/
 			//ajouter grav = 0
 			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
@@ -221,15 +229,17 @@ public class PlayerController : MonoBehaviour
 			transform.Rotate(new Vector3(0f, _difAngle, 0f));
 			StartCoroutine(EndDash());
 		}
+		
 	}
 	IEnumerator EndDash()
 	{
 		Vector3 dashDir = dashDirection.normalized;
+		moveSpeed = _speedStore * 3.5f;
 		moveDirection += dashDir * moveSpeed;
 		moveDirection.y = 0;
-		moveSpeed = _speedStore * 3;
 		_isDashing = true;
 		yield return new WaitForSeconds(0.2f);
+		_canInput = true;
 		_isDashing = false;
 		moveSpeed = _speedStore;
 	}
@@ -244,6 +254,8 @@ public class PlayerController : MonoBehaviour
 			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
 			if (hitStele.transform.TryGetComponent(out Stele stele))
 			{
+				_rb.velocity = Vector3.zero;
+				moveDirection = Vector3.zero;
 				_canQuit = false;
 				_onStele = true;
 				_canInput = false;
@@ -277,8 +289,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
-			_hardGrounded = false;
 			_isJumping = true;
+			_hardGrounded = false;
 			moveDirection.y = jumpForce;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
