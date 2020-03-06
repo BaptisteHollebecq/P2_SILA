@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Evening
+  m_Name: TransiMorningDay
   m_Shader: {fileID: 4800000, guid: 86f4829d12213e54880ad281220eb019, type: 3}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
@@ -77,15 +77,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AtmosphereThickness: 1
-    - _BumpOffset: 0
+    - _BumpOffset: 0.5
     - _BumpScale: 1
     - _Cloud2Amount: 1
-    - _CloudBias: 1
+    - _CloudBias: 0.44
     - _CloudDensity: 1
     - _CloudHeight: 400
     - _CloudScale: 1
-    - _ColFactor: -1.91
-    - _ColPow: 0.1
+    - _ColFactor: 1.63
+    - _ColPow: 1.4
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -102,7 +102,7 @@ Material:
     - _Scale: 4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.05
+    - _Speed: 0.2
     - _SrcBlend: 1
     - _Steps: 10
     - _SunDisk: 2
@@ -114,8 +114,8 @@ Material:
     - _WaveDistort: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.7904939, g: 1, b: 0.7137255, a: 1}
-    - _Color2: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8184931, g: 1, b: 0.75, a: 1}
+    - _Color2: {r: 0.2971698, g: 0.62975496, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
     - _LightSpread: {r: 5, g: -1.47, b: 40, a: 263.1}

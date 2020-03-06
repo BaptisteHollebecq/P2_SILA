@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Evening
+  m_Name: TransiDayEvening
   m_Shader: {fileID: 4800000, guid: 86f4829d12213e54880ad281220eb019, type: 3}
   m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
@@ -83,9 +83,9 @@ Material:
     - _CloudBias: 1
     - _CloudDensity: 1
     - _CloudHeight: 400
-    - _CloudScale: 1
-    - _ColFactor: -1.91
-    - _ColPow: 0.1
+    - _CloudScale: 0.01
+    - _ColFactor: 0.65
+    - _ColPow: 0.58
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -114,7 +114,7 @@ Material:
     - _WaveDistort: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.7904939, g: 1, b: 0.7137255, a: 1}
+    - _Color: {r: 0.4185208, g: 0.8962264, b: 0.74235505, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}

@@ -6,10 +6,13 @@ public class SkyboxLerp : MonoBehaviour
 {
 
     public Material MorningSkybox;
+    public Material TransiMorningDay;
     public Material DaySkybox;
+    public Material TransiDayEvening;
     public Material EveningSkybox;
     public Material TransiEveningNightSkybox;
     public Material NightSkybox;
+    public Material TransiNightMorningSkybox;
 
 
     // Start is called before the first frame update
@@ -47,14 +50,36 @@ public class SkyboxLerp : MonoBehaviour
     {
         float currentMorningTime = TimeSystem.currentTime * 4;
 
-        RenderSettings.skybox.Lerp(MorningSkybox, DaySkybox, currentMorningTime);
+        
+
+        if (currentMorningTime >= 0 && currentMorningTime <= 0.75f)
+        {
+
+            RenderSettings.skybox.Lerp(MorningSkybox, TransiMorningDay, Mathf.InverseLerp(0, 1, currentMorningTime * 1.3f));
+        }
+        else if (currentMorningTime >= 0.75f && currentMorningTime <= 1)
+        {
+
+            RenderSettings.skybox.Lerp(TransiMorningDay, DaySkybox, Mathf.InverseLerp(0, 1, (currentMorningTime - 0.75f) * 4));
+        }
     }
 
     void LerpDay()
     {
         float currentDayTime = (TimeSystem.currentTime - 0.25f) * 4;
 
-        RenderSettings.skybox.Lerp(DaySkybox, EveningSkybox, currentDayTime);
+        
+
+        if (currentDayTime >= 0 && currentDayTime <= 0.75f)
+        {
+
+            RenderSettings.skybox.Lerp(DaySkybox, TransiDayEvening, Mathf.InverseLerp(0, 1, currentDayTime * 1.3f));
+        }
+        else if (currentDayTime >= 0.75f && currentDayTime <= 1)
+        {
+
+            RenderSettings.skybox.Lerp(TransiDayEvening, EveningSkybox, Mathf.InverseLerp(0, 1, (currentDayTime - 0.75f) * 4));
+        }
     }
 
     void LerpEvening()
@@ -62,15 +87,15 @@ public class SkyboxLerp : MonoBehaviour
         float currentEveningTime = (TimeSystem.currentTime - 0.5f) * 4;
         
         
-        if (currentEveningTime >= 0 && currentEveningTime <= 0.5f)
+        if (currentEveningTime >= 0 && currentEveningTime <= 0.25f)
         {
-            Debug.Log(currentEveningTime * 1.3f);
+            
             RenderSettings.skybox.Lerp(EveningSkybox, TransiEveningNightSkybox, Mathf.InverseLerp(0,1,currentEveningTime * 1.3f));
         }
-        else if (currentEveningTime >= 0.5f && currentEveningTime <= 1)
+        else if (currentEveningTime >= 0.25f && currentEveningTime <= 1)
         {
-            Debug.Log((currentEveningTime - 0.5f) * 4);
-            RenderSettings.skybox.Lerp(TransiEveningNightSkybox, NightSkybox, Mathf.InverseLerp(0, 1, (currentEveningTime - 0.5f) * 4));
+            
+            RenderSettings.skybox.Lerp(TransiEveningNightSkybox, NightSkybox, Mathf.InverseLerp(0, 1, (currentEveningTime - 0.25f) * 4));
         }
     }
 
@@ -78,15 +103,15 @@ public class SkyboxLerp : MonoBehaviour
     {
         float currentNightTime = ((TimeSystem.currentTime - 0.75f) *4);
 
-        if (currentNightTime >= 0 && currentNightTime <= 0.5f)
+        if (currentNightTime >= 0 && currentNightTime <= 0.75f)
         {
-            Debug.Log(currentNightTime * 1.3f);
-            RenderSettings.skybox.Lerp(NightSkybox, TransiEveningNightSkybox, Mathf.InverseLerp(0, 1, currentNightTime * 1.3f));
+            
+            RenderSettings.skybox.Lerp(NightSkybox, TransiNightMorningSkybox, Mathf.InverseLerp(0, 1, currentNightTime * 1.3f));
         }
-        else if (currentNightTime >= 0.5f && currentNightTime <= 1)
+        else if (currentNightTime >= 0.75f && currentNightTime <= 1)
         {
-            Debug.Log((currentNightTime - 0.5f) * 4);
-            RenderSettings.skybox.Lerp(TransiEveningNightSkybox, MorningSkybox, Mathf.InverseLerp(0, 1, (currentNightTime - 0.5f) * 4));
+            
+            RenderSettings.skybox.Lerp(TransiNightMorningSkybox, MorningSkybox, Mathf.InverseLerp(0, 1, (currentNightTime - 0.75f) * 4));
         }
 
         

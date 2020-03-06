@@ -7,10 +7,6 @@ public class PlayerDrawTracks : MonoBehaviour
 
     public bool debug;
 
-
-
-
-
     private RenderTexture _splatMap;
     [Header("Components")]
     public Shader drawShader;
@@ -41,6 +37,8 @@ public class PlayerDrawTracks : MonoBehaviour
 
     public Vector3 moveDirection;
 
+    public SnowHeight snowHeight;
+
     [ContextMenu("Get Every _ground layer")]
     void FindGameObjectWithTags()
     {
@@ -59,11 +57,7 @@ public class PlayerDrawTracks : MonoBehaviour
 
         }
 
-
-
         _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
-
-
 
         playercontroller = GetComponentInParent<PlayerController>();
 
@@ -77,11 +71,8 @@ public class PlayerDrawTracks : MonoBehaviour
         
         _snowMaterial.SetVector("_PositionPlayer", playerPos);
 
-
         moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
         tempCoordinates = transform.position;
-
-        
 
         for (int i = 0; i < ObjectsTracing.Length; i++)
         {
@@ -120,9 +111,10 @@ public class PlayerDrawTracks : MonoBehaviour
 
         }
 
-        
-
-
+        if (TimeSystem.currentTime >= 0.24f && TimeSystem.currentTime <= 0.245f)
+        {
+            _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+        }
     }
 
     private void OnGUI()
@@ -132,7 +124,6 @@ public class PlayerDrawTracks : MonoBehaviour
         {
             Debug.DrawRay(ObjectsTracing[0].position, Vector3.down, Color.red);
             GUI.DrawTexture(new Rect(0, 0, 256, 256), _splatMap, ScaleMode.ScaleToFit, false, 1);
-            
 
         }
     }

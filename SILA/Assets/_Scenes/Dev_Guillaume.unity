@@ -435,7 +435,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15750
+  m_Name: pb_Mesh15746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -847,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
         type: 3}
       propertyPath: _FogColorNoon.ctime2
-      value: 41634
+      value: 54741
       objectReference: {fileID: 0}
     - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
         type: 3}
@@ -923,6 +923,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _lightIntensityDay
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _SkyColorNoon.ctime2
+      value: 55512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _EquatorColorNoon.ctime2
+      value: 56669
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _GroundColorNoon.ctime2
+      value: 53199
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _colorDay.key0.r
+      value: 0.8254717
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _colorDay.key0.g
+      value: 0.98855555
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _colorDay.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _colorMorning.key1.r
+      value: 0.8235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157487086557663300, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: _colorMorning.key1.g
+      value: 0.9843138
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf65178479d3a94e9b9e08673809c4f, type: 3}
@@ -1118,6 +1163,7 @@ GameObject:
   - component: {fileID: 565138885}
   - component: {fileID: 565138884}
   - component: {fileID: 565138883}
+  - component: {fileID: 565138888}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Ground
@@ -2921,6 +2967,19 @@ Transform:
   m_Father: {fileID: 1171008857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.44200003}
+--- !u!114 &565138888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565138882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6eded815e8476419051e08777334f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heighsnow: 0.6
 --- !u!1 &1171008856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15776
+  m_Name: pb_Mesh15772
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3249,7 +3308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081732078878d1b408101e30a4952e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   drawShader: {fileID: 4800000, guid: 75419236954a8d642a303e10eb09cdc8, type: 3}
   snowTrack_Shader: {fileID: 4800000, guid: 4ebec51aef1bb3c4ab00893093917d00, type: 3}
   terrain:
@@ -3261,6 +3320,7 @@ MonoBehaviour:
   float0: {x: 0, y: 0}
   tempCoordinates: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  snowHeight: {fileID: 0}
 --- !u!1001 &1844864669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3369,8 +3429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MorningSkybox: {fileID: 2100000, guid: b009a5be91cc7ab4b83ff57c3fd59f11, type: 2}
+  TransiMorningDay: {fileID: 2100000, guid: 79fac3d7bcee8b544b551d614b7b07d9, type: 2}
   DaySkybox: {fileID: 2100000, guid: 3792281a9319c904b86a42a6cc95fece, type: 2}
+  TransiDayEvening: {fileID: 2100000, guid: 9c8a0dd98a57e1d43bd6f0fea8a45466, type: 2}
   EveningSkybox: {fileID: 2100000, guid: 7a99c8a3a5a2aa842ba0ef2435dac9f2, type: 2}
   TransiEveningNightSkybox: {fileID: 2100000, guid: 88e1c3a93325f9944a06416c467c8409,
     type: 2}
   NightSkybox: {fileID: 2100000, guid: 59397b85a8a1272439f8d5393685d249, type: 2}
+  TransiNightMorningSkybox: {fileID: 2100000, guid: b9623dc7730795041b280d9de2cc300f,
+    type: 2}

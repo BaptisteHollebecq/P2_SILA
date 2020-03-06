@@ -82,7 +82,7 @@ Material:
     - _Cloud2Amount: 1
     - _CloudBias: 0.5
     - _CloudDensity: 0.5
-    - _CloudHeight: 1000
+    - _CloudHeight: 1800
     - _CloudScale: 1
     - _ColFactor: 10
     - _ColPow: 1.3
@@ -102,7 +102,7 @@ Material:
     - _Scale: 0.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.01
+    - _Speed: 0.2
     - _SrcBlend: 1
     - _Steps: 30
     - _SunDisk: 2

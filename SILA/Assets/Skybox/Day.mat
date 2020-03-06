@@ -80,7 +80,7 @@ Material:
     - _BumpOffset: 0
     - _BumpScale: 1
     - _Cloud2Amount: 1
-    - _CloudBias: -0.07
+    - _CloudBias: 1
     - _CloudDensity: 1
     - _CloudHeight: 400
     - _CloudScale: 0.01
@@ -102,7 +102,7 @@ Material:
     - _Scale: 4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.03
+    - _Speed: 0.025
     - _SrcBlend: 1
     - _Steps: 10
     - _SunDisk: 2
