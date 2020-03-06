@@ -64,20 +64,6 @@ public class PlayerDrawTracks : MonoBehaviour
 
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.tag == "Ground")
-		{
-			terrainRender.Add(other.gameObject);
-		}
-		else
-			return;
-	}
-	private void OnTriggerExit(Collider other)
-	{
-		terrainRender.Remove(other.gameObject);
-	}
-	
 	void Update()
     {
 		sphereCollid.radius = checkRadius;

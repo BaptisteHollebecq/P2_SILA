@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour
 	public float moveSpeed;
 	public float jumpForce;
 	public float gravityScale;
+	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public LayerMask whatIsGround;
+	public int maxGroundAngle;
+	public float groundAngle;
 
 	Rigidbody _rb;
 	Collider _collid;
@@ -36,6 +39,10 @@ public class PlayerController : MonoBehaviour
 	float _difAngle;
 	bool _canQuit;
 	bool _isFlying = false;
+	bool _isJumping = false;
+	bool _hardGrounded = false;
+
+	RaycastHit hitInfo;
 
 	[Header("Camera")]
 	public Camera mainCamera;
@@ -63,6 +70,8 @@ public class PlayerController : MonoBehaviour
 	{
 		_isGrounded = IsGrounded();
 
+		CalculateGroundAngle();
+		CheckResets();
 		MoveInput();
 		Dash();
 		Flight();
@@ -72,11 +81,30 @@ public class PlayerController : MonoBehaviour
 		AtkDown();
 	}
 
+	private void CalculateGroundAngle()
+	{
+		groundAngle = Vector3.Angle(hitInfo.normal, transform.forward);
+		Debug.DrawLine(hitInfo.normal, transform.forward * 2, Color.blue);
+	}
+
+	private void CheckResets()
+	{
+		if (_isGrounded)
+		{
+			_isJumping = false;
+		}
+
+		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.2f, whatIsGround))
+			_hardGrounded = true;
+		else
+			_hardGrounded = false;
+	}
+
 	private void AtkDown()
 	{
 		if(!_isGrounded && Input.GetButtonDown("B"))
 		{
-			moveDirection.y = Physics.gravity.y * gravityScale * 4;
+			moveDirection.y = Physics.gravity.y * gravityScale * StompMtpl;
 		}
 	}
 
@@ -108,13 +136,14 @@ public class PlayerController : MonoBehaviour
 		GetCamSettings();
 
 		float yStored = _rb.velocity.y;
-		moveDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
 
 		#region Gravity
-		if (_isGrounded && !_isDashing)
+		if (_isGrounded && !_isDashing && !_isJumping)
 		{
+			gravityScale = 1;
 			moveDirection.y = _rb.velocity.y;
 			moveSpeed = _speedStore;
 			_jumpCount = 0;
@@ -125,17 +154,25 @@ public class PlayerController : MonoBehaviour
 			moveDirection.y = -gravityScale;
 		else
 		{
+			moveDirection.y = _rb.velocity.y * gravityScale;
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
-			if (Mathf.Abs(moveDirection.y) > 100)
-				moveDirection.y = -100;
+			/*if (Mathf.Abs(moveDirection.y) > 100)
+				moveDirection.y = -100;*/
 		}
+
+		if (_hardGrounded)
+			moveDirection.y = Physics.gravity.y;
+
 
 		if (moveDirection.y < 0 && !_isDashing || moveDirection.y < 0 && !_isFlying)
 			moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		else if (moveDirection.y > 0 && !Input.GetButton("Jump") && !_isDashing || moveDirection.y > 0 && !Input.GetButton("Jump") && !_isFlying)
 			moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+
 		#endregion
+
+
 	}
 
 	void EndTransitionTime()
@@ -167,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsGrounded ()
 	{
-		if (Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.1f, whatIsGround))
+		if (Physics.Raycast (transform.position, -Vector3.up, out hitInfo, distToGround + 0.1f, whatIsGround))
 			return true;
 		return false;
 	}
@@ -189,6 +226,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Vector3 dashDir = dashDirection.normalized;
 		moveDirection += dashDir * moveSpeed;
+		moveDirection.y = 0;
 		moveSpeed = _speedStore * 3;
 		_isDashing = true;
 		yield return new WaitForSeconds(0.2f);
@@ -239,6 +277,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
+			_hardGrounded = false;
+			_isJumping = true;
 			moveDirection.y = jumpForce;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
@@ -248,27 +288,23 @@ public class PlayerController : MonoBehaviour
 
 	void Flight()
 	{
-		if (Input.GetButtonDown("Jump") && _jumpCount >= 1)
+		if (Input.GetButtonDown("Jump") && _jumpCount >= 1 && !_isGrounded)
 		{
 			if (!_isDashing)
 				moveSpeed = _speedStore * 2;
-
+			_hardGrounded = false;
 			_jumpCount += 1;
 			gravityScale = 3;
 			_isFlying = true;
 			_firstJump = false;
 		}
-		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump)
+		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump && !_isGrounded)
 		{
 			if(!_isDashing)
 				moveSpeed = _speedStore * 2;
-
+			_hardGrounded = false;
 			gravityScale = 3;
 			_isFlying = true;
-		}
-		else if(Input.GetButtonDown("Jump") && _jumpCount >= 1)
-		{
-
 		}
 		else
 		{
@@ -282,6 +318,9 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		_rb.velocity = moveDirection;
+		if (groundAngle < maxGroundAngle)
+			_rb.velocity = moveDirection;
+		else
+			return;
 	}
 }
