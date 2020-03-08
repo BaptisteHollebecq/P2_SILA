@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 	bool _chouetteEyes = false;
 	bool _canInput = true;
 	bool _canDash = true;
+	bool _isResetting = false;
 	int _jumpCount = 0;
 	bool _firstJump = false;
 	float distToGround;
@@ -66,6 +67,9 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+		if (_isDashing && _canDash)
+			_canDash = false;
+
 		_isGrounded = IsGrounded();
 
 		CheckResets();
@@ -84,7 +88,15 @@ public class PlayerController : MonoBehaviour
 		{
 			_isJumping = false;
 			if (!_canDash)
-				StartCoroutine(ResetDash());
+			{
+				if (!_isResetting)
+					StartCoroutine(ResetDash());
+				else
+				{
+					_canDash = true;
+					_isResetting = false;
+				}
+			}
 		}
 
 		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.15f, whatIsGround))
@@ -95,10 +107,8 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator ResetDash()
 	{
-		yield return new WaitForSeconds(0.5f);
-		if(_isGrounded)
-			_canDash = true;
-
+		yield return new WaitForSeconds(1f);
+		_canDash = true;
 	}
 
 	private void AtkDown()
@@ -216,12 +226,14 @@ public class PlayerController : MonoBehaviour
 	#region Dash
 	void Dash()
 	{
-		if (_canInput && _canDash && Input.GetButtonDown("Dash"))
+		if (_canDash && _canInput && Input.GetButtonDown("Dash") && !_isResetting)
 		{
-			Debug.Log("bruh");
-			_canInput = false;
 			_canDash = false;
-			/*StartCoroutine(ResetDash());*/
+			_canInput = false;
+			if(!_isGrounded)
+			{
+				_isResetting = true;
+			}
 			//ajouter grav = 0
 			Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 			dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
@@ -233,15 +245,17 @@ public class PlayerController : MonoBehaviour
 	}
 	IEnumerator EndDash()
 	{
+		_isDashing = true;
+		if(_canDash)
+			_canDash = false;
 		Vector3 dashDir = dashDirection.normalized;
 		moveSpeed = _speedStore * 3.5f;
 		moveDirection += dashDir * moveSpeed;
 		moveDirection.y = 0;
-		_isDashing = true;
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(0.5f);
 		_canInput = true;
-		_isDashing = false;
 		moveSpeed = _speedStore;
+		_isDashing = false;
 	}
 	#endregion
 
