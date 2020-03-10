@@ -102,7 +102,7 @@ Material:
     - _Scale: 0.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.2
+    - _Speed: 0.07
     - _SrcBlend: 1
     - _Steps: 30
     - _SunDisk: 2

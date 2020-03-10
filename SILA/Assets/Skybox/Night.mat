@@ -84,18 +84,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpOffset: -1.75
+    - _BumpOffset: -2
     - _BumpScale: 1
     - _Cloud2Amount: 1
     - _Cloud3Amount: 1.09
     - _CloudBias: 0
-    - _CloudDensity: 0.3
+    - _CloudDensity: 0.07
     - _CloudHeight: 1975.7
     - _CloudHeightAdjust: -0.1
     - _CloudHeightContrast: 0.1
     - _CloudScale: 1
     - _ColFactor: 31.26
-    - _ColPow: 8.1
+    - _ColPow: 5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DistAmount: 1
