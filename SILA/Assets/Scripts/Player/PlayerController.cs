@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
+	public float dashMultiplier = 0;
 	public LayerMask whatIsGround;
 	public int maxGroundAngle;
 	public float groundAngle;
@@ -249,7 +250,7 @@ public class PlayerController : MonoBehaviour
 		if(_canDash)
 			_canDash = false;
 		Vector3 dashDir = dashDirection.normalized;
-		moveSpeed = _speedStore * 3.5f;
+		moveSpeed = _speedStore * dashMultiplier;
 		moveDirection += dashDir * moveSpeed;
 		moveDirection.y = 0;
 		yield return new WaitForSeconds(0.5f);
