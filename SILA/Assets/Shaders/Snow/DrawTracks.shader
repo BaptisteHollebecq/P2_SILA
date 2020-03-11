@@ -5,8 +5,9 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinate("Coordinate", vector) = (0,0,0,0)
 		_Color("Color", Color) = (1, 0, 0, 0)
+		
 		Size("Size", Range(1,500)) = 1
-		Strenght("Strenght", Range(0,1)) = 1
+		Strenght("Strenght", Range(0,10)) = 1
 
 		FloatDebug("FloatDebug", vector) = (1,1,0,0)
 
@@ -86,13 +87,18 @@
 				//float draw = pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 500 / Size);
 
 				
+				
 
-				fixed4 drawcol = _Color * (draw * Strenght * 3500/Size);
+				fixed4 drawcol =  _Color * (draw * Strenght * 500/Size);
+				
+				
 
 				float distFromCenter = distance(i.uv.xy, float2(0.5, 0.5));
 				float vignette = smoothstep(_VRadius, _VRadius - _VSoft, distFromCenter);
 				
-				return saturate(vignette*(col + drawcol));
+
+				return saturate(col + drawcol);
+				//return saturate(vignette*(col + drawcol));
 				
 
             }

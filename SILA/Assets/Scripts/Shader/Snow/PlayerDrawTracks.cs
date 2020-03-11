@@ -23,9 +23,9 @@ public class PlayerDrawTracks : MonoBehaviour
     private GameObject tempgameobject;
 
     [Header("Properties")]
-    [Range(1, 500)]
+    [Range(1, 1500)]
     public float brushSize;
-    [Range(0, 1)]
+    [Range(0, 10)]
     public float brushStrenght;
     // Start is called before the first frame update
 
@@ -57,7 +57,7 @@ public class PlayerDrawTracks : MonoBehaviour
 
         }
 
-        _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+        _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(2048, 2048, 0, RenderTextureFormat.ARGBFloat));
 
         playercontroller = GetComponentInParent<PlayerController>();
 
