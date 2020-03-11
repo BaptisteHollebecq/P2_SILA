@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public float dashMultiplier = 0;
+	public float dashForce = 0;
 	public LayerMask whatIsGround;
 	public int maxGroundAngle;
 	public float groundAngle;
@@ -250,10 +251,10 @@ public class PlayerController : MonoBehaviour
 		if(_canDash)
 			_canDash = false;
 		Vector3 dashDir = dashDirection.normalized;
-		moveSpeed = _speedStore * dashMultiplier;
+		moveSpeed = _speedStore * 3.5f;
 		moveDirection += dashDir * moveSpeed;
 		moveDirection.y = 0;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(dashMultiplier);
 		_canInput = true;
 		moveSpeed = _speedStore;
 		_isDashing = false;
@@ -306,6 +307,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_isJumping = true;
 			_hardGrounded = false;
+			gravityScale = 3;
 			moveDirection.y = jumpForce;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
