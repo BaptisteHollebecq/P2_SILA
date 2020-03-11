@@ -32,8 +32,8 @@ public class TimeMenu : MonoBehaviour
 
     private void EndTransitionTime()
     {
-        CanvasGroup.alpha = 1;
         _isChanging = false;
+        CanvasGroup.alpha = 1;
     }
 
     private void DisplayMenu()
@@ -42,7 +42,7 @@ public class TimeMenu : MonoBehaviour
         {
             _isActive = true;
 			CanvasGroup.alpha = 1;
-			_actualTime = GetComponentInParent<TimeSystem>().actualTime;
+			_actualTime = TimeSystem.actualTime;
             //Debug.Log(_actualTime);
             switch (_actualTime)
             {
@@ -86,7 +86,6 @@ public class TimeMenu : MonoBehaviour
             }
             if (Input.GetButtonDown("A"))
             {
-                Debug.Log(_arrowAngle);
                 CheckTime();
             }
         }
@@ -97,7 +96,7 @@ public class TimeMenu : MonoBehaviour
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Day)
+            if (TimeSystem.actualTime != TimeOfDay.Day)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
@@ -106,7 +105,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Morning)
+            if (TimeSystem.actualTime != TimeOfDay.Morning)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
@@ -115,7 +114,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 135f || _arrowAngle <= -135f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Night)
+            if (TimeSystem.actualTime != TimeOfDay.Night)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
@@ -124,7 +123,7 @@ public class TimeMenu : MonoBehaviour
         }
         else
         {
-            if (_timeManager.actualTime != TimeOfDay.Noon)
+            if (TimeSystem.actualTime != TimeOfDay.Noon)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;

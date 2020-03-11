@@ -5,9 +5,9 @@ using EasedLerp = RSTools.EasedLerp;
 
 public class CameraMaster : LockModeStateMachine
 {
-    #region Variables
+	#region Variables
 
-    public static event Action MovedToPivot;
+	public static event Action MovedToPivot;
 
     ICameraExtraMovement[] _extraMovements;
 	Camera m_Camera;
@@ -99,7 +99,7 @@ public class CameraMaster : LockModeStateMachine
 		_extraMovements = GetComponents<ICameraExtraMovement> ();
 		Behaviour = _behaviours[0];
 
-		Pto_PlayerController.PlayerStateChanged += UpdateLockState;
+		PlayerController.PlayerStateChanged += UpdateLockState;
 		Stele.SteleInteracted += SetCameraLookPivot;
 
 		UpdateLockState (CameraLockState.Idle);
@@ -287,7 +287,7 @@ public class CameraMaster : LockModeStateMachine
 		switch (LockState)
 		{
 			case CameraLockState.Idle:
-				
+
 			case CameraLockState.Flight:
 				_mouseX = Input.GetAxis ("HorizontalCamera") * Behaviour.Sensitivity.x;
 				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;

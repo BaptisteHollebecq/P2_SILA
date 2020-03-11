@@ -20,7 +20,6 @@ public abstract class LockModeStateMachine : UnityEngine.MonoBehaviour
 	{
 		if (newLockState == LockState)
 			return;
-
 		OnLockStateExit ();
 		LockState = newLockState;
 		OnLockStateEnter ();
