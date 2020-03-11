@@ -453,6 +453,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7062698067387131147, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 563580428}
     - target: {fileID: 562108066677903777, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Name
@@ -810,36 +815,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5501c7f8e510b448fa203166ae480c, type: 3}
---- !u!1 &534061197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 562108066677903777, guid: d827e12573fe081408d6b638a4bca02a,
-    type: 3}
-  m_PrefabInstance: {fileID: 375296083}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &534061203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534061197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 8
-  jumpForce: 6
-  gravityScale: 1
-  StompMtpl: 4
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  maxGroundAngle: 150
-  groundAngle: 0
-  mainCamera: {fileID: 563580428}
 --- !u!20 &563580428 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
