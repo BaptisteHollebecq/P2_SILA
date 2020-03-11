@@ -453,11 +453,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7062698067387131147, guid: d827e12573fe081408d6b638a4bca02a,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 563580428}
     - target: {fileID: 562108066677903777, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
       propertyPath: m_Name
@@ -467,6 +462,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062698067387131147, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 563580428}
+    - target: {fileID: 7062698067387131147, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: gravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062698067387131147, guid: d827e12573fe081408d6b638a4bca02a,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 562108066677903802, guid: d827e12573fe081408d6b638a4bca02a,
         type: 3}
