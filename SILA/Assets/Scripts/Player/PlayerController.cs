@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	Collider _collid;
 	Vector3 moveDirection;
 	Vector3 dashDirection;
+	float _gravityStore;
 	float _speedStore;
 	float _arrowAngle;
 	bool _isDashing = false;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
 		_rb = GetComponent<Rigidbody>();
 		_collid = GetComponent<CapsuleCollider>();
+		_gravityStore = gravityScale;
 		_speedStore = moveSpeed;
 		distToGround = _collid.bounds.extents.y;
 	}
@@ -174,7 +176,7 @@ public class PlayerController : MonoBehaviour
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
 			/*if (Mathf.Abs(moveDirection.y) > 100)
-				moveDirection.y = -100;*/
+				moveDirection.y = _rb.velocity.y;*/
 		}
 
 		if (_hardGrounded)
@@ -187,8 +189,6 @@ public class PlayerController : MonoBehaviour
 			moveDirection += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
 
 		#endregion
-
-
 	}
 
 	void EndTransitionTime()
@@ -307,8 +307,9 @@ public class PlayerController : MonoBehaviour
 		{
 			_isJumping = true;
 			_hardGrounded = false;
-			gravityScale = 3;
+			//_rb.AddForce(Vector3.up, ForceMode.Impulse);
 			moveDirection.y = jumpForce;
+			gravityScale = 3;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
 			_firstJump = true;
@@ -339,8 +340,8 @@ public class PlayerController : MonoBehaviour
 		{
 			if(!_isDashing)
 				moveSpeed = _speedStore;
-
-			gravityScale = 1;
+			if(!_isJumping)
+				gravityScale = _gravityStore;
 			_isFlying = false;
 		}
 	}
