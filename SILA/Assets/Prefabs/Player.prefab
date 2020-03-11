@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 562108066677903804}
   - component: {fileID: 5301368344420543455}
   - component: {fileID: 562108066677903807}
-  - component: {fileID: 562108066677903803}
+  - component: {fileID: 3269828025558500354}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -236,7 +236,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &562108066677903803
+--- !u!114 &3269828025558500354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,16 +245,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 562108066677903777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101766cdf4c572f4486273268b1bb41b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
-  radiusCheck: 0
-  jumpForce: 20
-  mainCamera: {fileID: 0}
-  fallMultiplier: 1.2
+  moveSpeed: 0
+  jumpForce: 0
+  gravityScale: 0
+  StompMtpl: 0
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  gravityScale: 5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  maxGroundAngle: 0
+  groundAngle: 0
+  mainCamera: {fileID: 0}
 --- !u!1 &3241283610654247010
 GameObject:
   m_ObjectHideFlags: 0
