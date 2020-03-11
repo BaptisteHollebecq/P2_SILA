@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 562108066677903804}
   - component: {fileID: 5301368344420543455}
   - component: {fileID: 562108066677903807}
-  - component: {fileID: 4332147095126981966}
   - component: {fileID: 3269828025558500354}
   m_Layer: 0
   m_Name: Player
@@ -237,27 +236,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4332147095126981966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562108066677903777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ce95bdc79238649bff3152cb146a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  speed: 0
-  speedMultiplier: 0
-  gravityStrength: 0
-  airFriction: 0.8
-  jumpForce: 0
-  canJump: 0
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
 --- !u!114 &3269828025558500354
 MonoBehaviour:
   m_ObjectHideFlags: 0
