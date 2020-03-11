@@ -19,6 +19,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlbedoNeige:
+        m_Texture: {fileID: 2800000, guid: 24aa62fb12845cc4d9884c1b7a0044df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlbedoSol:
+        m_Texture: {fileID: 2800000, guid: 9abc037d54c975c48be4e905e9a0b928, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalNeige:
+        m_Texture: {fileID: 2800000, guid: 6836607a36c37b14d82640050d40beac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalSol:
+        m_Texture: {fileID: 2800000, guid: c02ef202c9e4dea4d981fe226b9550c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RenderTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,6 +67,8 @@ Material:
     - _GroundSmoothness: 0
     - _Ground_Emissive: 0
     - _HauteurNeige: -0.08
+    - _NormalSnowStrenght: 1
+    - _NormalSolStrenght: 1
     - _OffSet: 10
     - _OffSetdebug: 0
     - _RenderTextureScale: 3000
