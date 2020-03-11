@@ -12,6 +12,9 @@
 		_GroundColor("Ground Color", Color) = (1,1,1,1)
 		_GroundTex("Ground (RGB)", 2D) = "white" {}
 
+		//UV
+
+
 		
 		_Splat("Splat", 2D) = "black" {}
 		_Displacement("Height Snow", Range(0, 1.0)) = 0.3
@@ -69,6 +72,8 @@
 				float d = tex2Dlod(_Splat, float4(v.texcoord.xy, 0, 0)).r * _Displacement * Time;
 				v.vertex.xyz -= v.normal * d;
 				v.vertex.xyz += v.normal * _Displacement * Time;
+				//v.vertex.xyz -= v.normal * d;
+				//v.vertex.xyz += v.normal * _Displacement * Time;
 			}
 
         sampler2D _GroundTex;
@@ -79,6 +84,9 @@
         struct Input
         {
             float2 uv_GroundTex;
+			float3 worldNormal;
+			float3 worldPos;
+
 			float2 uv_SnowTex;
 			float2 uv_Splat;
         };
@@ -96,8 +104,16 @@
 
         void surf (Input IN, inout SurfaceOutput o)
         {
+			//WorldUV
+			float2 UV;
+			
+			//if (IN.worldNormal.y > 0.5) UV = IN.worldPos.xz;
+			//else if (abs(IN.worldNormal.x) > 0.5) UV = IN.worldPos.yz;
+			//else UV = IN.worldPos.xy;
+
             // Albedo comes from a texture tinted by color
 			half amount = tex2Dlod(_Splat, float4(IN.uv_Splat.xy, 0, 0)).r;
+			
 			fixed4 c = lerp(tex2D(_SnowTex, IN.uv_SnowTex) * _SnowColor, tex2D(_GroundTex, IN.uv_GroundTex) * _GroundColor, amount);
 
             //fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;

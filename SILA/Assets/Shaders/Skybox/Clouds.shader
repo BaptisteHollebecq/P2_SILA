@@ -5,6 +5,7 @@
 		[NoScaleOffset] _CloudTex1 ("Clouds 1", 2D) = "white" {}
 		[NoScaleOffset] _FlowTex1 ("Flow Tex 1", 2D) = "grey" {}
 		_Tiling1("Tiling 1", Vector) = (1,1,0,0)
+		
 
 		[NoScaleOffset] _CloudTex2 ("Clouds 2", 2D) = "white" {}
 		[NoScaleOffset] _Tiling2("Tiling 2", Vector) = (1,1,0,0)
@@ -22,23 +23,25 @@
 
 		[NoScaleOffset] _ColorTex ("Color Tex", 2D) = "white" {}
 		_TilingColor("Tiling Color", Vector) = (1,1,0,0)
-		_ColPow ("Color Power", float) = 1
-		_ColFactor ("Color Factor", float) = 1
+		_ColPow("Color Power", float) = 1
+		_ColFactor("Color Factor", float) = 1
 
-		_Color ("Color", Color) = (1.0,1.0,1.0,1)
-		_Color2 ("Color2", Color) = (1.0,1.0,1.0,1)
+		_Color("Color", Color) = (1.0,1.0,1.0,1)
+		_Color2("Color2", Color) = (1.0,1.0,1.0,1)
 
-		_CloudDensity ("Cloud Density", float) = 5.0
+		_CloudDensity("Cloud Density", float) = 5.0
 
-		_BumpOffset ("BumpOffset", float) = 0.1
-		_Steps ("Steps", float) = 10
+		_BumpOffset("BumpOffset", float) = 0.1
+		_Steps("Steps", float) = 10
 
-		_CloudHeight ("Cloud Height", float) = 100
-		_Scale ("Scale", float) = 10
+		_CloudHeight("Cloud Height", float) = 100
+		_Scale("Scale", float) = 10
 
-		_Speed ("Speed", float) = 1
+		_Speed("Speed", float) = 1
 
-		_LightSpread ("Light Spread PFPF", Vector) = (2.0,1.0,50.0,3.0)
+		_LightSpread("Light Spread PFPF", Vector) = (2.0,1.0,50.0,3.0)
+
+		_Time("Time", float) = 0
 	}
 	SubShader
 	{
@@ -112,6 +115,8 @@
 			}
 
 			half4 SampleClouds ( float3 uv, half3 sunTrans, half densityAdd ){
+
+
 
 				// wave distortion
 				float3 coordsWave = float3( uv.xy *_TilingWave.xy + ( _TilingWave.zw * _Speed * _Time.y ), 0.0 );
