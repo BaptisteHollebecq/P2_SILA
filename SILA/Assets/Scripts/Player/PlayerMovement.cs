@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
 
@@ -13,19 +13,17 @@ public class PlayerController2 : MonoBehaviour
 	public float moveSpeed;
 	public float jumpForce;
 	public float gravityJump;
-
-	//[HideInInspector]
-	public float gravityScale;
-
+	public float gravityFlight;
 	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public float dashMultiplier = 0;
 	public float dashForce = 0;
-	public float dashCD = 0;
 	public LayerMask whatIsGround;
 	public int maxGroundAngle;
 	public float groundAngle;
+	//[HideInInspector]
+	public float gravityScale;
 
 	Rigidbody _rb;
 	Collider _collid;
@@ -66,7 +64,7 @@ public class PlayerController2 : MonoBehaviour
 	}
 
 	void Start()
-    {
+	{
 		_rb = GetComponent<Rigidbody>();
 		_collid = GetComponent<CapsuleCollider>();
 		_gravityStore = gravityScale;
@@ -76,9 +74,6 @@ public class PlayerController2 : MonoBehaviour
 
 	void Update()
 	{
-		if (_isDashing && _canDash)
-			_canDash = false;
-
 		_isGrounded = IsGrounded();
 
 		CheckResets();
@@ -96,7 +91,6 @@ public class PlayerController2 : MonoBehaviour
 		if (_isGrounded)
 		{
 			_isJumping = false;
-			_firstJump = false;
 			if (!_canDash)
 			{
 				if (!_isResetting)
@@ -119,13 +113,13 @@ public class PlayerController2 : MonoBehaviour
 
 	IEnumerator ResetDash()
 	{
-		yield return new WaitForSeconds(dashCD);
+		yield return new WaitForSeconds(1f);
 		_canDash = true;
 	}
 
 	private void AtkDown()
 	{
-		if(!_isGrounded && Input.GetButtonDown("B"))
+		if (!_isGrounded && Input.GetButtonDown("B"))
 		{
 			moveDirection.y = Physics.gravity.y * gravityScale * StompMtpl;
 		}
@@ -170,7 +164,7 @@ public class PlayerController2 : MonoBehaviour
 		if (_isGrounded && !_isDashing && !_isJumping)
 		{
 			gravityScale = 1;
-			moveDirection.y = _rb.velocity.y;
+			moveDirection.y = 0;
 			moveSpeed = _speedStore;
 			_jumpCount = 0;
 		}
@@ -183,13 +177,12 @@ public class PlayerController2 : MonoBehaviour
 			moveDirection.y = _rb.velocity.y - gravityScale;
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
-			if (Mathf.Abs(moveDirection.y) > 90)
-				moveDirection.y = _rb.velocity.y;
+			if (Mathf.Abs(moveDirection.y) > 70)
+				moveDirection.y = -71;
 		}
 
 		if (_hardGrounded)
 			moveDirection.y = Physics.gravity.y;
-
 
 		if (moveDirection.y < 0 && !_isDashing || moveDirection.y < 0 && !_isFlying)
 			moveDirection += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -226,9 +219,9 @@ public class PlayerController2 : MonoBehaviour
 		cameraUp.y = 0;
 	}   // set up les vector par rapport a ceux de la cam, utile pour le deplacement
 
-	public bool IsGrounded ()
+	public bool IsGrounded()
 	{
-		if (Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.12f, whatIsGround))
+		if (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.12f, whatIsGround))
 			return true;
 		return false;
 	}
@@ -240,7 +233,7 @@ public class PlayerController2 : MonoBehaviour
 		{
 			_canDash = false;
 			_canInput = false;
-			if(!_isGrounded)
+			if (!_isGrounded)
 			{
 				_isResetting = true;
 			}
@@ -251,13 +244,11 @@ public class PlayerController2 : MonoBehaviour
 			transform.Rotate(new Vector3(0f, _difAngle, 0f));
 			StartCoroutine(EndDash());
 		}
-		
+
 	}
 	IEnumerator EndDash()
 	{
 		_isDashing = true;
-		if(_canDash)
-			_canDash = false;
 		Vector3 dashDir = dashDirection.normalized;
 		moveSpeed = _speedStore * 3.5f;
 		moveDirection += dashDir * moveSpeed;
@@ -311,16 +302,14 @@ public class PlayerController2 : MonoBehaviour
 
 	void Jump()
 	{
-		if (_isGrounded && _canInput && Input.GetButtonDown("Jump"))
+		if (!_isJumping && _isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
-			_isJumping = true;
-			_hardGrounded = false;
-			//_rb.AddForce(Vector3.up, ForceMode.Impulse);
 			moveDirection.y = jumpForce;
-			gravityScale = 2;
-			_rb.velocity += new Vector3 (0, jumpForce);
+			gravityScale = gravityJump;
 			_jumpCount++;
+			_isJumping = true;
 			_firstJump = true;
+			_hardGrounded = false;
 		}
 	}
 
@@ -332,24 +321,26 @@ public class PlayerController2 : MonoBehaviour
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
 			_jumpCount += 1;
-			gravityScale = 3;
+			gravityScale = gravityFlight;
 			_isFlying = true;
+			_isJumping = false;
 			_firstJump = false;
 		}
 		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump && !_isGrounded)
 		{
-			if(!_isDashing)
+			if (!_isDashing)
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
-			gravityScale = 3;
+			gravityScale = gravityFlight;
 			_isFlying = true;
+			_isJumping = false;
 		}
 		else
 		{
-			if(!_isDashing)
+			if (!_isDashing)
 				moveSpeed = _speedStore;
-			if(!_isJumping)
-				gravityScale = _gravityStore;
+			if (!_isJumping)
+				gravityScale = gravityJump;
 			_isFlying = false;
 		}
 	}

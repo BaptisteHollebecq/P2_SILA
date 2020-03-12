@@ -99,7 +99,7 @@ public class CameraMaster : LockModeStateMachine
 		_extraMovements = GetComponents<ICameraExtraMovement> ();
 		Behaviour = _behaviours[0];
 
-		PlayerController.PlayerStateChanged += UpdateLockState;
+		PlayerController2.PlayerStateChanged += UpdateLockState;
 		Stele.SteleInteracted += SetCameraLookPivot;
 
 		UpdateLockState (CameraLockState.Idle);
