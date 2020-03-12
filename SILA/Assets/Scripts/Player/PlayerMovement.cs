@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
-	Vector3 moveInputR;
 	#endregion
 
 	void Awake()
@@ -83,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 		_collid = GetComponent<CapsuleCollider>();
 		_gravityStore = gravityScale;
 		_speedStore = moveSpeed;
-		distToGround = _collid.bounds.extents.y;
+		distToGround = _collid.bounds.extents.y - 0.8f;
 	}
 
 	void Update()
@@ -104,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (_isGrounded)
 		{
+			animator.SetBool("Grounded", true);
+			animator.SetBool("Jump", false);
 			_isJumping = false;
 			if (!_canDash)
 			{
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 				_isResetting = false;
 		}
 
-		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.15f, whatIsGround))
+		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround, whatIsGround))
 			_hardGrounded = true;
 		else
 			_hardGrounded = false;
@@ -173,6 +174,24 @@ public class PlayerMovement : MonoBehaviour
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
+
+		#region Animator
+
+		if (moveDirection.x != 0 || moveDirection.z != 0)
+		{
+			animator.SetBool("Run", true);
+			if (moveDirection.y > 10 && _isJumping)
+				animator.SetBool("Jump", true);
+		}
+		else
+		{
+			animator.SetBool("Run", false);
+			animator.SetBool("Idle", true);
+		}
+
+		Debug.Log(animator.GetBool("Run"));
+
+		#endregion
 
 		#region Gravity
 		if (_isGrounded && !_isDashing && !_isJumping)
@@ -320,6 +339,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			moveDirection.y = jumpForce;
 			gravityScale = gravityJump;
+			animator.SetBool("Grounded", false);
+			animator.SetBool("Jump", true);
 			_jumpCount++;
 			_isJumping = true;
 			_firstJump = true;
@@ -361,8 +382,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (_isJumping)
-			Debug.Log(moveDirection.y);
+		/*if (_isJumping)
+			Debug.Log(moveDirection.y);*/
 
 		_rb.velocity = moveDirection;
 	}
