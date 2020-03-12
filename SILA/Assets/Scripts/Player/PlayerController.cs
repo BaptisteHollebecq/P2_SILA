@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
 	[Header("Player")]
 	public float moveSpeed;
 	public float jumpForce;
+	public float gravityJump;
+
+	//[HideInInspector]
 	public float gravityScale;
+
 	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public float dashMultiplier = 0;
 	public float dashForce = 0;
+	public float dashCD = 0;
 	public LayerMask whatIsGround;
 	public int maxGroundAngle;
 	public float groundAngle;
@@ -91,6 +96,7 @@ public class PlayerController : MonoBehaviour
 		if (_isGrounded)
 		{
 			_isJumping = false;
+			_firstJump = false;
 			if (!_canDash)
 			{
 				if (!_isResetting)
@@ -101,6 +107,8 @@ public class PlayerController : MonoBehaviour
 					_isResetting = false;
 				}
 			}
+			else
+				_isResetting = false;
 		}
 
 		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.15f, whatIsGround))
@@ -111,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator ResetDash()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(dashCD);
 		_canDash = true;
 	}
 
@@ -172,11 +180,11 @@ public class PlayerController : MonoBehaviour
 			moveDirection.y = -gravityScale;
 		else
 		{
-			moveDirection.y = _rb.velocity.y * gravityScale;
+			moveDirection.y = _rb.velocity.y - gravityScale;
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
-			/*if (Mathf.Abs(moveDirection.y) > 100)
-				moveDirection.y = _rb.velocity.y;*/
+			if (Mathf.Abs(moveDirection.y) > 90)
+				moveDirection.y = _rb.velocity.y;
 		}
 
 		if (_hardGrounded)
@@ -309,7 +317,7 @@ public class PlayerController : MonoBehaviour
 			_hardGrounded = false;
 			//_rb.AddForce(Vector3.up, ForceMode.Impulse);
 			moveDirection.y = jumpForce;
-			gravityScale = 3;
+			gravityScale = 2;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
 			_firstJump = true;
