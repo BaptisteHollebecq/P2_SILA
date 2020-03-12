@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
 	#region Variables
 
+	[Header("Animator")]
+	public Animator animator;
+
 	[Header("Player")]
 	public float moveSpeed;
 	public float jumpForce;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 	Vector3 moveDirection;
 	Vector3 dashDirection;
 	float _gravityStore;
+	float distToGround;
 	float _speedStore;
 	float _arrowAngle;
 	bool _isDashing = false;
@@ -40,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 	bool _isResetting = false;
 	int _jumpCount = 0;
 	bool _firstJump = false;
-	float distToGround;
 	bool _isGrounded;
 	float _deadZone = 0.25f;
 	float _difAngle;
@@ -48,6 +51,17 @@ public class PlayerMovement : MonoBehaviour
 	bool _isFlying = false;
 	bool _isJumping = false;
 	bool _hardGrounded = false;
+
+	/*private State _currentState = State.Grounded;
+	private State _previousState = State.Grounded;
+
+	private enum State
+	{
+		Flying,
+		Jumping,
+		Dashing,
+		Grounded
+	}*/
 
 	[Header("Camera")]
 	public Camera mainCamera;
@@ -164,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 		if (_isGrounded && !_isDashing && !_isJumping)
 		{
 			gravityScale = 1;
-			moveDirection.y = 0;
+			moveDirection.y = _rb.velocity.y;
 			moveSpeed = _speedStore;
 			_jumpCount = 0;
 		}
@@ -347,9 +361,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (groundAngle < maxGroundAngle)
-			_rb.velocity = moveDirection;
-		else
-			return;
+		if (_isJumping)
+			Debug.Log(moveDirection.y);
+
+		_rb.velocity = moveDirection;
 	}
 }
