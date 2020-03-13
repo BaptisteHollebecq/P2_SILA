@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1546081311}
   moveSpeed: 10
-  jumpForce: 15
+  jumpForce: 16
   gravityJump: 0.5
   gravityFlight: 3
   StompMtpl: 4
@@ -2214,6 +2214,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e633aa2d2254e5f44b6b2df384dad490,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b33ffee2dea2dcd46a2fcb9a10e06c31, type: 2}
     - target: {fileID: -4216859302048453862, guid: e633aa2d2254e5f44b6b2df384dad490,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2269,11 +2274,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: e633aa2d2254e5f44b6b2df384dad490,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b33ffee2dea2dcd46a2fcb9a10e06c31, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e633aa2d2254e5f44b6b2df384dad490, type: 3}
 --- !u!1 &1947804412
