@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 	void Awake()
 	{
 		TimeSystem.StartedTransition += SwitchCanQuit;
-		TimeSystem.EndedTransition += EndTransitionTime;
+		CameraMaster.MovedToPivot += EndTransitionTime;
 	}
 
 	void Start()
