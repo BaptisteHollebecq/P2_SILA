@@ -24,12 +24,12 @@ public class WindPlatform : MonoBehaviour
         _windDirection = transform.GetChild(0).transform.forward;
         //_windDirection = new Vector3(0,_windDirection.y,0);
 
-        if (Debug)
+        /*if (Debug)
         {
             _renderer.enabled = true;
         }
         else
-            _renderer.enabled = false;
+            _renderer.enabled = false;*/
 
     }
 

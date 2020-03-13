@@ -53,7 +53,6 @@ public class Geyser : MonoBehaviour
                 case State.Charging:
                     {
                         //PLAY CHARGING ANIMATION HERE
-                        Debug.Log("Charging");
                         if (_timer / 50 >= ChargingTime)
                         {
                             actualState = State.Active;
@@ -63,6 +62,7 @@ public class Geyser : MonoBehaviour
                     }
                 case State.Active:
                     {
+                        //PLAY ACTIVE ANIMATION HERE
                         float force = PushForce + ((ActiveTime * 50)/* * 2*/);
                         if (_rb != null)
                         {

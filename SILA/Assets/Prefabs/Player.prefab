@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 562108066677903804}
   - component: {fileID: 5301368344420543455}
   - component: {fileID: 562108066677903807}
-  - component: {fileID: 3192758037564298132}
+  - component: {fileID: 144897497068597381}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -220,8 +220,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!136 &562108066677903807
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3192758037564298132
+--- !u!114 &144897497068597381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,20 +245,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 562108066677903777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1762aaa2cf55b419e96467c01c36c0, type: 3}
+  m_Script: {fileID: 11500000, guid: a2cc414d9811cc44da938fd84e85cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  jumpForce: 6
-  gravityScale: 1
+  moveSpeed: 10
+  jumpForce: 18
+  gravityJump: 0.5
+  gravityFlight: 3
   StompMtpl: 4
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 0.3
+  lowJumpMultiplier: 6
+  dashMultiplier: 0.2
+  dashForce: 3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   maxGroundAngle: 150
   groundAngle: 0
+  gravityScale: 1
   mainCamera: {fileID: 0}
 --- !u!1 &3241283610654247010
 GameObject:

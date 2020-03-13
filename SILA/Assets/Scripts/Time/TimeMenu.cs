@@ -14,7 +14,7 @@ public class TimeMenu : MonoBehaviour
     private TimeOfDay _actualTime;
     private TimeSystem _timeManager;
 
-	public CanvasGroup CanvasGroup;
+	private CanvasGroup CanvasGroup;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class TimeMenu : MonoBehaviour
     {
         CameraMaster.MovedToPivot += DisplayMenu;
         TimeSystem.EndedTransition += EndTransitionTime;
+        CanvasGroup = transform.GetComponent<CanvasGroup>();
 		CanvasGroup.alpha = 0;
 		_arrow = transform.GetChild(transform.childCount - 1);
         _timeManager = GetComponentInParent<TimeSystem>();
