@@ -105,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			animator.SetBool("Grounded", true);
 			animator.SetBool("Jump", false);
+			animator.SetBool("Fly", false);
+			animator.SetBool("Fall", false);
 			_isJumping = false;
 			if (!_canDash)
 			{
@@ -119,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
 			else
 				_isResetting = false;
 		}
+		else
+			animator.SetBool("Grounded", false);
 
 		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround, whatIsGround))
 			_hardGrounded = true;
@@ -177,9 +181,15 @@ public class PlayerMovement : MonoBehaviour
 
 		#region Animator
 
+		if(moveDirection.y < 5 && !_isFlying && !_isGrounded)
+		{
+			animator.SetBool("Fall", true);
+		}
+
 		if (moveDirection.x != 0 || moveDirection.z != 0)
 		{
 			animator.SetBool("Run", true);
+			animator.SetBool("Idle", false);
 			if (moveDirection.y > 10 && _isJumping)
 				animator.SetBool("Jump", true);
 		}
@@ -264,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (_canDash && _canInput && Input.GetButtonDown("Dash") && !_isResetting)
 		{
+			animator.SetBool("Dash", true);
 			_canDash = false;
 			_canInput = false;
 			if (!_isGrounded)
@@ -287,6 +298,7 @@ public class PlayerMovement : MonoBehaviour
 		moveDirection += dashDir * moveSpeed;
 		moveDirection.y = 0;
 		yield return new WaitForSeconds(dashMultiplier);
+		animator.SetBool("Dash", false);
 		_canInput = true;
 		moveSpeed = _speedStore;
 		_isDashing = false;
@@ -352,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Jump") && _jumpCount >= 1 && !_isGrounded)
 		{
+			animator.SetBool("Fly", true);
 			if (!_isDashing)
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
@@ -363,6 +376,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump && !_isGrounded)
 		{
+			animator.SetBool("Fly", true);
 			if (!_isDashing)
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
@@ -372,6 +386,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else
 		{
+			animator.SetBool("Fly", false);
 			if (!_isDashing)
 				moveSpeed = _speedStore;
 			if (!_isJumping)
