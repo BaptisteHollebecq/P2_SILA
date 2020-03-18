@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpForce;
 	public float gravityJump;
 	public float gravityFlight;
+	public float flightSpeed;
 	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
@@ -366,7 +367,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			animator.SetBool("Fly", true);
 			if (!_isDashing)
-				moveSpeed = _speedStore * 2;
+				moveSpeed = _speedStore * flightSpeed;
 			_hardGrounded = false;
 			_jumpCount += 1;
 			gravityScale = gravityFlight;
@@ -378,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			animator.SetBool("Fly", true);
 			if (!_isDashing)
-				moveSpeed = _speedStore * 2;
+				moveSpeed = _speedStore * flightSpeed;
 			_hardGrounded = false;
 			gravityScale = gravityFlight;
 			_isFlying = true;
