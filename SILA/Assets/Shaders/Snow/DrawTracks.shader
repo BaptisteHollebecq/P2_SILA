@@ -9,12 +9,6 @@
 		Size("Size", Range(1,500)) = 1
 		Strenght("Strenght", Range(0,10)) = 1
 
-		FloatDebug("FloatDebug", vector) = (1,1,0,0)
-
-		_Center("Center", vector) = (0,0,0,0)
-
-		__moveDirection("moveDirection", vector) = (0,0,0,0)
-
 		_VRadius("Vignette Radius", Range(0.0, 1.0)) = 0.7
 		_VSoft("Vignette Softness", Range(0.0, 1.0)) = 0.5
     }
@@ -67,40 +61,19 @@
                 return o;
             }
 
-			
-
             fixed4 frag (v2f i) : SV_Target
             {
-				
-				//float2 UV;
 
-				
-                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-				
-				//i.uv += _moveDirection;
-
-
 
 				float draw = pow(saturate(1 - distance(i.uv, _Center.xy)), 500 / Size);
-				
-				//float draw = pow(saturate(1 - distance(i.uv, _Coordinate.xy)), 500 / Size);
-
-				
-				
 
 				fixed4 drawcol =  _Color * (draw * Strenght * 500/Size);
-				
-				
 
 				float distFromCenter = distance(i.uv.xy, float2(0.5, 0.5));
 				float vignette = smoothstep(_VRadius, _VRadius - _VSoft, distFromCenter);
-				
 
 				return saturate(col + drawcol);
-				//return saturate(vignette*(col + drawcol));
-				
-
             }
             ENDCG
         }
