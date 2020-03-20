@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		TimeSystem.StartedTransition += SwitchCanQuit;
 		CameraMaster.MovedToPivot += EndTransitionTime;
-        TimeSystem.EndedTransition += EndTransitionTime;
+       // TimeSystem.EndedTransition += EndTransitionTime;
 	}
 
 	void Start()
