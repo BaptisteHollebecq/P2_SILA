@@ -635,16 +635,14 @@ MonoBehaviour:
   terrain:
   - {fileID: 0}
   - {fileID: 0}
-  terrainRender: []
-  checkRadius: 10
-  maxDistance: 1
-  whatIsRender:
-    serializedVersion: 2
-    m_Bits: 256
   ObjectsTracing:
   - {fileID: 2149846308191843318}
   brushSize: 1
   brushStrenght: 1
+  float0: {x: 0, y: 0}
+  tempCoordinates: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  snowHeight: {fileID: 0}
 --- !u!1 &2300869522369573921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2308,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7995055669819729935}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c10e3803e1f826a42ba2a200be082005, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
@@ -2330,14 +2328,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3901664139412617062}
-  moveSpeed: 10
-  jumpForce: 16
+  moveSpeed: 12
+  jumpForce: 17
   gravityJump: 0.5
-  gravityFlight: 3
-  flightSpeed: 2
+  gravityFlight: 8
+  flightSpeed: 1.5
   StompMtpl: 4
   fallMultiplier: 0.3
-  lowJumpMultiplier: 6
+  lowJumpMultiplier: 12
   dashMultiplier: 0.2
   dashForce: 3
   whatIsGround:

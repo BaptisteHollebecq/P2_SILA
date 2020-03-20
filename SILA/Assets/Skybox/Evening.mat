@@ -102,12 +102,13 @@ Material:
     - _Scale: 4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.02
+    - _Speed: 0.05
     - _SrcBlend: 1
     - _Steps: 10
     - _SunDisk: 2
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
+    - _Time: 0
     - _UVSec: 0
     - _WaveAmount: 0
     - _WaveDistort: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
 
@@ -12,22 +12,20 @@ public class PlayerController2 : MonoBehaviour
 	[Header("Player")]
 	public float moveSpeed;
 	public float jumpForce;
-	public float gravityJump;
-
-	//[HideInInspector]
-	public float gravityScale;
-
-	public int StompMtpl;
+    public float gravityJump;
+    public float gravityFlight;
+    public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
 	public float dashMultiplier = 0;
 	public float dashForce = 0;
-	public float dashCD = 0;
 	public LayerMask whatIsGround;
 	public int maxGroundAngle;
 	public float groundAngle;
+    //[HideInInspector]
+    public float gravityScale;
 
-	Rigidbody _rb;
+    Rigidbody _rb;
 	Collider _collid;
 	Vector3 moveDirection;
 	Vector3 dashDirection;
@@ -62,7 +60,7 @@ public class PlayerController2 : MonoBehaviour
 	void Awake()
 	{
 		TimeSystem.StartedTransition += SwitchCanQuit;
-		TimeSystem.EndedTransition += EndTransitionTime;
+		CameraMaster.MovedToPivot += EndTransitionTime;
 	}
 
 	void Start()
@@ -96,7 +94,6 @@ public class PlayerController2 : MonoBehaviour
 		if (_isGrounded)
 		{
 			_isJumping = false;
-			_firstJump = false;
 			if (!_canDash)
 			{
 				if (!_isResetting)
@@ -107,8 +104,10 @@ public class PlayerController2 : MonoBehaviour
 					_isResetting = false;
 				}
 			}
-			else
-				_isResetting = false;
+            else
+            {
+                _isResetting = false;
+            }
 		}
 
 		if (!_isGrounded && !_isJumping && !_isFlying && !_isDashing && Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.15f, whatIsGround))
@@ -119,7 +118,7 @@ public class PlayerController2 : MonoBehaviour
 
 	IEnumerator ResetDash()
 	{
-		yield return new WaitForSeconds(dashCD);
+		yield return new WaitForSeconds(1f);
 		_canDash = true;
 	}
 
@@ -183,8 +182,8 @@ public class PlayerController2 : MonoBehaviour
 			moveDirection.y = _rb.velocity.y - gravityScale;
 			if (moveDirection.y < 0)
 				moveDirection.y *= 1.1f;
-			if (Mathf.Abs(moveDirection.y) > 90)
-				moveDirection.y = _rb.velocity.y;
+			/*if (Mathf.Abs(moveDirection.y) > 100)
+				moveDirection.y = _rb.velocity.y;*/
 		}
 
 		if (_hardGrounded)
@@ -317,7 +316,7 @@ public class PlayerController2 : MonoBehaviour
 			_hardGrounded = false;
 			//_rb.AddForce(Vector3.up, ForceMode.Impulse);
 			moveDirection.y = jumpForce;
-			gravityScale = 2;
+			gravityScale = gravityJump;
 			_rb.velocity += new Vector3 (0, jumpForce);
 			_jumpCount++;
 			_firstJump = true;
@@ -332,8 +331,9 @@ public class PlayerController2 : MonoBehaviour
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
 			_jumpCount += 1;
-			gravityScale = 3;
+			gravityScale = gravityFlight;
 			_isFlying = true;
+            _isJumping = false;
 			_firstJump = false;
 		}
 		else if (Input.GetButton("Jump") && jumpForce >= 1 && moveDirection.y < 0 && !_firstJump && !_isGrounded)
@@ -341,15 +341,16 @@ public class PlayerController2 : MonoBehaviour
 			if(!_isDashing)
 				moveSpeed = _speedStore * 2;
 			_hardGrounded = false;
-			gravityScale = 3;
+			gravityScale = gravityFlight;
 			_isFlying = true;
-		}
+            _isJumping = false;
+        }
 		else
 		{
 			if(!_isDashing)
 				moveSpeed = _speedStore;
 			if(!_isJumping)
-				gravityScale = _gravityStore;
+				gravityScale = gravityJump;
 			_isFlying = false;
 		}
 	}

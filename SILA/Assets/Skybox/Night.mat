@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorTex:
-        m_Texture: {fileID: 2800000, guid: d5d569c260dd7b44580bf069fabc7460, type: 3}
+        m_Texture: {fileID: 2800000, guid: c89eeff227ca2dd4b8917dc6cbde5eff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -84,18 +84,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpOffset: -1.75
+    - _BumpOffset: -2
     - _BumpScale: 1
     - _Cloud2Amount: 1
     - _Cloud3Amount: 1.09
     - _CloudBias: 0
-    - _CloudDensity: 0.3
+    - _CloudDensity: 0.07
     - _CloudHeight: 1975.7
     - _CloudHeightAdjust: -0.1
     - _CloudHeightContrast: 0.1
     - _CloudScale: 1
     - _ColFactor: 31.26
-    - _ColPow: 8.1
+    - _ColPow: 5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DistAmount: 1
@@ -116,6 +116,7 @@ Material:
     - _Speed: 0.02
     - _SrcBlend: 1
     - _Steps: 70
+    - _Time: 0
     - _UVSec: 0
     - _WaveAmount: 1.11
     - _WaveDistort: -0.06

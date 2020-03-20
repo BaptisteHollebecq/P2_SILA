@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxDistance: 4
   MinPitch: -60
   MaxPitch: 70
-  LocalOffset: {x: 0, y: 0.5, z: 0}
+  LocalOffset: {x: 0.25, y: 0.5, z: 0}
   LocalRotation: {x: 0, y: 0, z: 0}
   Sensitivity: {x: 3, y: 3}
   RotationDamping: 0.2

@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpForce;
 	public float gravityJump;
 	public float gravityFlight;
-	public float flightSpeed;
+    public float flightSpeed;
 	public int StompMtpl;
 	public float fallMultiplier = 2.5f;
 	public float lowJumpMultiplier = 2f;
@@ -74,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		TimeSystem.StartedTransition += SwitchCanQuit;
-		TimeSystem.EndedTransition += EndTransitionTime;
+		CameraMaster.MovedToPivot += EndTransitionTime;
+       // TimeSystem.EndedTransition += EndTransitionTime;
 	}
 
 	void Start()
@@ -98,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
 		StopInteract();
 		Jump();
 		AtkDown();
-	}
+        //Debug.Log("canquit   " + _canQuit);
+    }
 
 	private void CheckResets()
 	{
@@ -315,7 +317,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				_rb.velocity = Vector3.zero;
 				moveDirection = Vector3.zero;
-				_canQuit = false;
+				//_canQuit = false;
 				_onStele = true;
 				_canInput = false;
 				stele.Interact();
@@ -332,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (_canQuit && _onStele && Input.GetButtonDown("B"))
 		{
+            Debug.Log("t'es libre frr");
 			PlayerStateChanged?.Invoke(CameraLockState.Idle);
 			_onStele = false;
 			_canInput = true;

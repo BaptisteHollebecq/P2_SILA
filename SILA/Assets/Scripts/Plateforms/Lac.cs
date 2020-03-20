@@ -16,9 +16,9 @@ public class Lac : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(TimeSystem.actualTime);
+        //Debug.Log(TimeSystem.actualTime);
         if (TimeSystem.actualTime == TimeOfDay.Night)
-            _collision.localPosition = new Vector3(0, 0, 0);
+            _collision.localPosition = new Vector3(0, 0.1f, 0);
         else
             _collision.localPosition = new Vector3(0, Depth, 0);
     }
