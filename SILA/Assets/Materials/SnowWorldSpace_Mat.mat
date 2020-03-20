@@ -56,7 +56,7 @@ Material:
     - _RenderTextureScale: 3000
     - _Scale: 1
     - _SmoothNess: 0
-    - _SnowHeight: 0.11
+    - _SnowHeight: 0.5
     - _Snow_Emissive: 0.4
     - _Snow_Metalness: 1
     - _Snow_Smoothness: 0.2

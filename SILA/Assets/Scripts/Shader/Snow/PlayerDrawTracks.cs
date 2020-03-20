@@ -14,7 +14,7 @@ public class PlayerDrawTracks : MonoBehaviour
     private Material _drawMaterial;
 
     public GameObject[] terrain;
-    private Material _snowMaterial;
+    public Material[] _snowMaterial;
 
     public Transform[] ObjectsTracing;
     RaycastHit _groundHit;
@@ -51,13 +51,15 @@ public class PlayerDrawTracks : MonoBehaviour
 
 
         _drawMaterial = new Material(drawShader);
+
+        _splatMap = new RenderTexture(2048, 2048, 0, RenderTextureFormat.ARGBFloat);
         for (int i = 0; i < terrain.Length; i++)
         {
-            _snowMaterial = terrain[i].GetComponent<MeshRenderer>().material;
+            _snowMaterial[i] = terrain[i].GetComponent<MeshRenderer>().material;
+            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
 
         }
 
-        _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(2048, 2048, 0, RenderTextureFormat.ARGBFloat));
 
         playercontroller = GetComponentInParent<PlayerController>();
 
@@ -68,8 +70,14 @@ public class PlayerDrawTracks : MonoBehaviour
     void Update()
     {
         Vector2 playerPos = new Vector2(-transform.position.x, -transform.position.z);
+
+        for (int i = 0; i < terrain.Length; i++)
+        {
+            _snowMaterial[i].SetVector("_PositionPlayer", playerPos);
+
+        }
         
-        _snowMaterial.SetVector("_PositionPlayer", playerPos);
+       
 
         moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
         tempCoordinates = transform.position;
@@ -113,7 +121,12 @@ public class PlayerDrawTracks : MonoBehaviour
 
         if (TimeSystem.currentTime >= 0.24f && TimeSystem.currentTime <= 0.245f)
         {
-            _snowMaterial.SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+            for (int i = 0; i < terrain.Length; i++)
+            {
+                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+
+            }
+            
         }
     }
 
