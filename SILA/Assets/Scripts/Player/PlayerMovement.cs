@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 	bool _isGrounded;
 	float _deadZone = 0.25f;
 	float _difAngle;
-	bool _canQuit;
+	bool _canQuit = true;
 	bool _isFlying = false;
 	bool _isJumping = false;
 	bool _hardGrounded = false;
@@ -202,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
 			animator.SetBool("Idle", true);
 		}
 
-		//Debug.Log(animator.GetBool("Run"));
 
 		#endregion
 
