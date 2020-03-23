@@ -631,14 +631,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   drawShader: {fileID: 4800000, guid: 75419236954a8d642a303e10eb09cdc8, type: 3}
-  snowTrack_Shader: {fileID: 4800000, guid: 17878fc84a61a8f4dbcc3800675e1620, type: 3}
+  snowTrack_Shader: {fileID: 4800000, guid: 4ebec51aef1bb3c4ab00893093917d00, type: 3}
   terrain:
   - {fileID: 0}
   - {fileID: 0}
+  _snowMaterial: []
   ObjectsTracing:
   - {fileID: 2149846308191843318}
-  brushSize: 1
-  brushStrenght: 1
+  brushSize: 1500
+  brushStrenght: 10
   float0: {x: 0, y: 0}
   tempCoordinates: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
