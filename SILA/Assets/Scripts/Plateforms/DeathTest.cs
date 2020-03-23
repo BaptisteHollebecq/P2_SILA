@@ -10,7 +10,7 @@ public class DeathTest : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            collision.transform.GetComponent<PlayerRespawn>().Respawn();
         }
     }
 }
