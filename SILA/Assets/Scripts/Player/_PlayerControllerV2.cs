@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum States
 {
+	NA,
 	Grounded,
 	Jumping,
 	Dashing,
@@ -14,15 +15,34 @@ public enum States
 }
 public class _PlayerControllerV2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	protected States states { get; private set; } = States.NA;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	protected void OnStateEnter()
+	{
+		switch (states)
+		{
+			case States.NA:
+				break;
+
+			case States.Dashing:
+				break;
+
+			case States.Flying:
+				break;
+
+			case States.Grounded:
+				break;
+
+			case States.Jumping:
+				break;
+
+			case States.OnStele:
+				break;
+
+			case States.Zoom:
+				break;
+		}
+
+	}
+
 }
