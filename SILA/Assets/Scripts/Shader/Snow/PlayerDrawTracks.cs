@@ -55,12 +55,12 @@ public class PlayerDrawTracks : MonoBehaviour
 
         _drawMaterial = new Material(drawShader);
 
-        _splatMap = new RenderTexture(2048, 2048, 0, RenderTextureFormat.ARGBFloat);
+        _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
         for (int i = 0; i < terrain.Length; i++)
         {
             _snowMaterial[i] = terrain[i].GetComponent<MeshRenderer>().material;
             _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
-
+            
         }
 
 
@@ -77,11 +77,9 @@ public class PlayerDrawTracks : MonoBehaviour
         for (int i = 0; i < terrain.Length; i++)
         {
             _snowMaterial[i].SetVector("_PositionPlayer", playerPos);
-
+            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
         }
         
-       
-
         moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
         tempCoordinates = transform.position;
 
@@ -90,7 +88,7 @@ public class PlayerDrawTracks : MonoBehaviour
 
             if (Physics.Raycast(ObjectsTracing[i].position, Vector3.down, out _groundHit, 0.4f, _layerMask))
             {
-                tempgameobject = _groundHit.transform.gameObject;
+                //tempgameobject = _groundHit.transform.gameObject;
 
                 //_drawMaterial[j].SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
                 
@@ -107,7 +105,7 @@ public class PlayerDrawTracks : MonoBehaviour
                 Graphics.Blit(_splatMap, temp);
                 Graphics.Blit(temp, _splatMap, _drawMaterial);
                 RenderTexture.ReleaseTemporary(temp);
-
+                
             }
             else
             {
@@ -118,16 +116,17 @@ public class PlayerDrawTracks : MonoBehaviour
                 Graphics.Blit(temp, _splatMap, _drawMaterial);
                 RenderTexture.ReleaseTemporary(temp);
             }
-            
 
         }
 
         if (TimeSystem.currentTime >= 0.24f && TimeSystem.currentTime <= 0.245f)
         {
+            
             for (int i = 0; i < terrain.Length; i++)
             {
-                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
-
+                _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+                
             }
             
         }
@@ -140,7 +139,7 @@ public class PlayerDrawTracks : MonoBehaviour
         {
             Debug.DrawRay(ObjectsTracing[0].position, Vector3.down * 5, Color.red);
             GUI.DrawTexture(new Rect(0, 0, 256, 256), _splatMap, ScaleMode.ScaleToFit, false, 1);
-
+            
         }
     }
 }
