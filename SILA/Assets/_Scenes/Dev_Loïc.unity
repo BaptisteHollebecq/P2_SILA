@@ -437,6 +437,24 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1844864669}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1015140444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7995055669819729935, guid: 4e03fa572de3f6440991c7e228276f25,
+    type: 3}
+  m_PrefabInstance: {fileID: 2149846308010061429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1015140445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015140444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d621be04636b547488ce035e4aa1a340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539088068
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +637,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -693,11 +716,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06dd765b536db64bb2314e3e31c2172, type: 3}
@@ -851,6 +869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: flightSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843313, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
