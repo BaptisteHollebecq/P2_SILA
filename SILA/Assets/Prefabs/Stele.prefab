@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6311601238763677315}
   - component: {fileID: 463518982689608904}
   - component: {fileID: 8671929361501063416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3093784981648334733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TargetCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3093784982954863420}
   - component: {fileID: 3093784982954863421}
   - component: {fileID: 3093784982954863395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FLoatingY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 3093784983296573550}
   - component: {fileID: 3093784983296573458}
   - component: {fileID: 3093784983296573457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
