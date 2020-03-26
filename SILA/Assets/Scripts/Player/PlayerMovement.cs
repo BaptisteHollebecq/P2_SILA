@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 	bool _isGrounded;
 	float _deadZone = 0.25f;
 	float _difAngle;
-	bool _canQuit;
+	bool _canQuit = true;
 	bool _isFlying = false;
 	bool _isJumping = false;
 	bool _hardGrounded = false;
@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		TimeSystem.StartedTransition += SwitchCanQuit;
+		CameraMaster.MovedToPivot += EndTransitionTime;
 		TimeSystem.EndedTransition += EndTransitionTime;
 	}
 
@@ -98,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
 		StopInteract();
 		Jump();
 		AtkDown();
-	}
+        //Debug.Log("canquit   " + _canQuit);
+    }
 
 	private void CheckResets()
 	{
@@ -200,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
 			animator.SetBool("Idle", true);
 		}
 
-		Debug.Log(animator.GetBool("Run"));
 
 		#endregion
 
@@ -317,7 +318,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				_rb.velocity = Vector3.zero;
 				moveDirection = Vector3.zero;
-				_canQuit = false;
+				//_canQuit = false;
 				_onStele = true;
 				_canInput = false;
 				stele.Interact();
@@ -334,6 +335,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (_canQuit && _onStele && Input.GetButtonDown("B"))
 		{
+            Debug.Log("t'es libre frr");
 			PlayerStateChanged?.Invoke(CameraLockState.Idle);
 			_onStele = false;
 			_canInput = true;

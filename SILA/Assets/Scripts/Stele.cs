@@ -7,9 +7,12 @@ public class Stele : MonoBehaviour
 	public Transform cameraPivotOnInteract;
     public SpriteRenderer ySprite;
 
+    private PlayerRespawn _respawn;
+
 	public void Interact ()
 	{
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
+        _respawn.CheckPoint();
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +20,7 @@ public class Stele : MonoBehaviour
         if (other.tag == "Player")
         {
             ySprite.enabled = true;
+            _respawn = other.GetComponent<PlayerRespawn>();
         }
     }
 
@@ -25,6 +29,7 @@ public class Stele : MonoBehaviour
         if (other.tag == "Player")
         {
             ySprite.enabled = false;
+            _respawn = null;
         }
     }
 }

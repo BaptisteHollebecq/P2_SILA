@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TimeMenu : MonoBehaviour
 {
+    public static event System.Action MenuDisplayed;
+
     private bool _isActive = false;
     private float _deadZone = 0.25f;
     private bool _isChanging = false;
@@ -25,6 +27,7 @@ public class TimeMenu : MonoBehaviour
     {
         CameraMaster.MovedToPivot += DisplayMenu;
         TimeSystem.EndedTransition += EndTransitionTime;
+
         CanvasGroup = transform.GetComponent<CanvasGroup>();
 		CanvasGroup.alpha = 0;
 		_arrow = transform.GetChild(transform.childCount - 1);
@@ -41,6 +44,7 @@ public class TimeMenu : MonoBehaviour
     {
         if (!_isActive)
         {
+            MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
 			_actualTime = TimeSystem.actualTime;
