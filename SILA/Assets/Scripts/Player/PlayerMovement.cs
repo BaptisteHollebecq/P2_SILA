@@ -202,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
 			animator.SetBool("Idle", true);
 		}
 
+
 		#endregion
 
 		#region Gravity
