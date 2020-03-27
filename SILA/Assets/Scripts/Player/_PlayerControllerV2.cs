@@ -77,6 +77,13 @@ public class _PlayerControllerV2 : MonoBehaviour
 				OnStateEnter();
 			}
 		}
+
+		if(Input.GetButtonDown("A"))
+		{
+			_previousState = _currentState;
+			_currentState = States.Jumping;
+			OnStateEnter();
+		}
 	}
 
 }
