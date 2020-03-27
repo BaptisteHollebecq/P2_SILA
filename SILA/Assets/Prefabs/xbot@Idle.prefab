@@ -635,6 +635,7 @@ MonoBehaviour:
   terrain:
   - {fileID: 0}
   - {fileID: 0}
+  _snowMaterial: []
   ObjectsTracing:
   - {fileID: 2149846308191843318}
   brushSize: 1
@@ -2241,6 +2242,7 @@ GameObject:
   - component: {fileID: 2149846309420972628}
   - component: {fileID: 2149846309420972630}
   - component: {fileID: 2149846309420972631}
+  - component: {fileID: 6166203538915397988}
   m_Layer: 0
   m_Name: xbot@Idle
   m_TagString: Untagged
@@ -2345,6 +2347,21 @@ MonoBehaviour:
   groundAngle: 0
   gravityScale: 1
   mainCamera: {fileID: 0}
+--- !u!114 &6166203538915397988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995055669819729935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2149846309420972631}
+  _playerLife: 3
+  _actualise: 1
 --- !u!1 &8053777067210249558
 GameObject:
   m_ObjectHideFlags: 0
