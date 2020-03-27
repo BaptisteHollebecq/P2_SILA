@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRespawn : MonoBehaviour
+public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerMovement Player;
 
+    [SerializeField] private int _playerLife = 3;
+    private int _maxlife;
     [SerializeField] private float _actualise;
     private bool _save = true;
     private Vector3 _position;
@@ -14,6 +16,7 @@ public class PlayerRespawn : MonoBehaviour
     private void Awake()
     {
         _checkPoint = Player.transform.position;
+        _maxlife = _playerLife;
     }
 
     void Update()
@@ -33,17 +36,22 @@ public class PlayerRespawn : MonoBehaviour
     public void CheckPoint()
     {
         _checkPoint = Player.transform.position;
-        Debug.Log("checkpoint === " + _checkPoint);
+        //Debug.Log("checkpoint === " + _checkPoint);
     }
 
     public void Death()
     {
         transform.position = _checkPoint;
+        _playerLife = _maxlife;
     }
 
     public void Respawn()
     {
-        transform.position = _position;
+        _playerLife--;
+        if (_playerLife != 0)
+            transform.position = _position;
+        else
+            Death();
     }
 
     IEnumerator Timer()
