@@ -1,28 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class _PlayerControllerV2 : MonoBehaviour
+public class PlayerControllerV2 : PlayerStates
 {
+	#region Variables
 
-	private States _currentState = States.NA;
-	private States _previousState;
+	
 
-	private enum States
+
+
+	#endregion
+
+
+	private void Update()
 	{
-		NA,
-		Grounded,
-		Jumping,
-		Dashing,
-		Flying,
-		OnStele,
-		Zoom,
+		if(Input.GetButtonDown("A"))
+		{
+			UpdatePlayerState(States.Jumping);
+		}
+
+		if (Input.GetButtonDown("Y"))
+		{
+			UpdatePlayerState(States.Zoom);
+		}
+
+		if (Input.GetButtonDown("Dash"))
+		{
+			UpdatePlayerState(States.Dashing);
+		}
 	}
 
-	protected void OnStateEnter()
+	protected override void OnStateEnter()
 	{
-		switch (_currentState)
+		switch (CurrentState)
 		{
 			case States.NA:
 				Debug.Log("NA");
@@ -36,54 +49,25 @@ public class _PlayerControllerV2 : MonoBehaviour
 				Debug.Log("FLY");
 				break;
 
-			case States.Grounded:
-				Debug.Log("GROUNDED");
-				break;
-
 			case States.Jumping:
 				Debug.Log("JUMP");
 				break;
 
 			case States.OnStele:
 				Debug.Log("STELE");
-
 				break;
 
 			case States.Zoom:
 				Debug.Log("ZOOM");
 				break;
 		}
-
 	}
-
-	private void Update()
+	protected override void OnStateExit()
 	{
-		if (Input.GetButtonDown("Y"))
-		{
-			RaycastHit hitStele;
-			Physics.Raycast(transform.position, Vector3.down, out hitStele, 10);
-			Debug.DrawRay(transform.position, Vector3.down, Color.red, 10);
-			if (hitStele.transform.TryGetComponent(out Stele stele))
-			{
-				stele.Interact();
-				_previousState = _currentState;
-				_currentState = States.OnStele;
-				OnStateEnter();
-			}
-			else
-			{
-				_previousState = _currentState;
-				_currentState = States.Zoom;
-				OnStateEnter();
-			}
-		}
-
-		if(Input.GetButtonDown("A"))
-		{
-			_previousState = _currentState;
-			_currentState = States.Jumping;
-			OnStateEnter();
-		}
 	}
 
+	void FixedUpdate()
+	{
+		
+	}
 }
