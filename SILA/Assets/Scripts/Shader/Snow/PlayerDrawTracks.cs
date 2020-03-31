@@ -100,7 +100,7 @@ public class PlayerDrawTracks : MonoBehaviour
                 //tempCoordinates = _groundHit.textureCoord;
 
                 _drawMaterial.SetFloat("Strenght", brushStrenght);
-                _drawMaterial.SetFloat("Size", 100/brushSize);
+                _drawMaterial.SetFloat("Size", 10/brushSize);
                 RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
                 Graphics.Blit(_splatMap, temp);
                 Graphics.Blit(temp, _splatMap, _drawMaterial);

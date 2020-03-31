@@ -76,7 +76,7 @@ Material:
     - _Float5: 1.36
     - _Float8: 4
     - _Float9: 0
-    - _GlitterIntensity: 4
+    - _GlitterIntensity: 2.49
     - _GlitterThreshold: 0
     - _Glitter_Threshold: 0.36
     - _GroundMetalness: 0
@@ -90,6 +90,8 @@ Material:
     - _Noise_Strength: 0.91
     - _Noise_Strength2: 0
     - _Noise_Treshold: 0.4
+    - _NormalDerivativeOffset: 0.51
+    - _NormalScale: 1
     - _Normal_Intensity: 1
     - _Normal_Intensity1: 1
     - _Nz03fattentionzaxis: 0.3
@@ -99,16 +101,16 @@ Material:
     - _ReflectanceStreght: 1.42
     - _RenderTextureScale: 3000
     - _RimOffset: 0.24
-    - _RimPower: 9
-    - _RimStrenght: 1
+    - _RimPower: 8.4
+    - _RimStrenght: 0.48
     - _Scale: 1
     - _SmoothNess: 0
     - _SnowHeight: 1
     - _Snow_Emissive: 0.434
     - _Snow_Metalness: 0
     - _Snow_Smoothness: 0.46
-    - _SpecularPower: 0.25
-    - _SpecularStrenght: 0.5
+    - _SpecularPower: 1
+    - _SpecularStrenght: 0.19
     - _Strength: 2
     - _Strength1: 0.86
     - _TessMax: 25
@@ -141,5 +143,5 @@ Material:
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
-    - _ToonRampTint: {r: 0, g: 0.618978, b: 1, a: 0}
+    - _ToonRampTint: {r: 0.5990566, g: 0.8474843, b: 1, a: 0}
     - _Vector0: {r: 0.1, g: 0.1, b: 0, a: 0}
