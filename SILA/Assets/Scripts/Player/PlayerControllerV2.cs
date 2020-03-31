@@ -8,12 +8,17 @@ public class PlayerControllerV2 : PlayerStates
 {
 	#region Variables
 
-	
+	Rigidbody _rb;
+	Vector3 moveDirection;
 
 
 
 	#endregion
 
+	private void Start()
+	{
+		_rb = GetComponent<Rigidbody>();
+	}
 
 	private void Update()
 	{
@@ -68,6 +73,6 @@ public class PlayerControllerV2 : PlayerStates
 
 	void FixedUpdate()
 	{
-		
+		_rb.velocity = moveDirection;
 	}
 }
