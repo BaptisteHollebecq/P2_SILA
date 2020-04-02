@@ -350,6 +350,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (!_isJumping && _isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
+			Debug.Log("Je saute");
 			moveDirection.y = jumpForce;
 			gravityScale = gravityJump;
 			animator.SetBool("Grounded", false);
