@@ -710,8 +710,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 1015140444}
+  m_Enabled: 0
+=======
   m_GameObject: {fileID: 1162840268}
   m_Enabled: 1
+>>>>>>> origin/Prod_Baptiste
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
   m_Name: 
@@ -2543,6 +2548,14 @@ PrefabInstance:
       propertyPath: flightSpeed
       value: 2
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+=======
+>>>>>>> origin/Prod_Baptiste
     - target: {fileID: 2149846308191843313, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: terrain.Array.data[0]

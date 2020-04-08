@@ -43,10 +43,13 @@ public class PlayerDrawTracks : MonoBehaviour
     void FindGameObjectWithTags()
     {
         terrain = GameObject.FindGameObjectsWithTag("Ground");
+        
+        
     }
 
     void Start()
     {
+        
         _layerMask = LayerMask.GetMask("Ground");
 
 
@@ -135,7 +138,7 @@ public class PlayerDrawTracks : MonoBehaviour
 
         if (debug)
         {
-            Debug.DrawRay(ObjectsTracing[0].position, Vector3.down, Color.red);
+            Debug.DrawRay(ObjectsTracing[0].position, Vector3.down * 5, Color.red);
             GUI.DrawTexture(new Rect(0, 0, 256, 256), _splatMap, ScaleMode.ScaleToFit, false, 1);
 
         }
