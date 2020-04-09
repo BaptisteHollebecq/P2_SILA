@@ -14,6 +14,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public GameObject player;
 	private FSMSystem fsm;
 
+	public void SetTransition(Transition t) { fsm.PerformTransition(t); }
 	public void Start()
 	{
 		MakeFSM();
@@ -25,11 +26,40 @@ public class PlayerControllerV2 : MonoBehaviour
 	}
 	private void MakeFSM()
 	{
-		
+		IdleState idleState = new IdleState();
+		idleState.AddTransition(Transition.Stopping, StateID.Idle);
+
+		MovementState movementState = new MovementState();
+		movementState.AddTransition(Transition.Moving, StateID.Move);
+
+		JumpState jumpState = new JumpState();
+		jumpState.AddTransition(Transition.Jumping, StateID.Jump);
+
+		DashState dashState = new DashState();
+		dashState.AddTransition(Transition.Dashing, StateID.Dash);
+
+		FlyState flyState = new FlyState();
+		flyState.AddTransition(Transition.Flying, StateID.Fly);
+
+		FallState fallState = new FallState();
+		fallState.AddTransition(Transition.Falling, StateID.Fall);
+
+		OnSteleState steleState = new OnSteleState();
+		steleState.AddTransition(Transition.Stele, StateID.OnStele);
+
+		ZoomState zoomState = new ZoomState();
+		zoomState.AddTransition(Transition.Zooming, StateID.Eyes);
+
 
 		fsm = new FSMSystem();
-		fsm.AddState();
-		fsm.AddState();
+		fsm.AddState(idleState);
+		fsm.AddState(jumpState);
+		fsm.AddState(movementState);
+		fsm.AddState(dashState);
+		fsm.AddState(flyState);
+		fsm.AddState(fallState);
+		fsm.AddState(steleState);
+		fsm.AddState(zoomState);
 	}
 
 }

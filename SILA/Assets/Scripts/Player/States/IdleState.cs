@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : MonoBehaviour
+public class IdleState : FSMState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public override void Reason(GameObject player)
+	{
+		
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override void Act(GameObject player)
+	{
+		
+	}
 }

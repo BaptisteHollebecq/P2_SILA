@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : MonoBehaviour
+public class JumpState : FSMState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	Rigidbody rigidbody;
+	int jumpForce = 10;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public JumpState()
+	{
+		ID = StateID.Jump;
+	}
+	public override void Reason(GameObject player)
+	{
+		if(Input.GetButtonDown("Jump"))
+		{
+			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Jumping);
+		}
+
+	}
+
+	public override void Act(GameObject player)
+	{
+		rigidbody.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+	}
 }
