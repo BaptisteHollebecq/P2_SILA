@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MovementState : FSMState
 {
-	public override void Reason(GameObject player)
+	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
 
 	}
 
-	public override void Act(GameObject player)
+	public override void Act(GameObject player, Rigidbody rigidbody)
 	{
 
 	}

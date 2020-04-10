@@ -12,17 +12,19 @@ public class PlayerControllerV2 : MonoBehaviour
 	public Animator animator;*/
 
 	public GameObject player;
+	Rigidbody playerRb;
 	private FSMSystem fsm;
 
 	public void SetTransition(Transition t) { fsm.PerformTransition(t); }
 	public void Start()
 	{
+		playerRb = GetComponent<Rigidbody>();
 		MakeFSM();
 	}
 	public void FixedUpdate()
-	{
-		fsm.CurrentState.Reason(player);
-		fsm.CurrentState.Act(player);
+	{ 
+		fsm.CurrentState.Reason(player, playerRb);
+		fsm.CurrentState.Act(player, playerRb);
 	}
 	private void MakeFSM()
 	{

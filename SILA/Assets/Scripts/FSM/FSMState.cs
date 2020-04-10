@@ -54,6 +54,6 @@ public abstract class FSMState
 	public virtual void DoBeforeEntering () { }
 	public virtual void DoBeforeLeaving () { }
 
-	public abstract void Reason (GameObject player);
-	public abstract void Act (GameObject player);
+	public abstract void Reason (GameObject player, Rigidbody playerRb);
+	public abstract void Act (GameObject player, Rigidbody playerRb);
 }
