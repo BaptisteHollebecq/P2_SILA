@@ -10,15 +10,14 @@ public class IdleState : FSMState
 	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
-		/*if (Physics.Raycast(player.transform.position, -Vector3.up, 1.5f))
+		if (Physics.Raycast(player.transform.position, -Vector3.up, 1.5f))
 		{
 			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
-		}*/
-
+		}
 	}
 
 	public override void Act(GameObject player, Rigidbody rigidbody)
 	{
-		Debug.Log(ID);
+		Debug.Log("Je reste en idle");
 	}
 }

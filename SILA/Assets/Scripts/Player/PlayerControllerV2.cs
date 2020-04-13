@@ -42,7 +42,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		FlyState flyState = new FlyState();
 		flyState.AddTransition(Transition.Flying, StateID.Fly);
-
+			
 		FallState fallState = new FallState();
 		fallState.AddTransition(Transition.Falling, StateID.Fall);
 
