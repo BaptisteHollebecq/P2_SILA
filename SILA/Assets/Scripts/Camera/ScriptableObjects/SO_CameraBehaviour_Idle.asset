@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SO_CameraBehaviour_Idle
   m_EditorClassIdentifier: 
   Height: 1.2
-  MaxDistance: 8
+  MaxDistance: 4
   MinPitch: -60
   MaxPitch: 70
-  LocalOffset: {x: 0, y: 0, z: 0}
+  LocalOffset: {x: 0.25, y: 0.5, z: 0}
   LocalRotation: {x: 0, y: 0, z: 0}
   Sensitivity: {x: 3, y: 3}
   RotationDamping: 0.2
   DistanceDamping: 0.15
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 256
   BlendOnEnter: {fileID: 0}

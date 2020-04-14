@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TimeMenu : MonoBehaviour
 {
+    public static event System.Action MenuDisplayed;
+
     private bool _isActive = false;
     private float _deadZone = 0.25f;
     private bool _isChanging = false;
@@ -14,7 +16,7 @@ public class TimeMenu : MonoBehaviour
     private TimeOfDay _actualTime;
     private TimeSystem _timeManager;
 
-	public CanvasGroup CanvasGroup;
+	private CanvasGroup CanvasGroup;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class TimeMenu : MonoBehaviour
     {
         CameraMaster.MovedToPivot += DisplayMenu;
         TimeSystem.EndedTransition += EndTransitionTime;
+
+        CanvasGroup = transform.GetComponent<CanvasGroup>();
 		CanvasGroup.alpha = 0;
 		_arrow = transform.GetChild(transform.childCount - 1);
         _timeManager = GetComponentInParent<TimeSystem>();
@@ -32,17 +36,18 @@ public class TimeMenu : MonoBehaviour
 
     private void EndTransitionTime()
     {
-        CanvasGroup.alpha = 1;
         _isChanging = false;
+        CanvasGroup.alpha = 1;
     }
 
     private void DisplayMenu()
     {
         if (!_isActive)
         {
+            MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
-			_actualTime = GetComponentInParent<TimeSystem>().actualTime;
+			_actualTime = TimeSystem.actualTime;
             //Debug.Log(_actualTime);
             switch (_actualTime)
             {
@@ -86,7 +91,6 @@ public class TimeMenu : MonoBehaviour
             }
             if (Input.GetButtonDown("A"))
             {
-                Debug.Log(_arrowAngle);
                 CheckTime();
             }
         }
@@ -97,7 +101,7 @@ public class TimeMenu : MonoBehaviour
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Day)
+            if (TimeSystem.actualTime != TimeOfDay.Day)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
@@ -106,7 +110,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Morning)
+            if (TimeSystem.actualTime != TimeOfDay.Morning)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
@@ -115,7 +119,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 135f || _arrowAngle <= -135f)
         {
-            if (_timeManager.actualTime != TimeOfDay.Night)
+            if (TimeSystem.actualTime != TimeOfDay.Night)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
@@ -124,7 +128,7 @@ public class TimeMenu : MonoBehaviour
         }
         else
         {
-            if (_timeManager.actualTime != TimeOfDay.Noon)
+            if (TimeSystem.actualTime != TimeOfDay.Noon)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;
