@@ -10,14 +10,14 @@ public class IdleState : FSMState
 	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
-		if (Physics.Raycast(player.transform.position, -Vector3.up, 1.5f))
+		if (Input.GetButtonDown("Dash"))
 		{
-			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
+			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Dashing);
 		}
 	}
 
 	public override void Act(GameObject player, Rigidbody rigidbody)
 	{
-		Debug.Log("Je reste en idle");
+
 	}
 }

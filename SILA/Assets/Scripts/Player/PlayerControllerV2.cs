@@ -21,8 +21,8 @@ public class PlayerControllerV2 : MonoBehaviour
 		playerRb = GetComponent<Rigidbody>();
 		MakeFSM();
 	}
-	public void FixedUpdate()
-	{ 
+	private void Update()
+	{
 		fsm.CurrentState.Reason(player, playerRb);
 		fsm.CurrentState.Act(player, playerRb);
 	}
@@ -30,6 +30,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	{
 		IdleState idleState = new IdleState();
 		idleState.AddTransition(Transition.Stopping, StateID.Idle);
+		idleState.AddTransition(Transition.Dashing, StateID.Dash);
 
 		MovementState movementState = new MovementState();
 		movementState.AddTransition(Transition.Moving, StateID.Move);
@@ -37,7 +38,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		JumpState jumpState = new JumpState();
 		jumpState.AddTransition(Transition.Jumping, StateID.Jump);
 
-		DashState dashState = new DashState();
+		DashState dashState = new DashState(playerRb);
 		dashState.AddTransition(Transition.Dashing, StateID.Dash);
 
 		FlyState flyState = new FlyState();

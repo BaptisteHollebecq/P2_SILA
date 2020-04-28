@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class DashState : FSMState
 {
-	public DashState()
+	Rigidbody playerRb;
+	public DashState(Rigidbody rb)
 	{
+		playerRb = rb;
 		ID = StateID.Dash;
 	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
-		if (Input.GetButtonDown("Dash"))
-		{
-			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Dashing);
-		}
+	
 	}
 
 	public override void Act(GameObject player, Rigidbody rigidbody)
 	{
-		Debug.Log("Je dash");
+
+	}
+
+	public override void DoBeforeEntering()
+	{
+		Debug.Log("Je commence à dasher");
+	
 	}
 }
