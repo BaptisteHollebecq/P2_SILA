@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
 	float _gravityStore;
 	float distToGround;
 	float _speedStore;
-	float _arrowAngle;
 	bool _isDashing = false;
 	bool _onStele = false;
 	bool _chouetteEyes = false;
@@ -352,6 +351,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (!_isJumping && _isGrounded && _canInput && Input.GetButtonDown("Jump"))
 		{
+			Debug.Log("Je saute");
 			moveDirection.y = jumpForce;
 			gravityScale = gravityJump;
 			animator.SetBool("Grounded", false);

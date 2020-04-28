@@ -365,7 +365,6 @@ public class CameraMaster : LockModeStateMachine
 
 	void Update ()
 	{
-		Debug.Log(LockState);
 		UpdateOutOfFightBehaviours ();
 	}
 
