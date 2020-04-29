@@ -31,12 +31,14 @@ public class PlayerControllerV2 : MonoBehaviour
 		IdleState idleState = new IdleState();
 		idleState.AddTransition(Transition.Stopping, StateID.Idle);
 		idleState.AddTransition(Transition.Dashing, StateID.Dash);
+		idleState.AddTransition(Transition.Jumping, StateID.Jump);
 
 		MovementState movementState = new MovementState();
 		movementState.AddTransition(Transition.Moving, StateID.Move);
 
 		JumpState jumpState = new JumpState();
 		jumpState.AddTransition(Transition.Jumping, StateID.Jump);
+		jumpState.AddTransition(Transition.Stopping, StateID.Idle);
 
 		DashState dashState = new DashState(playerRb);
 		dashState.AddTransition(Transition.Dashing, StateID.Dash);

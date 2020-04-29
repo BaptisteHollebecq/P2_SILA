@@ -14,6 +14,11 @@ public class IdleState : FSMState
 		{
 			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Dashing);
 		}
+
+		if (Input.GetButtonDown("Jump"))
+		{
+			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Jumping);
+		}
 	}
 
 	public override void Act(GameObject player, Rigidbody rigidbody)
