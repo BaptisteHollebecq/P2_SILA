@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
-            // Lancer la fonction Death du player !!!!
+            collision.transform.GetComponent<PlayerLifeManager>().Respawn();
         }
     }
 }
-

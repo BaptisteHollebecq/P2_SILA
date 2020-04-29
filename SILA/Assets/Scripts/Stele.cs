@@ -7,7 +7,7 @@ public class Stele : MonoBehaviour
 	public Transform cameraPivotOnInteract;
     public SpriteRenderer ySprite;
 
-    private PlayerRespawn _respawn;
+    private PlayerLifeManager _respawn;
 
 	public void Interact ()
 	{
@@ -20,7 +20,7 @@ public class Stele : MonoBehaviour
         if (other.tag == "Player")
         {
             ySprite.enabled = true;
-            _respawn = other.GetComponent<PlayerRespawn>();
+            _respawn = other.GetComponent<PlayerLifeManager>();
         }
     }
 
