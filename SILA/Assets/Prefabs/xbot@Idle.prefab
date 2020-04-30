@@ -638,7 +638,7 @@ MonoBehaviour:
   _snowMaterial: []
   ObjectsTracing:
   - {fileID: 2149846308191843318}
-  brushSize: 1500
+  brushSize: 300
   brushStrenght: 10
   float0: {x: 0, y: 0}
   tempCoordinates: {x: 0, y: 0, z: 0}
