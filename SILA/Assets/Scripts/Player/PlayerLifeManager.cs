@@ -27,7 +27,6 @@ public class PlayerLifeManager : MonoBehaviour
             {
                 _position = transform.position;
                 _save = false;
-                Debug.Log("Last Pos === " + _position);
                 StartCoroutine(Timer());
             }
         }

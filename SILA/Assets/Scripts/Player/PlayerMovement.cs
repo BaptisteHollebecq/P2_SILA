@@ -99,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
 		Jump();
 		AtkDown();
         //Debug.Log("canquit   " + _canQuit);
+
+        Debug.Log(_rb.velocity);
     }
 
 	private void CheckResets()
