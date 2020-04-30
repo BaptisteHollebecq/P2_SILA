@@ -32,6 +32,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		idleState.AddTransition(Transition.Stopping, StateID.Idle);
 		idleState.AddTransition(Transition.Dashing, StateID.Dash);
 		idleState.AddTransition(Transition.Jumping, StateID.Jump);
+		idleState.AddTransition(Transition.Falling, StateID.Fall);
 
 		MovementState movementState = new MovementState();
 		movementState.AddTransition(Transition.Moving, StateID.Move);
@@ -42,12 +43,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		DashState dashState = new DashState(playerRb);
 		dashState.AddTransition(Transition.Dashing, StateID.Dash);
+		dashState.AddTransition(Transition.Stopping, StateID.Idle);
 
 		FlyState flyState = new FlyState();
 		flyState.AddTransition(Transition.Flying, StateID.Fly);
 			
 		FallState fallState = new FallState();
 		fallState.AddTransition(Transition.Falling, StateID.Fall);
+		fallState.AddTransition(Transition.Stopping, StateID.Idle);
 
 		OnSteleState steleState = new OnSteleState();
 		steleState.AddTransition(Transition.Stele, StateID.OnStele);

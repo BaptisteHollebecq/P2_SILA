@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpState : FSMState
 {
-	int jumpForce = 1;
+	int jumpForce = 7;
 
 	public JumpState()
 	{
@@ -18,5 +18,7 @@ public class JumpState : FSMState
 	{
 		Debug.Log(ID);
 		rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+		player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
 	}
+
 }
