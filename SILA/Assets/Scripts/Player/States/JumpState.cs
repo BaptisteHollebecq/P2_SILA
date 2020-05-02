@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpState : FSMState
 {
-	int jumpForce = 10;
+	int jumpForce = 7;
 
 	public JumpState()
 	{
@@ -12,15 +12,13 @@ public class JumpState : FSMState
 	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
-		if (Input.GetButtonDown("Jump"))
-		{
-			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Jumping);
-		}
 	}
 
 	public override void Act(GameObject player,	Rigidbody rigidbody)
 	{
 		Debug.Log(ID);
 		rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+		player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
 	}
+
 }

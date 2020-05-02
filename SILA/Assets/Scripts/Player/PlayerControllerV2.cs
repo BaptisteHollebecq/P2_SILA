@@ -21,8 +21,8 @@ public class PlayerControllerV2 : MonoBehaviour
 		playerRb = GetComponent<Rigidbody>();
 		MakeFSM();
 	}
-	public void FixedUpdate()
-	{ 
+	private void Update()
+	{
 		fsm.CurrentState.Reason(player, playerRb);
 		fsm.CurrentState.Act(player, playerRb);
 	}
@@ -30,21 +30,27 @@ public class PlayerControllerV2 : MonoBehaviour
 	{
 		IdleState idleState = new IdleState();
 		idleState.AddTransition(Transition.Stopping, StateID.Idle);
+		idleState.AddTransition(Transition.Dashing, StateID.Dash);
+		idleState.AddTransition(Transition.Jumping, StateID.Jump);
+		idleState.AddTransition(Transition.Falling, StateID.Fall);
 
 		MovementState movementState = new MovementState();
 		movementState.AddTransition(Transition.Moving, StateID.Move);
 
 		JumpState jumpState = new JumpState();
 		jumpState.AddTransition(Transition.Jumping, StateID.Jump);
+		jumpState.AddTransition(Transition.Stopping, StateID.Idle);
 
-		DashState dashState = new DashState();
+		DashState dashState = new DashState(playerRb);
 		dashState.AddTransition(Transition.Dashing, StateID.Dash);
+		dashState.AddTransition(Transition.Stopping, StateID.Idle);
 
 		FlyState flyState = new FlyState();
 		flyState.AddTransition(Transition.Flying, StateID.Fly);
 			
 		FallState fallState = new FallState();
 		fallState.AddTransition(Transition.Falling, StateID.Fall);
+		fallState.AddTransition(Transition.Stopping, StateID.Idle);
 
 		OnSteleState steleState = new OnSteleState();
 		steleState.AddTransition(Transition.Stele, StateID.OnStele);

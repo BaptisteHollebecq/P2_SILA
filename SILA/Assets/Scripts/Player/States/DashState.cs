@@ -1,23 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DashState : FSMState
 {
-	public DashState()
+	Rigidbody playerRb;
+	float dashForce = 10;
+	public DashState(Rigidbody rb)
 	{
+		playerRb = rb;
 		ID = StateID.Dash;
 	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
-		if (Input.GetButtonDown("Dash"))
-		{
-			player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Dashing);
-		}
+	
 	}
 
 	public override void Act(GameObject player, Rigidbody rigidbody)
 	{
-		Debug.Log("Je dash");
+		playerRb.AddForce(Vector3.forward * dashForce, ForceMode.Impulse);
+		player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
+	}
+
+	public override void DoBeforeEntering()
+	{
+		Debug.Log("Je commence à dasher");
+	
 	}
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FallState : FSMState
 {
+	public FallState()
+	{
+		ID = StateID.Fall;
+	}
 	public override void Reason(GameObject player, Rigidbody rigidbody)
 	{
 
