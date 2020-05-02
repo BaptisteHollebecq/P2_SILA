@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
-    public PlayerMovement Player;
+    //public PlayerMovement Player;
 
     [SerializeField] private int _playerLife = 3;
     private int _maxlife;
@@ -35,12 +35,14 @@ public class PlayerLifeManager : MonoBehaviour
     public void CheckPoint()
     {
         _checkPoint = Player.transform.position;
+
         //Debug.Log("checkpoint === " + _checkPoint);
     }
 
     public void Death()
     {
         transform.position = _checkPoint;
+
         _playerLife = _maxlife;
     }
 
