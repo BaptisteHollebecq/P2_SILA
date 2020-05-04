@@ -456,6 +456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1015140444}
+  camera: {fileID: 563580428}
+  moveSpeed: 12
+  jumpForce: 10
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1539088068
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +820,7 @@ PrefabInstance:
     - target: {fileID: 6390463960986229276, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.800001
+      value: -18.2
       objectReference: {fileID: 0}
     - target: {fileID: 6390463960986229276, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
@@ -869,11 +875,46 @@ PrefabInstance:
     - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: flightSpeed
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: gravityJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: gravityFlight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: StompMtpl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: fallMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: dashMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: dashForce
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843313, guid: 4e03fa572de3f6440991c7e228276f25,
