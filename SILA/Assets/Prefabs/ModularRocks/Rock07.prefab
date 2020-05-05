@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6040661372694566139}
   - component: {fileID: 1385192883055918926}
   - component: {fileID: 5112664096229925801}
+  - component: {fileID: 1120689187022817462}
   m_Layer: 0
   m_Name: Rock07
   m_TagString: Untagged
@@ -112,3 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &1120689187022817462
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5469740012762308647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 8255629057043187255, guid: 2f608136213b3ab41a131b3bd7bf4897, type: 3}

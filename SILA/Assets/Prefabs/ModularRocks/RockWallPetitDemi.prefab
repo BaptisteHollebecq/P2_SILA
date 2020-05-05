@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 400073215028503205}
   - component: {fileID: 4999229154722072848}
   - component: {fileID: 7966977016839846250}
+  - component: {fileID: 7502509668427458162}
   m_Layer: 0
   m_Name: RockWallPetitDemi
   m_TagString: Untagged
@@ -112,3 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &7502509668427458162
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139647929470555769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -7467851743593009059, guid: e5f41baba9e8ee04682787765a6e7ad7, type: 3}

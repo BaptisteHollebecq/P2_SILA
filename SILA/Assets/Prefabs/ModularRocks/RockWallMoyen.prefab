@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2732377753508078146}
   - component: {fileID: 7279742255476705783}
   - component: {fileID: 5689840791762670856}
+  - component: {fileID: 667483650906776839}
   m_Layer: 0
   m_Name: RockWallMoyen
   m_TagString: Untagged
@@ -112,3 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &667483650906776839
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456185506557154974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 5591625289152541862, guid: 1895f2f5583f69d4c90cdab09f51fbc1, type: 3}

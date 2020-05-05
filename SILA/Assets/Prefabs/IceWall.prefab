@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5375823624304519148}
   - component: {fileID: 754158390225308761}
   - component: {fileID: 2416172404040976243}
+  - component: {fileID: -216126750356310021}
+  - component: {fileID: -436003561469836228}
   m_Layer: 0
   m_Name: IceWall
   m_TagString: Untagged
@@ -111,3 +113,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af68473490319d54cb4525483be195ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-216126750356310021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955470742152860464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76471a1ee0e6b6947a2b76df4eb90a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 1
+  Jour: 0
+  Crepuscule: 1
+  Nuit: 1
+--- !u!64 &-436003561469836228
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955470742152860464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 7837664439151550398, guid: aac2b812a8fb79841965ad511fdb7a36, type: 3}

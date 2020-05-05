@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 1112569982101358, guid: 5ce583200b155db40b5f92847e1b28f8, type: 3}
-  - {fileID: 1112569982101358, guid: 5ce583200b155db40b5f92847e1b28f8, type: 3}
+  - {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 3}
   paintType: 0
-  brushSize: 1
+  brushSize: 3.28
   minBrushSize: 0.1
   maxBrushSize: 20
-  paintDeltaDistance: 0.4
-  maxPaintDeltaDistance: 3
+  paintDeltaDistance: 10
+  maxPaintDeltaDistance: 10
   minPaintDeltaDistance: 0.1
   prefabsPerStroke: 1
   maxprefabsPerStroke: 20
@@ -28,39 +27,39 @@ MonoBehaviour:
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
-  checkLayer: 0
+  checkLayer: 1
   checkTag: 0
   checkSlope: 0
   requiredTagMask: 0
-  requiredLayerMask: 0
+  requiredLayerMask: 32
   minRequiredSlope: 0
-  maxRequiredSlope: 0
+  maxRequiredSlope: 29.302324
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
   draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
-  parentingStyle: 0
+  parentingStyle: 2
   parent: {fileID: 0}
   rotateToMatchSurface: 0
   rotateSurfaceDirection: 0
-  randomizeRotation: 0
+  randomizeRotation: 1
   minXRotation: 0
-  maxXRotation: 0
+  maxXRotation: 20
   minYRotation: 0
-  maxYRotation: 0
+  maxYRotation: 360
   minZRotation: 0
   maxZRotation: 0
-  scaleType: 0
+  scaleType: 2
   scaleApplicationType: 0
   minScale: 1
   maxScale: 1
   minXScale: 1
-  maxXScale: 1
+  maxXScale: 1.2
   minYScale: 1
-  maxYScale: 1
+  maxYScale: 1.7
   minZScale: 1
-  maxZScale: 1
+  maxZScale: 1.2
   parentList: []
   eraseBrushSize: 1
   minEraseBrushSize: 0.1
@@ -73,10 +72,10 @@ MonoBehaviour:
   requiredLayerMaskForErase: 0
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
-  eraseDetection: 0
-  paintBrushHotKey: 112
-  paintBrushHoldKey: 1
-  removeBrushHotKey: 306
-  removeBrushHoldKey: 1
+  eraseDetection: 1
+  paintBrushHotKey: 98
+  paintBrushHoldKey: 0
+  removeBrushHotKey: 101
+  removeBrushHoldKey: 0
   disableBrushHotKey: 105
-  disableBrushHoldKey: 1
+  disableBrushHoldKey: 0
