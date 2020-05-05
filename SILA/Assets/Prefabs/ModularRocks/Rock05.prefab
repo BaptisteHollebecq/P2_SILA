@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8835888742532558554}
   - component: {fileID: 4211690194473502063}
   - component: {fileID: 6810132711806285407}
+  - component: {fileID: 3875662096735178061}
   m_Layer: 0
   m_Name: Rock05
   m_TagString: Untagged
@@ -112,3 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &3875662096735178061
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107726893777197574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -3134445648143234454, guid: 5a294f9eccc8aab49bb4b710cccf273e, type: 3}
