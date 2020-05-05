@@ -38,7 +38,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	}
 	private void MakeFSM()
 	{
-		BasicState basicState = new BasicState(playerRb, scriptOnPlayer, player.transform, camera);
+		BasicState basicState = new BasicState(playerRb, scriptOnPlayer, player.transform, camera, collider, whatIsGround);
 		basicState.AddTransition(Transition.Basic, StateID.Basic);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
 		basicState.AddTransition(Transition.Jumping, StateID.Jump);

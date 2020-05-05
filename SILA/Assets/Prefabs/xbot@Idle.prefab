@@ -2243,6 +2243,7 @@ GameObject:
   - component: {fileID: 2149846309420972630}
   - component: {fileID: 1765785591720420343}
   - component: {fileID: 7158788214009285671}
+  - component: {fileID: 4474625070590960194}
   m_Layer: 0
   m_Name: xbot@Idle
   m_TagString: Untagged
@@ -2345,23 +2346,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3901664139412617062}
-  moveSpeed: 0
-  jumpForce: 0
-  gravityJump: 0
-  gravityFlight: 0
-  flightSpeed: 0
-  StompMtpl: 0
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
-  dashMultiplier: 0
-  dashForce: 0
+  moveSpeed: 12
+  jumpForce: 17
+  gravityJump: 0.5
+  gravityFlight: 8
+  flightSpeed: 1.5
+  StompMtpl: 4
+  fallMultiplier: 0.3
+  lowJumpMultiplier: 12
+  dashMultiplier: 0.2
+  dashForce: 3
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  maxGroundAngle: 0
+    m_Bits: 256
+  maxGroundAngle: 150
   groundAngle: 0
-  gravityScale: 0
+  gravityScale: 1
   mainCamera: {fileID: 0}
+--- !u!114 &4474625070590960194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995055669819729935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f417dde4449814082f50cfdfa263d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8053777067210249558
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,14 @@ public class PlayerLifeManager : MonoBehaviour
     public PlayerMovement Player;
 
     [SerializeField] private int _playerLife = 3;
+    [HideInInspector] public int Life { get { return _playerLife; } }
+
+
     private int _maxlife;
+    [HideInInspector] public int MaxLife { get { return _maxlife; } }
+
     [SerializeField] private float _actualise;
+
     private bool _save = true;
     private Vector3 _position;
     private Vector3 _checkPoint;

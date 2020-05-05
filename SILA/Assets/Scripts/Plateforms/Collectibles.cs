@@ -13,7 +13,7 @@ public class Collectibles : MonoBehaviour
         if (other.tag == "Player")
         {
             _collectibles = other.GetComponent<PlayerCollectibles>();
-            _collectibles.Add(1);
+            _collectibles.AddCollectibles(1);
             gameObject.SetActive(false);
         }
     }
