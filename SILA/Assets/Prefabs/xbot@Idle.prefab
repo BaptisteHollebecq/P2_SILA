@@ -2329,9 +2329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 7158788214009285671}
   _playerLife: 3
-  _actualise: 0
+  _actualise: 1
 --- !u!114 &7158788214009285671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cc414d9811cc44da938fd84e85cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 3901664139412617062}
   moveSpeed: 0
   jumpForce: 0
   gravityJump: 0

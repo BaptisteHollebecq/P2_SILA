@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class JumpState : FSMState
 {
-	int jumpForce = 7;
+	float jumpForce;
+	Rigidbody rigidbody;
+	PlayerControllerV2 playerScript;
 
-	public JumpState()
+	public JumpState(PlayerControllerV2 player, Rigidbody playerRb)
 	{
 		ID = StateID.Jump;
+		jumpForce = player.jumpForce;
+		rigidbody = playerRb;
+		playerScript = player;
 	}
-	public override void Reason(GameObject player, Rigidbody rigidbody)
+	public override void Reason()
 	{
 	}
 
-	public override void Act(GameObject player,	Rigidbody rigidbody)
+	public override void Act()
 	{
-		Debug.Log(ID);
+		/*Debug.Log(ID);*/
 		rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-		player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
+		playerScript.SetTransition(Transition.Basic);
+	}
+	public override void DoBeforeEntering()
+	{
+		//Debug.Log("Je passe en jump");
+	}
+	public override void DoBeforeLeaving()
+	{
+		//Debug.Log("Je sors du jump");
 	}
 
 }

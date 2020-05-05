@@ -3,21 +3,23 @@
 public class DashState : FSMState
 {
 	Rigidbody playerRb;
+	PlayerControllerV2 playerScript;
 	float dashForce = 10;
-	public DashState(Rigidbody rb)
+	public DashState(Rigidbody rb, PlayerControllerV2 player)
 	{
 		playerRb = rb;
+		playerScript = player;
 		ID = StateID.Dash;
 	}
-	public override void Reason(GameObject player, Rigidbody rigidbody)
+	public override void Reason()
 	{
 	
 	}
 
-	public override void Act(GameObject player, Rigidbody rigidbody)
+	public override void Act()
 	{
 		playerRb.AddForce(Vector3.forward * dashForce, ForceMode.Impulse);
-		player.GetComponent<PlayerControllerV2>().SetTransition(Transition.Stopping);
+		//playerScript.SetTransition(Transition.Basic);
 	}
 
 	public override void DoBeforeEntering()

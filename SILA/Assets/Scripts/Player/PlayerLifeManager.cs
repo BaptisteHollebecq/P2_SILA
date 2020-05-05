@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
-    //public PlayerMovement Player;
+    public PlayerMovement Player;
 
     [SerializeField] private int _playerLife = 3;
     private int _maxlife;

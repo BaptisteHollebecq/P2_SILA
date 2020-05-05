@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class OnSteleState : FSMState
 {
-	public override void Reason(GameObject player, Rigidbody rigidbody)
+	public override void Reason()
 	{
 
 	}
 
-	public override void Act(GameObject player, Rigidbody rigidbody)
+	public override void Act()
 	{
-
+		/*rb.velocity = Vector3.zero;
+		moveDirection = Vector3.zero;
+		stele.Interact();*/
 	}
 }
