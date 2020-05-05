@@ -59,7 +59,7 @@ public class PlayerDrawTracks : MonoBehaviour
         for (int i = 0; i < terrain.Length; i++)
         {
             _snowMaterial[i] = terrain[i].GetComponent<MeshRenderer>().material;
-            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+           // _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
             
         }
 
@@ -76,8 +76,8 @@ public class PlayerDrawTracks : MonoBehaviour
 
         for (int i = 0; i < terrain.Length; i++)
         {
-            _snowMaterial[i].SetVector("_PositionPlayer", playerPos);
-            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+            //_snowMaterial[i].SetVector("_PositionPlayer", playerPos);
+            //_snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
         }
         
         moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
@@ -125,7 +125,7 @@ public class PlayerDrawTracks : MonoBehaviour
             for (int i = 0; i < terrain.Length; i++)
             {
                 _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
-                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+                //_snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
                 
             }
             
