@@ -457,8 +457,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1015140444}
   camera: {fileID: 563580428}
-  moveSpeed: 12
-  jumpForce: 10
+  _currentStateID: 0
+  _speedStore: 0
+  moveSpeed: 7
+  jumpForce: 6.5
+  dashSpeed: 20
+  dashDuration: 0.5
+  gravityScale: 0
+  flyGravityScale: 2
+  higherJumpFall: 2
+  lowerJumpFall: 1.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -916,6 +924,11 @@ PrefabInstance:
         type: 3}
       propertyPath: dashForce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149846309420972631, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843313, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}

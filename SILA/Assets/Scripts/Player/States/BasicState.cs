@@ -1,37 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class BasicState : FSMState
 {
-	PlayerControllerV2 playerScript;
-	Transform transformPlayer;
-	Rigidbody rb;
-	Collider playerCollider;
-	LayerMask whatIsGround;
-	float distToGround;
+	PlayerControllerV2 _playerScript;
+	Transform _transformPlayer;
+	Rigidbody _rb;
+	Collider _playerCollider;
+	LayerMask _whatIsGround;
+	float _distToGround;
 
-
-	float moveSpeed;
+	float _moveSpeed;
+	float _jumpForce;
 	float _deadZone = 0.25f;
 	float _difAngle;
+	float _lowerJumpFall;
+	float _higherJumpFall;
 
 
-	Camera camera;
+	Camera _camera;
 	Vector3 moveDirection;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
 
-	public BasicState(Rigidbody rigidbody, PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask)
+	public BasicState(PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask)
 	{
 		ID = StateID.Basic;
-		rb = rigidbody;
-		playerScript = scriptPlayer;
-		transformPlayer = player;
-		camera = cam;
-
-		moveSpeed = scriptPlayer.moveSpeed;
+		_rb = scriptPlayer._playerRb;
+		_playerScript = scriptPlayer;
+		_transformPlayer = player;
+		_playerCollider = collider;
+		_camera = cam;
+		_jumpForce = scriptPlayer.jumpForce;
+		_moveSpeed = scriptPlayer.moveSpeed;
+		_whatIsGround = groundMask;
+		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
+		_lowerJumpFall = scriptPlayer.lowerJumpFall;
+		_higherJumpFall = scriptPlayer.higherJumpFall;
+		
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -43,63 +50,70 @@ public class BasicState : FSMState
 
 	void GetCamSettings()
 	{
-		cameraForward = camera.transform.forward;
+		cameraForward = _camera.transform.forward;
 		cameraForward.y = 0;
-		cameraRight = camera.transform.right;
+		cameraRight = _camera.transform.right;
 		cameraRight.y = 0;
-		cameraUp = camera.transform.up;
+		cameraUp = _camera.transform.up;
 		cameraUp.y = 0;
 	}   // set up les vector par rapport a ceux de la cam, utile pour le deplacement
+
+	public bool IsGrounded()
+	{
+		return Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
+	}
 
 	public override void Reason()
 	{
 		if (Input.GetButtonDown("Dash"))
 		{
-			playerScript.SetTransition(Transition.Dashing);
-		}
-
-		if (Input.GetButtonDown("Jump"))
-		{
-			playerScript.SetTransition(Transition.Jumping);
+			_playerScript.SetTransition(Transition.Dashing);
 		}
 
 		if (Input.GetButtonDown("Y"))
 		{
 			RaycastHit hitStele;
-			Physics.Raycast(transformPlayer.position, Vector3.down, out hitStele, 10);
-			Debug.DrawRay(transformPlayer.position, Vector3.down, Color.red, 10);
+			Physics.Raycast(_transformPlayer.position, Vector3.down, out hitStele, 10);
+			Debug.DrawRay(_transformPlayer.position, Vector3.down, Color.red, 10);
 			if (hitStele.transform.TryGetComponent(out Stele stele))
 			{
-				playerScript.SetTransition(Transition.Stele);
+				stele.Interact();
+				_playerScript.SetTransition(Transition.Stele);
 			}
-			else if (Physics.Raycast(transformPlayer.position, -Vector3.up, distToGround + 0.12f, whatIsGround))
+			else if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround))
 			{
-					playerScript.SetTransition(Transition.Basic);
+					_playerScript.SetTransition(Transition.Zooming);
 			}
-
-				//PlayerStateChanged?.Invoke(CameraLockState.Eyes);
-
 		}
 
-		if (rb.velocity.y < -2)
-			playerScript.SetTransition(Transition.Falling);
+		if(!IsGrounded() && Input.GetButtonDown("Jump"))
+		{
+			_playerScript.SetTransition(Transition.Flying);
+		}
+
 	}
 
 	public override void Act()
 	{
+		
+		if (Input.GetButtonDown("Jump") && IsGrounded())
+		{
+			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+		}
+
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
 		else                                                                                                    //
 		{                                                                                                       //
-			_difAngle = SignedAngle(transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
 			if (_difAngle > 4)                                                                                   //
 			{                                                                                                   //      SINON
-				transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+				_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
 			else if (_difAngle < -4)                                                                             //
 			{                                                                                                   //
-				transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
+				_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
 			}
 		}
 
@@ -109,15 +123,20 @@ public class BasicState : FSMState
 
 		GetCamSettings();
 
-		float yStored = rb.velocity.y;
+		float yStored = _rb.velocity.y;
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
-		moveDirection *= moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
+		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = yStored;
 		/*moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;*/
 
-		rb.velocity = moveDirection;
+		if (moveDirection.y < 0)
+			moveDirection += Vector3.up * Physics.gravity.y * (_higherJumpFall - 1) * Time.deltaTime;
+		else if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
+			moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
 
-		Debug.Log(rb.velocity.y);
+
+		_rb.velocity = moveDirection;
+
 	}
 
 	public override void DoBeforeEntering()
