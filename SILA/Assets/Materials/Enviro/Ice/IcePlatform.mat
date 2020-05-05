@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IceWall
+  m_Name: IcePlatform
   m_Shader: {fileID: 4800000, guid: 11d7aae27565179459e3035421508ce0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -97,6 +97,7 @@ Material:
     - _Normalscale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Param_Lenght: -0.03
     - _SmoothnessTextureChannel: 0
     - _SnowCavity: -10
     - _Snowdeposit: 33.22

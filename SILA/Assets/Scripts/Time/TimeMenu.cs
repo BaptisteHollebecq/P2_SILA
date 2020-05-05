@@ -83,6 +83,8 @@ public class TimeMenu : MonoBehaviour
                     TurnArrow(stickInput); 
             }
 
+
+
             if (Input.GetButtonDown("B"))
             {
                 if (!_isChanging)
