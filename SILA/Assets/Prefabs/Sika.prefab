@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 2149846309420972630}
   - component: {fileID: 1910422014117961231}
   - component: {fileID: -4749094002774511525}
-  - component: {fileID: 3880192273666276414}
+  - component: {fileID: 8189443741650816412}
   m_Layer: 0
   m_Name: Sika
   m_TagString: Untagged
@@ -2358,10 +2358,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 1910422014117961231}
   _playerLife: 3
   _actualise: 1
---- !u!114 &3880192273666276414
+--- !u!114 &8189443741650816412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7995055669819729935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f344e389c7948479f5631f62f1a55d, type: 3}
+  m_Script: {fileID: 11500000, guid: 72f417dde4449814082f50cfdfa263d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8053777067210249558

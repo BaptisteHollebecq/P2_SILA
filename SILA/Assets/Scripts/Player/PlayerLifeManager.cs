@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
-    public PlayerMovement Player;
+    public PlayerControllerV2 Player;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } }
@@ -27,15 +27,15 @@ public class PlayerLifeManager : MonoBehaviour
 
     void Update()
     {
-        if (_save)
+        /*if (_save)
         {
-            if (Player.IsGrounded())
+           // if (Player.IsGrounded())
             {
                 _position = transform.position;
                 _save = false;
                 StartCoroutine(Timer());
             }
-        }
+        }*/
     }
 
     public void CheckPoint()
@@ -54,10 +54,10 @@ public class PlayerLifeManager : MonoBehaviour
 
     public void Respawn()
     {
-        _playerLife--;
+       /* _playerLife--;
         if (_playerLife != 0)
             transform.position = _position;
-        else
+        else*/
             Death();
     }
 
