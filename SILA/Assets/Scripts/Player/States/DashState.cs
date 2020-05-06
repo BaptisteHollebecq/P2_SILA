@@ -7,6 +7,7 @@ public class DashState : FSMState
 	Rigidbody _playerRb;
 	PlayerControllerV2 _playerScript;
 	Camera _camera;
+	Animator _animator;
 	float _difAngle;
 	float _moveSpeed;
 	float _dashSpeed;
@@ -21,7 +22,7 @@ public class DashState : FSMState
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
 
-	public DashState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam)
+	public DashState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam, Animator anim)
 	{
 		_playerTransform = transform;
 		_playerRb = rb;
@@ -32,6 +33,7 @@ public class DashState : FSMState
 		_dashSpeed = player.dashSpeed;
 		_dashDuration = player.dashDuration;
 		_speedStore = player._speedStore;
+		_animator = anim;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -53,10 +55,14 @@ public class DashState : FSMState
 
 	public override void Reason()
 	{
-		if(_dashTimer > _dashDuration)
+		if(_dashTimer > _dashDuration && !Input.GetButton("Jump"))
 		{
 			_playerRb.velocity = Vector3.zero;
 			_playerScript.SetTransition(Transition.Basic);
+		}
+		else if (Input.GetButton("Jump") && _dashTimer > _dashDuration)
+		{
+			_playerScript.SetTransition(Transition.Flying);
 		}
 	}
 
@@ -68,8 +74,8 @@ public class DashState : FSMState
 
 	public override void DoBeforeEntering()
 	{
+		_animator.SetBool("Dash", true);
 		_dashTimer = 0;
-		Debug.Log("Je commence à dasher");
 		GetCamSettings();
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
@@ -77,22 +83,11 @@ public class DashState : FSMState
 		_playerTransform.Rotate(new Vector3(0f, _difAngle, 0f));
 
 		dashDir = dashDirection.normalized * _dashSpeed;
-
-		/*_moveSpeed = _speedStore * _dashSpeed;
-		moveDirection += dashDir * _moveSpeed;
-		moveDirection.y = 0;
-
-		//animator.SetBool("Dash", false);
-		_moveSpeed = _speedStore;
-
-		_playerRb.velocity = moveDirection;*/
 	}
 
-	IEnumerator Dash(Vector3 dashDir)
+	public override void DoBeforeLeaving()
 	{
-		for (float t = 0; t < 1; t += Time.deltaTime / _dashDuration)
-		{
-			yield return null;
-		}
+		_animator.SetBool("Dash", false);
 	}
+
 }
