@@ -787,6 +787,55 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 563580428}
+    - target: {fileID: 1910422014117961231, guid: 4e03fa572de3f6440991c7e228276f25,
+        type: 3}
+      propertyPath: flySpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 563580428}
+    - target: {fileID: 0}
+      propertyPath: flightSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gravityJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gravityFlight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: StompMtpl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fallMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lowJumpMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dashMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dashForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: moveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7995055669819729935, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: m_Name
@@ -846,50 +895,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 563580428}
-    - target: {fileID: 0}
-      propertyPath: flightSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: gravityJump
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: gravityFlight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: StompMtpl
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: fallMultiplier
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: lowJumpMultiplier
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: dashMultiplier
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: dashForce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: moveSpeed
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843313, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}

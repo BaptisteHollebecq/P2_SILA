@@ -29,6 +29,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float dashSpeed;
 	public float dashDuration;
 	public float gravityScale;
+	public float flySpeed;
 	public float flyGravityScale;
 	public float higherJumpFall;
 	public float lowerJumpFall;
@@ -79,6 +80,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
+		zoomState.AddTransition(Transition.Jumping, StateID.Jump);
 
 
 
