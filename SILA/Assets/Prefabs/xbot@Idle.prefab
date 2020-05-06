@@ -635,6 +635,7 @@ MonoBehaviour:
   terrain:
   - {fileID: 0}
   - {fileID: 0}
+  _snowMaterial: []
   ObjectsTracing:
   - {fileID: 2149846308191843318}
   brushSize: 1
@@ -2240,7 +2241,7 @@ GameObject:
   - component: {fileID: 3901664139412617062}
   - component: {fileID: 2149846309420972628}
   - component: {fileID: 2149846309420972630}
-  - component: {fileID: 2149846309420972631}
+  - component: {fileID: 1910422014117961231}
   m_Layer: 0
   m_Name: xbot@Idle
   m_TagString: Untagged
@@ -2315,7 +2316,7 @@ CapsuleCollider:
   m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.9297371, z: 0}
---- !u!114 &2149846309420972631
+--- !u!114 &1910422014117961231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2324,27 +2325,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7995055669819729935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2cc414d9811cc44da938fd84e85cb19, type: 3}
+  m_Script: {fileID: 11500000, guid: d621be04636b547488ce035e4aa1a340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3901664139412617062}
-  moveSpeed: 12
-  jumpForce: 17
-  gravityJump: 0.5
-  gravityFlight: 8
-  flightSpeed: 1.5
-  StompMtpl: 4
-  fallMultiplier: 0.3
-  lowJumpMultiplier: 12
-  dashMultiplier: 0.2
-  dashForce: 3
+  player: {fileID: 7995055669819729935}
+  camera: {fileID: 0}
+  _currentStateID: 0
+  _speedStore: 0
+  moveSpeed: 7
+  jumpForce: 6.5
+  dashSpeed: 20
+  dashDuration: 0.5
+  gravityScale: 0
+  flyGravityScale: 2
+  higherJumpFall: 2
+  lowerJumpFall: 1.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  maxGroundAngle: 150
-  groundAngle: 0
-  gravityScale: 1
-  mainCamera: {fileID: 0}
 --- !u!1 &8053777067210249558
 GameObject:
   m_ObjectHideFlags: 0
