@@ -23,7 +23,7 @@ public enum StateID
 	Fall = 4,
 	Fly = 5,
 	OnStele = 6,
-	Eyes = 7
+	Zoom = 7
 }
 public abstract class PlayerStates : MonoBehaviour
 {
