@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 2149846309420972630}
   - component: {fileID: 1910422014117961231}
   m_Layer: 0
-  m_Name: xbot@Idle
+  m_Name: Sika
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -790,7 +790,7 @@ PrefabInstance:
     - target: {fileID: 7995055669819729935, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
       propertyPath: m_Name
-      value: xbot@Idle
+      value: Sika
       objectReference: {fileID: 0}
     - target: {fileID: 6390463960986229276, guid: 4e03fa572de3f6440991c7e228276f25,
         type: 3}
