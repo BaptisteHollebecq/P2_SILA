@@ -7,6 +7,7 @@ public class FlyState : FSMState
 	PlayerControllerV2 _playerScript;
 	Transform _transformPlayer;
 	Collider _playerCollider;
+	Animator _animator;
 	LayerMask _whatIsGround;
 	float _distToGround;
 
@@ -20,7 +21,7 @@ public class FlyState : FSMState
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
-	public FlyState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam, Collider collider, LayerMask layerMask)
+	public FlyState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam, Collider collider, LayerMask layerMask, Animator anim)
 	{
 		ID = StateID.Fly;
 		_rb = rb;
@@ -32,6 +33,7 @@ public class FlyState : FSMState
 		_playerCollider = collider;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_whatIsGround = layerMask;
+		_animator = anim;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -57,6 +59,8 @@ public class FlyState : FSMState
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
+		if (Input.GetButtonDown("Dash"))
+			_playerScript.SetTransition(Transition.Dashing);
 	}
 
 	public override void Act()
@@ -93,12 +97,15 @@ public class FlyState : FSMState
 
 	public override void DoBeforeEntering()
 	{
+		_animator.SetBool("Jump", false);
+		_animator.SetBool("Fall", false);
+		_animator.SetBool("Fly", true);
 		_rb.useGravity = false;
 	}
 
 	public override void DoBeforeLeaving()
 	{
-		Debug.Log("J'arrete de voler");
+		_animator.SetBool("Fly", false);
 		_rb.useGravity = true;
 	}
 }
