@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d621be04636b547488ce035e4aa1a340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1015140449}
   player: {fileID: 1015140444}
   camera: {fileID: 563580428}
   _currentStateID: 0
@@ -470,6 +471,12 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+--- !u!95 &1015140449 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3901664139412617062, guid: 4e03fa572de3f6440991c7e228276f25,
+    type: 3}
+  m_PrefabInstance: {fileID: 2149846308010061429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1539088068
 GameObject:
   m_ObjectHideFlags: 0

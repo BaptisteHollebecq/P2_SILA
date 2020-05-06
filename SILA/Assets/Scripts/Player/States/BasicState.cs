@@ -7,6 +7,7 @@ public class BasicState : FSMState
 	Transform _transformPlayer;
 	Rigidbody _rb;
 	Collider _playerCollider;
+	Animator _animator;
 	LayerMask _whatIsGround;
 	float _distToGround;
 
@@ -17,14 +18,13 @@ public class BasicState : FSMState
 	float _lowerJumpFall;
 	float _higherJumpFall;
 
-
 	Camera _camera;
 	Vector3 moveDirection;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
 
-	public BasicState(PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask)
+	public BasicState(PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask, Animator anim)
 	{
 		ID = StateID.Basic;
 		_rb = scriptPlayer._playerRb;
@@ -38,7 +38,7 @@ public class BasicState : FSMState
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_lowerJumpFall = scriptPlayer.lowerJumpFall;
 		_higherJumpFall = scriptPlayer.higherJumpFall;
-		
+		_animator = anim;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -95,11 +95,14 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		
+
 		if (Input.GetButtonDown("Jump") && IsGrounded())
 		{
+			_animator.SetBool("Jump", true);
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 		}
+		else
+			_animator.SetBool("Jump", false);
 
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
@@ -130,12 +133,42 @@ public class BasicState : FSMState
 		/*moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;*/
 
 		if (moveDirection.y < 0)
+		{
 			moveDirection += Vector3.up * Physics.gravity.y * (_higherJumpFall - 1) * Time.deltaTime;
+		}
 		else if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
 			moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
 
 
 		_rb.velocity = moveDirection;
+
+		#region Animator
+		if (IsGrounded())
+		{
+			_animator.SetBool("Grounded", true);
+			_animator.SetBool("Fall", false);
+		}	
+		else
+			_animator.SetBool("Grounded", false);
+
+		if (moveDirection.z != 0 || moveDirection.x != 0)
+		{
+			_animator.SetBool("Idle", false);
+			_animator.SetBool("Run", true);
+		}
+		else
+		{
+			_animator.SetBool("Run", false);
+			_animator.SetBool("Idle", true);
+		}
+		
+		if(_rb.velocity.y < 0)
+			_animator.SetBool("Fall", true);
+		else if(IsGrounded() && _animator.GetBool("Run") == true)
+			_animator.SetBool("Fall", false);
+
+
+		#endregion
 
 	}
 

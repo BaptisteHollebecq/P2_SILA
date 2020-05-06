@@ -6,7 +6,7 @@ public class PlayerControllerV2 : MonoBehaviour
 { 
 
 	[Header("Setup Manuel")]
-	//public Animator animator;
+	public Animator animator;
 	public GameObject player;
 	public Camera camera;
 
@@ -52,24 +52,19 @@ public class PlayerControllerV2 : MonoBehaviour
 	}
 	private void MakeFSM()
 	{
-		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround);
+		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
-		basicState.AddTransition(Transition.Jumping, StateID.Jump);
 		basicState.AddTransition(Transition.Falling, StateID.Fall);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);
 		basicState.AddTransition(Transition.Zooming, StateID.Zoom);
 		basicState.AddTransition(Transition.Flying, StateID.Fly);
 
-		JumpState jumpState = new JumpState(_scriptOnPlayer, _playerRb);
-		jumpState.AddTransition(Transition.Basic, StateID.Basic);
-		jumpState.AddTransition(Transition.Dashing, StateID.Dash);
-		jumpState.AddTransition(Transition.Falling, StateID.Fall);
-
-		DashState dashState = new DashState(_playerRb, _scriptOnPlayer, player.transform, camera);
+		DashState dashState = new DashState(_playerRb, _scriptOnPlayer, player.transform, camera, animator);
 		dashState.AddTransition(Transition.Basic, StateID.Basic);
 		dashState.AddTransition(Transition.Falling, StateID.Fall);
+		dashState.AddTransition(Transition.Flying, StateID.Fly);
 
-		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround);
+		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		flyState.AddTransition(Transition.Basic, StateID.Basic);
 		flyState.AddTransition(Transition.Falling, StateID.Fall);
 		flyState.AddTransition(Transition.Dashing, StateID.Dash);
@@ -84,12 +79,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
-		zoomState.AddTransition(Transition.Jumping, StateID.Jump);
+
 
 
 		_fsm = new FSMSystem();
 		_fsm.AddState(basicState);
-		_fsm.AddState(jumpState);
 		_fsm.AddState(dashState);
 		_fsm.AddState(flyState);
 		_fsm.AddState(fallState);
