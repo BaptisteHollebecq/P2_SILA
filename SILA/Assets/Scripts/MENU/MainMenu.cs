@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
 
     private int _index = 0;
     private bool _canswitch = true;
-    private float _
+    //private float _
 
     private void Update()
     {
