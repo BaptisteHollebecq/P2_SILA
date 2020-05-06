@@ -2241,8 +2241,9 @@ GameObject:
   - component: {fileID: 3901664139412617062}
   - component: {fileID: 2149846309420972628}
   - component: {fileID: 2149846309420972630}
-  - component: {fileID: 2149846309420972631}
-  - component: {fileID: 6166203538915397988}
+  - component: {fileID: 1765785591720420343}
+  - component: {fileID: 7158788214009285671}
+  - component: {fileID: 4474625070590960194}
   m_Layer: 0
   m_Name: xbot@Idle
   m_TagString: Untagged
@@ -2317,7 +2318,22 @@ CapsuleCollider:
   m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.9297371, z: 0}
---- !u!114 &2149846309420972631
+--- !u!114 &1765785591720420343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995055669819729935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 7158788214009285671}
+  _playerLife: 3
+  _actualise: 1
+--- !u!114 &7158788214009285671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2347,7 +2363,7 @@ MonoBehaviour:
   groundAngle: 0
   gravityScale: 1
   mainCamera: {fileID: 0}
---- !u!114 &6166203538915397988
+--- !u!114 &4474625070590960194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2356,12 +2372,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7995055669819729935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 72f417dde4449814082f50cfdfa263d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 2149846309420972631}
-  _playerLife: 3
-  _actualise: 1
 --- !u!1 &8053777067210249558
 GameObject:
   m_ObjectHideFlags: 0
