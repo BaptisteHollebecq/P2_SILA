@@ -99,6 +99,7 @@ public class BasicState : FSMState
 		if (Input.GetButtonDown("Jump") && IsGrounded())
 		{
 			_animator.SetBool("Jump", true);
+			Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 		}
 		else
