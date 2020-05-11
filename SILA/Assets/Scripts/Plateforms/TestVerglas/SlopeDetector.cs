@@ -30,8 +30,7 @@ public class SlopeDetector : MonoBehaviour
         if (checkForSlope)
         {
             CheckForSlops();
-            Debug.Log(slopeAngles);
-        }
+        }          
     }
 
     void CheckForSlops()
@@ -57,10 +56,12 @@ public class SlopeDetector : MonoBehaviour
             slopeDirection = ((_checkingPoint - _underPlayerPoint).normalized * 1);
             slopeAngles = Mathf.Abs(Vector3.Angle(Vector3.down, slopeDirection) - 90);
 
-            if (slopeAngles <= 10)
+            if (slopeAngles <= 10 || slopeAngles == 90)
                 isOnSlope = false;
             else
                 isOnSlope = true;
+/*            Debug.Log("slopeAngles == " + slopeAngles);
+            Debug.Log("isOnSlope == " + isOnSlope);*/
         }
     }
 
