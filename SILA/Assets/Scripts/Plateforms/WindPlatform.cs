@@ -53,12 +53,12 @@ public class WindPlatform : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        /*if (_player != null)
+        if (_player != null)
         {
             if (!_player.IsGrounded())
             {
                 _rb.AddForce(_windDirection * windForce);
             }
-        }*/
+        }
     }
 }
