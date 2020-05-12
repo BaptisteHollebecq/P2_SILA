@@ -22,9 +22,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
-	public bool _isGrounded;
+    [HideInInspector]
+    public bool _isGrounded;
+    [HideInInspector]
+    public bool _isOnMap;
 
-	[Header("Player")]
+    [Header("Player")]
 	public float moveSpeed;
 	public float jumpForce;
 	public float dashSpeed;
@@ -50,8 +53,11 @@ public class PlayerControllerV2 : MonoBehaviour
 	}
 	private void Update()
 	{
-		_fsm.CurrentState.Reason();
-		_fsm.CurrentState.Act();
+        if (!_isOnMap)
+        {
+            _fsm.CurrentState.Reason();
+            _fsm.CurrentState.Act();
+        }
 
 		_currentStateID = _fsm.CurrentID;
 
