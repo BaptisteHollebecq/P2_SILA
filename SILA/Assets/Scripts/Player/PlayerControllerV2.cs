@@ -32,10 +32,10 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float jumpForce;
 	public float dashSpeed;
 	public float dashDuration;
-	public float gravityScale;
 	public float flySpeed;
 	public float flyGravityScale;
-	public float higherJumpFall;
+	public float jumpGravity;
+	public float gravityScale;
 	public float lowerJumpFall;
 	public LayerMask whatIsGround;
 
