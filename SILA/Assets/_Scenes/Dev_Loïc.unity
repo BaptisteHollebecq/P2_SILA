@@ -239,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
@@ -465,6 +465,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sika
       objectReference: {fileID: 0}
+    - target: {fileID: 7995055669819729935, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6390463960986229276, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -503,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 6390463960986229276, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6390463960986229276, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
@@ -525,6 +530,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1692681349}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: gravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: dashDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: flyGravityScale
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: lowerJumpFall
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: flySpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: jumpGravity
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843319, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
       propertyPath: m_IsActive
