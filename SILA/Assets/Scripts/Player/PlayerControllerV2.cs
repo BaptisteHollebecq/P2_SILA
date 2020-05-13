@@ -22,10 +22,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
+<<<<<<< HEAD
     [HideInInspector]
     public bool _isGrounded;
     [HideInInspector]
     public bool _isOnMap;
+=======
+>>>>>>> parent of b8322dc... recupere loic
 
     [Header("Player")]
 	public float moveSpeed;
@@ -33,13 +36,10 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float dashSpeed;
 	public float dashDuration;
 	public float gravityScale;
-	public float flySpeed;
 	public float flyGravityScale;
 	public float higherJumpFall;
 	public float lowerJumpFall;
 	public LayerMask whatIsGround;
-
-	float _distToGround;
 
 	public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
@@ -48,7 +48,6 @@ public class PlayerControllerV2 : MonoBehaviour
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
 		_speedStore = moveSpeed;
-		_distToGround = _collider.bounds.extents.y - 0.8f;
 		MakeFSM();
 	}
 	private void Update()
@@ -60,15 +59,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
-
-		_isGrounded = IsGrounded();
 	}
-
-	public bool IsGrounded()
-	{
-		return Physics.Raycast(player.transform.position, -Vector3.up, _distToGround + 0.12f, whatIsGround);
-	}
-
 	private void MakeFSM()
 	{
 		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
@@ -98,7 +89,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
-
 
 
 
