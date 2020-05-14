@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6552639278570990844}
   - component: {fileID: 707962203679297541}
   - component: {fileID: 7119650898907014343}
+  - component: {fileID: 5664175221404966964}
   m_Layer: 8
   m_Name: IceBridge
   m_TagString: Untagged
@@ -91,3 +92,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af68473490319d54cb4525483be195ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &5664175221404966964
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292526303335359705}
+  m_Material: {fileID: 13400000, guid: ee6844e89d80f234ca5bc3f70faf700f, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 1712718360497636445, guid: 37c097d817a8b0b4cb718652a5965aa9, type: 3}
