@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6552639278570990844}
   - component: {fileID: 707962203679297541}
   - component: {fileID: 7119650898907014343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IceBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
