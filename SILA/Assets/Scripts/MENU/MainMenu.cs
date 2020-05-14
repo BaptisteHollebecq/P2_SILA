@@ -19,6 +19,9 @@ public class MainMenu : MonoBehaviour
 
     public List<string> titles = new List<string>();
 
+    public bool HorizontalMenu;
+    private string _inputParam;
+
     private int _index = 0;
     private bool _canswitch = true;
     private float _input;
@@ -29,10 +32,17 @@ public class MainMenu : MonoBehaviour
 
     private Transform _canvas;
     private CanvasGroup _canvaGroup;
-
+    private bool _invert = false;
 
     private void Awake()
     {
+        if (HorizontalMenu)
+            _inputParam = "Horizontal";
+        else
+        {
+            _inputParam = "Vertical";
+            _invert = true;
+        }
         _canvas = transform.GetChild(0);
         _canvaGroup = _canvas.GetComponent<CanvasGroup>();
 
@@ -64,7 +74,10 @@ public class MainMenu : MonoBehaviour
     {
         if (_canswitch)
         {
-            if ((_input = Input.GetAxis("Horizontal")) == 1 )
+            float _input = Input.GetAxis(_inputParam);
+            if (_invert)
+                _input *= -1;
+            if (_input == 1 )
             {
                 _index++;
                 if (_index == _canvas.transform.childCount)
@@ -73,7 +86,7 @@ public class MainMenu : MonoBehaviour
                 StartCoroutine(ResetSwitch());
                 ResetButtons();
             }
-            else if ((_input = Input.GetAxis("Horizontal")) == -1)
+            else if (_input == -1)
             {
                 _index--;
                 if (_index == -1)
@@ -153,7 +166,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator ResetSwitch()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         _canswitch = true;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
@@ -22,9 +24,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
-	public bool _isGrounded;
+    [HideInInspector]
+    public bool _isGrounded;
+    [HideInInspector]
+    public bool _isOnMap;
 
-	[Header("Player")]
+    [Header("Player")]
 	public float moveSpeed;
 	public float jumpForce;
 	public float dashSpeed;
@@ -50,8 +55,11 @@ public class PlayerControllerV2 : MonoBehaviour
 	}
 	private void Update()
 	{
-		_fsm.CurrentState.Reason();
-		_fsm.CurrentState.Act();
+        if (!_isOnMap)
+        {
+            _fsm.CurrentState.Reason();
+            _fsm.CurrentState.Act();
+        }
 
 		_currentStateID = _fsm.CurrentID;
 
@@ -62,6 +70,12 @@ public class PlayerControllerV2 : MonoBehaviour
 	{
 		return Physics.Raycast(player.transform.position, -Vector3.up, _distToGround + 0.12f, whatIsGround);
 	}
+
+    public IEnumerator EndIsOnMap()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _isOnMap = false;
+    }
 
 	private void MakeFSM()
 	{
