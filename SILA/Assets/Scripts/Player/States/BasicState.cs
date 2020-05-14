@@ -12,6 +12,7 @@ public class BasicState : FSMState
 	float _distToGround;
 
 	float _moveSpeed;
+	float _airSpeed;
 	float _jumpForce;
 	float _deadZone = 0.25f;
 	float _difAngle;
@@ -19,6 +20,7 @@ public class BasicState : FSMState
 	float _gravityScale;
 	float _jumpGravity;
 
+	float _speedStore;
 	Camera _camera;
 	Vector3 moveDirection;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
@@ -35,12 +37,15 @@ public class BasicState : FSMState
 		_camera = cam;
 		_jumpForce = scriptPlayer.jumpForce;
 		_moveSpeed = scriptPlayer.moveSpeed;
+		_airSpeed = scriptPlayer.airSpeed;
 		_whatIsGround = groundMask;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_lowerJumpFall = scriptPlayer.lowerJumpFall;
 		_gravityScale = scriptPlayer.gravityScale;
 		_jumpGravity = scriptPlayer.jumpGravity;
 		_animator = anim;
+
+		_speedStore = _moveSpeed;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -129,12 +134,20 @@ public class BasicState : FSMState
 
 		if (!IsGrounded())
 		{
+			_moveSpeed = _airSpeed;
+
 			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
 			if (Mathf.Abs(_rb.velocity.y) > 70)
 				moveDirection.y = -71;
+
+			if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
+				moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
 		}
-		else if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
-			moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
+		else
+		{
+			_moveSpeed = _speedStore;
+		}
+
 
 		#region Jump
 		if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -184,6 +197,7 @@ public class BasicState : FSMState
 
 		#endregion
 
+		Debug.Log(_moveSpeed);
 	}
 
 	public override void DoBeforeEntering()

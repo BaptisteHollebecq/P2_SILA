@@ -31,6 +31,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [Header("Player")]
 	public float moveSpeed;
+	public float airSpeed;
 	public float jumpForce;
 	public float dashSpeed;
 	public float dashDuration;
