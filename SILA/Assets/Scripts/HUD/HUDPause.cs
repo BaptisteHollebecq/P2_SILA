@@ -174,6 +174,9 @@ public class HUDPause : MonoBehaviour
         _canvasButtons.gameObject.SetActive(false);
         _canvasCommands.gameObject.SetActive(false);
         _canvasOptions.gameObject.SetActive(false);
+        _isOnCommands = false;
+        _isOnOptions = false;
+        _isOnMap = false;
         _index = 0;
         Time.timeScale = 1;
         StartCoroutine(_player.EndIsOnMap());
