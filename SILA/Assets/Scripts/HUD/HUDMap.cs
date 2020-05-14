@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,9 @@ public class HUDMap : MonoBehaviour
     private Transform _canvas;
     private bool _isOpen = false;
     private bool _isZoomed = false;
+    [HideInInspector] public bool _isInPause = false;
+
+    private bool _canZoom = false;
 
     public void ChangeZone(int entered, int exited)
     {
@@ -29,28 +33,53 @@ public class HUDMap : MonoBehaviour
     {
         _canvas = transform.GetChild(0);
         _canvas.gameObject.SetActive(false);
+        
+    }
+
+    private IEnumerator ActiveZoom()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        _canZoom = true;
+    }
+
+    public void OpenMap()
+    {
+        _isOpen = true;
+        _canvas.gameObject.SetActive(true);
+        Time.timeScale = 0;
+        _player._isOnMap = true;
+        StartCoroutine(ActiveZoom());
+    }
+
+    public void CloseMap()
+    {
+        _isOpen = false;
+        _canvas.gameObject.SetActive(false);
+        _allZones.localScale = new Vector3(1, 1, 1);
+        _allZones.localPosition = Vector3.zero;
+        if (!_isInPause)
+        {
+            Time.timeScale = 1;
+            StartCoroutine(_player.EndIsOnMap());
+        }
+        _isZoomed = false;
+        _isInPause = false;
+        _canZoom = false;
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("Select") && !_isOpen)
         {
-            _isOpen = true;
-            _canvas.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            _player._isOnMap = true;
+            OpenMap();
         }
+
         if (Input.GetButtonDown("B") && _isOpen)
         {
-            _isOpen = false;
-            _canvas.gameObject.SetActive(false);
-            _allZones.localScale = new Vector3(1, 1, 1);
-            _allZones.localPosition = Vector3.zero;
-            Time.timeScale = 1;
-            _isZoomed = false;
-            _player._isOnMap = false;
+            CloseMap();
         }
-        if (Input.GetButtonDown("A") && _isOpen)
+
+        if (Input.GetButtonDown("A") && _isOpen && _canZoom)
         {
             if (!_isZoomed)
             {
@@ -64,6 +93,7 @@ public class HUDMap : MonoBehaviour
                 _allZones.localPosition = Vector3.zero;
             }
         }
+
         if (_isZoomed && _isOpen)
         {
             Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

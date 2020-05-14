@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
@@ -68,6 +70,12 @@ public class PlayerControllerV2 : MonoBehaviour
 	{
 		return Physics.Raycast(player.transform.position, -Vector3.up, _distToGround + 0.12f, whatIsGround);
 	}
+
+    public IEnumerator EndIsOnMap()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _isOnMap = false;
+    }
 
 	private void MakeFSM()
 	{
