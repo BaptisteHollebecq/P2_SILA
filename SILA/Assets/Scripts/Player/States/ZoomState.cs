@@ -17,7 +17,7 @@ public class ZoomState : FSMState
 	}
 	public override void Reason()
 	{
-		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetButtonDown("B"))
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetButtonDown("B") || Input.GetButtonDown("Y"))
 			_playerScript.SetTransition(Transition.Basic);
 		else if (Input.GetButtonDown("Jump"))
 			_playerScript.SetTransition(Transition.Jumping);
