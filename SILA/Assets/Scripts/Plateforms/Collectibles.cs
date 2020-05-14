@@ -7,6 +7,14 @@ using UnityEngine;
 public class Collectibles : MonoBehaviour
 {
     PlayerCollectibles _collectibles;
+    public int Zone;
+
+    private HUDMap map;
+
+    private void Awake()
+    {
+        map = GameObject.Find("HUDMap").GetComponent<HUDMap>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +22,7 @@ public class Collectibles : MonoBehaviour
         {
             _collectibles = other.GetComponent<PlayerCollectibles>();
             _collectibles.AddCollectibles(1);
+            map.Collect(Zone);
             gameObject.SetActive(false);
         }
     }
