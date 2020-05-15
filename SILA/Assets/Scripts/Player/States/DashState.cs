@@ -9,10 +9,8 @@ public class DashState : FSMState
 	Camera _camera;
 	Animator _animator;
 	float _difAngle;
-	float _moveSpeed;
 	float _dashSpeed;
 	float _dashDuration;
-	float _speedStore;
 	float _dashTimer;
 
 	Vector3 dashDirection;
@@ -29,10 +27,8 @@ public class DashState : FSMState
 		_playerScript = player;
 		_camera = cam;
 		ID = StateID.Dash;
-		_moveSpeed = player.moveSpeed;
 		_dashSpeed = player.dashSpeed;
 		_dashDuration = player.dashDuration;
-		_speedStore = player._speedStore;
 		_animator = anim;
 	}
 
@@ -87,6 +83,8 @@ public class DashState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+		_playerScript._canDash = false;
+		_playerScript._dashTimer = 0;
 		_animator.SetBool("Dash", false);
 	}
 

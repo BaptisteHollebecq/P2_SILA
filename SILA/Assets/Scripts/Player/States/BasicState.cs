@@ -72,7 +72,7 @@ public class BasicState : FSMState
 
 	public override void Reason()
 	{
-		if (Input.GetButtonDown("Dash"))
+		if (_playerScript._canDash && Input.GetButtonDown("Dash"))
 		{
 			_playerScript.SetTransition(Transition.Dashing);
 		}
