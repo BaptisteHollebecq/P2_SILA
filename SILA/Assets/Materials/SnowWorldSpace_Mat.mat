@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _TextureSample4:
-        m_Texture: {fileID: 2800000, guid: b6ed9fb6abedd654ba5b2b061755622c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 500, y: 500}
         m_Offset: {x: 0, y: 0}
     - _TextureSol:
@@ -68,11 +68,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _CaptureSize: 100
     - _Debug: 0
-    - _Debug_SnowHeight: 2
+    - _Debug_Height: 0.13
+    - _Debug_SnowHeight: 0.52
     - _EdgeLength: 2
     - _Float0: 5
-    - _Float1: 0
+    - _Float1: 0.5
     - _Float5: 1.36
     - _Float8: 4
     - _Float9: 0
@@ -100,6 +102,7 @@ Material:
     - _R: 0
     - _ReflectanceStreght: 1.42
     - _RenderTextureScale: 42.75
+    - _RenderTextureScale1: 42.75
     - _RimOffset: 0.24
     - _RimPower: 8.4
     - _RimStrenght: 0.48
@@ -125,10 +128,10 @@ Material:
     - _TransShadow: 0.9
     - _Translucency: 1
     - _WrapperValue: 0.5
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
-    - _Color0: {r: 1, g: 1, b: 1, a: 0}
-    - _Color1: {r: 0.4292453, g: 0.8237233, b: 1, a: 0}
+    - _Color0: {r: 0.24528301, g: 0.094252855, b: 0.056692775, a: 0}
+    - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _CouleurNeige: {r: 1, g: 1, b: 1, a: 1}
     - _CouleurSol: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0}
@@ -144,4 +147,5 @@ Material:
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
     - _ToonRampTint: {r: 0.5990566, g: 0.8474843, b: 1, a: 0}
-    - _Vector0: {r: 100, g: 100, b: 0, a: 0}
+    - _Vector0: {r: 0, g: 0, b: 0, a: 0}
+    - _Vector1: {r: 0.1, g: 0.1, b: 0, a: 0}

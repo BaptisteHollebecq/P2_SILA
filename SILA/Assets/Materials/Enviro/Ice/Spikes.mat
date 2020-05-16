@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IcePlatformWall
-  m_Shader: {fileID: 4800000, guid: 5c836eb91d62ab641b517908e338f280, type: 3}
+  m_Name: Spikes
+  m_Shader: {fileID: 4800000, guid: 11d7aae27565179459e3035421508ce0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AO:
-        m_Texture: {fileID: 2800000, guid: 8542cef9e53c4444fbb2bc807ed059e1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 957783573306e7144bb7fc1488cf0503, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -56,11 +56,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise01:
-        m_Texture: {fileID: 2800000, guid: 8542cef9e53c4444fbb2bc807ed059e1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 957783573306e7144bb7fc1488cf0503, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 4cde2462edd21244eb1e10dc038ffcec, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f857ea919b64c34ab9ad9677960f5ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -87,19 +87,19 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightLimit: 0.06
+    - _HeightLimit: 11.57
     - _HeightScale: 0.15
     - _Heightmuliplier: 2
-    - _Melting: -1
-    - _MeltingColorLimit: 0.04
+    - _Melting: 0
+    - _MeltingColorLimit: 5.08
     - _Metallic: 0
     - _Mode: 0
     - _Normalscale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Param_Lenght: 0
+    - _Param_Lenght: -3.8
     - _SmoothnessTextureChannel: 0
-    - _SnowCavity: -0
+    - _SnowCavity: -10
     - _Snowdeposit: 33.22
     - _Specular: 46.22
     - _SpecularHighlights: 1

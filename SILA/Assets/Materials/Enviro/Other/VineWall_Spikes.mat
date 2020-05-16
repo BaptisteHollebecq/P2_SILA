@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IcePlatformWall
-  m_Shader: {fileID: 4800000, guid: 5c836eb91d62ab641b517908e338f280, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_Name: VineWall_Spikes
+  m_Shader: {fileID: 4800000, guid: 93b811a06a5039b419af0d94a39caed7, type: 3}
+  m_ShaderKeywords: _NORMALMAP
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,12 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AO:
-        m_Texture: {fileID: 2800000, guid: 8542cef9e53c4444fbb2bc807ed059e1, type: 3}
+    - _BaseColorRGBOutlineWidthA:
+        m_Texture: {fileID: 2800000, guid: 616437ec4638b8a40b8ea01338e6e41f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b3d549799d69cf6499dcc6bb127ecb3d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -43,28 +43,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _Highlight:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MeltingNormal:
-        m_Texture: {fileID: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 616437ec4638b8a40b8ea01338e6e41f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Noise01:
-        m_Texture: {fileID: 2800000, guid: 8542cef9e53c4444fbb2bc807ed059e1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 2800000, guid: 4cde2462edd21244eb1e10dc038ffcec, type: 3}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: b3d549799d69cf6499dcc6bb127ecb3d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4e24e7d0393a2bd4f805319e875683c0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -76,50 +72,37 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BaseCellOffset: 0
+    - _BaseCellSharpness: 0.01
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Float0: -0.06
-    - _Float1: 4.56
-    - _Float11: 2.69
-    - _Float9: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightLimit: 0.06
-    - _HeightScale: 0.15
-    - _Heightmuliplier: 2
-    - _Melting: -1
-    - _MeltingColorLimit: 0.04
+    - _HighlightCellOffset: -0.956
+    - _HighlightCellSharpness: 0.001
+    - _IndirectDiffuseContribution: 0
+    - _IndirectSpecularContribution: 0.696
     - _Metallic: 0
     - _Mode: 0
-    - _Normalscale: 1
+    - _NormalScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Param_Lenght: 0
+    - _RimOffset: 0.6
+    - _RimPower: 0.4
+    - _ShadowContribution: 1
     - _SmoothnessTextureChannel: 0
-    - _SnowCavity: -0
-    - _Snowdeposit: 33.22
-    - _Specular: 46.22
     - _SpecularHighlights: 1
-    - _SpecularInt: 1.6
     - _SrcBlend: 1
-    - _TessValue: 1
-    - _TransAmbient: 0.056
-    - _TransDirect: 0.051
-    - _TransNormalDistortion: 0.031
-    - _TransScattering: 2.2
-    - _TransShadow: 1
-    - _Translucency: 2.2
+    - _StaticHighLights: 0
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - _BaseTint: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deepcolor: {r: 0, g: 1.0117648, b: 1.7803922, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel: {r: 0, g: 27.318756, b: 27.607843, a: 0}
-    - _MeltingEmissionColor: {r: 0.38675478, g: 2.6232047, b: 3.5648694, a: 0}
-    - _SnowColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
-    - _Surfacecolor: {r: 0, g: 0.5368862, b: 1, a: 0}
+    - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 2, g: 2, b: 2, a: 0}
