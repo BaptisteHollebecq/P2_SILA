@@ -19,8 +19,11 @@ public class BasicState : FSMState
 	float _lowerJumpFall;
 	float _gravityScale;
 	float _jumpGravity;
-
 	float _speedStore;
+
+	float _lerp;
+	float _maxLerp = 1;
+
 	Camera _camera;
 	Vector3 moveDirection;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
@@ -46,6 +49,7 @@ public class BasicState : FSMState
 		_animator = anim;
 
 		_speedStore = _moveSpeed;
+		_lerp = 0;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -135,6 +139,7 @@ public class BasicState : FSMState
 		if (!IsGrounded())
 		{
 			_moveSpeed = _airSpeed;
+			//_lerp += 1f;
 
 			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
 			if (Mathf.Abs(_rb.velocity.y) > 70)
@@ -146,6 +151,8 @@ public class BasicState : FSMState
 		else
 		{
 			_moveSpeed = _speedStore;
+			/*if (_lerp > _maxLerp && IsGrounded())
+				_lerp = 0;*/
 		}
 
 
@@ -156,6 +163,7 @@ public class BasicState : FSMState
 			Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = _jumpGravity;
+			//_gravityScale = Mathf.Lerp(_gravityScale, _jumpGravity, _lerp);
 			//moveDirection.y = _jumpForce * Time.deltaTime;
 		}
 		else
