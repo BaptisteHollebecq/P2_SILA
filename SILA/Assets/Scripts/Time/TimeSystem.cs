@@ -81,6 +81,10 @@ public class TimeSystem : MonoBehaviour
     private float _fogDensityScale;
 
 
+
+    private bool _menu = true;
+
+
     void MorningTime()
     {
         _lightTransform.rotation = Quaternion.Euler(_sunRotationMorning);
@@ -293,7 +297,9 @@ public class TimeSystem : MonoBehaviour
                 NoonTime();
             else if (from == TimeOfDay.Night)
                 NightTime();
-            EndedTransition?.Invoke();             
+            if (_menu)
+                EndedTransition?.Invoke();
+            _menu = true;
             _transitionSlide = 0;
             targetTime = TimeOfDay.Null;
             return from;
@@ -326,15 +332,27 @@ public class TimeSystem : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
         if (Input.GetKeyDown("n"))
+        {
             targetTime = TimeOfDay.Night;
+            _menu = false;
+        }
         if (Input.GetKeyDown("a"))
+        {
             targetTime = TimeOfDay.Morning;
+            _menu = false;
+        }
         if (Input.GetKeyDown("j"))
+        {
             targetTime = TimeOfDay.Day;
+            _menu = false;
+        }
         if (Input.GetKeyDown("c"))
+        {
             targetTime = TimeOfDay.Noon;
+            _menu = false;
+        }
 
         //Debug.Log(actualTime);
         //Debug.Log(_rotationScale);

@@ -17,6 +17,7 @@ public class TimeMenu : MonoBehaviour
     private TimeSystem _timeManager;
 
 	private CanvasGroup CanvasGroup;
+    public HUDInGame Hud;
 
     private void Awake()
     {
@@ -47,7 +48,8 @@ public class TimeMenu : MonoBehaviour
             MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
-			_actualTime = TimeSystem.actualTime;
+            Hud.Hide();
+            _actualTime = TimeSystem.actualTime;
             //Debug.Log(_actualTime);
             switch (_actualTime)
             {
@@ -81,12 +83,15 @@ public class TimeMenu : MonoBehaviour
                     TurnArrow(stickInput); 
             }
 
+
+
             if (Input.GetButtonDown("B"))
             {
                 if (!_isChanging)
                 {
                     _isActive = false;
                     CanvasGroup.alpha = 0;
+                    Hud.Show();
                 }
             }
             if (Input.GetButtonDown("A"))
