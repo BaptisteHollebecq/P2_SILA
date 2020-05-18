@@ -21,6 +21,9 @@ public class BasicState : FSMState
 	float _jumpGravity;
 	float _speedStore;
 
+	float _airRotation;
+	float _groundRotation;
+
 	float _lerp;
 	float _maxLerp = 1;
 
@@ -46,6 +49,9 @@ public class BasicState : FSMState
 		_lowerJumpFall = scriptPlayer.lowerJumpFall;
 		_gravityScale = scriptPlayer.gravityScale;
 		_jumpGravity = scriptPlayer.jumpGravity;
+		_airRotation = scriptPlayer.airRotation;
+		_groundRotation = scriptPlayer.groundedRotation;
+
 		_animator = anim;
 
 		_speedStore = _moveSpeed;
@@ -114,13 +120,19 @@ public class BasicState : FSMState
 		else                                                                                                    //
 		{                                                                                                       //
 			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-			if (_difAngle > 4)                                                                                   //
+			if (_difAngle > 4)                                                                                  //
 			{                                                                                                   //      SINON
-				_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f));                                 //      ROTATE LE PLAYER POUR 
+				if(IsGrounded())
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation);                  //      ROTATE LE PLAYER POUR 
+				else if(!IsGrounded())
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation);
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-			else if (_difAngle < -4)                                                                             //
+			else if (_difAngle < -4)                                                                            //
 			{                                                                                                   //
-				_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f));                                //
+				if (IsGrounded())
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation);                                //
+				else if (!IsGrounded())
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation);
 			}
 		}
 
