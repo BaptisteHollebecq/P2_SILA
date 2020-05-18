@@ -24,10 +24,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
-    [HideInInspector]
-    public bool _isGrounded;
-    [HideInInspector]
-    public bool _isOnMap;
+	[HideInInspector]
+	public bool _isGrounded;
+	[HideInInspector]
+	public bool _isOnMap;
+	//[HideInInspector]
+	public bool _canDash;
+	//[HideInInspector]
+	public float _dashTimer;
 
     [Header("Player")]
 	public float moveSpeed;
@@ -35,6 +39,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float jumpForce;
 	public float dashSpeed;
 	public float dashDuration;
+	public float dashReset;
 	public float flySpeed;
 	public float flyGravityScale;
 	public float jumpGravity;
@@ -52,6 +57,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		_collider = GetComponent<Collider>();
 		_speedStore = moveSpeed;
 		_distToGround = _collider.bounds.extents.y - 0.8f;
+		_dashTimer = dashReset + 1;
 		MakeFSM();
 	}
 	private void Update()
@@ -65,6 +71,23 @@ public class PlayerControllerV2 : MonoBehaviour
 		_currentStateID = _fsm.CurrentID;
 
 		_isGrounded = IsGrounded();
+
+		if(_dashTimer > dashReset && _isGrounded)
+		{
+			_canDash = true;
+		}
+
+		if(_canDash == false)
+		{
+			DashReset();
+		}
+	}
+
+	public void DashReset()
+	{
+		_dashTimer += Time.deltaTime;
+		if (_dashTimer > dashReset)
+			_dashTimer = dashReset + 1;
 	}
 
 	public bool IsGrounded()
