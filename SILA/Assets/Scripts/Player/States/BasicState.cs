@@ -12,11 +12,17 @@ public class BasicState : FSMState
 	float _distToGround;
 
 	float _moveSpeed;
+	float _airSpeed;
 	float _jumpForce;
 	float _deadZone = 0.25f;
 	float _difAngle;
 	float _lowerJumpFall;
-	float _higherJumpFall;
+	float _gravityScale;
+	float _jumpGravity;
+	float _speedStore;
+
+	float _lerp;
+	float _maxLerp = 1;
 
 	Camera _camera;
 	Vector3 moveDirection;
@@ -34,11 +40,16 @@ public class BasicState : FSMState
 		_camera = cam;
 		_jumpForce = scriptPlayer.jumpForce;
 		_moveSpeed = scriptPlayer.moveSpeed;
+		_airSpeed = scriptPlayer.airSpeed;
 		_whatIsGround = groundMask;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_lowerJumpFall = scriptPlayer.lowerJumpFall;
-		_higherJumpFall = scriptPlayer.higherJumpFall;
+		_gravityScale = scriptPlayer.gravityScale;
+		_jumpGravity = scriptPlayer.jumpGravity;
 		_animator = anim;
+
+		_speedStore = _moveSpeed;
+		_lerp = 0;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -65,7 +76,7 @@ public class BasicState : FSMState
 
 	public override void Reason()
 	{
-		if (Input.GetButtonDown("Dash"))
+		if (_playerScript._canDash && Input.GetButtonDown("Dash"))
 		{
 			_playerScript.SetTransition(Transition.Dashing);
 		}
@@ -96,13 +107,6 @@ public class BasicState : FSMState
 	public override void Act()
 	{
 
-		if (Input.GetButtonDown("Jump") && IsGrounded())
-		{
-			_animator.SetBool("Jump", true);
-			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-		}
-		else
-			_animator.SetBool("Jump", false);
 
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
@@ -126,21 +130,52 @@ public class BasicState : FSMState
 
 		GetCamSettings();
 
-		float yStored = _rb.velocity.y;
+		float _yStored = _rb.velocity.y;
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
-		moveDirection.y = yStored;
+		moveDirection.y = _yStored;
 		/*moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;*/
 
-		if (moveDirection.y < 0)
+		if (!IsGrounded())
 		{
-			moveDirection += Vector3.up * Physics.gravity.y * (_higherJumpFall - 1) * Time.deltaTime;
+			_moveSpeed = _airSpeed;
+			//_lerp += 1f;
+
+			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
+			if (Mathf.Abs(_rb.velocity.y) > 70)
+				moveDirection.y = -71;
+
+			if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
+				moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
 		}
-		else if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
-			moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
+		else
+		{
+			_moveSpeed = _speedStore;
+			/*if (_lerp > _maxLerp && IsGrounded())
+				_lerp = 0;*/
+		}
 
 
-		_rb.velocity = moveDirection;
+		#region Jump
+		if (Input.GetButtonDown("Jump") && IsGrounded())
+		{
+			//_animator.SetBool("Jump", true);
+			Debug.Log("Je saute !");
+			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+			_gravityScale = _jumpGravity;
+			//_gravityScale = Mathf.Lerp(_gravityScale, _jumpGravity, _lerp);
+			//moveDirection.y = _jumpForce * Time.deltaTime;
+		}
+		else
+			_animator.SetBool("Jump", false);
+
+		/*if (!Physics.Raycast(_transformPlayer.position, -Vector3.up, jumpHigh, _whatIsGround))
+			moveDirection.y = Mathf.Lerp(0, -_gravityScale, 0.5f);*/
+
+
+		#endregion
+
+			_rb.velocity = moveDirection;
 
 		#region Animator
 		if (IsGrounded())
@@ -170,6 +205,7 @@ public class BasicState : FSMState
 
 		#endregion
 
+		Debug.Log(_moveSpeed);
 	}
 
 	public override void DoBeforeEntering()

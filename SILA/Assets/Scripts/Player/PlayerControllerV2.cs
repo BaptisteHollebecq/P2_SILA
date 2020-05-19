@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
@@ -22,22 +24,38 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
+<<<<<<< HEAD
     [HideInInspector]
     public bool _isGrounded;
     [HideInInspector]
     public bool _isOnMap;
 
+=======
+	[HideInInspector]
+	public bool _isGrounded;
+	[HideInInspector]
+	public bool _isOnMap;
+	//[HideInInspector]
+	public bool _canDash;
+	//[HideInInspector]
+	public float _dashTimer;
+>>>>>>> parent of 3a570fe... Merge branch 'Prod_Loïc' into Prod_Baptiste
 
     [Header("Player")]
 	public float moveSpeed;
+	public float airSpeed;
 	public float jumpForce;
 	public float dashSpeed;
 	public float dashDuration;
-	public float gravityScale;
+	public float dashReset;
+	public float flySpeed;
 	public float flyGravityScale;
-	public float higherJumpFall;
+	public float jumpGravity;
+	public float gravityScale;
 	public float lowerJumpFall;
 	public LayerMask whatIsGround;
+
+	float _distToGround;
 
 	public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
@@ -46,6 +64,8 @@ public class PlayerControllerV2 : MonoBehaviour
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
 		_speedStore = moveSpeed;
+		_distToGround = _collider.bounds.extents.y - 0.8f;
+		_dashTimer = dashReset + 1;
 		MakeFSM();
 	}
 	private void Update()
@@ -57,7 +77,38 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
+
+		_isGrounded = IsGrounded();
+
+		if(_dashTimer > dashReset && _isGrounded)
+		{
+			_canDash = true;
+		}
+
+		if(_canDash == false)
+		{
+			DashReset();
+		}
 	}
+
+	public void DashReset()
+	{
+		_dashTimer += Time.deltaTime;
+		if (_dashTimer > dashReset)
+			_dashTimer = dashReset + 1;
+	}
+
+	public bool IsGrounded()
+	{
+		return Physics.Raycast(player.transform.position, -Vector3.up, _distToGround + 0.12f, whatIsGround);
+	}
+
+    public IEnumerator EndIsOnMap()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _isOnMap = false;
+    }
+
 	private void MakeFSM()
 	{
 		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
@@ -87,6 +138,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
+
 
 
 
