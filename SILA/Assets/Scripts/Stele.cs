@@ -6,11 +6,37 @@ public class Stele : MonoBehaviour
 
 	public Transform cameraPivotOnInteract;
     public SpriteRenderer ySprite;
+    public TimeMenu timeMenu;
+    [Header("BrokenTime")]
+    private bool isBroken = false;
+    [SerializeField] private bool brokenDay = false;
+    [SerializeField] private bool brokenNight = false;
+    [SerializeField] private bool brokenMorning = false;
+    [SerializeField] private bool brokenNoon = false;
 
     private PlayerLifeManager _respawn;
 
-	public void Interact ()
+    private void Awake()
+    {
+        if (brokenDay || brokenMorning || brokenNight || brokenNoon)
+            isBroken = true;
+    }
+
+    public void Interact ()
 	{
+        if (isBroken)
+        {
+            timeMenu.isBroken = true;
+            if (brokenDay)
+                timeMenu.brokenDay = true;
+            if (brokenNight)
+                timeMenu.brokenNight = true;
+            if (brokenMorning)
+                timeMenu.brokenMorning = true;
+            if (brokenNoon)
+                timeMenu.brokenNoon = true;
+
+        }
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
         _respawn.CheckPoint();
 	}

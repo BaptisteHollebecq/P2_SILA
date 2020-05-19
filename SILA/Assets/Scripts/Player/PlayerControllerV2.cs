@@ -24,13 +24,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
-<<<<<<< HEAD
-    [HideInInspector]
-    public bool _isGrounded;
-    [HideInInspector]
-    public bool _isOnMap;
 
-=======
 	[HideInInspector]
 	public bool _isGrounded;
 	[HideInInspector]
@@ -39,7 +33,6 @@ public class PlayerControllerV2 : MonoBehaviour
 	public bool _canDash;
 	//[HideInInspector]
 	public float _dashTimer;
->>>>>>> parent of 3a570fe... Merge branch 'Prod_Loïc' into Prod_Baptiste
 
     [Header("Player")]
 	public float moveSpeed;
