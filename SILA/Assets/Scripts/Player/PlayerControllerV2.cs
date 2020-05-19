@@ -11,6 +11,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public Animator animator;
 	public GameObject player;
 	public Camera camera;
+	public Transform feet;
 
 	public Rigidbody _playerRb { get; private set; }
 

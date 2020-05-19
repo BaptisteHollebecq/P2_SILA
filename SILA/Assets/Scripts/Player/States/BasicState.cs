@@ -169,7 +169,9 @@ public class BasicState : FSMState
 
 
 		#region Jump
-		if (Input.GetButtonDown("Jump") && IsGrounded())
+		//bool _checkJump = Physics.CheckSphere(_playerScript.feet.transform.position, 0.5f, _whatIsGround);
+
+		if (/*_checkJump && */Input.GetButtonDown("Jump") && IsGrounded())
 		{
 			//_animator.SetBool("Jump", true);
 			Debug.Log("Je saute !");
