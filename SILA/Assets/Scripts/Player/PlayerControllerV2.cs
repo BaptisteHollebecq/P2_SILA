@@ -22,13 +22,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float _speedStore;
-<<<<<<< HEAD
     [HideInInspector]
     public bool _isGrounded;
     [HideInInspector]
     public bool _isOnMap;
-=======
->>>>>>> parent of b8322dc... recupere loic
+
 
     [Header("Player")]
 	public float moveSpeed;
