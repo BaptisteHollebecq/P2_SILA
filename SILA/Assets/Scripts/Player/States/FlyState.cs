@@ -29,7 +29,7 @@ public class FlyState : FSMState
 		_transformPlayer = transform;
 		camera = cam;
 		_playerScript = player;
-		_moveSpeed = player.flySpeed;
+		_moveSpeed = player.moveSpeed * 2;
 		_playerCollider = collider;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_whatIsGround = layerMask;
