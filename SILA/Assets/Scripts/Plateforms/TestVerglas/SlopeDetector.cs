@@ -24,14 +24,13 @@ public class SlopeDetector : MonoBehaviour
 
     public bool debugRayCast = true;
 
-
     private void Update()
     {
         if (checkForSlope)
         {
             CheckForSlops();
-        }          
-    }
+        }
+}
 
     void CheckForSlops()
     {
@@ -60,7 +59,7 @@ public class SlopeDetector : MonoBehaviour
                 isOnSlope = false;
             else
                 isOnSlope = true;
-/*            Debug.Log("slopeAngles == " + slopeAngles);
+            /*Debug.Log("slopeAngles == " + slopeAngles);
             Debug.Log("isOnSlope == " + isOnSlope);*/
         }
     }
