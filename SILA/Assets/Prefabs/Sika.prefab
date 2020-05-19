@@ -2243,8 +2243,6 @@ GameObject:
   - component: {fileID: 2149846309420972630}
   - component: {fileID: 1910422014117961231}
   - component: {fileID: -4749094002774511525}
-  - component: {fileID: 8189443741650816412}
-  - component: {fileID: 5248510705187372093}
   m_Layer: 0
   m_Name: Sika
   m_TagString: Untagged
@@ -2336,13 +2334,11 @@ MonoBehaviour:
   camera: {fileID: 0}
   _currentStateID: 0
   _speedStore: 0
-  _isGrounded: 0
   moveSpeed: 7
   jumpForce: 6.5
   dashSpeed: 20
   dashDuration: 0.5
   gravityScale: 0
-  flySpeed: 0
   flyGravityScale: 2
   higherJumpFall: 2
   lowerJumpFall: 1.5
@@ -2361,39 +2357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1910422014117961231}
+  Player: {fileID: 0}
   _playerLife: 3
   _actualise: 1
---- !u!114 &8189443741650816412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995055669819729935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f417dde4449814082f50cfdfa263d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5248510705187372093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995055669819729935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa523480c6738e040a4df308f8803614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _checkDistance: 0.01
-  slopeAngles: 0
-  slopeDirection: {x: 0, y: 0, z: 0}
-  isOnSlope: 0
-  checkForSlope: 0
-  debugRayCast: 1
 --- !u!1 &8053777067210249558
 GameObject:
   m_ObjectHideFlags: 0

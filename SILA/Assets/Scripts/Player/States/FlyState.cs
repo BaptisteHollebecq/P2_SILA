@@ -59,7 +59,7 @@ public class FlyState : FSMState
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
-		if (Input.GetButtonDown("Dash"))
+		if (_playerScript._canDash && Input.GetButtonDown("Dash"))
 			_playerScript.SetTransition(Transition.Dashing);
 	}
 
@@ -90,7 +90,6 @@ public class FlyState : FSMState
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
-		/*moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;*/
 
 		_rb.velocity = moveDirection;
 	}
