@@ -10,6 +10,7 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private PlayerLifeManager _lifeManager;
     [SerializeField] private PlayerCollectibles _collectibles;
     [SerializeField] private CanvasGroup _visibility;
+    [SerializeField] private float transitionTime;
 
     [Header("TimeOfDays")]
     [SerializeField] private Sprite _todDay;
@@ -53,18 +54,12 @@ public class HUDInGame : MonoBehaviour
 
     public void Hide()
     {
-        while (_visibility.alpha > 0)
-        { 
-            _visibility.alpha -= 0.1f;
-        }
+        StartCoroutine(FadeHud(_visibility, _visibility.alpha, 0, transitionTime)) ;
     }
 
     public void Show()
     {
-        while (_visibility.alpha < 1)
-        {
-            _visibility.alpha += 0.1f;
-        }
+        StartCoroutine(FadeHud(_visibility, _visibility.alpha, 1, transitionTime));
     }
 
     private void ActualiseLife()
@@ -156,6 +151,27 @@ public class HUDInGame : MonoBehaviour
                     _placeHolderTod.overrideSprite = _todTwilight;
                     break;
                 }
+        }
+    }
+
+    public IEnumerator FadeHud(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
+    {
+        float _timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - _timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+
+        while (true)
+        {
+            timeSinceStarted = Time.time - _timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currenValue = Mathf.Lerp(start, end, percentageComplete);
+
+            cg.alpha = currenValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForEndOfFrame();
         }
     }
 }
