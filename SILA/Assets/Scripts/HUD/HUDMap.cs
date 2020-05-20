@@ -47,7 +47,7 @@ public class HUDMap : MonoBehaviour
         _isOpen = true;
         _canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
-        _player._isOnMap = true;
+        _player.isOnMap = true;
         StartCoroutine(ActiveZoom());
     }
 

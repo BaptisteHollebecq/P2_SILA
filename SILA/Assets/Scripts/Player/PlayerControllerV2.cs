@@ -11,7 +11,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public Animator animator;
 	public GameObject player;
 	public Camera camera;
-	public Transform feet;
+	public GameObject feet;
 
 	public Rigidbody _playerRb { get; private set; }
 
@@ -24,17 +24,17 @@ public class PlayerControllerV2 : MonoBehaviour
 	StateID _currentStateID;
 
 	[HideInInspector]
-	public float _speedStore;
+	public float speedStore;
 	[HideInInspector]
-	public bool _isGrounded;
+	public bool isGrounded;
 	[HideInInspector]
-	public bool _isOnMap;
-	//[HideInInspector]
-	public bool _canDash;
-	//[HideInInspector]
-	public float _dashTimer;
+	public bool isOnMap;
+	[HideInInspector]
+	public bool canDash;
+	[HideInInspector]
+	public float dashTimer;
 
-    [Header("Player")]
+	[Header("Player")]
 	public float moveSpeed;
 	public float airSpeed;
 	public float jumpForce;
@@ -44,10 +44,12 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float flySpeed;
 	public float flyGravityScale;
 	public float jumpGravity;
+	public float smoothTime;
 	public float gravityScale;
 	public float lowerJumpFall;
 	public float airRotation;
 	public float groundedRotation;
+	public float radiusJumpBuffer;
 	public LayerMask whatIsGround;
 
 	float _distToGround;
@@ -58,14 +60,14 @@ public class PlayerControllerV2 : MonoBehaviour
 		_playerRb = GetComponent<Rigidbody>();
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
-		_speedStore = moveSpeed;
+		speedStore = moveSpeed;
 		_distToGround = _collider.bounds.extents.y - 0.8f;
-		_dashTimer = dashReset + 1;
+		dashTimer = dashReset + 1;
 		MakeFSM();
 	}
 	private void Update()
 	{
-        if (!_isOnMap)
+        if (!isOnMap)
         {
             _fsm.CurrentState.Reason();
             _fsm.CurrentState.Act();
@@ -73,14 +75,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		_currentStateID = _fsm.CurrentID;
 
-		_isGrounded = IsGrounded();
+		isGrounded = IsGrounded();
 
-		if(_dashTimer > dashReset && _isGrounded)
+		if(dashTimer > dashReset && isGrounded)
 		{
-			_canDash = true;
+			canDash = true;
 		}
 
-		if(_canDash == false)
+		if(canDash == false)
 		{
 			DashReset();
 		}
@@ -88,9 +90,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	public void DashReset()
 	{
-		_dashTimer += Time.deltaTime;
-		if (_dashTimer > dashReset)
-			_dashTimer = dashReset + 1;
+		dashTimer += Time.deltaTime;
+		if (dashTimer > dashReset)
+			dashTimer = dashReset + 1;
 	}
 
 	public bool IsGrounded()
@@ -101,7 +103,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public IEnumerator EndIsOnMap()
     {
         yield return new WaitForSeconds(0.05f);
-        _isOnMap = false;
+        isOnMap = false;
     }
 
 	private void MakeFSM()

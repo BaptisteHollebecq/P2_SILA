@@ -91,7 +91,7 @@ public class HUDPause : MonoBehaviour
             {
                 _isOpen = true;
                 _canvasButtons.gameObject.SetActive(true);
-                _player._isOnMap = true;
+                _player.isOnMap = true;
                 Time.timeScale = 0;
             }
             else

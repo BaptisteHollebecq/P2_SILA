@@ -59,7 +59,7 @@ public class FlyState : FSMState
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
-		if (_playerScript._canDash && Input.GetButtonDown("Dash"))
+		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
 			_playerScript.SetTransition(Transition.Dashing);
 	}
 
