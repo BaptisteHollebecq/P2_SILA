@@ -716,6 +716,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2149846308191843319, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
       propertyPath: camera
@@ -801,10 +806,10 @@ PrefabInstance:
       propertyPath: smoothTime
       value: 0.02
       objectReference: {fileID: 0}
-    - target: {fileID: 2149846308191843319, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: jumpBufferTimer
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2149846309420972630, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
