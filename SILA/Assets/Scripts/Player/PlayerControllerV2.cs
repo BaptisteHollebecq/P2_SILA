@@ -49,7 +49,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float lowerJumpFall;
 	public float airRotation;
 	public float groundedRotation;
-	public float radiusJumpBuffer;
+	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
 
 	float _distToGround;

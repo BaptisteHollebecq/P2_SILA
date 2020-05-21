@@ -24,11 +24,13 @@ public class BasicState : FSMState
 	float _airRotation;
 	float _groundRotation;
 
-	bool _jumpBuffer;
-	float _radiusBuffer;
-
 	float _refDamp = 0f;
 	float _smoothTime;
+
+	bool _hasJumped;
+	bool _canJump;
+	float _jumpTimer;
+	float _maxJumpTimer;
 
 	Camera _camera;
 	Vector3 moveDirection;
@@ -56,7 +58,7 @@ public class BasicState : FSMState
 		_groundRotation = scriptPlayer.groundedRotation;
 		_animator = anim;
 		_speedStore = _moveSpeed;
-		_radiusBuffer = scriptPlayer.radiusJumpBuffer;
+		_maxJumpTimer = scriptPlayer.jumpBufferTimer;
 		_smoothTime = scriptPlayer.smoothTime;
 	}
 
@@ -82,11 +84,6 @@ public class BasicState : FSMState
 		return Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
 	}
 
-	public bool JumpBuffer()
-	{
-		return Physics.CheckSphere(_playerScript.feet.transform.position, _radiusBuffer, _whatIsGround);
-	}
-
 	public override void Reason()
 	{
 		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
@@ -110,7 +107,7 @@ public class BasicState : FSMState
 			}
 		}
 
-		if(!IsGrounded() && Input.GetButtonDown("Jump") && !JumpBuffer())
+		if(!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
 		{
 			_playerScript.SetTransition(Transition.Flying);
 		}
@@ -163,16 +160,36 @@ public class BasicState : FSMState
 
 			if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
 				moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
+
+			if(!_hasJumped)
+			{
+				_canJump = true;
+				_jumpTimer += Time.deltaTime;
+			}
 		}
 		else
 		{
+			_hasJumped = false;
+			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 		}
+
+		if(_jumpTimer > _maxJumpTimer)
+		{
+			_hasJumped = true;
+			_jumpTimer = 0;
+			_canJump = false;
+		}
+
+		Debug.Log(_jumpTimer);
+		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
 		#region Jump
 
-		if (Input.GetButtonDown("Jump") && JumpBuffer())
+		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
 			//_animator.SetBool("Jump", true);
+			_canJump = false;
+			_hasJumped = true;
 			_rb.velocity = Vector3.zero;
 			moveDirection.y = 0;
 			Debug.Log("Je saute !");

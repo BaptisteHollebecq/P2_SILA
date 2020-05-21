@@ -67,7 +67,7 @@ public class FlyState : FSMState
 	{
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
+			stickInput = Vector3.zero;                                                                          //      INPUT = ZERO
 		else                                                                                                    //
 		{                                                                                                       //
 			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
@@ -87,7 +87,11 @@ public class FlyState : FSMState
 
 		GetCamSettings();
 
-		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
+		if (stickInput.magnitude > _deadZone)
+			moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
+		else if (stickInput.magnitude < _deadZone)
+			moveDirection = _transformPlayer.forward.normalized;
+		 
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
 
