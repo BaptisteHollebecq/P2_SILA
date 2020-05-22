@@ -9,10 +9,10 @@ public class Stele : MonoBehaviour
     public TimeMenu timeMenu;
     [Header("BrokenTime")]
     private bool isBroken = false;
-    [SerializeField] private bool brokenDay = false;
-    [SerializeField] private bool brokenNight = false;
-    [SerializeField] private bool brokenMorning = false;
-    [SerializeField] private bool brokenNoon = false;
+    [SerializeField] public bool brokenDay = false;
+    [SerializeField] public bool brokenNight = false;
+    [SerializeField] public bool brokenMorning = false;
+    [SerializeField] public bool brokenNoon = false;
 
     private PlayerLifeManager _respawn;
 
@@ -20,6 +20,13 @@ public class Stele : MonoBehaviour
     {
         if (brokenDay || brokenMorning || brokenNight || brokenNoon)
             isBroken = true;
+    }
+
+
+    private void Update()
+    {
+        if (!brokenDay && !brokenNight && !brokenMorning && !brokenNoon)
+            isBroken = false;
     }
 
     public void Interact ()

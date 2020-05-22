@@ -37,7 +37,9 @@ public class HUDInGame : MonoBehaviour
 
     private List<Image> _healthBar = new List<Image>();
 
-    private int _checkLifeChangement = 0;
+    private int _checkLifeChangement = -1;
+    private bool _isShowed = true;
+
 
     private void Update()
     {
@@ -49,6 +51,21 @@ public class HUDInGame : MonoBehaviour
         {
             ActualiseLife();
             _checkLifeChangement = _lifeManager.Life;
+        }
+        
+        if(Input.GetButtonDown("JRight"))
+        {
+            if (_isShowed)
+            {
+                Hide();
+                _isShowed = false;
+            }
+            else
+            {
+                Show();
+                _isShowed = true;
+            }
+
         }
     }
 
