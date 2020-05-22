@@ -770,6 +770,16 @@ PrefabInstance:
       propertyPath: dashReset
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: groundedRotation
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910422014117961231, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
+        type: 3}
+      propertyPath: airRotation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2149846308191843319, guid: 68e446d0c0ffe8e4eb734c5a6bbe64ba,
         type: 3}
       propertyPath: m_IsActive

@@ -46,6 +46,8 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float jumpGravity;
 	public float gravityScale;
 	public float lowerJumpFall;
+	public float airRotation;
+	public float groundedRotation;
 	public LayerMask whatIsGround;
 
 	float _distToGround;
