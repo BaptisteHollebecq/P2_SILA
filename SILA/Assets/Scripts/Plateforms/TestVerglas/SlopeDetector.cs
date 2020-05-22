@@ -30,7 +30,7 @@ public class SlopeDetector : MonoBehaviour
         {
             CheckForSlops();
         }
-}
+    }
 
     void CheckForSlops()
     {
