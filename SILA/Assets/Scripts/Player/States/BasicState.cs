@@ -24,8 +24,13 @@ public class BasicState : FSMState
 	float _airRotation;
 	float _groundRotation;
 
-	float _lerp;
-	float _maxLerp = 1;
+	float _refDamp = 0f;
+	float _smoothTime;
+
+	bool _hasJumped;
+	bool _canJump;
+	float _jumpTimer;
+	float _maxJumpTimer;
 
 	Camera _camera;
 	Vector3 moveDirection;
@@ -51,11 +56,10 @@ public class BasicState : FSMState
 		_jumpGravity = scriptPlayer.jumpGravity;
 		_airRotation = scriptPlayer.airRotation;
 		_groundRotation = scriptPlayer.groundedRotation;
-
 		_animator = anim;
-
 		_speedStore = _moveSpeed;
-		_lerp = 0;
+		_maxJumpTimer = scriptPlayer.jumpBufferTimer;
+		_smoothTime = scriptPlayer.smoothTime;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -82,7 +86,7 @@ public class BasicState : FSMState
 
 	public override void Reason()
 	{
-		if (_playerScript._canDash && Input.GetButtonDown("Dash"))
+		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
 		{
 			_playerScript.SetTransition(Transition.Dashing);
 		}
@@ -103,7 +107,7 @@ public class BasicState : FSMState
 			}
 		}
 
-		if(!IsGrounded() && Input.GetButtonDown("Jump"))
+		if(!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
 		{
 			_playerScript.SetTransition(Transition.Flying);
 		}
@@ -112,8 +116,6 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-
-
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
@@ -151,7 +153,6 @@ public class BasicState : FSMState
 		if (!IsGrounded())
 		{
 			_moveSpeed = _airSpeed;
-			//_lerp += 1f;
 
 			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
 			if (Mathf.Abs(_rb.velocity.y) > 70)
@@ -159,35 +160,49 @@ public class BasicState : FSMState
 
 			if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
 				moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
+
+			if(!_hasJumped)
+			{
+				_canJump = true;
+				_jumpTimer += Time.deltaTime;
+			}
 		}
 		else
 		{
+			_hasJumped = false;
+			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
-			/*if (_lerp > _maxLerp && IsGrounded())
-				_lerp = 0;*/
 		}
 
+		if(_jumpTimer > _maxJumpTimer)
+		{
+			_hasJumped = true;
+			_jumpTimer = 0;
+			_canJump = false;
+		}
 
+		Debug.Log(_jumpTimer);
+		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
 		#region Jump
-		if (Input.GetButtonDown("Jump") && IsGrounded())
+
+		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
 			//_animator.SetBool("Jump", true);
+			_canJump = false;
+			_hasJumped = true;
+			_rb.velocity = Vector3.zero;
+			moveDirection.y = 0;
 			Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-			_gravityScale = _jumpGravity;
-			//_gravityScale = Mathf.Lerp(_gravityScale, _jumpGravity, _lerp);
-			//moveDirection.y = _jumpForce * Time.deltaTime;
+			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
 		}
 		else
 			_animator.SetBool("Jump", false);
 
-		/*if (!Physics.Raycast(_transformPlayer.position, -Vector3.up, jumpHigh, _whatIsGround))
-			moveDirection.y = Mathf.Lerp(0, -_gravityScale, 0.5f);*/
-
 
 		#endregion
 
-			_rb.velocity = moveDirection;
+		_rb.velocity = moveDirection;
 
 		#region Animator
 		if (IsGrounded())
@@ -216,8 +231,6 @@ public class BasicState : FSMState
 
 
 		#endregion
-
-		Debug.Log(_moveSpeed);
 	}
 
 	public override void DoBeforeEntering()
