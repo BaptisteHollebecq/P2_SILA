@@ -12,6 +12,7 @@ public class WindPlatform : MonoBehaviour
 
     public bool Debug = false;
     public float windForce;
+    private float inertieDuration = 5f;
 
 
     private void Awake()
@@ -46,6 +47,7 @@ public class WindPlatform : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            _player.WindInertie(_windDirection, windForce, inertieDuration);
             _rb = null;
             _player = null;
         }
