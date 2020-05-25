@@ -24,7 +24,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	StateID _currentStateID;
 
 	[HideInInspector]
-	public float _speedStore;
+	public float speedStore;
 
 	[HideInInspector]
 	public bool isGrounded;
@@ -86,12 +86,12 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
-		_isGrounded = IsGrounded();
-        if (_isGrounded == true)
+		isGrounded = IsGrounded();
+        if (isGrounded == true)
             activeWind = false;
 
 
-        if (_dashTimer > dashReset && _isGrounded)
+        if (dashTimer > dashReset && isGrounded)
 		{
 			canDash = true;
 		}
