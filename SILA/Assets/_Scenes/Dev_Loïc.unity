@@ -301,12 +301,12 @@ PrefabInstance:
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10.6
       objectReference: {fileID: 0}
     - target: {fileID: 5424354313221334442, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
@@ -886,20 +886,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: SIKA_Idle_v1
       objectReference: {fileID: 0}
+    - target: {fileID: 3778589855829006383, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.046077877
       objectReference: {fileID: 0}
     - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00024330616
       objectReference: {fileID: 0}
     - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.04289484
       objectReference: {fileID: 0}
     - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
@@ -955,6 +960,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827649148271150918, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139119969349804217, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 5139119969349804214, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}

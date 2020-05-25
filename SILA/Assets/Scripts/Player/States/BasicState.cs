@@ -169,7 +169,6 @@ public class BasicState : FSMState
 		}
 		else
 		{
-			_hasJumped = false;
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 		}
