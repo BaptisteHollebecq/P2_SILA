@@ -2334,18 +2334,28 @@ MonoBehaviour:
   animator: {fileID: 3901664139412617062}
   player: {fileID: 7995055669819729935}
   camera: {fileID: 0}
+  feet: {fileID: 0}
   _currentStateID: 0
-  _speedStore: 0
-  _isGrounded: 0
+  speedStore: 0
+  isGrounded: 0
+  isOnMap: 0
+  canDash: 0
+  dashTimer: 0
   moveSpeed: 7
+  airSpeed: 0
   jumpForce: 6.5
   dashSpeed: 20
   dashDuration: 0.5
-  gravityScale: 0
+  dashReset: 0
   flySpeed: 0
   flyGravityScale: 2
-  higherJumpFall: 2
+  jumpGravity: 0
+  smoothTime: 0
+  gravityScale: 0
   lowerJumpFall: 1.5
+  airRotation: 0
+  groundedRotation: 0
+  jumpBufferTimer: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
