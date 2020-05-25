@@ -11,6 +11,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public Animator animator;
 	public GameObject player;
 	public Camera camera;
+	public GameObject feet;
 
 	public Rigidbody _playerRb { get; private set; }
 
@@ -23,17 +24,18 @@ public class PlayerControllerV2 : MonoBehaviour
 	StateID _currentStateID;
 
 	[HideInInspector]
-	public float _speedStore;
-	[HideInInspector]
-	public bool _isGrounded;
-	[HideInInspector]
-	public bool _isOnMap;
-	//[HideInInspector]
-	public bool _canDash;
-	//[HideInInspector]
-	public float _dashTimer;
+	public float speedStore;
 
-    [Header("Player")]
+	[HideInInspector]
+	public bool isGrounded;
+	[HideInInspector]
+	public bool isOnMap;
+	[HideInInspector]
+	public bool canDash;
+	[HideInInspector]
+	public float dashTimer;
+
+	[Header("Player")]
 	public float moveSpeed;
 	public float airSpeed;
 	public float jumpForce;
@@ -43,51 +45,87 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float flySpeed;
 	public float flyGravityScale;
 	public float jumpGravity;
+	public float smoothTime;
 	public float gravityScale;
 	public float lowerJumpFall;
+	public float airRotation;
+	public float groundedRotation;
+	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
 
 	float _distToGround;
 
-	public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
+    //VARIABLE WIND INERTIE
+    private Vector3 windDirection;
+    private float windForce;
+    private float initialWindForce;
+    private float windDuration;
+    private bool activeWind;
+
+
+
+
+
+    public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
 		_playerRb = GetComponent<Rigidbody>();
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
-		_speedStore = moveSpeed;
+		speedStore = moveSpeed;
 		_distToGround = _collider.bounds.extents.y - 0.8f;
-		_dashTimer = dashReset + 1;
+		dashTimer = dashReset + 1;
 		MakeFSM();
 	}
 	private void Update()
 	{
-        if (!_isOnMap)
+        if (!isOnMap)
         {
             _fsm.CurrentState.Reason();
             _fsm.CurrentState.Act();
         }
 
 		_currentStateID = _fsm.CurrentID;
+		isGrounded = IsGrounded();
+        if (isGrounded == true)
+            activeWind = false;
 
-		_isGrounded = IsGrounded();
 
-		if(_dashTimer > dashReset && _isGrounded)
+        if (dashTimer > dashReset && isGrounded)
 		{
-			_canDash = true;
+			canDash = true;
 		}
 
-		if(_canDash == false)
+		if(canDash == false)
 		{
 			DashReset();
 		}
-	}
+
+        if (activeWind)
+        {
+            Debug.Log("inertie wind");
+            _playerRb.AddForce(windDirection * windForce, ForceMode.Force);
+            windForce -= (initialWindForce * Time.deltaTime) / windDuration;
+            if (windForce <= 0)
+                activeWind = false;
+        }
+
+    }
+
+    public void WindInertie(Vector3 direction , float force, float duration)
+    {
+        windDirection = direction;
+        windForce = force;
+        initialWindForce = force;
+        windDuration = duration;
+        activeWind = true;
+    }
 
 	public void DashReset()
 	{
-		_dashTimer += Time.deltaTime;
-		if (_dashTimer > dashReset)
-			_dashTimer = dashReset + 1;
+		dashTimer += Time.deltaTime;
+		if (dashTimer > dashReset)
+			dashTimer = dashReset + 1;
 	}
 
 	public bool IsGrounded()
@@ -98,7 +136,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public IEnumerator EndIsOnMap()
     {
         yield return new WaitForSeconds(0.05f);
-        _isOnMap = false;
+        isOnMap = false;
     }
 
 	private void MakeFSM()

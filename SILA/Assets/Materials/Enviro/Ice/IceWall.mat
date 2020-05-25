@@ -90,7 +90,8 @@ Material:
     - _HeightLimit: 6.21
     - _HeightScale: 0.15
     - _Heightmuliplier: 2
-    - _Melting: 0
+    - _MaxEmission: 2
+    - _Melting: -1
     - _MeltingColorLimit: 5.08
     - _Metallic: 0
     - _Mode: 0
@@ -99,7 +100,7 @@ Material:
     - _Parallax: 0.02
     - _Param_Lenght: -0.03
     - _SmoothnessTextureChannel: 0
-    - _SnowCavity: -10
+    - _SnowCavity: -0
     - _Snowdeposit: 33.22
     - _Specular: 46.22
     - _SpecularHighlights: 1

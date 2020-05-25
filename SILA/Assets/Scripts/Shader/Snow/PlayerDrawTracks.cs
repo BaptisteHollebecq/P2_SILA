@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDrawTracks : MonoBehaviour
 {
-
+    public RenderTexture rendertexture;
     public bool debug;
 
     private RenderTexture _splatMap;
@@ -56,46 +56,51 @@ public class PlayerDrawTracks : MonoBehaviour
         _drawMaterial = new Material(drawShader);
 
         _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+
         for (int i = 0; i < terrain.Length; i++)
         {
             _snowMaterial[i] = terrain[i].GetComponent<MeshRenderer>().material;
-           // _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+           _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
             
         }
 
 
         playercontroller = GetComponentInParent<PlayerController>();
 
-        //debug -   _snowMaterial[0].SetColor("_SnowColor", Color.red);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 playerPos = new Vector2(-transform.position.x, -transform.position.z);
+        
 
         for (int i = 0; i < terrain.Length; i++)
         {
-            //_snowMaterial[i].SetVector("_PositionPlayer", playerPos);
-            //_snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+            _snowMaterial[i].SetVector("_PositionPlayer", playerPos);
+            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
         }
+
         
         moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
         tempCoordinates = transform.position;
+
+        _drawMaterial.SetTexture("Texture", rendertexture);
 
         for (int i = 0; i < ObjectsTracing.Length; i++)
         {
 
             if (Physics.Raycast(ObjectsTracing[i].position, Vector3.down, out _groundHit, 0.4f, _layerMask))
             {
-                //tempgameobject = _groundHit.transform.gameObject;
+                tempgameobject = _groundHit.transform.gameObject;
 
-                //_drawMaterial[j].SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
+                //_drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
                 
                 _drawMaterial.SetVector("_Center", new Vector4(0.5f, 0.5f, 0, 0));
-                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
+                
 
-                //Debug.Log(new Vector4(Mathf.InverseLerp(0, 1, playercontroller.moveDirection.x), Mathf.InverseLerp(0, 1, playercontroller.moveDirection.y), 0, 0));
+                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
 
                 //tempCoordinates = _groundHit.textureCoord;
 
@@ -125,7 +130,7 @@ public class PlayerDrawTracks : MonoBehaviour
             for (int i = 0; i < terrain.Length; i++)
             {
                 _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
-                //_snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
                 
             }
             
@@ -137,7 +142,7 @@ public class PlayerDrawTracks : MonoBehaviour
 
         if (debug)
         {
-            Debug.DrawRay(ObjectsTracing[0].position, Vector3.down * 5, Color.red);
+            //Debug.DrawRay(ObjectsTracing[0].position, Vector3.down * 5, Color.red);
             GUI.DrawTexture(new Rect(0, 0, 256, 256), _splatMap, ScaleMode.ScaleToFit, false, 1);
             
         }

@@ -83,8 +83,8 @@ public class DashState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
-		_playerScript._canDash = false;
-		_playerScript._dashTimer = 0;
+		_playerScript.canDash = false;
+		_playerScript.dashTimer = 0;
 		_animator.SetBool("Dash", false);
 	}
 
