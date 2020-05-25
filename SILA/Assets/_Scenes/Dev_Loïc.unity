@@ -498,7 +498,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fad462aad086c5340945d9b7302189f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -599,7 +599,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -941,6 +941,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 156331504535071292, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5139119969349804214, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: animator
@@ -960,6 +975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: moveSpeed
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139119969349804214, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: jumpBufferTimer
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8544735446438489458, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}

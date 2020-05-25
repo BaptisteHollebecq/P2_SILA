@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColorRGBOutlineWidthA:
-        m_Texture: {fileID: 2800000, guid: d4751595320fc764e9ec4b49fb9baaef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1b8ba7fb5a0a27145819eec83687e2b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a53d30d81c2bd7f46979db37b9ed773f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
