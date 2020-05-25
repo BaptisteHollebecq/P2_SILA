@@ -28,6 +28,8 @@ public class Geyser : MonoBehaviour
         if (other.GetComponent<Rigidbody>() != null)
         {
             _rb = other.GetComponent<Rigidbody>();
+            if (_rb.velocity.y < 0)
+                _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
         }
     }
 
@@ -53,7 +55,6 @@ public class Geyser : MonoBehaviour
                 case State.Charging:
                     {
                         //PLAY CHARGING ANIMATION HERE
-                        Debug.Log("Charging");
                         if (_timer / 50 >= ChargingTime)
                         {
                             actualState = State.Active;
@@ -63,12 +64,14 @@ public class Geyser : MonoBehaviour
                     }
                 case State.Active:
                     {
-                        float force = PushForce + ((ActiveTime * 50)/* * 2*/);
+                        
+                        float force = PushForce;
                         if (_rb != null)
                         {
                             _rb.AddForce(Vector3.up * (force * 10));
                         }
-                        force -= 2;
+                        if (force < PushForce * 2)
+                            force += 2;
 
                         if (_timer / 50 >= ActiveTime)
                         {

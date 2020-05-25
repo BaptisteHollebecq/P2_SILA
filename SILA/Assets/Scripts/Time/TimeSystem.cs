@@ -12,6 +12,9 @@ public class TimeSystem : MonoBehaviour
     public static event System.Action EndedTransition;
     public static event System.Action StartedTransition;
 
+    public static event System.Action StatedMorningToDay;
+    public static event System.Action StatedDayToNoon;
+
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -196,6 +199,7 @@ public class TimeSystem : MonoBehaviour
                 _transitionSlide += _transitionScale;
                 if (from == TimeOfDay.Morning)
                 {
+                    StatedMorningToDay?.Invoke();
                     _light.color = _colorMorning.Evaluate(_transitionSlide);
                     RenderSettings.ambientSkyColor = _SkyColorMorning.Evaluate(_transitionSlide);
                     RenderSettings.ambientGroundColor = _GroundColorMorning.Evaluate(_transitionSlide);
@@ -213,6 +217,7 @@ public class TimeSystem : MonoBehaviour
                 }
                 else if (from == TimeOfDay.Day)
                 {
+                    StatedDayToNoon?.Invoke();
                     _light.color = _colorDay.Evaluate(_transitionSlide);
                     RenderSettings.ambientSkyColor = _SkyColorDay.Evaluate(_transitionSlide);
                     RenderSettings.ambientGroundColor = _GroundColorDay.Evaluate(_transitionSlide);

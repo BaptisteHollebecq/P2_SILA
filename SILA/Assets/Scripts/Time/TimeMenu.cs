@@ -19,9 +19,25 @@ public class TimeMenu : MonoBehaviour
 	private CanvasGroup CanvasGroup;
     public HUDInGame Hud;
 
+    [HideInInspector] public bool isBroken = false;
+    [HideInInspector] public bool brokenDay = false;
+    [HideInInspector] public bool brokenNight = false;
+    [HideInInspector] public bool brokenMorning = false;
+    [HideInInspector] public bool brokenNoon = false;
+
+    private Transform _daySprite;
+    private Transform _nightSprite;
+    private Transform _morningSprite;
+    private Transform _noonSprite;
+
     private void Awake()
     {
         Initialize();
+        _daySprite = transform.GetChild(0);
+        _nightSprite = transform.GetChild(1);
+        _morningSprite = transform.GetChild(2);
+        _noonSprite = transform.GetChild(3);
+
     }
 
     private void Initialize()
@@ -45,7 +61,18 @@ public class TimeMenu : MonoBehaviour
     {
         if (!_isActive)
         {
-            MenuDisplayed?.Invoke();
+            if (isBroken)
+            {
+                if (brokenDay)
+                    _daySprite.gameObject.SetActive(false);
+                if (brokenNight)
+                    _nightSprite.gameObject.SetActive(false);
+                if (brokenNoon)
+                    _noonSprite.gameObject.SetActive(false);
+                if (brokenMorning)
+                    _morningSprite.gameObject.SetActive(false);
+            }
+                MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
             Hud.Hide();
@@ -92,6 +119,7 @@ public class TimeMenu : MonoBehaviour
                     _isActive = false;
                     CanvasGroup.alpha = 0;
                     Hud.Show();
+                    ResetBrokenTime();
                 }
             }
             if (Input.GetButtonDown("A"))
@@ -101,12 +129,25 @@ public class TimeMenu : MonoBehaviour
         }
     }
 
+    private void ResetBrokenTime()
+    {
+        isBroken = false;
+        brokenDay = false;
+        brokenMorning = false;
+        brokenNight = false;
+        brokenNoon = false;
+        _daySprite.gameObject.SetActive(true);
+        _nightSprite.gameObject.SetActive(true);
+        _morningSprite.gameObject.SetActive(true);
+        _noonSprite.gameObject.SetActive(true);
+    }
+
     private void CheckTime()
     {
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Day)
+            if (TimeSystem.actualTime != TimeOfDay.Day && !brokenDay)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
@@ -115,7 +156,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Morning)
+            if (TimeSystem.actualTime != TimeOfDay.Morning && !brokenMorning)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
@@ -124,7 +165,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 135f || _arrowAngle <= -135f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Night)
+            if (TimeSystem.actualTime != TimeOfDay.Night && !brokenNight)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
@@ -133,7 +174,7 @@ public class TimeMenu : MonoBehaviour
         }
         else
         {
-            if (TimeSystem.actualTime != TimeOfDay.Noon)
+            if (TimeSystem.actualTime != TimeOfDay.Noon && !brokenNoon)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;

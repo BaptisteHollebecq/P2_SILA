@@ -1,14 +1,17 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
 { 
 
 	[Header("Setup Manuel")]
-	//public Animator animator;
+	public Animator animator;
 	public GameObject player;
 	public Camera camera;
+	public GameObject feet;
 
 	public Rigidbody _playerRb { get; private set; }
 
@@ -21,57 +24,136 @@ public class PlayerControllerV2 : MonoBehaviour
 	StateID _currentStateID;
 
 	[HideInInspector]
-	public float _speedStore;
+	public float speedStore;
+
+	[HideInInspector]
+	public bool isGrounded;
+	[HideInInspector]
+	public bool isOnMap;
+	[HideInInspector]
+	public bool canDash;
+	[HideInInspector]
+	public float dashTimer;
 
 	[Header("Player")]
 	public float moveSpeed;
+	public float airSpeed;
 	public float jumpForce;
 	public float dashSpeed;
 	public float dashDuration;
-	public float gravityScale;
+	public float dashReset;
+	public float flySpeed;
 	public float flyGravityScale;
-	public float higherJumpFall;
+	public float jumpGravity;
+	public float smoothTime;
+	public float gravityScale;
 	public float lowerJumpFall;
+	public float airRotation;
+	public float groundedRotation;
+	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
 
-	public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
+	float _distToGround;
+
+    //VARIABLE WIND INERTIE
+    private Vector3 windDirection;
+    private float windForce;
+    private float initialWindForce;
+    private float windDuration;
+    private bool activeWind;
+
+
+
+
+
+    public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
 		_playerRb = GetComponent<Rigidbody>();
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
-		_speedStore = moveSpeed;
+		speedStore = moveSpeed;
+		_distToGround = _collider.bounds.extents.y - 0.8f;
+		dashTimer = dashReset + 1;
 		MakeFSM();
 	}
 	private void Update()
 	{
-		_fsm.CurrentState.Reason();
-		_fsm.CurrentState.Act();
+        if (!isOnMap)
+        {
+            _fsm.CurrentState.Reason();
+            _fsm.CurrentState.Act();
+        }
 
 		_currentStateID = _fsm.CurrentID;
+		isGrounded = IsGrounded();
+        if (isGrounded == true)
+            activeWind = false;
+
+
+        if (dashTimer > dashReset && isGrounded)
+		{
+			canDash = true;
+		}
+
+		if(canDash == false)
+		{
+			DashReset();
+		}
+
+        if (activeWind)
+        {
+            Debug.Log("inertie wind");
+            _playerRb.AddForce(windDirection * windForce, ForceMode.Force);
+            windForce -= (initialWindForce * Time.deltaTime) / windDuration;
+            if (windForce <= 0)
+                activeWind = false;
+        }
+
+    }
+
+    public void WindInertie(Vector3 direction , float force, float duration)
+    {
+        windDirection = direction;
+        windForce = force;
+        initialWindForce = force;
+        windDuration = duration;
+        activeWind = true;
+    }
+
+	public void DashReset()
+	{
+		dashTimer += Time.deltaTime;
+		if (dashTimer > dashReset)
+			dashTimer = dashReset + 1;
 	}
+
+	public bool IsGrounded()
+	{
+		return Physics.Raycast(player.transform.position, -Vector3.up, _distToGround + 0.12f, whatIsGround);
+	}
+
+    public IEnumerator EndIsOnMap()
+    {
+        yield return new WaitForSeconds(0.05f);
+        isOnMap = false;
+    }
+
 	private void MakeFSM()
 	{
-
-		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround);
-		basicState.AddTransition(Transition.Basic, StateID.Basic);
+		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
-		basicState.AddTransition(Transition.Jumping, StateID.Jump);
 		basicState.AddTransition(Transition.Falling, StateID.Fall);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);
 		basicState.AddTransition(Transition.Zooming, StateID.Zoom);
 		basicState.AddTransition(Transition.Flying, StateID.Fly);
 
-		JumpState jumpState = new JumpState(_scriptOnPlayer, _playerRb);
-		jumpState.AddTransition(Transition.Basic, StateID.Basic);
-		jumpState.AddTransition(Transition.Dashing, StateID.Dash);
-		jumpState.AddTransition(Transition.Falling, StateID.Fall);
-
-		DashState dashState = new DashState(_playerRb, _scriptOnPlayer, player.transform, camera);
+		DashState dashState = new DashState(_playerRb, _scriptOnPlayer, player.transform, camera, animator);
 		dashState.AddTransition(Transition.Basic, StateID.Basic);
 		dashState.AddTransition(Transition.Falling, StateID.Fall);
+		dashState.AddTransition(Transition.Flying, StateID.Fly);
 
-		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround);
+		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		flyState.AddTransition(Transition.Basic, StateID.Basic);
 		flyState.AddTransition(Transition.Falling, StateID.Fall);
 		flyState.AddTransition(Transition.Dashing, StateID.Dash);
@@ -86,12 +168,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
-		zoomState.AddTransition(Transition.Jumping, StateID.Jump);
+
+
 
 
 		_fsm = new FSMSystem();
 		_fsm.AddState(basicState);
-		_fsm.AddState(jumpState);
 		_fsm.AddState(dashState);
 		_fsm.AddState(flyState);
 		_fsm.AddState(fallState);

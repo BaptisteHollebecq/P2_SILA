@@ -6,12 +6,13 @@ public class WindPlatform : MonoBehaviour
 {
     private Vector3 _windDirection;
     private Rigidbody _rb;
-    private PlayerMovement _player;
+    private PlayerControllerV2 _player;
     private bool _isGrounded = false;
     private MeshRenderer _renderer;
 
     public bool Debug = false;
     public float windForce;
+    private float inertieDuration = 5f;
 
 
     private void Awake()
@@ -38,7 +39,7 @@ public class WindPlatform : MonoBehaviour
         if (other.tag == "Player")
         {
             _rb = other.GetComponent<Rigidbody>();
-            _player = other.GetComponent<PlayerMovement>();
+            _player = other.GetComponent<PlayerControllerV2>();
         }
     }
 
@@ -46,6 +47,7 @@ public class WindPlatform : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            _player.WindInertie(_windDirection, windForce, inertieDuration);
             _rb = null;
             _player = null;
         }

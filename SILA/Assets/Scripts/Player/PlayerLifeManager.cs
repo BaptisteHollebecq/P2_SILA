@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
-    public PlayerMovement Player;
+    public PlayerControllerV2 Player;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } }

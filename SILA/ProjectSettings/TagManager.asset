@@ -36,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - PostProcess
   m_SortingLayers:
   - name: Default

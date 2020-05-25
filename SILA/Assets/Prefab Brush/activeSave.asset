@@ -27,13 +27,13 @@ MonoBehaviour:
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
-  checkLayer: 1
+  checkLayer: 0
   checkTag: 0
-  checkSlope: 1
+  checkSlope: 0
   requiredTagMask: 0
-  requiredLayerMask: 32
+  requiredLayerMask: 0
   minRequiredSlope: 0
-  maxRequiredSlope: 30.207613
+  maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
   draggingAction: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   minZScale: 1
   maxZScale: 1
   parentList: []
-  eraseBrushSize: 4.36
+  eraseBrushSize: 1
   minEraseBrushSize: 0.1
   maxEraseBrushSize: 20
   eraseType: 0

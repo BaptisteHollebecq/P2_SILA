@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 152512107356839248}
   - component: {fileID: 4823452928245446373}
   - component: {fileID: 7566311183231578180}
-  - component: {fileID: 63876759174021770}
   m_Layer: 8
   m_Name: IcePlatform
   m_TagString: Untagged
@@ -113,20 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af68473490319d54cb4525483be195ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &63876759174021770
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882789386268010892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4699030598540238252, guid: 67a0f383c69ad324cb3727e4d3277191, type: 3}
 --- !u!1 &5059908416225664146
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +125,7 @@ GameObject:
   - component: {fileID: 6537402191593258811}
   - component: {fileID: 5559051181412731215}
   - component: {fileID: 4240144175628372910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +898,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059908416225664146}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ee6844e89d80f234ca5bc3f70faf700f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3

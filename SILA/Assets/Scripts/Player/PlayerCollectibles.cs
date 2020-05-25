@@ -22,6 +22,7 @@ public class PlayerCollectibles : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         _maskCollectibles = 0;
+        //ajouter un point de vie
         _change = false;
     }
 

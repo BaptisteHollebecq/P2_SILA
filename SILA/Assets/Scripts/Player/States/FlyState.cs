@@ -7,6 +7,7 @@ public class FlyState : FSMState
 	PlayerControllerV2 _playerScript;
 	Transform _transformPlayer;
 	Collider _playerCollider;
+	Animator _animator;
 	LayerMask _whatIsGround;
 	float _distToGround;
 
@@ -20,7 +21,7 @@ public class FlyState : FSMState
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
-	public FlyState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam, Collider collider, LayerMask layerMask)
+	public FlyState(Rigidbody rb, PlayerControllerV2 player, Transform transform, Camera cam, Collider collider, LayerMask layerMask, Animator anim)
 	{
 		ID = StateID.Fly;
 		_rb = rb;
@@ -28,10 +29,11 @@ public class FlyState : FSMState
 		_transformPlayer = transform;
 		camera = cam;
 		_playerScript = player;
-		_moveSpeed = player.moveSpeed * 2;
+		_moveSpeed = player.flySpeed;
 		_playerCollider = collider;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_whatIsGround = layerMask;
+		_animator = anim;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -57,13 +59,15 @@ public class FlyState : FSMState
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
+		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
+			_playerScript.SetTransition(Transition.Dashing);
 	}
 
 	public override void Act()
 	{
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (stickInput.magnitude < _deadZone)                                                                    //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-			stickInput = Vector2.zero;                                                                          //      INPUT = ZERO
+			stickInput = Vector3.zero;                                                                          //      INPUT = ZERO
 		else                                                                                                    //
 		{                                                                                                       //
 			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
@@ -83,22 +87,28 @@ public class FlyState : FSMState
 
 		GetCamSettings();
 
-		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
+		if (stickInput.magnitude > _deadZone)
+			moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
+		else if (stickInput.magnitude < _deadZone)
+			moveDirection = _transformPlayer.forward.normalized;
+		 
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
-		/*moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;*/
 
 		_rb.velocity = moveDirection;
 	}
 
 	public override void DoBeforeEntering()
 	{
+		_animator.SetBool("Jump", false);
+		_animator.SetBool("Fall", false);
+		_animator.SetBool("Fly", true);
 		_rb.useGravity = false;
 	}
 
 	public override void DoBeforeLeaving()
 	{
-		Debug.Log("J'arrete de voler");
+		_animator.SetBool("Fly", false);
 		_rb.useGravity = true;
 	}
 }
