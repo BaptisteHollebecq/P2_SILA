@@ -54,6 +54,8 @@ public class PlayerControllerV2 : MonoBehaviour
 	public LayerMask whatIsGround;
 
 	float _distToGround;
+    bool _isGrounded;
+    float speedStore;
 
     //VARIABLE WIND INERTIE
     private Vector3 windDirection;
@@ -91,7 +93,7 @@ public class PlayerControllerV2 : MonoBehaviour
             activeWind = false;
 
 
-        if (_dashTimer > dashReset && _isGrounded)
+        if (dashTimer > dashReset && _isGrounded)
 		{
 			canDash = true;
 		}
