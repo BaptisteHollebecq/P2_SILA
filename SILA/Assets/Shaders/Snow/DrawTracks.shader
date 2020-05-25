@@ -66,14 +66,14 @@
 
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-				float draw = pow(saturate(1 - distance(i.uv, _Center.xy)), 500 / Size);
+				//float draw = pow(saturate(1 - distance(i.uv, _Center.xy)), 500 / Size);
 
-				fixed4 drawcol =  _Color * (draw * Strenght * 500/Size);
+				//fixed4 drawcol =  _Color * (draw * Strenght * 500/Size);
 
-				float distFromCenter = distance(i.uv.xy, float2(0.5, 0.5));
-				float vignette = smoothstep(_VRadius, _VRadius - _VSoft, distFromCenter);
-
-				return saturate(col + drawcol);
+				//float distFromCenter = distance(i.uv.xy, float2(0.5, 0.5));
+				//float vignette = smoothstep(_VRadius, _VRadius - _VSoft, distFromCenter);
+				return col;
+				//return saturate(col + drawcol);
             }
             ENDCG
         }

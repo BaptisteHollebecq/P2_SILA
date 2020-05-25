@@ -25,6 +25,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	[HideInInspector]
 	public float speedStore;
+
 	[HideInInspector]
 	public bool isGrounded;
 	[HideInInspector]
@@ -54,7 +55,18 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	float _distToGround;
 
-	public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
+    //VARIABLE WIND INERTIE
+    private Vector3 windDirection;
+    private float windForce;
+    private float initialWindForce;
+    private float windDuration;
+    private bool activeWind;
+
+
+
+
+
+    public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
 		_playerRb = GetComponent<Rigidbody>();
@@ -74,10 +86,12 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
-
 		isGrounded = IsGrounded();
+        if (isGrounded == true)
+            activeWind = false;
 
-		if(dashTimer > dashReset && isGrounded)
+
+        if (dashTimer > dashReset && isGrounded)
 		{
 			canDash = true;
 		}
@@ -86,7 +100,26 @@ public class PlayerControllerV2 : MonoBehaviour
 		{
 			DashReset();
 		}
-	}
+
+        if (activeWind)
+        {
+            Debug.Log("inertie wind");
+            _playerRb.AddForce(windDirection * windForce, ForceMode.Force);
+            windForce -= (initialWindForce * Time.deltaTime) / windDuration;
+            if (windForce <= 0)
+                activeWind = false;
+        }
+
+    }
+
+    public void WindInertie(Vector3 direction , float force, float duration)
+    {
+        windDirection = direction;
+        windForce = force;
+        initialWindForce = force;
+        windDuration = duration;
+        activeWind = true;
+    }
 
 	public void DashReset()
 	{
