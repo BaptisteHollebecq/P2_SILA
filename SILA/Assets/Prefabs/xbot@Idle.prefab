@@ -5326,79 +5326,6 @@ Transform:
   m_Father: {fileID: 8300339055976203644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2149846308191843319
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2149846308191843318}
-  - component: {fileID: 2149846308191843312}
-  - component: {fileID: 2149846308191843313}
-  m_Layer: 0
-  m_Name: Pieds (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2149846308191843318
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2149846308191843319}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6390463960986229276}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2149846308191843312
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2149846308191843319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2149846308191843313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2149846308191843319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081732078878d1b408101e30a4952e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rendertexture: {fileID: 0}
-  debug: 0
-  drawShader: {fileID: 4800000, guid: 75419236954a8d642a303e10eb09cdc8, type: 3}
-  snowTrack_Shader: {fileID: 4800000, guid: 4ebec51aef1bb3c4ab00893093917d00, type: 3}
-  terrain:
-  - {fileID: 0}
-  - {fileID: 0}
-  _snowMaterial: []
-  ObjectsTracing:
-  - {fileID: 2149846308191843318}
-  brushSize: 300
-  brushStrenght: 10
-  float0: {x: 0, y: 0}
-  tempCoordinates: {x: 0, y: 0, z: 0}
-  moveDirection: {x: 0, y: 0, z: 0}
-  snowHeight: {fileID: 0}
 --- !u!1 &2300869522369573921
 GameObject:
   m_ObjectHideFlags: 0
@@ -11774,7 +11701,6 @@ Transform:
   - {fileID: 2920079015555179211}
   - {fileID: 7953291199170025278}
   - {fileID: 6869590267682797722}
-  - {fileID: 2149846308191843318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
