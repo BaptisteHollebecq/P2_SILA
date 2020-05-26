@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:SILA/Assets/Materials/Character.meta
-guid: ce2519ba1e2cdf941baed9bc76ea800e
-=======
-guid: e0eb2d284a2133f4c9ecd7b12a35befc
->>>>>>> LD:SILA/Assets/Art/HUDMap.meta
+guid: 7dbad3937496abb4290faf99456559e0
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

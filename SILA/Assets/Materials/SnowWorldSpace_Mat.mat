@@ -169,7 +169,7 @@ Material:
     - _Size: {r: 10000, g: 10000, b: 0, a: 0}
     - _Size1: {r: 10000, g: 10000, b: 0, a: 0}
     - _Size2: {r: 0, g: 0, b: 0, a: 0}
-    - _SnowEmissive: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0}
+    - _SnowEmissive: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
