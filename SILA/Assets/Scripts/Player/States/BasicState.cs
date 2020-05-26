@@ -187,7 +187,7 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
-			//_animator.SetBool("Jump", true);
+			_animator.SetBool("Jump", true);
 			_canJump = false;
 			_hasJumped = true;
 			_rb.velocity = Vector3.zero;
@@ -226,7 +226,7 @@ public class BasicState : FSMState
 		
 		if(_rb.velocity.y < 0)
 			_animator.SetBool("Fall", true);
-		else if(IsGrounded() && _animator.GetBool("Run") == true)
+		else if(IsGrounded())
 			_animator.SetBool("Fall", false);
 
 
