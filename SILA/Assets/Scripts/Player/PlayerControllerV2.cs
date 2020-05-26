@@ -163,7 +163,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		fallState.AddTransition(Transition.Dashing, StateID.Dash);
 		fallState.AddTransition(Transition.Flying, StateID.Fly);
 
-		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player);
+		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);
 		steleState.AddTransition(Transition.Basic, StateID.Basic);
 
 		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
