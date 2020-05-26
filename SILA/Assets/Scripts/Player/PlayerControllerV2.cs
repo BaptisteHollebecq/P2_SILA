@@ -88,8 +88,9 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
+
 		_isGrounded = IsGrounded();
-        if (_isGrounded == true)
+        if (_isGrounded)
             activeWind = false;
 
 
@@ -106,7 +107,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (activeWind)
         {
             Debug.Log("inertie wind");
-            _playerRb.AddForce(windDirection * windForce, ForceMode.Force);
+            _playerRb.AddForce(windDirection * windForce);
             windForce -= (initialWindForce * Time.deltaTime) / windDuration;
             if (windForce <= 0)
                 activeWind = false;
