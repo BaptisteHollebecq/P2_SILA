@@ -18,6 +18,7 @@ public class TimeMenu : MonoBehaviour
 
 	private CanvasGroup CanvasGroup;
     public HUDInGame Hud;
+    public SoundManager sound;
 
     [HideInInspector] public bool isBroken = false;
     [HideInInspector] public bool brokenDay = false;
@@ -144,6 +145,7 @@ public class TimeMenu : MonoBehaviour
 
     private void CheckTime()
     {
+        sound.Play("Transition");
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
