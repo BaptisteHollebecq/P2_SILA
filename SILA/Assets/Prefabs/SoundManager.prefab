@@ -62,7 +62,7 @@ MonoBehaviour:
     DecreaseTime: 0
   - name: AmbianceDawn
     type: 0
-    audioclip: {fileID: 0}
+    audioclip: {fileID: 8300000, guid: 069b5ab99a1565a4595be6b9a7debedf, type: 3}
     volume: 0.8
     loop: 1
     DecreaseTime: 0

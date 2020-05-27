@@ -14,10 +14,22 @@ public class WindPlatform : MonoBehaviour
     public float windForce;
     private float inertieDuration = 5f;
 
+    private AudioSource _source;
+    [Range(0f, 1f)] public float volume;
+
 
     private void Awake()
     {
         _renderer = transform.GetChild(1).GetComponent<MeshRenderer>();
+        _source = transform.GetComponent<AudioSource>();
+
+    }
+
+    private void Start()
+    {
+        _source.volume = volume * HUDOptions._params[0];
+        _source.loop = true;
+        _source.Play();
     }
 
     private void Update()
