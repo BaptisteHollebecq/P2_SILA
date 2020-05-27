@@ -51,25 +51,25 @@ MonoBehaviour:
   - name: AmbianceDay
     type: 0
     audioclip: {fileID: 0}
-    volume: 0.8
+    volume: 1
     loop: 1
     DecreaseTime: 0
   - name: AmbianceNight
     type: 0
     audioclip: {fileID: 0}
-    volume: 0.8
+    volume: 1
     loop: 1
     DecreaseTime: 0
   - name: AmbianceDawn
     type: 0
     audioclip: {fileID: 8300000, guid: 069b5ab99a1565a4595be6b9a7debedf, type: 3}
-    volume: 0.8
+    volume: 1
     loop: 1
     DecreaseTime: 0
   - name: AmbianceTwilight
     type: 0
     audioclip: {fileID: 0}
-    volume: 0.8
+    volume: 1
     loop: 1
     DecreaseTime: 0
   - name: Jump
@@ -103,9 +103,13 @@ MonoBehaviour:
     loop: 0
     DecreaseTime: 0.5
   AmbianceSource: {fileID: 1789455301390257532}
+  AmbianceVolume: 0
   CharacterSource: {fileID: 8052933761186177729}
+  CharacterVolume: 0
   EnvironementSource: {fileID: 3060029047206819100}
+  EnvironementVolume: 0
   TransitionSource: {fileID: 6655223738950277684}
+  TransitionVolume: 0
 --- !u!1 &728069518238231027
 GameObject:
   m_ObjectHideFlags: 0

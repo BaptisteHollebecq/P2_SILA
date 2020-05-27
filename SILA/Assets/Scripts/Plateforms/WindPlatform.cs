@@ -15,6 +15,7 @@ public class WindPlatform : MonoBehaviour
     private float inertieDuration = 5f;
 
     private AudioSource _source;
+    private Collider _collider;
     [Range(0f, 1f)] public float volume;
 
 
@@ -22,27 +23,33 @@ public class WindPlatform : MonoBehaviour
     {
         _renderer = transform.GetChild(1).GetComponent<MeshRenderer>();
         _source = transform.GetComponent<AudioSource>();
-
+        _collider = transform.GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
-        _source.volume = volume * HUDOptions._params[0];
-        _source.loop = true;
-        _source.Play();
+        
     }
 
     private void Update()
     {
         _windDirection = transform.GetChild(0).transform.forward;
-        //_windDirection = new Vector3(0,_windDirection.y,0);
-
-        /*if (Debug)
+        if (_collider.enabled == true)
         {
-            _renderer.enabled = true;
+            if (!_source.isPlaying)
+            {
+                _source.volume = volume * HUDOptions._params[0];
+                _source.loop = true;
+                _source.Play();
+            }
         }
         else
-            _renderer.enabled = false;*/
+        {
+            if (_source.isPlaying)
+            {
+                _source.Stop();
+            }
+        }
 
     }
 

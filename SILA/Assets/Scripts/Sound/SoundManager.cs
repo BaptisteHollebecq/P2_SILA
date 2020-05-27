@@ -24,11 +24,58 @@ public class SoundManager : MonoBehaviour
     public Sound[] sounds;
 
     public AudioSource AmbianceSource;
+    public float AmbianceVolume;
     public AudioSource CharacterSource;
+    public float CharacterVolume;
     public AudioSource EnvironementSource;
+    public float EnvironementVolume;
     public AudioSource TransitionSource;
+    public float TransitionVolume;
 
+    private void Start()
+    {
+        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
+        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+    }
 
+    public void ChangeVolume()
+    {
+        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
+        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+
+        if (AmbianceSource.clip != null)
+        {
+            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == AmbianceSource.clip.name);
+            if (s == null)
+                return;
+            AmbianceSource.volume = s.volume * AmbianceVolume;
+        }
+        if (CharacterSource.clip != null)
+        {
+            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == CharacterSource.clip.name);
+            if (s == null)
+                return;
+            CharacterSource.volume = s.volume * CharacterVolume;
+        }
+        if (EnvironementSource.clip != null)
+        {
+            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == EnvironementSource.clip.name);
+            if (s == null)
+                return;
+            EnvironementSource.volume = s.volume * EnvironementVolume;
+        }
+        if (TransitionSource.clip != null)
+        {
+            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == TransitionSource.clip.name);
+            if (s == null)
+                return;
+            TransitionSource.volume = s.volume * TransitionVolume;
+        }
+    }
 
     public void Play(string name)
     {
@@ -44,7 +91,7 @@ public class SoundManager : MonoBehaviour
             case SoundType.ambiance:
                 {
                     AmbianceSource.loop = s.loop;
-                    AmbianceSource.volume = s.volume * HUDOptions._params[0];
+                    AmbianceSource.volume = s.volume * AmbianceVolume;
                     AmbianceSource.clip = s.audioclip;
                     AmbianceSource.Play();
                     break;
@@ -52,19 +99,23 @@ public class SoundManager : MonoBehaviour
             case SoundType.character:
                 {
                     CharacterSource.loop = s.loop;
-                    CharacterSource.volume = s.volume * HUDOptions._params[0];
+                    CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
                     CharacterSource.Play();
                     break;
                 }
             case SoundType.environement:
                 {
+                    EnvironementSource.loop = s.loop;
+                    EnvironementSource.volume = s.volume * EnvironementVolume;
+                    EnvironementSource.clip = s.audioclip;
+                    EnvironementSource.Play();
                     break;
                 }
             case SoundType.transition:
                 {
                     TransitionSource.loop = s.loop;
-                    TransitionSource.volume = s.volume * HUDOptions._params[0];
+                    TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;
                     TransitionSource.Play();
                     break;
