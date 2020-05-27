@@ -18,6 +18,8 @@ public class PlayerTracks : MonoBehaviour
 
     int _layerMask;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,12 @@ public class PlayerTracks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EmitWhenGrouned(_objectSnowCollision_L, _particleSystem_L);
-        EmitWhenGrouned(_objectSnowCollision_R, _particleSystem_R);
+        EmitWhenGrounded(_objectSnowCollision_L, _particleSystem_L);
+        EmitWhenGrounded(_objectSnowCollision_R, _particleSystem_R);
 
     }
 
-    private void EmitWhenGrouned(GameObject objectSnowCollision, ParticleSystem particleSystem)
+    private void EmitWhenGrounded(GameObject objectSnowCollision, ParticleSystem particleSystem)
     {
         if (Physics.Raycast(objectSnowCollision.transform.position, Vector3.down, out _groundHit, 0.4f, _layerMask))
         {

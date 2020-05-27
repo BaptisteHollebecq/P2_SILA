@@ -91,7 +91,7 @@ Material:
     - _DstBlend: 0
     - _Exposure: 1.3
     - _FlowAmount: 0.04
-    - _FlowSpeed: -1.5
+    - _FlowSpeed: -0.93
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -115,12 +115,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.4185208, g: 0.8962264, b: 0.74235505, a: 1}
-    - _Color2: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.18396229, g: 0.5358316, b: 1, a: 0.2}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
     - _LightSpread: {r: 5, g: -1.47, b: 40, a: 263.1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _Tiling1: {r: 0.01, g: 0.01, b: 0, a: 0}
+    - _Tiling1: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling2: {r: 1, g: 1, b: 1, a: 0}
     - _TilingColor: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _TilingWave: {r: 0.1, g: 0.1, b: 0, a: 2}
