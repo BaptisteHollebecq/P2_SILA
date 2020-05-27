@@ -201,10 +201,17 @@ public class BasicState : FSMState
 
 
 		#endregion
-
 		_rb.velocity = moveDirection;
 
 		#region Animator
+
+		if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") > 0.5f || Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Horizontal"), ref _refDamp, 0.01f));
+		else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));
+		else
+			_animator.SetFloat("Blend", 0f);
+
 		if (IsGrounded())
 		{
 			_animator.SetBool("Grounded", true);
