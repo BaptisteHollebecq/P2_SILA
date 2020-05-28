@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HUDOptions : MonoBehaviour
 {
+    public SoundManager sound;
     public List<GameObject> Options;
     private List<Transform> _cursors = new List<Transform>();
     [HideInInspector]
@@ -36,18 +37,19 @@ public class HUDOptions : MonoBehaviour
             float _inputVertical = Input.GetAxis("Vertical");
             if (_inputVertical == 1)
             {
-                _index++;
-                if (_index == Options.Count)
-                    _index = 0;
+                _index--;
+                if (_index == -1)
+                    _index = Options.Count - 1;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
                 AdjustSelection();
             }
             else if (_inputVertical == -1)
             {
-                _index--;
-                if (_index == -1)
-                    _index = Options.Count - 1;
+               
+                _index++;
+                if (_index == Options.Count)
+                    _index = 0;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
                 AdjustSelection();
@@ -81,7 +83,6 @@ public class HUDOptions : MonoBehaviour
     {
         _pos = new Vector3(-500, (140 - ((_index + 1) * 105)), 0);
         selectionIcon.localPosition = _pos;
-        Debug.Log(_pos);
     }
 
     private void AdjustCursors()
@@ -92,6 +93,7 @@ public class HUDOptions : MonoBehaviour
             cursor.localPosition = new Vector3((-310 + (_params[i] * 620)),0,0);
             i++;
         }
+        sound.ChangeVolume();
     }
 
     IEnumerator ResetChange()

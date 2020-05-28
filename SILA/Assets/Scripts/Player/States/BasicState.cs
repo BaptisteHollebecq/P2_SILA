@@ -32,6 +32,10 @@ public class BasicState : FSMState
 	float _jumpTimer;
 	float _maxJumpTimer;
 
+    bool _canPlayGrounded = false;
+    bool _isGrounded;
+    bool _soundground;
+
 	Camera _camera;
 	Vector3 moveDirection;
 	Vector3 cameraForward;      // vector forward "normalisé" de la cam
@@ -81,7 +85,11 @@ public class BasicState : FSMState
 
 	public bool IsGrounded()
 	{
-		return Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
+		_isGrounded = Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
+        if (!_soundground && _isGrounded)
+            //_playerScript.sound.Play("Grounded");
+        _soundground = _isGrounded;
+        return _isGrounded;
 	}
 
 	public override void Reason()
@@ -166,13 +174,23 @@ public class BasicState : FSMState
 				_canJump = true;
 				_jumpTimer += Time.deltaTime;
 			}
-		}
+
+            if (_rb.velocity.y < -11)
+                _canPlayGrounded = true;
+        }
 		else
 		{
 			_hasJumped = false;
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
-		}
+
+            /*if (_canPlayGrounded)
+            {
+                _playerScript.sound.Play("Grounded");
+                _canPlayGrounded = false;
+            }*/
+
+        }
 
 		if(_jumpTimer > _maxJumpTimer)
 		{
@@ -181,9 +199,9 @@ public class BasicState : FSMState
 			_canJump = false;
 		}
 
-		Debug.Log(_jumpTimer);
+		//Debug.Log(_jumpTimer);
 		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
-		#region Jump
+        #region Jump
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
@@ -195,13 +213,16 @@ public class BasicState : FSMState
 			Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
-		}
+            _playerScript.sound.Play("Jump");
+        }
 		else
 			_animator.SetBool("Jump", false);
 
+            
+            
+        #endregion
 
-		#endregion
-		_rb.velocity = moveDirection;
+        _rb.velocity = moveDirection;
 
 		#region Animator
 

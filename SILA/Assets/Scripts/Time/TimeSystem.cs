@@ -25,6 +25,7 @@ public class TimeSystem : MonoBehaviour
     [HideInInspector] public static TimeOfDay actualTime;
     [HideInInspector] public static float currentTime;                 // current time used in transition
     [SerializeField]  private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
+    [SerializeField]  private SoundManager sound;
     
 
     [Header("Morning Setup")]
@@ -90,6 +91,9 @@ public class TimeSystem : MonoBehaviour
 
     void MorningTime()
     {
+        sound.Stop("Transition");
+        sound.Play("AmbianceDawn");
+
         _lightTransform.rotation = Quaternion.Euler(_sunRotationMorning);
         _light.intensity = _lightIntensityMorning;
         _light.color = _colorMorning.Evaluate(0);
@@ -105,6 +109,9 @@ public class TimeSystem : MonoBehaviour
 
     void DayTime()
     {
+        sound.Stop("Transition");
+        sound.Play("AmbianceDay");
+
         _lightTransform.rotation = Quaternion.Euler(_sunRotationDay);
         _light.intensity = _lightIntensityDay;
         _light.color = _colorDay.Evaluate(0);
@@ -120,6 +127,9 @@ public class TimeSystem : MonoBehaviour
 
     void NoonTime()
     {
+        sound.Stop("Transition");
+        sound.Play("AmbianceTwilight");
+
         _lightTransform.rotation = Quaternion.Euler(_sunRotationNoon);
         _light.intensity = _lightIntensityNoon;
         _light.color = _colorNoon.Evaluate(0);
@@ -135,6 +145,9 @@ public class TimeSystem : MonoBehaviour
 
     void NightTime()
     {
+        sound.Stop("Transition");
+        sound.Play("AmbianceNight");
+
         _lightTransform.rotation = Quaternion.Euler(_sunRotationNight);
         _light.intensity = _lightIntensityNight;
         _light.color = _colorNight.Evaluate(0);

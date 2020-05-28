@@ -71,6 +71,9 @@ public class DashState : FSMState
 	public override void DoBeforeEntering()
 	{
 		_animator.SetBool("Dash", true);
+
+        _playerScript.sound.Play("Dash");
+
 		_dashTimer = 0;
 		GetCamSettings();
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
