@@ -7,14 +7,16 @@ public class OnSteleState : FSMState
 
 	PlayerControllerV2 _playerScript;
 	Rigidbody _rb;
+	Animator _animator;
 	bool _canQuit;
 	Vector3 _moveDirection;
 
-	public OnSteleState(PlayerControllerV2 player, GameObject playerGO)
+	public OnSteleState(PlayerControllerV2 player, GameObject playerGO, Animator anim)
 	{
 		ID = StateID.OnStele;
 		_rb = player._playerRb;
 		_playerScript = player;
+		_animator = anim;
 
 		TimeSystem.StartedTransition += SwitchCanQuit;
 		CameraMaster.MovedToPivot += EndTransitionTime;
@@ -46,12 +48,14 @@ public class OnSteleState : FSMState
 
 	public override void DoBeforeEntering()
 	{
+		_animator.SetBool("Pry", true);
 		_rb.velocity = Vector3.zero;
 		_moveDirection = Vector3.zero;
 	}
 
 	public override void DoBeforeLeaving()
 	{
+		_animator.SetBool("Pry", false);
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
 	}
 }

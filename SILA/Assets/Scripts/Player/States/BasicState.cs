@@ -180,7 +180,7 @@ public class BasicState : FSMState
         }
 		else
 		{
-            _hasJumped = false;
+			_hasJumped = false;
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
@@ -203,12 +203,25 @@ public class BasicState : FSMState
 		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
         #region Jump
 
+
         if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
         {
-            //_animator.SetBool("Jump", true);
+			_animator.SetBool("Jump", true);
+			_canJump = false;
+			_hasJumped = true;
+			_rb.velocity = Vector3.zero;
+			moveDirection.y = 0;
+			Debug.Log("Je saute !");
+			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
 
             _playerScript.sound.Play("Jump");
+        }
+		else
+        { 
+			_animator.SetBool("Jump", false);
             
+
 
             _canJump = false;
             _hasJumped = true;
@@ -218,19 +231,20 @@ public class BasicState : FSMState
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
         }
-        else
-        {
-            _animator.SetBool("Jump", false);
-
-            
-        }
-
 
         #endregion
 
-        _rb.velocity = moveDirection;
+		_rb.velocity = moveDirection;
 
 		#region Animator
+
+		if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") > 0.5f || Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Horizontal"), ref _refDamp, 0.01f));
+		else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));
+		else
+			_animator.SetFloat("Blend", 0f);
+
 		if (IsGrounded())
 		{
 			_animator.SetBool("Grounded", true);
