@@ -181,7 +181,7 @@ public class BasicState : FSMState
 			_canJump = false;
 		}
 
-		Debug.Log(_jumpTimer);
+		//Debug.Log(_jumpTimer);
 		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
 		#region Jump
 
@@ -205,12 +205,24 @@ public class BasicState : FSMState
 
 		#region Animator
 
-		if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") > 0.5f || Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") < 0.5f)
-			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Horizontal"), ref _refDamp, 0.01f));
-		else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
-			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));
+		if (stickInput.magnitude <= 0.4f)
+		{
+			_animator.SetBool("Walk", true);
+			_animator.speed = ((stickInput.magnitude / 0.4f)) + 1;
+		}
 		else
-			_animator.SetFloat("Blend", 0f);
+		{
+			_animator.SetBool("Walk", false);
+			_animator.SetBool("Run", true);
+			_animator.speed = stickInput.magnitude;
+		}
+
+		/*if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") > 0.5f || Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") < 0.5f)
+			_animator.SetFloat("Blend", Input.GetAxis("Horizontal"));
+		else
+			_animator.SetFloat("Blend", 0f);*/
+		/*else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));*/
 
 		if (IsGrounded())
 		{
@@ -223,11 +235,11 @@ public class BasicState : FSMState
 		if (moveDirection.z != 0 || moveDirection.x != 0)
 		{
 			_animator.SetBool("Idle", false);
-			_animator.SetBool("Run", true);
+			_animator.SetFloat("MoveSpeed", stickInput.magnitude);
 		}
 		else
 		{
-			_animator.SetBool("Run", false);
+			_animator.SetFloat("MoveSpeed", 0);
 			_animator.SetBool("Idle", true);
 		}
 		
