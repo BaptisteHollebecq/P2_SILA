@@ -204,8 +204,8 @@ public class BasicState : FSMState
         #region Jump
 
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
-        {
+		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
+		{
 			_animator.SetBool("Jump", true);
 			_canJump = false;
 			_hasJumped = true;
@@ -235,6 +235,7 @@ public class BasicState : FSMState
         #endregion
 
 		_rb.velocity = moveDirection;
+            
 
 		#region Animator
 
