@@ -31,6 +31,6 @@ public class SnowHeight : MonoBehaviour
        
         //heighsnow /= 2;
 
-        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowHeight", heighsnow);
+        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowHeight", heighsnow + 0.25f);
     }
 }
