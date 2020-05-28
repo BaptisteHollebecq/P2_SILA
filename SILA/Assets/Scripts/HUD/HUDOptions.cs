@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HUDOptions : MonoBehaviour
 {
-    public SoundManager sound;
     public List<GameObject> Options;
     private List<Transform> _cursors = new List<Transform>();
     [HideInInspector]
@@ -93,7 +92,6 @@ public class HUDOptions : MonoBehaviour
             cursor.localPosition = new Vector3((-310 + (_params[i] * 620)),0,0);
             i++;
         }
-        sound.ChangeVolume();
     }
 
     IEnumerator ResetChange()

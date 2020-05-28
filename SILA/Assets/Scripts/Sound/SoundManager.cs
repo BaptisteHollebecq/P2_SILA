@@ -41,41 +41,12 @@ public class SoundManager : MonoBehaviour
         TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
     }
 
-    public void ChangeVolume()
+    private void Update()
     {
         AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
         CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
         EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
         TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
-
-        if (AmbianceSource.clip != null)
-        {
-            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == AmbianceSource.clip.name);
-            if (s == null)
-                return;
-            AmbianceSource.volume = s.volume * AmbianceVolume;
-        }
-        if (CharacterSource.clip != null)
-        {
-            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == CharacterSource.clip.name);
-            if (s == null)
-                return;
-            CharacterSource.volume = s.volume * CharacterVolume;
-        }
-        if (EnvironementSource.clip != null)
-        {
-            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == EnvironementSource.clip.name);
-            if (s == null)
-                return;
-            EnvironementSource.volume = s.volume * EnvironementVolume;
-        }
-        if (TransitionSource.clip != null)
-        {
-            Sound s = Array.Find(sounds, Sound => Sound.audioclip.name == TransitionSource.clip.name);
-            if (s == null)
-                return;
-            TransitionSource.volume = s.volume * TransitionVolume;
-        }
     }
 
     public void Play(string name)

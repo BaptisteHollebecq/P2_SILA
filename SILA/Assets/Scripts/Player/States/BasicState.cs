@@ -221,15 +221,6 @@ public class BasicState : FSMState
         { 
 			_animator.SetBool("Jump", false);
             
-
-
-            _canJump = false;
-            _hasJumped = true;
-            _rb.velocity = Vector3.zero;
-            moveDirection.y = 0;
-            Debug.Log("Je saute !");
-            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
         }
 
         #endregion
@@ -273,6 +264,17 @@ public class BasicState : FSMState
 
 		#endregion
 	}
+
+
+    public void StepSound()
+    {
+        int rand = Random.Range(0,10);
+        string step = "step";
+        step += rand.ToString();
+        _playerScript.sound.Play(step);
+
+    }
+
 
 	public override void DoBeforeEntering()
 	{
