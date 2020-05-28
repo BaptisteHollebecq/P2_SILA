@@ -7,7 +7,15 @@ public class PlayerCollectibles : MonoBehaviour
     private int _collectibles = 0;
     private int _maskCollectibles = 0;
 
+    private AudioSource _source;
+    public AudioClip take;
+
     private bool _change = false;
+
+    private void Awake()
+    {
+        _source = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -29,6 +37,7 @@ public class PlayerCollectibles : MonoBehaviour
     public void AddCollectibles(int nbr)
     {
         _collectibles+=nbr;
+        _source.PlayOneShot(take);
     }
 
     public void AddMask(int nbr)
