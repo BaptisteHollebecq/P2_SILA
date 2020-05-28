@@ -50,58 +50,81 @@ MonoBehaviour:
   sounds:
   - name: AmbianceDay
     type: 0
-    audioclip: {fileID: 0}
+    audioclip: {fileID: 8300000, guid: 7767b1594e078034db23319acca70bd7, type: 3}
     volume: 1
     loop: 1
+    oneShot: 0
     DecreaseTime: 0
   - name: AmbianceNight
     type: 0
-    audioclip: {fileID: 0}
-    volume: 1
+    audioclip: {fileID: 8300000, guid: cf0c01d58e2c63349910c7379f43a28b, type: 3}
+    volume: 0.5
     loop: 1
+    oneShot: 0
     DecreaseTime: 0
   - name: AmbianceDawn
     type: 0
-    audioclip: {fileID: 8300000, guid: 069b5ab99a1565a4595be6b9a7debedf, type: 3}
+    audioclip: {fileID: 8300000, guid: 37a597c45df74014190f5b29b1c5bd0f, type: 3}
     volume: 1
     loop: 1
+    oneShot: 0
     DecreaseTime: 0
   - name: AmbianceTwilight
     type: 0
-    audioclip: {fileID: 0}
+    audioclip: {fileID: 8300000, guid: db31751696b82bf4783da9a88b9f189d, type: 3}
     volume: 1
     loop: 1
+    oneShot: 0
     DecreaseTime: 0
   - name: Jump
     type: 1
-    audioclip: {fileID: 8300000, guid: 6669d95e8546e454dac09a200308d481, type: 3}
-    volume: 0.8
+    audioclip: {fileID: 8300000, guid: 27f5e89a7bcde85478a379ac8e76cbe3, type: 3}
+    volume: 0.4
     loop: 0
+    oneShot: 0
     DecreaseTime: 0
   - name: Dash
     type: 1
-    audioclip: {fileID: 8300000, guid: 6e83de353ecc54543ab22dc153d3f00f, type: 3}
-    volume: 0.5
+    audioclip: {fileID: 8300000, guid: 8d90510f7d227874aaad7da697c64e0f, type: 3}
+    volume: 0.3
     loop: 0
+    oneShot: 0
     DecreaseTime: 0
   - name: Grounded
     type: 1
-    audioclip: {fileID: 8300000, guid: b0e9c882c6f53be439816ffb13aeb39f, type: 3}
+    audioclip: {fileID: 8300000, guid: e768f24b73fb33e4894d4a3d3064d55c, type: 3}
     volume: 0.3
     loop: 0
+    oneShot: 0
     DecreaseTime: 0
-  - name: Fly
+  - name: FallingCape
     type: 1
-    audioclip: {fileID: 8300000, guid: 41d4c5322925e0d4ca2380e77d345e91, type: 3}
+    audioclip: {fileID: 8300000, guid: 8a00585cf421e4540845a80b11c32ca9, type: 3}
     volume: 0.4
     loop: 0
+    oneShot: 1
     DecreaseTime: 0.5
   - name: Fly
     type: 1
-    audioclip: {fileID: 8300000, guid: 41d4c5322925e0d4ca2380e77d345e91, type: 3}
+    audioclip: {fileID: 8300000, guid: 06bc75f97b9cedc49aa93def184cb2f8, type: 3}
+    volume: 0.2
+    loop: 0
+    oneShot: 0
+    DecreaseTime: 0.5
+  - name: Deploy
+    type: 1
+    audioclip: {fileID: 8300000, guid: a988eea3bf6e37c4299cded409c8134c, type: 3}
     volume: 0.4
     loop: 0
-    DecreaseTime: 0.5
+    oneShot: 1
+    DecreaseTime: 0
+  - name: WindCape
+    type: 1
+    audioclip: {fileID: 8300000, guid: 1ffca80c569bcf24293d27e255819177, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
   AmbianceSource: {fileID: 1789455301390257532}
   AmbianceVolume: 0
   CharacterSource: {fileID: 8052933761186177729}

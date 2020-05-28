@@ -283,7 +283,12 @@ public class TimeSystem : MonoBehaviour
                 currentTime += _timeScale;
                 if (currentTime >= 1)
                     currentTime -= 1;
+
+                // retoucher
                 _lightTransform.Rotate(new Vector3(1f, 0f, 0f), _rotationScale);
+
+
+
                 if ((_lightTransform.rotation.x >= 0.999987f || _lightTransform.rotation.x < 0f))
                 {
                     _lightTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));

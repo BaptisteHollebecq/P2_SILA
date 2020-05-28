@@ -104,12 +104,16 @@ public class FlyState : FSMState
 		_animator.SetBool("Fall", false);
 		_animator.SetBool("Fly", true);
 		_rb.useGravity = false;
-        _playerScript.sound.Play("Fly");
-	}
+        _playerScript.sound.Play("Deploy");
+        _playerScript.sound.Play("FallingCape");
+        _playerScript.sound.Play("WindCape");
+    }
 
 	public override void DoBeforeLeaving()
 	{
-        _playerScript.sound.Stop("Fly");
+        _playerScript.sound.Stop("Deploy");
+        _playerScript.sound.Stop("FallingCape");
+        _playerScript.sound.Stop("WindCape");
         _animator.SetBool("Fly", false);
 		_rb.useGravity = true;
 	}

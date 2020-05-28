@@ -15,6 +15,7 @@ public class Sound
     [Range(0f, 1f)]
     public float volume;
     public bool loop;
+    public bool oneShot;
     public float DecreaseTime;
 }
 
@@ -24,13 +25,13 @@ public class SoundManager : MonoBehaviour
     public Sound[] sounds;
 
     public AudioSource AmbianceSource;
-    public float AmbianceVolume;
+    [HideInInspector] public float AmbianceVolume;
     public AudioSource CharacterSource;
-    public float CharacterVolume;
+    [HideInInspector] public float CharacterVolume;
     public AudioSource EnvironementSource;
-    public float EnvironementVolume;
+    [HideInInspector] public float EnvironementVolume;
     public AudioSource TransitionSource;
-    public float TransitionVolume;
+    [HideInInspector] public float TransitionVolume;
 
     private void Start()
     {
@@ -93,7 +94,10 @@ public class SoundManager : MonoBehaviour
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
                     AmbianceSource.clip = s.audioclip;
-                    AmbianceSource.Play();
+                    if (s.oneShot)
+                        AmbianceSource.PlayOneShot(s.audioclip);
+                    else
+                        AmbianceSource.Play();
                     break;
                 }
             case SoundType.character:
@@ -101,7 +105,10 @@ public class SoundManager : MonoBehaviour
                     CharacterSource.loop = s.loop;
                     CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
-                    CharacterSource.Play();
+                    if (s.oneShot)
+                        CharacterSource.PlayOneShot(s.audioclip);
+                    else
+                        CharacterSource.Play();
                     break;
                 }
             case SoundType.environement:
@@ -109,7 +116,10 @@ public class SoundManager : MonoBehaviour
                     EnvironementSource.loop = s.loop;
                     EnvironementSource.volume = s.volume * EnvironementVolume;
                     EnvironementSource.clip = s.audioclip;
-                    EnvironementSource.Play();
+                    if (s.oneShot)
+                        EnvironementSource.PlayOneShot(s.audioclip);
+                    else
+                        EnvironementSource.Play();
                     break;
                 }
             case SoundType.transition:
@@ -117,7 +127,10 @@ public class SoundManager : MonoBehaviour
                     TransitionSource.loop = s.loop;
                     TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;
-                    TransitionSource.Play();
+                    if (s.oneShot)
+                        TransitionSource.PlayOneShot(s.audioclip);
+                    else
+                        TransitionSource.Play();
                     break;
                 }
         }
