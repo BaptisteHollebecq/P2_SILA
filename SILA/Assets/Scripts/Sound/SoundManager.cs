@@ -117,6 +117,15 @@ public class SoundManager : MonoBehaviour
         {
             case SoundType.ambiance:
                 {
+                    if (AmbianceSource.isPlaying)
+                    {
+                        if (s.DecreaseTime != 0)
+                        {
+                            StartCoroutine(DecreaseVolume(AmbianceSource, s.DecreaseTime));
+                        }
+                        else
+                            AmbianceSource.Stop();
+                    }
                     break;
                 }
             case SoundType.character:
@@ -135,6 +144,15 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.environement:
                 {
+                    if (EnvironementSource.isPlaying)
+                    {
+                        if (s.DecreaseTime != 0)
+                        {
+                            StartCoroutine(DecreaseVolume(EnvironementSource, s.DecreaseTime));
+                        }
+                        else
+                            EnvironementSource.Stop();
+                    }
                     break;
                 }
             case SoundType.transition:
