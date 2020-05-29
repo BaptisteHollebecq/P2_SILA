@@ -1418,6 +1418,11 @@ PrefabInstance:
       propertyPath: ObjectsTracing.Array.data[0]
       value: 
       objectReference: {fileID: 1513552368}
+    - target: {fileID: 7869007573391908301, guid: a8490bf00209b38459d7944ec6ca93ae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4716962249396994992, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
