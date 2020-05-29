@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
+	public Animator PlayerAnimator;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } }
@@ -25,7 +26,12 @@ public class PlayerLifeManager : MonoBehaviour
         _maxlife = _playerLife;
     }
 
-    void Update()
+	private void Start()
+	{
+		PlayerAnimator.GetComponent<Animator>();
+	}
+
+	void Update()
     {
         if (_save)
         {
@@ -45,20 +51,35 @@ public class PlayerLifeManager : MonoBehaviour
         //Debug.Log("checkpoint === " + _checkPoint);
     }
 
-    public void Death()
+    public void DeathWater()
     {
+		PlayerAnimator.SetBool("", true);
         transform.position = _checkPoint;
 
         _playerLife = _maxlife;
     }
+	public void DeathPikes()
+	{
+		PlayerAnimator.SetBool("", true);
+		transform.position = _checkPoint;
 
-    public void Respawn()
+		_playerLife = _maxlife;
+	}
+	public void DeathEnemy()
+	{
+		PlayerAnimator.SetBool("", true);
+		transform.position = _checkPoint;
+
+		_playerLife = _maxlife;
+	}
+
+	public void Respawn()
     {
         _playerLife--;
         if (_playerLife != 0)
             transform.position = _position;
         else
-            Death();
+            DeathWater();
     }
 
     IEnumerator Timer()
