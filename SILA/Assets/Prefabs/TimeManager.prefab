@@ -1097,7 +1097,7 @@ MonoBehaviour:
   _transitionTime: 2
   sound: {fileID: 0}
   _lightIntensityMorning: 1.2
-  sunRotationMorning: {x: 30, y: 30, z: 0}
+  sunRotationMorning: {x: 30, y: -50, z: -40}
   _colorMorning:
     serializedVersion: 2
     key0: {r: 0.8705883, g: 0.53333336, b: 0.16470589, a: 1}
@@ -1245,7 +1245,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _FogDensityMorning: 0.005
   _lightIntensityDay: 0.8
-  sunRotationDay: {x: 120, y: 0, z: 0}
+  sunRotationDay: {x: 100, y: -10, z: 0}
   _colorDay:
     serializedVersion: 2
     key0: {r: 0.9960785, g: 0.86666673, b: 0.61960787, a: 1}
@@ -1393,7 +1393,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _FogDensityDay: 0.001
   _lightIntensityNoon: 0.8
-  sunRotationNoon: {x: 170, y: -30, z: 0}
+  sunRotationNoon: {x: 155, y: -30, z: 20}
   _colorNoon:
     serializedVersion: 2
     key0: {r: 0.7372549, g: 0.47058827, b: 0.26666668, a: 1}
@@ -1541,7 +1541,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _FogDensityNoon: 0.005
   _lightIntensityNight: 0.8
-  sunRotationNight: {x: 30, y: -90, z: 0}
+  sunRotationNight: {x: -225, y: -90, z: 0}
   _colorNight:
     serializedVersion: 2
     key0: {r: 0.27450982, g: 0.89019614, b: 0.56078434, a: 1}

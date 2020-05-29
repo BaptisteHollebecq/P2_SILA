@@ -278,7 +278,7 @@ public class TimeSystem : MonoBehaviour
                 _light.intensity = Mathf.Lerp(_lightIntensityNoon, _lightIntensityNight, _transitionSlide);
                 RenderSettings.fogDensity = Mathf.Lerp(_FogDensityNoon, _FogDensityNight, _transitionSlide);
 
-                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNoon, _sunRotationNight, _transitionSlide, true);
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNoon, _sunRotationNight, _transitionSlide, false);
             }
             else if (actualTime == TimeOfDay.Night)
             {
@@ -293,7 +293,7 @@ public class TimeSystem : MonoBehaviour
                 _light.intensity = Mathf.Lerp(_lightIntensityNight, _lightIntensityMorning, _transitionSlide);
                 RenderSettings.fogDensity = Mathf.Lerp(_FogDensityNight, _FogDensityMorning, _transitionSlide);
 
-                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNight, _sunRotationMorning, _transitionSlide, true);
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNight, _sunRotationMorning, _transitionSlide, false);
             }
             
             currentTime += _timeScale;
