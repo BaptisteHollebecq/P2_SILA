@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
-	public Animator PlayerAnimator;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } }
+
+    public float timingRespawn;
+    private bool die = false;
 
 
     private int _maxlife;
@@ -26,12 +29,7 @@ public class PlayerLifeManager : MonoBehaviour
         _maxlife = _playerLife;
     }
 
-	private void Start()
-	{
-		PlayerAnimator.GetComponent<Animator>();
-	}
-
-	void Update()
+    void Update()
     {
         if (_save)
         {
@@ -47,39 +45,49 @@ public class PlayerLifeManager : MonoBehaviour
     public void CheckPoint()
     {
         _checkPoint = Player.transform.position;
-
-        //Debug.Log("checkpoint === " + _checkPoint);
     }
+
 
     public void DeathWater()
     {
-		PlayerAnimator.SetBool("", true);
-        transform.position = _checkPoint;
-
-        _playerLife = _maxlife;
+        //bloquer les controller et jouer anim mort dans l'eau 
+        Death();
     }
-	public void DeathPikes()
-	{
-		PlayerAnimator.SetBool("", true);
-		transform.position = _checkPoint;
 
-		_playerLife = _maxlife;
-	}
-	public void DeathEnemy()
-	{
-		PlayerAnimator.SetBool("", true);
-		transform.position = _checkPoint;
+    public void DeathPykes()
+    {
+        //bloquer les controller et jouer l'anim de mort sur les piques
+        Death();
+    }
 
-		_playerLife = _maxlife;
-	}
 
-	public void Respawn()
+    public void Death()
+    {
+        StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
+        if (die)
+        {
+            Respawn();
+            die = false;
+        }
+    }
+
+    private IEnumerator SwitchCanDie()
+    {
+        yield return new WaitForSeconds(timingRespawn); // timingRespawn a modifier pour laisser le temsp a l'anim de se jouer
+        die = true;
+    }
+
+    public void Respawn()
     {
         _playerLife--;
         if (_playerLife != 0)
             transform.position = _position;
         else
-            DeathWater();
+        {
+            _playerLife = _maxlife;
+            transform.position = _checkPoint;
+        }
+        //rendre les controls au joueur qqpart par ici normalement
     }
 
     IEnumerator Timer()

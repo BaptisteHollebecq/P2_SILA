@@ -18,6 +18,7 @@ public class TimeMenu : MonoBehaviour
 
 	private CanvasGroup CanvasGroup;
     public HUDInGame Hud;
+    public SoundManager sound;
 
     [HideInInspector] public bool isBroken = false;
     [HideInInspector] public bool brokenDay = false;
@@ -144,6 +145,7 @@ public class TimeMenu : MonoBehaviour
 
     private void CheckTime()
     {
+        sound.Play("Transition");
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
@@ -151,6 +153,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -160,6 +163,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -169,6 +173,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -178,6 +183,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 28877acb6a304b949ab47e290d747bfe
+=======
+guid: 4810d8b5ca1af664882488e9cb8bab50
+>>>>>>> origin/Prod_Baptiste
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

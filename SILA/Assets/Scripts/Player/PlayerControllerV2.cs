@@ -23,6 +23,8 @@ public class PlayerControllerV2 : MonoBehaviour
 	[SerializeField]
 	StateID _currentStateID;
 
+    public SoundManager sound;
+
 	[HideInInspector]
 	public float speedStore;
 
@@ -54,6 +56,8 @@ public class PlayerControllerV2 : MonoBehaviour
 	public LayerMask whatIsGround;
 
 	float _distToGround;
+    bool _isGrounded;
+    //float speedStore;
 
     //VARIABLE WIND INERTIE
     private Vector3 windDirection;
@@ -86,6 +90,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
 		_currentStateID = _fsm.CurrentID;
+
 		isGrounded = IsGrounded();
         if (isGrounded == true)
             activeWind = false;
@@ -101,16 +106,23 @@ public class PlayerControllerV2 : MonoBehaviour
 			DashReset();
 		}
 
+        
+
+    }
+
+
+    private void FixedUpdate()
+    {
         if (activeWind)
         {
             Debug.Log("inertie wind");
-            _playerRb.AddForce(windDirection * windForce, ForceMode.Force);
-            windForce -= (initialWindForce * Time.deltaTime) / windDuration;
+            _playerRb.AddForce(windDirection * windForce);
+            windForce -= (initialWindForce * Time.fixedDeltaTime) / windDuration;
             if (windForce <= 0)
                 activeWind = false;
         }
-
     }
+
 
     public void WindInertie(Vector3 direction , float force, float duration)
     {

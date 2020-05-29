@@ -10,6 +10,10 @@ public class Geyser : MonoBehaviour
     public float ChargingTime;
     public float PushForce;
 
+    public AudioClip charging;
+    public AudioClip explode;
+
+    private AudioSource _source;
     private bool _started = false;
     private float _timer = 0;
     private Collider _collider;
@@ -21,6 +25,7 @@ public class Geyser : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _rb = null;
+        _source = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +43,11 @@ public class Geyser : MonoBehaviour
         _rb = null;
     }
 
+    private void Update()
+    {
+        _source.volume = .3f * HUDOptions._params[0] * HUDOptions._params[1];
+    }
+
     private void FixedUpdate()
     {
 
@@ -45,6 +55,8 @@ public class Geyser : MonoBehaviour
         {
             _started = true;
             actualState = State.Charging;
+            
+            _source.PlayOneShot(charging);
         }
 
         if (_started)
@@ -55,8 +67,10 @@ public class Geyser : MonoBehaviour
                 case State.Charging:
                     {
                         //PLAY CHARGING ANIMATION HERE
+
                         if (_timer / 50 >= ChargingTime)
                         {
+                            _source.PlayOneShot(explode);
                             actualState = State.Active;
                             _timer = 0;
                         }
@@ -64,7 +78,7 @@ public class Geyser : MonoBehaviour
                     }
                 case State.Active:
                     {
-                        
+
                         float force = PushForce;
                         if (_rb != null)
                         {
@@ -76,14 +90,17 @@ public class Geyser : MonoBehaviour
                         if (_timer / 50 >= ActiveTime)
                         {
                             actualState = State.Resting;
+                            StartCoroutine(DecreaseVolume(_source, 1));
                             _timer = 0;
                         }
                         break;
                     }
                 case State.Resting:
                     {
+                        
                         if (_timer / 50 >= RestingTime)
                         {
+                            _source.PlayOneShot(charging);
                             actualState = State.Charging;
                             _timer = 0;
                         }
@@ -95,5 +112,15 @@ public class Geyser : MonoBehaviour
 
     }
 
+    private IEnumerator DecreaseVolume(AudioSource source, float time)
+    {
+        while (source.volume > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            source.volume -= Time.deltaTime / time;
+        }
+        source.Stop();
+        yield return null;
+    }
 
 }

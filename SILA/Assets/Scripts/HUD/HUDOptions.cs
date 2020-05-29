@@ -36,18 +36,19 @@ public class HUDOptions : MonoBehaviour
             float _inputVertical = Input.GetAxis("Vertical");
             if (_inputVertical == 1)
             {
-                _index++;
-                if (_index == Options.Count)
-                    _index = 0;
+                _index--;
+                if (_index == -1)
+                    _index = Options.Count - 1;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
                 AdjustSelection();
             }
             else if (_inputVertical == -1)
             {
-                _index--;
-                if (_index == -1)
-                    _index = Options.Count - 1;
+               
+                _index++;
+                if (_index == Options.Count)
+                    _index = 0;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
                 AdjustSelection();
@@ -81,7 +82,6 @@ public class HUDOptions : MonoBehaviour
     {
         _pos = new Vector3(-500, (140 - ((_index + 1) * 105)), 0);
         selectionIcon.localPosition = _pos;
-        Debug.Log(_pos);
     }
 
     private void AdjustCursors()

@@ -37,4 +37,9 @@ public class FallState : FSMState
 	{
 		Debug.Log("Je tombe");
 	}
+
+    public override void DoBeforeLeaving()
+    {
+        playerScript.sound.Play("Grounded");
+    }
 }

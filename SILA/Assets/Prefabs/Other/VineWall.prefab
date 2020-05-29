@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8724665047538175981}
   - component: {fileID: 5603562428699100407}
   - component: {fileID: 8418884991412289252}
+  - component: {fileID: 7504495362839269098}
   m_Layer: 0
   m_Name: Spike01
   m_TagString: Untagged
@@ -78,6 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7504495362839269098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3446561544663265698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6eded815e8476419051e08777334f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heighsnow: 0
 --- !u!1 &4412357178181857424
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +103,7 @@ GameObject:
   - component: {fileID: 774047380827886289}
   - component: {fileID: 5327328845330596199}
   - component: {fileID: 879073902481080679}
+  - component: {fileID: 8801462277942983588}
   m_Layer: 0
   m_Name: Ronces01
   m_TagString: Untagged
@@ -156,6 +171,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8801462277942983588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412357178181857424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6eded815e8476419051e08777334f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heighsnow: 0
 --- !u!1 &7384976710126410742
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +228,8 @@ GameObject:
   - component: {fileID: 2005922584171376833}
   - component: {fileID: 3429949171616298799}
   - component: {fileID: 3552156594551267082}
+  - component: {fileID: 1670690438672520182}
+  - component: {fileID: 1012580789}
   m_Layer: 0
   m_Name: Leaf01
   m_TagString: Untagged
@@ -267,3 +297,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1670690438672520182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734327237972370504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d2b597c4ce9d040b69de2de335edd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heighsnow: 0
+--- !u!114 &1012580789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734327237972370504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6eded815e8476419051e08777334f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heighsnow: 0
