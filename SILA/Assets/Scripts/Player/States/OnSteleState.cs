@@ -37,6 +37,7 @@ public class OnSteleState : FSMState
 	{
 		if(_canQuit && Input.GetButtonDown("B"))
 		{
+			_animator.SetBool("Pry", false);
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
@@ -55,7 +56,6 @@ public class OnSteleState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
-		_animator.SetBool("Pry", false);
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
 	}
 }
