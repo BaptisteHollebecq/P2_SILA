@@ -8,7 +8,7 @@ public class Death : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            collision.transform.GetComponent<PlayerLifeManager>().Respawn();
+            collision.transform.GetComponent<PlayerLifeManager>().DeathWater();
         }
     }
 }
