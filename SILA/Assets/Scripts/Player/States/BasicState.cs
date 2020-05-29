@@ -205,10 +205,10 @@ public class BasicState : FSMState
 
 		#region Animator
 
-		if (stickInput.magnitude <= 0.4f)
+		if (stickInput.magnitude <= 0.5f)
 		{
 			_animator.SetBool("Walk", true);
-			_animator.speed = ((stickInput.magnitude / 0.4f)) + 1;
+			_animator.speed = ((stickInput.magnitude / 0.5f)) + 1;
 		}
 		else
 		{
