@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallState : FSMState
+public class DeathState : FSMState
 {
 	PlayerControllerV2 playerScript;
 	Transform playerTransform;
@@ -10,22 +10,17 @@ public class FallState : FSMState
 	LayerMask whatIsGround;
 	float distToGround;
 
-	public FallState(GameObject player, Collider collider, LayerMask groundMask, PlayerControllerV2 script)
+	public DeathState(GameObject player, Collider collider, LayerMask groundMask, PlayerControllerV2 script)
 	{
-		ID = StateID.Fall;
+		ID = StateID.Death;
 		playerTransform = player.transform;
 		playerCol = collider;
 		whatIsGround = groundMask;
 		playerScript = script;
-
-		distToGround = playerCol.bounds.extents.y - 0.8f;
 	}
 	public override void Reason()
 	{
-		if (Physics.Raycast(playerTransform.position, -Vector3.up, distToGround + 0.12f, whatIsGround))
-		{
-			playerScript.SetTransition(Transition.Basic);
-		}
+		
 	}
 
 	public override void Act()
@@ -35,11 +30,11 @@ public class FallState : FSMState
 
 	public override void DoBeforeEntering()
 	{
-		Debug.Log("Je tombe");
+		
 	}
 
     public override void DoBeforeLeaving()
     {
-        playerScript.sound.Play("Grounded");
+        
     }
 }

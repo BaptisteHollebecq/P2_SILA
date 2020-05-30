@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
+	public Animator Animator;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } }
@@ -29,7 +30,7 @@ public class PlayerLifeManager : MonoBehaviour
         _maxlife = _playerLife;
     }
 
-    void Update()
+	void Update()
     {
         if (_save)
         {
@@ -50,14 +51,16 @@ public class PlayerLifeManager : MonoBehaviour
 
     public void DeathWater()
     {
+		Animator.SetBool("DeathWater", true);
         //bloquer les controller et jouer anim mort dans l'eau 
         Death();
     }
 
     public void DeathPykes()
     {
-        //bloquer les controller et jouer l'anim de mort sur les piques
-        Death();
+		Animator.SetBool("DeathPykes", true);
+		//bloquer les controller et jouer l'anim de mort sur les piques
+		Death();
     }
 
 
