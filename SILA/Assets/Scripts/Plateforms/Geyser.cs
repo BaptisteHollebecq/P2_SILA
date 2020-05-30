@@ -90,7 +90,7 @@ public class Geyser : MonoBehaviour
                         if (_timer / 50 >= ActiveTime)
                         {
                             actualState = State.Resting;
-                            StartCoroutine(DecreaseVolume(_source, 1));
+                            StartCoroutine(DecreaseVolume(_source, .5f));
                             _timer = 0;
                         }
                         break;
