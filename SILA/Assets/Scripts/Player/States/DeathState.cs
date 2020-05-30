@@ -5,27 +5,23 @@ using UnityEngine;
 public class DeathState : FSMState
 {
 	PlayerControllerV2 playerScript;
-	Transform playerTransform;
-	Collider playerCol;
-	LayerMask whatIsGround;
-	float distToGround;
 
-	public DeathState(GameObject player, Collider collider, LayerMask groundMask, PlayerControllerV2 script)
+	public DeathState(PlayerControllerV2 script)
 	{
 		ID = StateID.Death;
-		playerTransform = player.transform;
-		playerCol = collider;
-		whatIsGround = groundMask;
 		playerScript = script;
 	}
 	public override void Reason()
 	{
-		
+		if(!playerScript.lifeManager.isDead)
+		{
+			playerScript.SetTransition(Transition.Basic);
+		}
 	}
 
 	public override void Act()
 	{
-
+		playerScript._playerRb.velocity = Vector3.zero;
 	}
 
 	public override void DoBeforeEntering()
