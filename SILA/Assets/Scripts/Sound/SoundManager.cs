@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource TransitionSource;
     [HideInInspector] public float TransitionVolume;
 
-    private void Start()
+    private void Awake()
     {
         AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
         CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
         CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
         EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
         TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+   
     }
 
     public void Play(string name)

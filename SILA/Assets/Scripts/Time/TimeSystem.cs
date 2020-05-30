@@ -99,6 +99,7 @@ public class TimeSystem : MonoBehaviour
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
+        Debug.Log("play sound morning");
 
         _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;
