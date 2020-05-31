@@ -8,7 +8,7 @@ public enum Transition
 	Basic = 1,
 	Jumping = 2,
 	Dashing = 3,
-	Falling = 4,
+	Death = 4,
 	Flying = 5,
 	Stele = 6,
 	Zooming = 7
@@ -20,7 +20,7 @@ public enum StateID
 	Basic = 1,
 	Jump = 2,
 	Dash = 3,
-	Fall = 4,
+	Death = 4,
 	Fly = 5,
 	OnStele = 6,
 	Zoom = 7

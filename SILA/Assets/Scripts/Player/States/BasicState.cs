@@ -203,6 +203,7 @@ public class BasicState : FSMState
 		Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
         #region Jump
 
+
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
 			_animator.SetBool("Jump", true);
@@ -213,25 +214,40 @@ public class BasicState : FSMState
 			Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
+
             _playerScript.sound.Play("Jump");
         }
 		else
+        { 
 			_animator.SetBool("Jump", false);
+            
+        }
 
-            
-            
         #endregion
 
-        _rb.velocity = moveDirection;
+		_rb.velocity = moveDirection;
+            
 
 		#region Animator
 
-		if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") > 0.5f || Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") < 0.5f)
-			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Horizontal"), ref _refDamp, 0.01f));
-		else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
-			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));
+		if (stickInput.magnitude <= 0.5f)
+		{
+			_animator.SetBool("Walk", true);
+			_animator.speed = ((stickInput.magnitude / 0.5f)) + 1;
+		}
 		else
-			_animator.SetFloat("Blend", 0f);
+		{
+			_animator.SetBool("Walk", false);
+			_animator.SetBool("Run", true);
+			_animator.speed = stickInput.magnitude;
+		}
+
+		/*if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") > 0.5f || Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") < 0.5f)
+			_animator.SetFloat("Blend", Input.GetAxis("Horizontal"));
+		else
+			_animator.SetFloat("Blend", 0f);*/
+		/*else if (Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Vertical") != 0 && Input.GetAxis("Horizontal") < 0.5f)
+			_animator.SetFloat("Blend", Mathf.SmoothDamp(0, Input.GetAxis("Vertical"), ref _refDamp, 0.01f));*/
 
 		if (IsGrounded())
 		{
@@ -244,11 +260,11 @@ public class BasicState : FSMState
 		if (moveDirection.z != 0 || moveDirection.x != 0)
 		{
 			_animator.SetBool("Idle", false);
-			_animator.SetBool("Run", true);
+			_animator.SetFloat("MoveSpeed", stickInput.magnitude);
 		}
 		else
 		{
-			_animator.SetBool("Run", false);
+			_animator.SetFloat("MoveSpeed", 0);
 			_animator.SetBool("Idle", true);
 		}
 		
@@ -260,6 +276,17 @@ public class BasicState : FSMState
 
 		#endregion
 	}
+
+
+    public void StepSound()
+    {
+        int rand = Random.Range(0,10);
+        string step = "step";
+        step += rand.ToString();
+        _playerScript.sound.Play(step);
+
+    }
+
 
 	public override void DoBeforeEntering()
 	{

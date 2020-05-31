@@ -36,9 +36,9 @@ public class WindPlatform : MonoBehaviour
         _windDirection = transform.GetChild(0).transform.forward;
         if (_collider.enabled == true)
         {
+            _source.volume = volume * HUDOptions._params[0] * HUDOptions._params[1];
             if (!_source.isPlaying)
-            {
-                _source.volume = volume * HUDOptions._params[0];
+            {   
                 _source.loop = true;
                 _source.Play();
             }

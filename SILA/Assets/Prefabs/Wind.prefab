@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debug: 0
   windForce: 50
-  volume: 0.3
+  volume: 0.8
 --- !u!82 &6445811560387011168
 AudioSource:
   m_ObjectHideFlags: 0
@@ -73,11 +73,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da833ddd916d12a429d0a09bbe917d8e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5687a59f8ef9d834ca0c672104a3160d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.8
   m_Pitch: 0.7
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -94,14 +94,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0019047875
-      value: 0.9950905
-      inSlope: 0
-      outSlope: 0
+      time: 0
+      value: 0.97117615
+      inSlope: -1.3154776
+      outSlope: -1.3154776
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.18873812
+    - serializedVersion: 3
+      time: 0.84672105
+      value: 0.5253116
+      inSlope: -1.1059492
+      outSlope: -1.1059492
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24028464
+      outWeight: 0.6302157
     - serializedVersion: 3
       time: 1
       value: 0

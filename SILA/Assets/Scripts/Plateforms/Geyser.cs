@@ -43,6 +43,11 @@ public class Geyser : MonoBehaviour
         _rb = null;
     }
 
+    private void Update()
+    {
+        _source.volume = .3f * HUDOptions._params[0] * HUDOptions._params[1];
+    }
+
     private void FixedUpdate()
     {
 
@@ -50,7 +55,7 @@ public class Geyser : MonoBehaviour
         {
             _started = true;
             actualState = State.Charging;
-            _source.volume = .3f;
+            
             _source.PlayOneShot(charging);
         }
 
@@ -65,7 +70,6 @@ public class Geyser : MonoBehaviour
 
                         if (_timer / 50 >= ChargingTime)
                         {
-                            _source.volume = .3f;
                             _source.PlayOneShot(explode);
                             actualState = State.Active;
                             _timer = 0;
@@ -96,7 +100,6 @@ public class Geyser : MonoBehaviour
                         
                         if (_timer / 50 >= RestingTime)
                         {
-                            _source.volume = .3f;
                             _source.PlayOneShot(charging);
                             actualState = State.Charging;
                             _timer = 0;

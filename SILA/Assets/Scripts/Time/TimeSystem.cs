@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum TimeOfDay { Morning, Day, Noon, Night, Null };
-
-
 public class TimeSystem : MonoBehaviour
 {
 
@@ -24,14 +20,15 @@ public class TimeSystem : MonoBehaviour
     [HideInInspector] public TimeOfDay targetTime = TimeOfDay.Null;
     [HideInInspector] public static TimeOfDay actualTime;
     [HideInInspector] public static float currentTime;                 // current time used in transition
-    [SerializeField]  private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
-    [SerializeField]  private SoundManager sound;
-    
+    [SerializeField] private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
+    [SerializeField] private SoundManager sound;
+
 
     [Header("Morning Setup")]
     [SerializeField] private float _lightIntensityMorning;
-    [SerializeField] private Vector3 _sunRotationMorning;
+    [SerializeField] private Vector3 sunRotationMorning;
     [SerializeField] private Gradient _colorMorning;
+    private Quaternion _sunRotationMorning;
 
     [SerializeField] private Gradient _SkyColorMorning;
     [SerializeField] private Gradient _EquatorColorMorning;
@@ -42,8 +39,9 @@ public class TimeSystem : MonoBehaviour
 
     [Header("Day Setup")]
     [SerializeField] private float _lightIntensityDay;
-    [SerializeField] private Vector3 _sunRotationDay;
+    [SerializeField] private Vector3 sunRotationDay;
     [SerializeField] private Gradient _colorDay;
+    private Quaternion _sunRotationDay;
 
     [SerializeField] private Gradient _SkyColorDay;
     [SerializeField] private Gradient _EquatorColorDay;
@@ -53,8 +51,9 @@ public class TimeSystem : MonoBehaviour
 
     [Header("Noon Setup")]
     [SerializeField] private float _lightIntensityNoon;
-    [SerializeField] private Vector3 _sunRotationNoon;
+    [SerializeField] private Vector3 sunRotationNoon;
     [SerializeField] private Gradient _colorNoon;
+    private Quaternion _sunRotationNoon;
 
     [SerializeField] private Gradient _SkyColorNoon;
     [SerializeField] private Gradient _EquatorColorNoon;
@@ -64,8 +63,9 @@ public class TimeSystem : MonoBehaviour
 
     [Header("Night Setup")]
     [SerializeField] private float _lightIntensityNight;
-    [SerializeField] private Vector3 _sunRotationNight;
+    [SerializeField] private Vector3 sunRotationNight;
     [SerializeField] private Gradient _colorNight;
+    private Quaternion _sunRotationNight;
 
     [SerializeField] private Gradient _SkyColorNight;
     [SerializeField] private Gradient _EquatorColorNight;
@@ -84,17 +84,23 @@ public class TimeSystem : MonoBehaviour
     private float _fogColorScale;*/
     private float _fogDensityScale;
 
-
-
     private bool _menu = true;
+    private bool _canswitch = true;
 
+    private void Awake()
+    {
+        _sunRotationMorning.eulerAngles = sunRotationMorning;
+        _sunRotationDay.eulerAngles = sunRotationDay;
+        _sunRotationNoon.eulerAngles = sunRotationNoon;
+        _sunRotationNight.eulerAngles = sunRotationNight;
+    }
 
     void MorningTime()
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
 
-        _lightTransform.rotation = Quaternion.Euler(_sunRotationMorning);
+        _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;
         _light.color = _colorMorning.Evaluate(0);
         actualTime = TimeOfDay.Morning;
@@ -112,7 +118,7 @@ public class TimeSystem : MonoBehaviour
         sound.Stop("Transition");
         sound.Play("AmbianceDay");
 
-        _lightTransform.rotation = Quaternion.Euler(_sunRotationDay);
+        _lightTransform.rotation = _sunRotationDay;
         _light.intensity = _lightIntensityDay;
         _light.color = _colorDay.Evaluate(0);
         actualTime = TimeOfDay.Day;
@@ -130,7 +136,7 @@ public class TimeSystem : MonoBehaviour
         sound.Stop("Transition");
         sound.Play("AmbianceTwilight");
 
-        _lightTransform.rotation = Quaternion.Euler(_sunRotationNoon);
+        _lightTransform.rotation = _sunRotationNoon;
         _light.intensity = _lightIntensityNoon;
         _light.color = _colorNoon.Evaluate(0);
         actualTime = TimeOfDay.Noon;
@@ -148,7 +154,7 @@ public class TimeSystem : MonoBehaviour
         sound.Stop("Transition");
         sound.Play("AmbianceNight");
 
-        _lightTransform.rotation = Quaternion.Euler(_sunRotationNight);
+        _lightTransform.rotation = _sunRotationNight;
         _light.intensity = _lightIntensityNight;
         _light.color = _colorNight.Evaluate(0);
         actualTime = TimeOfDay.Night;
@@ -159,174 +165,6 @@ public class TimeSystem : MonoBehaviour
         RenderSettings.ambientEquatorColor = _EquatorColorNight.Evaluate(0);
         RenderSettings.fogColor = _FogColorNight.Evaluate(0);
         RenderSettings.fogDensity = _FogDensityNight;
-    }
-
-    void SetupScale(TimeOfDay from)
-    {
-        if (from == TimeOfDay.Morning)
-        {
-            _rotationScale = ((_sunRotationDay.x - _sunRotationMorning.x) / _transitionTime) * Time.deltaTime;
-            _transitionScale = (1 / _transitionTime) * Time.deltaTime;
-            _timeScale = (0.25f / _transitionTime) * Time.deltaTime;
-            _intensityScale = (Mathf.Abs(_lightIntensityMorning - _lightIntensityDay) / _transitionTime) * Time.deltaTime;
-
-            _fogDensityScale = (Mathf.Abs(_FogDensityMorning - _FogDensityDay) / _transitionTime) * Time.deltaTime;
-        }
-        else if (from == TimeOfDay.Day)
-        {
-            _rotationScale = ((_sunRotationNoon.x - _sunRotationDay.x) / _transitionTime) * Time.deltaTime;
-            _transitionScale = (1 / _transitionTime) * Time.deltaTime;
-            _timeScale = (0.25f / _transitionTime) * Time.deltaTime;
-            _intensityScale = (Mathf.Abs(_lightIntensityDay - _lightIntensityNoon) / _transitionTime) * Time.deltaTime;
-
-            _fogDensityScale = (Mathf.Abs(_FogDensityDay - _FogDensityNoon) / _transitionTime) * Time.deltaTime;
-        }
-        else if (from == TimeOfDay.Noon)
-        {
-            _rotationScale = ((360 + (_sunRotationNight.x - _sunRotationNoon.x) - 180) / _transitionTime) * Time.deltaTime;
-            _transitionScale = (1 / _transitionTime) * Time.deltaTime;
-            _timeScale = (0.25f / _transitionTime) * Time.deltaTime;
-            _intensityScale = (Mathf.Abs(_lightIntensityNoon - _lightIntensityNight) / _transitionTime) * Time.deltaTime;
-
-            _fogDensityScale = (Mathf.Abs(_FogDensityNoon - _FogDensityNight) / _transitionTime) * Time.deltaTime;
-        }
-        else if (from == TimeOfDay.Night)
-        {
-            _rotationScale = ((360 - (_sunRotationMorning.x - _sunRotationNight.x) - 180) / 3.5f) * Time.deltaTime;
-            _transitionScale = (1 / 3.5f) * Time.deltaTime;
-            _timeScale = (0.25f / 3.5f) * Time.deltaTime;
-            _intensityScale = (Mathf.Abs(_lightIntensityMorning - _lightIntensityNight) / 3.5f) * Time.deltaTime;
-
-            _fogDensityScale = (Mathf.Abs(_FogDensityNight - _FogDensityMorning) / _transitionTime) * Time.deltaTime;
-        }
-    }
-
-    TimeOfDay ChangeTime(TimeOfDay from, TimeOfDay to)
-    {
-        SetupScale(from);
-
-        if (from != to)
-        {
-            if (_transitionSlide <= 1)
-            {
-                _transitionSlide += _transitionScale;
-                if (from == TimeOfDay.Morning)
-                {
-                    StatedMorningToDay?.Invoke();
-                    _light.color = _colorMorning.Evaluate(_transitionSlide);
-                    RenderSettings.ambientSkyColor = _SkyColorMorning.Evaluate(_transitionSlide);
-                    RenderSettings.ambientGroundColor = _GroundColorMorning.Evaluate(_transitionSlide);
-                    RenderSettings.ambientEquatorColor = _EquatorColorMorning.Evaluate(_transitionSlide);
-                    RenderSettings.fogColor = _FogColorMorning.Evaluate(_transitionSlide);
-                    if (_lightIntensityDay > _lightIntensityMorning)
-                        _light.intensity += _intensityScale;
-                    else
-                        _light.intensity -= _intensityScale;
-
-                    if (_FogDensityDay > _FogDensityMorning)
-                        RenderSettings.fogDensity += _fogDensityScale;
-                    else
-                        RenderSettings.fogDensity -= _fogDensityScale;
-                }
-                else if (from == TimeOfDay.Day)
-                {
-                    StatedDayToNoon?.Invoke();
-                    _light.color = _colorDay.Evaluate(_transitionSlide);
-                    RenderSettings.ambientSkyColor = _SkyColorDay.Evaluate(_transitionSlide);
-                    RenderSettings.ambientGroundColor = _GroundColorDay.Evaluate(_transitionSlide);
-                    RenderSettings.ambientEquatorColor = _EquatorColorDay.Evaluate(_transitionSlide);
-                    RenderSettings.fogColor = _FogColorDay.Evaluate(_transitionSlide);
-                    if (_lightIntensityNoon > _lightIntensityDay)
-                        _light.intensity += _intensityScale;
-                    else
-                        _light.intensity -= _intensityScale;
-
-                    if (_FogDensityNoon > _FogDensityDay)
-                        RenderSettings.fogDensity += _fogDensityScale;
-                    else
-                        RenderSettings.fogDensity -= _fogDensityScale;
-                }
-                else if (from == TimeOfDay.Noon)
-                {
-                    _light.color = _colorNoon.Evaluate(_transitionSlide);
-                    RenderSettings.ambientSkyColor = _SkyColorNoon.Evaluate(_transitionSlide);
-                    RenderSettings.ambientGroundColor = _GroundColorNoon.Evaluate(_transitionSlide);
-                    RenderSettings.ambientEquatorColor = _EquatorColorNoon.Evaluate(_transitionSlide);
-                    RenderSettings.fogColor = _FogColorNoon.Evaluate(_transitionSlide);
-                    if (_lightIntensityNight > _lightIntensityNoon)
-                        _light.intensity += _intensityScale;
-                    else
-                        _light.intensity -= _intensityScale;
-
-                    if (_FogDensityNight > _FogDensityNoon)
-                        RenderSettings.fogDensity += _fogDensityScale;
-                    else
-                        RenderSettings.fogDensity -= _fogDensityScale;
-                }
-                else if (from == TimeOfDay.Night)
-                {
-                    _light.color = _colorNight.Evaluate(_transitionSlide);
-                    RenderSettings.ambientSkyColor = _SkyColorNight.Evaluate(_transitionSlide);
-                    RenderSettings.ambientGroundColor = _GroundColorNight.Evaluate(_transitionSlide);
-                    RenderSettings.ambientEquatorColor = _EquatorColorNight.Evaluate(_transitionSlide);
-                    RenderSettings.fogColor = _FogColorNight.Evaluate(_transitionSlide);
-                    if (_lightIntensityMorning > _lightIntensityNight)
-                        _light.intensity += _intensityScale;
-                    else
-                        _light.intensity -= _intensityScale;
-
-                    if (_FogDensityMorning > _FogDensityNight)
-                        RenderSettings.fogDensity += _fogDensityScale;
-                    else
-                        RenderSettings.fogDensity -= _fogDensityScale;
-                }
-                currentTime += _timeScale;
-                if (currentTime >= 1)
-                    currentTime -= 1;
-
-                // retoucher
-                _lightTransform.Rotate(new Vector3(1f, 0f, 0f), _rotationScale);
-
-
-
-                if ((_lightTransform.rotation.x >= 0.999987f || _lightTransform.rotation.x < 0f))
-                {
-                    _lightTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                    //Debug.Log(_transitionSlide);
-                }
-                return from;
-            }
-            else
-            {
-                if (from == TimeOfDay.Morning)
-                    from = TimeOfDay.Day;
-                else if (from == TimeOfDay.Day)
-                    from = TimeOfDay.Noon;
-                else if (from == TimeOfDay.Noon)
-                    from = TimeOfDay.Night;
-                else if (from == TimeOfDay.Night)
-                    from = TimeOfDay.Morning;
-                _transitionSlide = 0;
-                return from;
-            }
-        }
-        else
-        {
-            if (from == TimeOfDay.Morning)
-                MorningTime();
-            else if (from == TimeOfDay.Day)
-                DayTime();
-            else if (from == TimeOfDay.Noon)
-                NoonTime();
-            else if (from == TimeOfDay.Night)
-                NightTime();
-            if (_menu)
-                EndedTransition?.Invoke();
-            _menu = true;
-            _transitionSlide = 0;
-            targetTime = TimeOfDay.Null;
-            return from;
-        }
     }
 
     private void Start()
@@ -359,35 +197,215 @@ public class TimeSystem : MonoBehaviour
         if (Input.GetKeyDown("n"))
         {
             targetTime = TimeOfDay.Night;
+            StartCoroutine(ChangeTimeV2());
             _menu = false;
         }
         if (Input.GetKeyDown("a"))
         {
             targetTime = TimeOfDay.Morning;
+            StartCoroutine(ChangeTimeV2());
             _menu = false;
         }
         if (Input.GetKeyDown("j"))
         {
             targetTime = TimeOfDay.Day;
+            StartCoroutine(ChangeTimeV2());
             _menu = false;
         }
         if (Input.GetKeyDown("c"))
         {
             targetTime = TimeOfDay.Noon;
+            StartCoroutine(ChangeTimeV2());
             _menu = false;
         }
 
-        //Debug.Log(actualTime);
-        //Debug.Log(_rotationScale);
-        //Debug.Log(_lightTransform.localRotation.x);
-        //Debug.Log(currentTime);
     }
-    private void FixedUpdate()
+
+    public IEnumerator ChangeTimeV2()
     {
-        if (targetTime != TimeOfDay.Null)
+
+        StartedTransition?.Invoke();
+
+        float timeScale = SetupScaleV2(actualTime, targetTime);
+
+
+        while (actualTime != targetTime && targetTime != TimeOfDay.Null)
         {
-            StartedTransition?.Invoke();
-            actualTime = ChangeTime(actualTime, targetTime);
+            yield return new WaitForEndOfFrame();
+
+            _transitionSlide += Time.fixedDeltaTime / (_transitionTime * timeScale);
+
+            if (actualTime == TimeOfDay.Morning)
+            {
+               // StatedMorningToDay?.Invoke();
+
+                _light.color = _colorMorning.Evaluate(_transitionSlide);
+                RenderSettings.ambientSkyColor = _SkyColorMorning.Evaluate(_transitionSlide);
+                RenderSettings.ambientGroundColor = _GroundColorMorning.Evaluate(_transitionSlide);
+                RenderSettings.ambientEquatorColor = _EquatorColorMorning.Evaluate(_transitionSlide);
+                RenderSettings.fogColor = _FogColorMorning.Evaluate(_transitionSlide);
+
+                _light.intensity = Mathf.Lerp(_lightIntensityMorning, _lightIntensityDay, _transitionSlide);
+                RenderSettings.fogDensity = Mathf.Lerp(_FogDensityMorning, _FogDensityDay, _transitionSlide);
+
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationMorning, _sunRotationDay, _transitionSlide, true);
+            }
+            else if (actualTime == TimeOfDay.Day)
+            {
+                // StatedMorningToDay?.Invoke();
+
+                _light.color = _colorDay.Evaluate(_transitionSlide);
+                RenderSettings.ambientSkyColor = _SkyColorDay.Evaluate(_transitionSlide);
+                RenderSettings.ambientGroundColor = _GroundColorDay.Evaluate(_transitionSlide);
+                RenderSettings.ambientEquatorColor = _EquatorColorDay.Evaluate(_transitionSlide);
+                RenderSettings.fogColor = _FogColorDay.Evaluate(_transitionSlide);
+
+                _light.intensity = Mathf.Lerp(_lightIntensityDay, _lightIntensityNoon, _transitionSlide);
+                RenderSettings.fogDensity = Mathf.Lerp(_FogDensityDay, _FogDensityNoon, _transitionSlide);
+
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationDay, _sunRotationNoon, _transitionSlide, true);
+            }
+            else if (actualTime == TimeOfDay.Noon)
+            {
+                // StatedMorningToDay?.Invoke();
+
+                _light.color = _colorNoon.Evaluate(_transitionSlide);
+                RenderSettings.ambientSkyColor = _SkyColorNoon.Evaluate(_transitionSlide);
+                RenderSettings.ambientGroundColor = _GroundColorNoon.Evaluate(_transitionSlide);
+                RenderSettings.ambientEquatorColor = _EquatorColorNoon.Evaluate(_transitionSlide);
+                RenderSettings.fogColor = _FogColorNoon.Evaluate(_transitionSlide);
+
+                _light.intensity = Mathf.Lerp(_lightIntensityNoon, _lightIntensityNight, _transitionSlide);
+                RenderSettings.fogDensity = Mathf.Lerp(_FogDensityNoon, _FogDensityNight, _transitionSlide);
+
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNoon, _sunRotationNight, _transitionSlide, false);
+            }
+            else if (actualTime == TimeOfDay.Night)
+            {
+                // StatedMorningToDay?.Invoke();
+
+                _light.color = _colorNight.Evaluate(_transitionSlide);
+                RenderSettings.ambientSkyColor = _SkyColorNight.Evaluate(_transitionSlide);
+                RenderSettings.ambientGroundColor = _GroundColorNight.Evaluate(_transitionSlide);
+                RenderSettings.ambientEquatorColor = _EquatorColorNight.Evaluate(_transitionSlide);
+                RenderSettings.fogColor = _FogColorNight.Evaluate(_transitionSlide);
+
+                _light.intensity = Mathf.Lerp(_lightIntensityNight, _lightIntensityMorning, _transitionSlide);
+                RenderSettings.fogDensity = Mathf.Lerp(_FogDensityNight, _FogDensityMorning, _transitionSlide);
+
+                _lightTransform.rotation = QuaternionExtension.Lerp(_sunRotationNight, _sunRotationMorning, _transitionSlide, false);
+            }
+            
+            currentTime += _timeScale;
+            if (currentTime >= 1)
+                currentTime -= 1;
+
+            if (_transitionSlide >= 1)
+            {
+                _transitionSlide = 0;
+                if (actualTime == TimeOfDay.Morning)
+                {
+                    DayTime();
+                }
+                else if (actualTime == TimeOfDay.Day)
+                {
+                    NoonTime();
+                }
+                else if (actualTime == TimeOfDay.Noon)
+                {
+                    NightTime();
+                }
+                else if (actualTime == TimeOfDay.Night)
+                {
+                    MorningTime();
+                }
+            }
         }
+        targetTime = TimeOfDay.Null;
+
+        if (_menu)
+            EndedTransition?.Invoke();
+        _menu = true;
+        _canswitch = true;
+        yield return null;
     }
+
+    private float SetupScaleV2(TimeOfDay from, TimeOfDay to)
+    {
+        if (from == TimeOfDay.Morning)
+        {
+            if (to == TimeOfDay.Day)
+            {
+                _timeScale = (0.25f / _transitionTime) * Time.fixedDeltaTime;
+                return 1;
+            }
+            else if (to == TimeOfDay.Noon)
+            {
+                _timeScale = (0.5f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.5f;
+            }
+            else if (to == TimeOfDay.Night)
+            {
+                _timeScale = (0.75f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.333334f;
+            }
+        }
+        if (from == TimeOfDay.Day)
+        {
+            if (to == TimeOfDay.Noon)
+            {
+                _timeScale = (0.25f / _transitionTime) * Time.fixedDeltaTime;
+                return 1;
+            }
+            else if (to == TimeOfDay.Night)
+            {
+                _timeScale = (0.5f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.5f;
+            }
+            else if (to == TimeOfDay.Morning)
+            {
+                _timeScale = (0.75f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.333334f;
+            }
+        }
+        if (from == TimeOfDay.Noon)
+        {
+            if (to == TimeOfDay.Night)
+            {
+                _timeScale = (0.25f / _transitionTime) * Time.fixedDeltaTime;
+                return 1;
+            }
+            else if (to == TimeOfDay.Morning)
+            {
+                _timeScale = (0.5f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.5f;
+            }
+            else if (to == TimeOfDay.Day)
+            {
+                _timeScale = (0.75f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.333334f;
+            }
+        }
+        if (from == TimeOfDay.Night)
+        {
+            if (to == TimeOfDay.Morning)
+            {
+                _timeScale = (0.25f / _transitionTime) * Time.fixedDeltaTime;
+                return 1;
+            }
+            else if (to == TimeOfDay.Day)
+            {
+                _timeScale = (0.5f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.5f;
+            }
+            else if (to == TimeOfDay.Noon)
+            {
+                _timeScale = (0.75f / _transitionTime) * Time.fixedDeltaTime;
+                return 0.333334f;
+            }
+        }
+        return 0;
+    }
+
+
 }
