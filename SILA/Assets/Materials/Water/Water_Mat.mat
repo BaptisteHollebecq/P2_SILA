@@ -97,20 +97,20 @@ Material:
     - _DepthTransparency: 0
     - _Dist: 650
     - _Distortion: 0.5
-    - _Float0: -1.21
-    - _Float1: 1
+    - _Float0: 0.788
+    - _Float1: 0
     - _Float2: 1
     - _Float3: 0
     - _FoamDepth: 1.77
     - _FoamDepth1: 0
     - _FoamFalloff: 10
     - _FoamFalloff1: 0
-    - _Glaciation: 0
+    - _Glaciation: 1
     - _Glaciation1: -14.42
     - _IceDepthTransparency: 0
     - _IcePower: -1
-    - _IceSmoothness: 0
-    - _IceSpecular: 0
+    - _IceSmoothness: 0.654
+    - _IceSpecular: 0.641
     - _IceTransparency: 0
     - _Metalness: 1
     - _NormalScale: 0
@@ -139,13 +139,13 @@ Material:
     - _Color0: {r: 1, g: 1, b: 1, a: 0}
     - _Color1: {r: 0.34349412, g: 0.65575993, b: 0.7830189, a: 0}
     - _Color2: {r: 0, g: 0, b: 0, a: 0}
-    - _Color3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3: {r: 1, g: 1, b: 1, a: 0}
     - _DeepColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0}
     - _DeepColor1: {r: 1, g: 1, b: 1, a: 0}
     - _GlaceColor: {r: 1, g: 1, b: 1, a: 0}
     - _IceColor: {r: 1, g: 1, b: 1, a: 0}
     - _IceTransparencyColor: {r: 0, g: 0, b: 0, a: 0}
-    - _ScaleOffSetIce: {r: 0, g: 0, b: 0, a: 0}
+    - _ScaleOffSetIce: {r: 10, g: 10, b: 0, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _ShalowColor1: {r: 0, g: 0, b: 0, a: 0}
     - _Vector0: {r: 1, g: 1, b: 0, a: 0}
