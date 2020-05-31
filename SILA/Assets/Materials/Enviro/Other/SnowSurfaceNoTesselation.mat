@@ -137,7 +137,7 @@ Material:
     - _RimStrenght: 0.48
     - _Scale: 1
     - _SmoothNess: 0
-    - _SnowHeight: 0.5
+    - _SnowHeight: 0.25
     - _Snow_Emissive: 0.434
     - _Snow_Metalness: 0
     - _Snow_Smoothness: 0.46
