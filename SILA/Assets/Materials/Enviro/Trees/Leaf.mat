@@ -101,7 +101,7 @@ Material:
     - _RimPower: 0.4
     - _ShadowContribution: 1
     - _SmoothnessTextureChannel: 0
-    - _SnowDeposit: 20
+    - _SnowDeposit: 10
     - _SnowHeight: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
