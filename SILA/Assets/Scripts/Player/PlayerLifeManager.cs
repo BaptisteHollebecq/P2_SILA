@@ -8,7 +8,7 @@ public class PlayerLifeManager : MonoBehaviour
     public PlayerControllerV2 Player;
 
     [SerializeField] private int _playerLife = 3;
-    [HideInInspector] public int Life { get { return _playerLife; } }
+    [HideInInspector] public int Life { get { return _playerLife; } set { _playerLife = value; } }
 
     public float timingRespawn;
     private bool die = false;
@@ -62,19 +62,14 @@ public class PlayerLifeManager : MonoBehaviour
 
 
     public void Death()
-    {
+    {    
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
-        if (die)
-        {
-            Respawn();
-            die = false;
-        }
     }
 
     private IEnumerator SwitchCanDie()
     {
         yield return new WaitForSeconds(timingRespawn); // timingRespawn a modifier pour laisser le temsp a l'anim de se jouer
-        die = true;
+        Respawn();
     }
 
     public void Respawn()

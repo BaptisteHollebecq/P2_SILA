@@ -6,6 +6,7 @@ public class PlayerCollectibles : MonoBehaviour
 {
     private int _collectibles = 0;
     private int _maskCollectibles = 0;
+    private PlayerLifeManager _life;
 
     private AudioSource _source;
     public AudioClip take;
@@ -15,6 +16,7 @@ public class PlayerCollectibles : MonoBehaviour
     private void Awake()
     {
         _source = GetComponent<AudioSource>();
+        _life = GetComponent<PlayerLifeManager>();
     }
 
     private void Update()
@@ -30,7 +32,7 @@ public class PlayerCollectibles : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         _maskCollectibles = 0;
-        //ajouter un point de vie
+        _life.Life += 1;
         _change = false;
     }
 
