@@ -222,11 +222,6 @@ public class BasicState : FSMState
 
             _playerScript.sound.Play("Jump");
         }
-		else
-        { 
-			_animator.SetBool("Jump", false);
-            
-        }
 
         #endregion
 
@@ -256,6 +251,9 @@ public class BasicState : FSMState
 
 		if (IsGrounded())
 		{
+			if (_rb.velocity.y < -0.2f)
+				_animator.SetBool("Jump", false);
+
 			_animator.SetBool("Grounded", true);
 			_animator.SetBool("Fall", false);
 		}	
@@ -273,7 +271,7 @@ public class BasicState : FSMState
 			_animator.SetBool("Idle", true);
 		}
 		
-		if(_rb.velocity.y < 0)
+		if(_rb.velocity.y < -0.2f)
 			_animator.SetBool("Fall", true);
 		else if(IsGrounded())
 			_animator.SetBool("Fall", false);
