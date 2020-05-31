@@ -58,7 +58,7 @@ MonoBehaviour:
   - name: AmbianceNight
     type: 0
     audioclip: {fileID: 8300000, guid: cf0c01d58e2c63349910c7379f43a28b, type: 3}
-    volume: 0.5
+    volume: 0.3
     loop: 1
     oneShot: 0
     DecreaseTime: 0

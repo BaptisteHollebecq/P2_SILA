@@ -1,14 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class ActiveTimeSound : MonoBehaviour
 {
     private AudioSource _source;
+
+    public AudioClip clip;
+
     public bool Dawn;
     public bool Day;
     public bool Twilight;
     public bool Night;
+
+    public int randomMin;
+    public int randomMax;
+
+    bool _canplay;
 
     private void Awake()
     {
@@ -21,44 +32,44 @@ public class ActiveTimeSound : MonoBehaviour
         {
             case TimeOfDay.Morning:
                 {
-                    if (Dawn)
+                    if (Dawn && _canplay)
                     {
-                        _source.Play();
+                        _source.PlayOneShot(clip);
+                        _canplay = false;
+                        StartCoroutine(SwitchCanChange());
                     }
-                    else
-                        _source.Stop();
                     break;
                 }
             case TimeOfDay.Day:
                 {
-                    if (Day)
+                    if (Day && _canplay)
                     {
-                        _source.Play();
+                        _source.PlayOneShot(clip);
                     }
-                    else
-                        _source.Stop();
                     break;
                 }
             case TimeOfDay.Noon:
                 {
-                    if (Twilight)
+                    if (Twilight && _canplay)
                     {
-                        _source.Play();
+                        _source.PlayOneShot(clip);
                     }
-                    else
-                        _source.Stop();
                     break;
                 }
             case TimeOfDay.Night:
                 {
-                    if (Night)
+                    if (Night && _canplay)
                     {
-                        _source.Play();
+                        _source.PlayOneShot(clip);
                     }
-                    else
-                        _source.Stop();
                     break;
                 }
         }
+    }
+
+    private IEnumerator SwitchCanChange()
+    {
+        System.Random rand = new System.Random();
+        yield return new WaitForSeconds(rand.Next(randomMin, randomMax));
     }
 }

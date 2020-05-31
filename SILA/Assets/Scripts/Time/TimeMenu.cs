@@ -153,6 +153,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -162,6 +163,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -171,6 +173,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }
@@ -180,6 +183,7 @@ public class TimeMenu : MonoBehaviour
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;
+                StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
         }

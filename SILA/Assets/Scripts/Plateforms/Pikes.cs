@@ -21,7 +21,7 @@ public class Pikes : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            // Lancer la fonction Death du player !!!!
+            collision.transform.GetComponent<PlayerLifeManager>().DeathPykes();
         }
     }
 
