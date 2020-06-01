@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _IceNormal:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: aa890fa9565d5b64b8dc4d4241aa9482, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IceParallax:
@@ -97,10 +97,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
-    - _DepthTransparency: 75.58
+    - _DepthTransparency: 18.2
     - _Dist: 961.32
     - _Distortion: 0.2
-    - _Float0: 0.715
+    - _Float0: 0.732
     - _Float1: 1
     - _Float2: 0
     - _FoamDepth: -34.2
@@ -113,7 +113,7 @@ Material:
     - _IceFallOff: 0
     - _IceHeight: 0
     - _IceSmoothness: 1
-    - _IceSpecular: 0.843
+    - _IceSpecular: 0.891
     - _IceTransparency: 0.885
     - _LargeWaveHeight: 0.037
     - _Max: 0.5
@@ -140,11 +140,11 @@ Material:
     - _yes: -0
     m_Colors:
     - _Color0: {r: 1, g: 1, b: 1, a: 0}
-    - _Color1: {r: 3.232786, g: 3.232786, b: 3.232786, a: 0}
+    - _Color1: {r: 4.316023, g: 4.316023, b: 4.316023, a: 0}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _Color3: {r: 7.1297393, g: 7.1297393, b: 7.1297393, a: 0}
     - _DeepColor: {r: 0, g: 0.20684181, b: 0.4339623, a: 1}
-    - _IceColor: {r: 3.8498585, g: 7.037376, b: 7.9066987, a: 0}
+    - _IceColor: {r: 1.4190934, g: 4.490494, b: 5.278032, a: 0}
     - _IceTransparencyColor: {r: 1, g: 1, b: 1, a: 0}
     - _ScaleOffSetIce: {r: 10, g: 10, b: 0, a: 0}
     - _ScaleOffSetIce1: {r: 0, g: 0, b: 0, a: 0}
