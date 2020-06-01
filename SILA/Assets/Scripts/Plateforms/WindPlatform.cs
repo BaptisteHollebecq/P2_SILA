@@ -12,7 +12,7 @@ public class WindPlatform : MonoBehaviour
 
     public bool Debug = false;
     public float windForce;
-    private float inertieDuration = 5f;
+    public float inertieDuration = 5f;
 
     private AudioSource _source;
     private Collider _collider;
