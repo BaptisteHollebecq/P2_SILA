@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2094208225505177033}
   - component: {fileID: 5872469053940200329}
   - component: {fileID: 3991275337669142853}
+  - component: {fileID: 5927870448686154420}
   m_Layer: 0
   m_Name: SnowFall
   m_TagString: Untagged
@@ -4753,6 +4754,24 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5927870448686154420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813653978569790081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f001eeab198554194105e06200c521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSpeed: 5
+  _particleNumber: 0
+  _particleLife: 5
+  _transitionParticleSpeed: 150
+  _transitionParticleNumber: 2000
+  _transitionParticleLife: 0.5
 --- !u!1 &5424354313221334438
 GameObject:
   m_ObjectHideFlags: 0
