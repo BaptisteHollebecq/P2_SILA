@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Modular_Rock02
+  m_Name: Geyser
   m_Shader: {fileID: 4800000, guid: 55a0b0d65b21f7b46aceb189bd545281, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AOTex:
-        m_Texture: {fileID: 2800000, guid: 10ae18ab2c319c94282c62422d028187, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1eca7ca6420dc99478f43dc124c8370b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 10ae18ab2c319c94282c62422d028187, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7699a61f16f982345b4e924dc9a03376, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo1:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CurvatureTex:
-        m_Texture: {fileID: 2800000, guid: 3c83fb99b7a4a814d8ceda08e5919949, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6663670eeab43b745b7fb8da11445442, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlitterMask1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1686cf316c886694c9a59b1a8c0563f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -72,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: f78b253dd0192f54bbe89d6eee812f40, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4c7ac563dfe48b74ba8b8f58e3978591, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap1:
@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: f78b253dd0192f54bbe89d6eee812f40, type: 3}
+        m_Texture: {fileID: 2800000, guid: 148864b2a1816c94f8d8df7df892589b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -100,7 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp3:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ea8738c3ec6ed684188ae5136f811377, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -113,17 +113,17 @@ Material:
     - _BaseCellSharpness: 0.837
     - _BaseCellSharpness1: 0.01
     - _BiasDistance: 20
-    - _BiasDistance1: 0
+    - _BiasDistance1: 20
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeThreshold: 0.514
+    - _EdgeThreshold: 0.474
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Hardness: 0.1
-    - _Hardness1: 0
+    - _Hardness1: 0.1
     - _HighlightCellOffset: -0.95
     - _HighlightCellOffset1: -0.95
     - _HighlightCellSharpness: 0.01
@@ -134,7 +134,7 @@ Material:
     - _IndirectSpecularContribution1: 1
     - _LightInfluence: 0.37
     - _LightInfluence1: 0
-    - _Melting: 2
+    - _Melting: 0
     - _MeltingParameter: 1
     - _Metallic: 0
     - _Mode: 0
@@ -152,10 +152,10 @@ Material:
     - _ShadowContribution1: 0.5
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
-    - _SnowAOThreshold: -3.77
-    - _SnowDeposit: 47.51
+    - _SnowAOThreshold: 0
+    - _SnowDeposit: 15
     - _SnowEmission: 0.33
-    - _SnowHeight: 0.5
+    - _SnowHeight: 0.39
     - _SnowHeightSetting: 0
     - _SnowSmoothness: 0
     - _SpecularHighlights: 1
@@ -169,26 +169,26 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _distanceGlitter: 20
-    - _distanceGlitter1: 0
+    - _distanceGlitter1: 20
     m_Colors:
     - _AlbedoColor: {r: 0.41568628, g: 0.67058825, b: 0.7372549, a: 0}
-    - _BaseTint: {r: 0.34901962, g: 0.38431376, b: 0.4156863, a: 0}
+    - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _BaseTint1: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
-    - _GlitterInt1: {r: 1, g: 1, b: 1, a: 0}
-    - _HighlightTint: {r: 0.5520116, g: 0.7156938, b: 0.9473069, a: 1}
+    - _GlitterInt1: {r: 4, g: 4, b: 4, a: 0}
+    - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightTint1: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.5394797, g: 0.70110214, b: 0.9386859, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
     - _RimColor1: {r: 1, g: 1, b: 1, a: 0}
     - _SnowColor: {r: 1, g: 1, b: 1, a: 0}
     - _SnowEmissive: {r: 0.93247277, g: 0.93247277, b: 0.93247277, a: 0}
-    - _SnowEmissive1: {r: 0, g: 0, b: 0, a: 0}
+    - _SnowEmissive1: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
     - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
-    - _ToonRampTint1: {r: 0, g: 0, b: 0, a: 0}
+    - _ToonRampTint1: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
-    - _UVControlScreenMask1: {r: 0, g: 0, b: 0, a: 0}
+    - _UVControlScreenMask1: {r: 1, g: 1, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0, b: 0, a: 0}

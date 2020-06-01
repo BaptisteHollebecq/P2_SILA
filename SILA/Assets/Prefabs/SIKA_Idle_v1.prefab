@@ -6698,7 +6698,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Animator: {fileID: 0}
   _playerLife: 3
+  timingRespawn: 0
   _actualise: 1
 --- !u!114 &316098767056571885
 MonoBehaviour:
