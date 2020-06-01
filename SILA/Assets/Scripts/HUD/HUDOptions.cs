@@ -80,7 +80,7 @@ public class HUDOptions : MonoBehaviour
 
     private void AdjustSelection()
     {
-        _pos = new Vector3(-500, (140 - ((_index + 1) * 105)), 0);
+        _pos = new Vector3(-500, ((140 - ((_index + 1) * 105))), 0);
         selectionIcon.localPosition = _pos;
     }
 

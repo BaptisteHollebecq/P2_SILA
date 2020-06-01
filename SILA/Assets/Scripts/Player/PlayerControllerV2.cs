@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public GameObject player;
 	public Camera camera;
 	public GameObject feet;
+	public PlayerLifeManager lifeManager;
 
 	public Rigidbody _playerRb { get; private set; }
 
@@ -73,6 +74,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
+		lifeManager = GetComponent<PlayerLifeManager>();
 		_playerRb = GetComponent<Rigidbody>();
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
@@ -120,7 +122,14 @@ public class PlayerControllerV2 : MonoBehaviour
         }
     }
 
+    public void StepSound()
+    {
+        int rand = Random.Range(0, 9);
+        string step = "step";
+        step += rand.ToString();
+        sound.Play(step);
 
+    }
     public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
@@ -167,7 +176,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		flyState.AddTransition(Transition.Death, StateID.Death);
 		flyState.AddTransition(Transition.Dashing, StateID.Dash);
 
-		DeathState fallState = new DeathState(player, _collider, whatIsGround, _scriptOnPlayer);
+		DeathState fallState = new DeathState(_scriptOnPlayer);
 		fallState.AddTransition(Transition.Basic, StateID.Basic);
 
 		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);

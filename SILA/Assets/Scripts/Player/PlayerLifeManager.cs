@@ -9,9 +9,11 @@ public class PlayerLifeManager : MonoBehaviour
 	public Animator Animator;
 
     [SerializeField] private int _playerLife = 3;
-    [HideInInspector] public int Life { get { return _playerLife; } }
+    [HideInInspector] public int Life { get { return _playerLife; } set { _playerLife = value; } }
 
-    public float timingRespawn;
+	[HideInInspector] public bool isDead;
+
+	public float timingRespawn;
     private bool die = false;
 
 
@@ -51,6 +53,7 @@ public class PlayerLifeManager : MonoBehaviour
 
     public void DeathWater()
     {
+		Animator.SetBool("Respawn", false);
 		Animator.SetBool("DeathWater", true);
         //bloquer les controller et jouer anim mort dans l'eau 
         Death();
@@ -58,6 +61,7 @@ public class PlayerLifeManager : MonoBehaviour
 
     public void DeathPykes()
     {
+		Animator.SetBool("Respawn", false);
 		Animator.SetBool("DeathPykes", true);
 		//bloquer les controller et jouer l'anim de mort sur les piques
 		Death();
@@ -66,18 +70,14 @@ public class PlayerLifeManager : MonoBehaviour
 
     public void Death()
     {
+		isDead = true;
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
-        if (die)
-        {
-            Respawn();
-            die = false;
-        }
     }
 
     private IEnumerator SwitchCanDie()
     {
         yield return new WaitForSeconds(timingRespawn); // timingRespawn a modifier pour laisser le temsp a l'anim de se jouer
-        die = true;
+        Respawn();
     }
 
     public void Respawn()
@@ -90,8 +90,11 @@ public class PlayerLifeManager : MonoBehaviour
             _playerLife = _maxlife;
             transform.position = _checkPoint;
         }
-        //rendre les controls au joueur qqpart par ici normalement
-    }
+		isDead = false; //rendre les controls au joueur qqpart par ici normalement
+		Animator.SetBool("Respawn", true);
+		Animator.SetBool("DeathWater", false);
+		Animator.SetBool("DeathPykes", false);
+	}
 
     IEnumerator Timer()
     {
