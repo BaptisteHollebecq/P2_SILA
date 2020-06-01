@@ -125,6 +125,69 @@ MonoBehaviour:
     loop: 0
     oneShot: 1
     DecreaseTime: 0
+  - name: step0
+    type: 1
+    audioclip: {fileID: 8300000, guid: 78feab80693b9a14a8e0da9f602bf8a8, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step1
+    type: 1
+    audioclip: {fileID: 8300000, guid: ca2c0868ac722a44ebaa626e9b0b2d9f, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step2
+    type: 1
+    audioclip: {fileID: 8300000, guid: 0dd7975323327894cabb2d1f3676d327, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step3
+    type: 1
+    audioclip: {fileID: 8300000, guid: e5ab6b83cc51a8446a02d074867e87d4, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step4
+    type: 1
+    audioclip: {fileID: 8300000, guid: 77ada213a1729894b8d0f270ee68a403, type: 3}
+    volume: 0.15
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step5
+    type: 1
+    audioclip: {fileID: 8300000, guid: 87379ed03dcfad2498f18a0aedf73a36, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step6
+    type: 1
+    audioclip: {fileID: 8300000, guid: 17a8fcf99b152f449962f0143a0f0881, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step7
+    type: 1
+    audioclip: {fileID: 8300000, guid: b7de749bb5cba9942aaa1d45d640eedd, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: step8
+    type: 1
+    audioclip: {fileID: 8300000, guid: 715f330954ebf8c4cbb82e8afa8a1204, type: 3}
+    volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
   AmbianceSource: {fileID: 1789455301390257532}
   AmbianceVolume: 0
   CharacterSource: {fileID: 8052933761186177729}

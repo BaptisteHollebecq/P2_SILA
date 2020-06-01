@@ -281,16 +281,6 @@ public class BasicState : FSMState
 	}
 
 
-    public void StepSound()
-    {
-        int rand = Random.Range(0,10);
-        string step = "step";
-        step += rand.ToString();
-        _playerScript.sound.Play(step);
-
-    }
-
-
 	public override void DoBeforeEntering()
 	{
 		//Debug.Log("Je reviens en state basic");
