@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeMenu : MonoBehaviour
 {
     public static event System.Action MenuDisplayed;
+    public static event System.Action MenuQuited;
 
     private bool _isActive = false;
     private float _deadZone = 0.25f;
@@ -120,6 +121,7 @@ public class TimeMenu : MonoBehaviour
                     _isActive = false;
                     CanvasGroup.alpha = 0;
                     Hud.Show();
+                    MenuQuited?.Invoke();
                     ResetBrokenTime();
                 }
             }

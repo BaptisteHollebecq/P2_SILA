@@ -93,6 +93,25 @@ public class TimeSystem : MonoBehaviour
         _sunRotationDay.eulerAngles = sunRotationDay;
         _sunRotationNoon.eulerAngles = sunRotationNoon;
         _sunRotationNight.eulerAngles = sunRotationNight;
+
+        switch (startingTime)
+        {
+            case TimeOfDay.Morning:
+                MorningTime();
+                break;
+            case TimeOfDay.Day:
+                DayTime();
+                break;
+            case TimeOfDay.Noon:
+                NoonTime();
+                break;
+            case TimeOfDay.Night:
+                NightTime();
+                break;
+            default:
+                MorningTime();
+                break;
+        }
     }
 
     void MorningTime()
@@ -171,26 +190,6 @@ public class TimeSystem : MonoBehaviour
     private void Start()
     {
         RenderSettings.fog = true;
-
-        switch (startingTime)
-        {
-            case TimeOfDay.Morning:
-                MorningTime();
-                break;
-            case TimeOfDay.Day:
-                DayTime();
-                break;
-            case TimeOfDay.Noon:
-                NoonTime();
-                break;
-            case TimeOfDay.Night:
-                NightTime();
-                break;
-            default:
-                MorningTime();
-                break;
-        }
-
     }
 
     private void Update()
