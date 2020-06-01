@@ -74,7 +74,7 @@ public class TimeSystem : MonoBehaviour
     [SerializeField] private float _FogDensityNight;
 
     private float _transitionScale;
-    private float _transitionSlide = 0f;
+    [HideInInspector] public static float _transitionSlide = 0f;
     private float _rotationScale;
     private float _intensityScale;
     private float _timeScale;
@@ -99,6 +99,7 @@ public class TimeSystem : MonoBehaviour
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
+        Debug.Log("play sound morning");
 
         _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;
