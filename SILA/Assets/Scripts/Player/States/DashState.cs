@@ -60,6 +60,10 @@ public class DashState : FSMState
 		{
 			_playerScript.SetTransition(Transition.Flying);
 		}
+		if(_playerScript.lifeManager.isDead)
+		{
+			_playerScript.SetTransition(Transition.Death);
+		}
 	}
 
 	public override void Act()

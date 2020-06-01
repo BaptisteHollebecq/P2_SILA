@@ -61,6 +61,11 @@ public class FlyState : FSMState
 
 		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
 			_playerScript.SetTransition(Transition.Dashing);
+
+		if (_playerScript.lifeManager.isDead)
+		{
+			_playerScript.SetTransition(Transition.Death);
+		}
 	}
 
 	public override void Act()

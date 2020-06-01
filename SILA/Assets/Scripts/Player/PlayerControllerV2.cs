@@ -12,6 +12,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public GameObject player;
 	public Camera camera;
 	public GameObject feet;
+	public PlayerLifeManager lifeManager;
 
 	public Rigidbody _playerRb { get; private set; }
 
@@ -73,6 +74,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
+		lifeManager = GetComponent<PlayerLifeManager>();
 		_playerRb = GetComponent<Rigidbody>();
 		_scriptOnPlayer = GetComponent<PlayerControllerV2>();
 		_collider = GetComponent<Collider>();
@@ -105,9 +107,6 @@ public class PlayerControllerV2 : MonoBehaviour
 		{
 			DashReset();
 		}
-
-        
-
     }
 
 
@@ -155,25 +154,23 @@ public class PlayerControllerV2 : MonoBehaviour
 	{
 		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
-		basicState.AddTransition(Transition.Falling, StateID.Fall);
+		basicState.AddTransition(Transition.Death, StateID.Death);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);
 		basicState.AddTransition(Transition.Zooming, StateID.Zoom);
 		basicState.AddTransition(Transition.Flying, StateID.Fly);
 
 		DashState dashState = new DashState(_playerRb, _scriptOnPlayer, player.transform, camera, animator);
 		dashState.AddTransition(Transition.Basic, StateID.Basic);
-		dashState.AddTransition(Transition.Falling, StateID.Fall);
+		dashState.AddTransition(Transition.Death, StateID.Death);
 		dashState.AddTransition(Transition.Flying, StateID.Fly);
 
 		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		flyState.AddTransition(Transition.Basic, StateID.Basic);
-		flyState.AddTransition(Transition.Falling, StateID.Fall);
+		flyState.AddTransition(Transition.Death, StateID.Death);
 		flyState.AddTransition(Transition.Dashing, StateID.Dash);
 
-		FallState fallState = new FallState(player, _collider, whatIsGround, _scriptOnPlayer);
+		DeathState fallState = new DeathState(_scriptOnPlayer);
 		fallState.AddTransition(Transition.Basic, StateID.Basic);
-		fallState.AddTransition(Transition.Dashing, StateID.Dash);
-		fallState.AddTransition(Transition.Flying, StateID.Fly);
 
 		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);
 		steleState.AddTransition(Transition.Basic, StateID.Basic);
