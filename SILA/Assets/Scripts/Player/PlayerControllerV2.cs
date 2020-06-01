@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -122,7 +122,14 @@ public class PlayerControllerV2 : MonoBehaviour
         }
     }
 
+    public void StepSound()
+    {
+        int rand = Random.Range(0, 9);
+        string step = "step";
+        step += rand.ToString();
+        sound.Play(step);
 
+    }
     public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
