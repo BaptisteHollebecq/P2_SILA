@@ -18,20 +18,35 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private Sprite _todDawn;
     [SerializeField] private Sprite _todTwilight;
 
+    [SerializeField] private Sprite _todDayColo;
+    [SerializeField] private Sprite _todNighColo;
+    [SerializeField] private Sprite _todDawnColo;
+    [SerializeField] private Sprite _todTwilightColo;
+
     [Header("Masks")]
     [SerializeField] private Sprite _mask0;
     [SerializeField] private Sprite _mask1;
     [SerializeField] private Sprite _mask2;
     [SerializeField] private Sprite _mask3;
 
+    [SerializeField] private Sprite _mask0Colo;
+    [SerializeField] private Sprite _mask1Colo;
+    [SerializeField] private Sprite _mask2Colo;
+    [SerializeField] private Sprite _mask3Colo;
+
     [Header("Life")]
     [SerializeField] private Sprite _hp;
+    [SerializeField] private Sprite _hpColo;
     [SerializeField] private Sprite _hpLosed;
+    [SerializeField] private Sprite _hpLosedColo;
     [SerializeField] private Image _placeHolderLife;
+    [SerializeField] private Image _placeHolderLifeColo;
 
     [Header("PlaceHolders")]
     [SerializeField] private Image _placeHolderMask;
+    [SerializeField] private Image _placeHolderMaskColo;
     [SerializeField] private Image _placeHolderTod;
+    [SerializeField] private Image _placeHolderTodColo;
     [SerializeField] private Image _placeHolderFirstHp;
     [SerializeField] private Text _placeHolderCollectiblesCount;
 
@@ -81,24 +96,36 @@ public class HUDInGame : MonoBehaviour
 
     private void ActualiseLife()
     {
-        //Debug.Log("PlayerLife == " + _lifeManager.Life);
+        Debug.Log("PlayerLife == " + _lifeManager.Life);
+        Debug.Log("PlayerMaxLife == " + _lifeManager.MaxLife);
         CleanList();
         Vector3 ImgPos = new Vector3(260,980,0);
         int i = 0;
         while (i < _lifeManager.Life)
         {
-            Image Hp = Instantiate(_placeHolderLife, ImgPos, Quaternion.identity, transform.GetChild(0).transform);
+            Image HpColor = Instantiate(_placeHolderLifeColo, ImgPos, Quaternion.identity, transform.GetChild(0).transform);
+            Image Hp = Instantiate(_placeHolderLife, ImgPos, Quaternion.identity, HpColor.transform);
+            
+            Hp.gameObject.SetActive(true);
+            HpColor.gameObject.SetActive(true);
             ImgPos.x += 70;
             Hp.overrideSprite = _hp;
+            HpColor.overrideSprite = _hpColo;
             _healthBar.Add(Hp);
+            _healthBar.Add(HpColor);
             i++;
         }
+        Debug.Log("la variable i vaut == " + i);
         while (i < _lifeManager.MaxLife)
         {
-            Image Hp = Instantiate(_placeHolderLife, ImgPos, Quaternion.identity, transform.GetChild(0).transform);
+            Image HpColor = Instantiate(_placeHolderLifeColo, ImgPos, Quaternion.identity, transform.GetChild(0).transform);
+            Image Hp = Instantiate(_placeHolderLife, ImgPos, Quaternion.identity, HpColor.transform);
+            
             ImgPos.x += 70;
             Hp.overrideSprite = _hpLosed;
+            HpColor.overrideSprite = _hpLosedColo;
             _healthBar.Add(Hp);
+            _healthBar.Add(HpColor);
             i++;
         }
     }
@@ -119,21 +146,25 @@ public class HUDInGame : MonoBehaviour
             case 0:
                 {
                     _placeHolderMask.overrideSprite = _mask0;
+                    _placeHolderMaskColo.overrideSprite = _mask0Colo;
                     break;
                 }
             case 1:
                 {
                     _placeHolderMask.overrideSprite = _mask1;
+                    _placeHolderMaskColo.overrideSprite = _mask1Colo;
                     break;
                 }
             case 2:
                 {
                     _placeHolderMask.overrideSprite = _mask2;
+                    _placeHolderMaskColo.overrideSprite = _mask2Colo;
                     break;
                 }
             case 3:
                 {
                     _placeHolderMask.overrideSprite = _mask3;
+                    _placeHolderMaskColo.overrideSprite = _mask3Colo;
                     break;
                 }
         }
@@ -151,21 +182,25 @@ public class HUDInGame : MonoBehaviour
             case TimeOfDay.Day:
                 {
                     _placeHolderTod.overrideSprite = _todDay;
+                    _placeHolderTodColo.overrideSprite = _todDayColo;
                     break;
                 }
             case TimeOfDay.Morning:
                 {
                     _placeHolderTod.overrideSprite = _todDawn;
+                    _placeHolderTodColo.overrideSprite = _todDawnColo;
                     break;
                 }
             case TimeOfDay.Night:
                 {
                     _placeHolderTod.overrideSprite = _todNigh;
+                    _placeHolderTodColo.overrideSprite = _todNighColo;
                     break;
                 }
             case TimeOfDay.Noon:
                 {
                     _placeHolderTod.overrideSprite = _todTwilight;
+                    _placeHolderTodColo.overrideSprite = _todTwilightColo;
                     break;
                 }
         }

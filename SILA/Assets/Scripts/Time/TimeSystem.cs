@@ -74,7 +74,7 @@ public class TimeSystem : MonoBehaviour
     [SerializeField] private float _FogDensityNight;
 
     private float _transitionScale;
-    private float _transitionSlide = 0f;
+    [HideInInspector] public static float _transitionSlide = 0f;
     private float _rotationScale;
     private float _intensityScale;
     private float _timeScale;
@@ -93,12 +93,32 @@ public class TimeSystem : MonoBehaviour
         _sunRotationDay.eulerAngles = sunRotationDay;
         _sunRotationNoon.eulerAngles = sunRotationNoon;
         _sunRotationNight.eulerAngles = sunRotationNight;
+
+        switch (startingTime)
+        {
+            case TimeOfDay.Morning:
+                MorningTime();
+                break;
+            case TimeOfDay.Day:
+                DayTime();
+                break;
+            case TimeOfDay.Noon:
+                NoonTime();
+                break;
+            case TimeOfDay.Night:
+                NightTime();
+                break;
+            default:
+                MorningTime();
+                break;
+        }
     }
 
     void MorningTime()
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
+        Debug.Log("play sound morning");
 
         _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;
@@ -170,26 +190,6 @@ public class TimeSystem : MonoBehaviour
     private void Start()
     {
         RenderSettings.fog = true;
-
-        switch (startingTime)
-        {
-            case TimeOfDay.Morning:
-                MorningTime();
-                break;
-            case TimeOfDay.Day:
-                DayTime();
-                break;
-            case TimeOfDay.Noon:
-                NoonTime();
-                break;
-            case TimeOfDay.Night:
-                NightTime();
-                break;
-            default:
-                MorningTime();
-                break;
-        }
-
     }
 
     private void Update()

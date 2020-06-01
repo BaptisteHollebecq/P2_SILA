@@ -156,6 +156,7 @@ Material:
     - _SnowDeposit: 47.51
     - _SnowEmission: 0.33
     - _SnowHeight: 0.5
+    - _SnowHeightSetting: 0
     - _SnowSmoothness: 0
     - _SpecularHighlights: 1
     - _SpecularInt: 0.1
@@ -171,16 +172,16 @@ Material:
     - _distanceGlitter1: 0
     m_Colors:
     - _AlbedoColor: {r: 0.7372549, g: 0.49411768, b: 0.4156863, a: 0}
-    - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseTint: {r: 0.54901963, g: 0.20000002, b: 0.043137256, a: 0}
     - _BaseTint1: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
     - _GlitterInt1: {r: 1, g: 1, b: 1, a: 0}
-    - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _HighlightTint: {r: 0.6795426, g: 0.26635566, b: 0.13013652, a: 1}
     - _HighlightTint1: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RimColor: {r: 0.6795426, g: 0.26635566, b: 0.13013652, a: 0}
     - _RimColor1: {r: 1, g: 1, b: 1, a: 0}
     - _SnowColor: {r: 1, g: 1, b: 1, a: 0}
     - _SnowEmissive: {r: 0.9324728, g: 0.9324728, b: 0.9324728, a: 0}

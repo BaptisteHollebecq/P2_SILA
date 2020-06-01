@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public enum SoundType { ambiance, character, environement, transition}
+public enum SoundType { ambiance, character, environement, transition, music}
 
 [System.Serializable]
 public class Sound
@@ -22,6 +22,7 @@ public class Sound
 
 public class SoundManager : MonoBehaviour
 {
+    [Range(0, 1)] public float musicVolume;
     public Sound[] sounds;
 
     public AudioSource AmbianceSource;
@@ -32,13 +33,63 @@ public class SoundManager : MonoBehaviour
     [HideInInspector] public float EnvironementVolume;
     public AudioSource TransitionSource;
     [HideInInspector] public float TransitionVolume;
+    public AudioSource MusicMorningSource;
+    public AudioSource MusicDaySource;
+    public AudioSource MusicTwilightSource;
+    public AudioSource MusicNightSource;
+    [HideInInspector] public float MusicVolume;
 
-    private void Start()
+    private void Awake()
     {
         AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
         CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
         EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
         TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
+    }
+
+    private void Start()
+    {
+        switch (TimeSystem.actualTime)
+        {
+            case TimeOfDay.Morning:
+                {
+                    MusicMorningSource.volume = MusicVolume;
+                    MusicDaySource.volume = 0;
+                    MusicTwilightSource.volume = 0;
+                    MusicNightSource.volume = 0;
+                    break;
+                }
+            case TimeOfDay.Day:
+                {
+                    MusicMorningSource.volume = 0;
+                    MusicDaySource.volume = MusicVolume;
+                    MusicTwilightSource.volume = 0;
+                    MusicNightSource.volume = 0;
+                    break;
+                }
+            case TimeOfDay.Noon:
+                {
+                    MusicMorningSource.volume = 0;
+                    MusicDaySource.volume = 0;
+                    MusicTwilightSource.volume = MusicVolume;
+                    MusicNightSource.volume = 0;
+                    break;
+                }
+            case TimeOfDay.Night:
+                {
+                    MusicMorningSource.volume = 0;
+                    MusicDaySource.volume = 0;
+                    MusicTwilightSource.volume = 0;
+                    MusicNightSource.volume = MusicVolume;
+                    break;
+                }
+        }
+
+        MusicMorningSource.Play();
+        MusicDaySource.Play();
+        MusicTwilightSource.Play();
+        MusicNightSource.Play();
     }
 
     private void Update()
@@ -47,6 +98,44 @@ public class SoundManager : MonoBehaviour
         CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
         EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
         TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+        MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
+
+
+        switch (TimeSystem.actualTime)
+        {
+            case TimeOfDay.Morning:
+                {
+                    MusicMorningSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                    MusicDaySource.volume = MusicVolume * TimeSystem._transitionSlide;
+                    MusicTwilightSource.volume = 0;
+                    MusicNightSource.volume = 0;
+                    break;
+                }
+            case TimeOfDay.Day:
+                {
+                    MusicMorningSource.volume = 0;
+                    MusicDaySource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                    MusicTwilightSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                    MusicNightSource.volume = 0;
+                    break;
+                }
+            case TimeOfDay.Noon:
+                {
+                    MusicMorningSource.volume = 0;
+                    MusicDaySource.volume = 0;
+                    MusicTwilightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                    MusicNightSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                    break;
+                }
+            case TimeOfDay.Night:
+                {
+                    MusicMorningSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                    MusicDaySource.volume = 0;
+                    MusicTwilightSource.volume = 0;
+                    MusicNightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                    break;
+                }
+        }
     }
 
     public void Play(string name)

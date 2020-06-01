@@ -20,8 +20,24 @@ public class Stele : MonoBehaviour
     {
         if (brokenDay || brokenMorning || brokenNight || brokenNoon)
             isBroken = true;
+
+        TimeMenu.MenuDisplayed += HideBill;
+        TimeMenu.MenuQuited += ShowBill;
     }
 
+    private void OnDestroy()
+    {
+        TimeMenu.MenuDisplayed -= HideBill;
+        TimeMenu.MenuQuited -= ShowBill;
+    }
+    private void HideBill()
+    {
+        ySprite.gameObject.SetActive(false);
+    }
+    private void ShowBill()
+    {
+        ySprite.gameObject.SetActive(true);
+    }
 
     private void Update()
     {
@@ -52,7 +68,7 @@ public class Stele : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            ySprite.enabled = true;
+            ySprite.gameObject.SetActive(true);
             _respawn = other.GetComponent<PlayerLifeManager>();
         }
     }
@@ -61,7 +77,7 @@ public class Stele : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            ySprite.enabled = false;
+            ySprite.gameObject.SetActive(false);
             _respawn = null;
         }
     }
