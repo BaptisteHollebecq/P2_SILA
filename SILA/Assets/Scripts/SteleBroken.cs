@@ -110,7 +110,7 @@ public class SteleBroken : Stele
         var initPos = player.transform.position;
         var initRot = player.transform.rotation;
 
-        for (float f = 0; f < 1; f += Time.deltaTime / 2)
+        for (float f = 0; f < 1; f += Time.deltaTime / .8f)
         {
             obj.transform.position = Vector3.Lerp(initPos, origin.position, f);
             obj.transform.rotation = Quaternion.Lerp(initRot, origin.rotation, f);
