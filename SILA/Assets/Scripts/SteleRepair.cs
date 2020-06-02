@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SteleFragment : MonoBehaviour
+public class SteleRepair : MonoBehaviour
 {
+    public Stele stele;
     private PlayerCollectibles _player;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player")
+        if (other.tag == "Player")
         {
             _player = other.gameObject.GetComponent<PlayerCollectibles>();
-
-            _player.repair++;
-            //Debug.Log("Le player a " + _player.repair + " morceau de stele sur lui");
-            Destroy(gameObject);
+        }
+        while (_player.repair > 0)
+        {
+            stele.Repair(_player.gameObject);
+            _player.repair--;
         }
     }
-
 }

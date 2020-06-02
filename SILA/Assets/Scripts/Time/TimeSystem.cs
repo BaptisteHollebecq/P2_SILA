@@ -324,7 +324,9 @@ public class TimeSystem : MonoBehaviour
         targetTime = TimeOfDay.Null;
 
         if (_menu)
+        {
             EndedTransition?.Invoke();
+        }
         _menu = true;
         _canswitch = true;
         yield return null;

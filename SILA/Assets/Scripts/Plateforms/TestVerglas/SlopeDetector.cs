@@ -46,7 +46,7 @@ public class SlopeDetector : MonoBehaviour
             _oneNormalPoint = _underPlayerPoint + (_underPlayerNormal.normalized * _checkDistance);
 
             Physics.Raycast(transform.position, _oneNormalPoint - transform.position, out hitCheckSlope);
-            Debug.Log(hitCheckSlope.collider.name);
+            
             if (hitCheckSlope.collider == _underPlayerCollider)
                 _checkingPoint = hitCheckSlope.point;
             else
@@ -71,6 +71,8 @@ public class SlopeDetector : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawRay(transform.position, _underPlayerPoint - transform.position);
 
+            if (isOnSlope)
+            {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawRay(_underPlayerPoint, _underPlayerNormal);
 
@@ -79,6 +81,7 @@ public class SlopeDetector : MonoBehaviour
 
                 Gizmos.color = Color.black;
                 Gizmos.DrawRay(_underPlayerPoint, slopeDirection);
+            }
         }   
     }
 }
