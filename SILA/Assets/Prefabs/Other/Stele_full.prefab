@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3869191125542714447}
   - component: {fileID: 7390030678023913654}
   - component: {fileID: 978286785390338034}
+  - component: {fileID: 5531774565092771564}
   m_Layer: 0
   m_Name: Stele_full
   m_TagString: Untagged
@@ -92,3 +93,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!114 &5531774565092771564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129499805021172842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb0693f051043340afc9ef0078bcab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPivotOnInteract: {fileID: 0}
+  ySprite: {fileID: 0}
+  timeMenu: {fileID: 0}
+  brokenDay: 0
+  brokenNight: 0
+  brokenMorning: 0
+  brokenNoon: 0
