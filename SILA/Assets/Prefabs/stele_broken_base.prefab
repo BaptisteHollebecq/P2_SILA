@@ -493,6 +493,7 @@ MonoBehaviour:
   originPart3: {fileID: 6697759742530861004}
   stelePart4: {fileID: 2981127383180784845}
   originPart4: {fileID: 3542506481573485479}
+  repairtime: 0.8
 --- !u!1 &5636992425965501982
 GameObject:
   m_ObjectHideFlags: 0
