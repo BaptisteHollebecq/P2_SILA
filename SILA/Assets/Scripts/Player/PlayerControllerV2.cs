@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
 { 
-
+    
 	[Header("Setup Manuel")]
 	public Animator animator;
 	public GameObject player;
@@ -38,7 +38,19 @@ public class PlayerControllerV2 : MonoBehaviour
 	[HideInInspector]
 	public float dashTimer;
 
-	[Header("Player")]
+    [Header("Particle System")]
+    [SerializeField]
+    private ParticleSystem _stepParticle_L;
+    [SerializeField]
+    private ParticleSystem _stepParticle_R;
+    [SerializeField]
+    private ParticleSystem _dashSnowDetection;
+    [SerializeField]
+    private ParticleSystem _dashSnowParticle;
+    [SerializeField]
+    private float _fieldOfView;
+
+    [Header("Player")]
 	public float moveSpeed;
 	public float airSpeed;
 	public float jumpForce;
@@ -68,9 +80,6 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool activeWind;
 
 
-
-
-
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
 	{
@@ -82,7 +91,8 @@ public class PlayerControllerV2 : MonoBehaviour
 		_distToGround = _collider.bounds.extents.y - 0.8f;
 		dashTimer = dashReset + 1;
 		MakeFSM();
-	}
+        
+    }
 	private void Update()
 	{
         if (!isOnMap)
@@ -90,7 +100,7 @@ public class PlayerControllerV2 : MonoBehaviour
             _fsm.CurrentState.Reason();
             _fsm.CurrentState.Act();
         }
-
+        
 		_currentStateID = _fsm.CurrentID;
 
 		isGrounded = IsGrounded();
@@ -120,6 +130,8 @@ public class PlayerControllerV2 : MonoBehaviour
             if (windForce <= 0)
                 activeWind = false;
         }
+
+        camera.fieldOfView = _fieldOfView;
     }
 
     public void StepSound()
@@ -128,8 +140,12 @@ public class PlayerControllerV2 : MonoBehaviour
         string step = "step";
         step += rand.ToString();
         sound.Play(step);
+        _stepParticle_L.Emit(100);
+        _stepParticle_R.Emit(100);
 
     }
+
+    
     public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
