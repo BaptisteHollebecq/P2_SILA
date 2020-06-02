@@ -55,6 +55,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float groundedRotation;
 	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
+	public float maxAngle;
 
 	float _distToGround;
     bool _isGrounded;
@@ -159,7 +160,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	private void MakeFSM()
 	{
-		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
+		BasicState basicState = new BasicState(player, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
 		basicState.AddTransition(Transition.Death, StateID.Death);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);

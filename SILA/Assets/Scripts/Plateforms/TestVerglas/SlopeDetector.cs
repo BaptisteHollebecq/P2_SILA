@@ -20,7 +20,8 @@ public class SlopeDetector : MonoBehaviour
 
     [HideInInspector] public bool isOnSlope = false;
 
-    [HideInInspector] public bool checkForSlope = false;
+	public LayerMask wuatisGroud;
+	public bool checkForSlope = false;
 
     public bool debugRayCast = true;
 
@@ -37,7 +38,7 @@ public class SlopeDetector : MonoBehaviour
         RaycastHit hitUnderPlayer;
         RaycastHit hitCheckSlope;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hitUnderPlayer))
+        if (Physics.Raycast(transform.position, Vector3.down, out hitUnderPlayer, 1f, wuatisGroud))
         {
             _underPlayerPoint = hitUnderPlayer.point;
             _underPlayerNormal = hitUnderPlayer.normal;
@@ -59,9 +60,9 @@ public class SlopeDetector : MonoBehaviour
                 isOnSlope = false;
             else
                 isOnSlope = true;
-            /*Debug.Log("slopeAngles == " + slopeAngles);
-            Debug.Log("isOnSlope == " + isOnSlope);*/
-        }
+			Debug.Log("slopeAngles == " + slopeAngles);
+			//Debug.Log("isOnSlope == " + isOnSlope);
+		}
     }
 
     private void OnDrawGizmos()
