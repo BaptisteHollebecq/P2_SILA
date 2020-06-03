@@ -156,6 +156,7 @@ Material:
     - _SnowDeposit: 47.51
     - _SnowEmission: 0.33
     - _SnowHeight: 0.25
+    - _SnowHeightSetting: 0
     - _SnowSmoothness: 0
     - _SpecularHighlights: 1
     - _SpecularInt: 0.1
@@ -183,7 +184,7 @@ Material:
     - _RimColor: {r: 0.5332766, g: 0.61049575, b: 0.72305536, a: 0}
     - _RimColor1: {r: 1, g: 1, b: 1, a: 0}
     - _SnowColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SnowEmissive: {r: 0.93247277, g: 0.93247277, b: 0.93247277, a: 0}
+    - _SnowEmissive: {r: 0.8352941, g: 0.8352941, b: 0.8352941, a: 0}
     - _SnowEmissive1: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
     - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}

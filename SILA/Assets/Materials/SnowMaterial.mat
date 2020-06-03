@@ -137,7 +137,7 @@ Material:
     - _RimStrenght: 0.48
     - _Scale: 1
     - _SmoothNess: 0
-    - _SnowHeight: 1.25
+    - _SnowHeight: 0.75
     - _Snow_Emissive: 0.434
     - _Snow_Metalness: 0
     - _Snow_Smoothness: 0.46
@@ -177,7 +177,7 @@ Material:
     - _Size: {r: 10000, g: 10000, b: 0, a: 0}
     - _Size1: {r: 10000, g: 10000, b: 0, a: 0}
     - _Size2: {r: 0, g: 0, b: 0, a: 0}
-    - _SnowEmissive: {r: 0.99553853, g: 0.99553853, b: 0.99553853, a: 0}
+    - _SnowEmissive: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
