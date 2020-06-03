@@ -18,7 +18,7 @@ public class PlayerLifeManager : MonoBehaviour
 
 
     private int _maxlife;
-    [HideInInspector] public int MaxLife { get { return _maxlife; } set { MaxLife = value; } }
+    [HideInInspector] public int MaxLife { get { return _maxlife; } set { _maxlife = value; } }
 
     [SerializeField] private float _actualise;
 

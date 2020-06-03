@@ -244,7 +244,7 @@ public class BasicState : FSMState
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
 
-            _playerScript.sound.Play("Jump");
+            JumpSound();
         }
 
         #endregion
@@ -307,6 +307,14 @@ public class BasicState : FSMState
 		#endregion
 	}
 
+    private void JumpSound()
+    {
+        string s = "Jump";
+        int i = Random.Range(0, 4);
+        s += i.ToString();
+        Debug.Log(i);
+        _playerScript.sound.Play(s);
+    }
 
 	public override void DoBeforeEntering()
 	{
