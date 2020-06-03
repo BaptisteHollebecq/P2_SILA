@@ -13,6 +13,7 @@ public class DashState : FSMState
 	float _dashDuration;
 	float _dashTimer;
 
+
 	Vector3 dashDirection;
 	Vector3 dashDir;
 	Vector3 moveDirection;
@@ -68,7 +69,7 @@ public class DashState : FSMState
 
 	public override void Act()
 	{
-		_playerRb.velocity = dashDir;
+        _playerRb.velocity = dashDir;
 		_dashTimer += Time.deltaTime;
 	}
 
@@ -76,13 +77,15 @@ public class DashState : FSMState
 	{
 		_animator.SetBool("Dash", true);
 
-        _playerScript.sound.Play("Dash");
-
 		_dashTimer = 0;
 		GetCamSettings();
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
-		_difAngle = SignedAngle(_playerTransform.forward, dashDirection, Vector3.up);
+
+        if (stickInput != Vector2.zero)
+            _playerScript.sound.Play("Dash");
+
+        dashDirection = (cameraRight * stickInput.x) + (cameraForward * stickInput.y);
+        _difAngle = SignedAngle(_playerTransform.forward, dashDirection, Vector3.up);
 		_playerTransform.Rotate(new Vector3(0f, _difAngle, 0f));
 
 		dashDir = dashDirection.normalized * _dashSpeed;

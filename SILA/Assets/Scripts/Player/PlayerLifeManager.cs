@@ -18,7 +18,7 @@ public class PlayerLifeManager : MonoBehaviour
 
 
     private int _maxlife;
-    [HideInInspector] public int MaxLife { get { return _maxlife; } set { MaxLife = value; } }
+    [HideInInspector] public int MaxLife { get { return _maxlife; } set { _maxlife = value; } }
 
     [SerializeField] private float _actualise;
 
@@ -94,6 +94,9 @@ public class PlayerLifeManager : MonoBehaviour
 		Animator.SetBool("Respawn", true);
 		Animator.SetBool("DeathWater", false);
 		Animator.SetBool("DeathPykes", false);
+		Animator.SetBool("Jump", false);
+		Animator.SetBool("Fly", false);
+		Animator.SetBool("Fall", false);
 	}
 
     IEnumerator Timer()
