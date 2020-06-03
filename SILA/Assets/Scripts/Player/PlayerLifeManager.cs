@@ -14,6 +14,9 @@ public class PlayerLifeManager : MonoBehaviour
 	[HideInInspector] public bool isDead;
 
 	public float timingRespawn;
+
+    public float timingcontrols;
+
     private bool die = false;
 
 
@@ -90,7 +93,8 @@ public class PlayerLifeManager : MonoBehaviour
             _playerLife = _maxlife;
             transform.position = _checkPoint;
         }
-		isDead = false; //rendre les controls au joueur qqpart par ici normalement
+        StartCoroutine(Controls());
+
 		Animator.SetBool("Respawn", true);
 		Animator.SetBool("DeathWater", false);
 		Animator.SetBool("DeathPykes", false);
@@ -98,6 +102,12 @@ public class PlayerLifeManager : MonoBehaviour
 		Animator.SetBool("Fly", false);
 		Animator.SetBool("Fall", false);
 	}
+
+    IEnumerator Controls()
+    {
+        yield return new WaitForSeconds(timingcontrols);
+        isDead = false; //rendre les controls au joueur qqpart par ici normalement
+    }
 
     IEnumerator Timer()
     {
