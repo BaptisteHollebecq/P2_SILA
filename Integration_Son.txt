@@ -1,0 +1,22 @@
+
+
+
+Menu : Ce joue à ce baladant sur le menu, ajout d'un son "switch" lors du passage entre le menu et la map par exemple
+
+
+
+Chute (impact avec le sol) : Ce joue au moment de toucher le sol (possible qu'on ajoute un son quand elle tombe dans les airs)
+Plannage : a revoir
+
+Déplacement : 9 sons, ce joue aléatoirement à chaque pas
+
+
+Respawn : Ce joue au début du fondu en noir lors du respawn ? (j'ai un petit doute là dessus)
+//Mort : Ce joue lors de l'animation de la mort, avant le fondu au noir pour respawn
+Tomber dans l'eau (pas encore fait) : Ce joue une fois rentré en contact avec l'eau)
+
+
+
+###Vent : Ce joue lorqu'on est dans le bon temps, faire en sorte de l'entendre plus ou moins fort en fonction de la distance avec celui ci.
+//Geyser : Ce joue lorqu'il s'active, faire en sorte de l'entendre plus ou moins fort en fonction de la distance avec celui ci.
+//Collectible : Commun et Masque, ce joue quand le personnage le rammase
