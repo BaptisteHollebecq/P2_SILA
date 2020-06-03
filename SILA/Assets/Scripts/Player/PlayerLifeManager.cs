@@ -7,6 +7,7 @@ public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
 	public Animator Animator;
+    public SoundManager sound;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } set { _playerLife = value; } }
@@ -33,6 +34,7 @@ public class PlayerLifeManager : MonoBehaviour
     {
         _checkPoint = Player.transform.position;
         _maxlife = _playerLife;
+        sound = Player.sound;
     }
 
 	void Update()
@@ -74,6 +76,7 @@ public class PlayerLifeManager : MonoBehaviour
     public void Death()
     {
 		isDead = true;
+        sound.Play("Death");
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
     }
 

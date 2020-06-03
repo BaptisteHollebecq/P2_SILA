@@ -211,7 +211,7 @@ MonoBehaviour:
   - name: Jump0
     type: 1
     audioclip: {fileID: 8300000, guid: d25bc28bddfd19b4e9ec332737cec8e8, type: 3}
-    volume: 0.3
+    volume: 0.4
     loop: 0
     oneShot: 1
     DecreaseTime: 0
@@ -337,6 +337,13 @@ MonoBehaviour:
   - name: Jump3
     type: 1
     audioclip: {fileID: 8300000, guid: 7ef4b1753a111cb4c9e80f7f333bc68c, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Death
+    type: 3
+    audioclip: {fileID: 8300000, guid: aa3a33bf2517a634490acab018e22c70, type: 3}
     volume: 0.3
     loop: 0
     oneShot: 1
@@ -776,7 +783,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 35e51d3bead3e134cb8252caff4118a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3dd78984b79101747a0f44d479d62f28, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
