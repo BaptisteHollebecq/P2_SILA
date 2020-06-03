@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:SILA/Assets/Meshes/BrokenStele.meta
-guid: af20a4b7775052c4a974d951a84785a0
-=======
-guid: 1b44c1decbdb664438f356d4b0b333bb
->>>>>>> Prod_Guillaume:SILA/Assets/Scripts/Vfx.meta
+guid: 4626d519b779c6c4a85cb648fafcde89
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
