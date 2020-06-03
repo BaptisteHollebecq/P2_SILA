@@ -4,35 +4,16 @@ using UnityEngine;
 
 public class SteleFragment : MonoBehaviour
 {
-    public Stele stele;
-
-    public bool repairDay;
-    public bool repairNight;
-    public bool repairNoon;
-    public bool repairMorning;
+    private PlayerCollectibles _player;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            if (repairDay)
-            {
-                stele.brokenDay = false;
-            }
-            if (repairNight)
-            {
-                stele.brokenNight = false;
-            }
-            if (repairNoon)
-            {
-                stele.brokenNoon = false;
-            }
-            if (repairMorning)
-            {
-                stele.brokenMorning = false;
-            }
+            _player = other.gameObject.GetComponent<PlayerCollectibles>();
 
-
+            _player.repair++;
+            //Debug.Log("Le player a " + _player.repair + " morceau de stele sur lui");
             Destroy(gameObject);
         }
     }
