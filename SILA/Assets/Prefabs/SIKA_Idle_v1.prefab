@@ -6624,7 +6624,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -6641,9 +6641,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
-  m_Height: 1.9
+  m_Height: 1.4934597
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9297371, z: 0}
+  m_Center: {x: 0, y: 0.73673, z: 0}
 --- !u!114 &5139119969349804214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6660,15 +6660,15 @@ MonoBehaviour:
   player: {fileID: 3778589855829006383}
   camera: {fileID: 0}
   feet: {fileID: 5139119970151091190}
-  lifeManager: {fileID: 0}
+  lifeManager: {fileID: 8544735446438489458}
   _currentStateID: 0
-  sound: {fileID: 0}
+  sound: {fileID: 7869007573391908301}
   speedStore: 0
   isGrounded: 0
   isOnMap: 0
   canDash: 0
   dashTimer: 0
-  moveSpeed: 11
+  moveSpeed: 13
   airSpeed: 7
   jumpForce: 17
   dashSpeed: 45
@@ -6680,12 +6680,13 @@ MonoBehaviour:
   smoothTime: 0.02
   gravityScale: 3
   lowerJumpFall: 4
-  airRotation: 1
-  groundedRotation: 1.2
-  jumpBufferTimer: 0.3
+  airRotation: 50
+  groundedRotation: 60
+  jumpBufferTimer: 0.15
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
+  maxAngle: 60
 --- !u!114 &8544735446438489458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6699,10 +6700,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Animator: {fileID: 0}
+  Animator: {fileID: 7827649148271150918}
   _playerLife: 3
   isDead: 0
-  timingRespawn: 0
+  timingRespawn: 1
   _actualise: 1
 --- !u!114 &316098767056571885
 MonoBehaviour:
@@ -6733,7 +6734,10 @@ MonoBehaviour:
   slopeAngles: 0
   slopeDirection: {x: 0, y: 0, z: 0}
   isOnSlope: 0
-  checkForSlope: 0
+  wuatisGroud:
+    serializedVersion: 2
+    m_Bits: 1280
+  checkForSlope: 1
   debugRayCast: 1
 --- !u!82 &2482303177156778905
 AudioSource:
@@ -14157,3 +14161,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6095459095820539070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7869007573391908301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4153233042903435635, guid: db794785034641148bad1abaf24b014e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6095459095820539070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a362693ef2b04c54c9be723ac95a57ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

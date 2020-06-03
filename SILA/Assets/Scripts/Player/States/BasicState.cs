@@ -23,6 +23,8 @@ public class BasicState : FSMState
 	float _jumpGravity;
 	float _speedStore;
 
+	Vector2 stickInput;
+
 	float _airRotation;
 	float _groundRotation;
 
@@ -135,7 +137,9 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		
+		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
