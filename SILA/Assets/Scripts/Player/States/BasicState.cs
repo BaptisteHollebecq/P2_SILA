@@ -154,16 +154,16 @@ public class BasicState : FSMState
 			if (_difAngle > 4)                                                                                  //
 			{                                                                                                   //      SINON
 				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation);                  //      ROTATE LE PLAYER POUR 
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
 				else if(!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
 			else if (_difAngle < 4)                                                                            //
 			{                                                                                                   //
 				if (IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation);                                //
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
 				else if (!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}
 
 			_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
@@ -249,7 +249,6 @@ public class BasicState : FSMState
 
         #endregion
 
-		_rb.velocity = moveDirection;
 
 
 		#region Animator
@@ -259,7 +258,7 @@ public class BasicState : FSMState
 			_animator.SetBool("Walk", true);
 			_animator.speed = ((stickInput.magnitude / 0.5f)) + 1;
 		}
-		else if(stickInput.magnitude > 0.5f)
+		else if (stickInput.magnitude > 0.5f)
 		{
 			_animator.SetBool("Walk", false);
 			_animator.SetBool("Run", true);
@@ -305,8 +304,15 @@ public class BasicState : FSMState
 		
 
 		#endregion
+
+
+		_rb.velocity = moveDirection;
 	}
 
+	public override void FixedAct()
+	{
+		
+	}
 
 	public override void DoBeforeEntering()
 	{

@@ -113,9 +113,15 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (activeWind)
-        {
-            Debug.Log("inertie wind");
+		if (!isOnMap)
+		{
+			_fsm.CurrentState.FixedReason();	
+			_fsm.CurrentState.FixedAct();		
+		}										
+												
+		if (activeWind)							
+        {										
+            Debug.Log("inertie wind");			
             _playerRb.AddForce(windDirection * windForce);
             windForce -= (initialWindForce * Time.fixedDeltaTime) / windDuration;
             if (windForce <= 0)
