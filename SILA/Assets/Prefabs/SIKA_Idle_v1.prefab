@@ -6660,7 +6660,6 @@ MonoBehaviour:
   player: {fileID: 3778589855829006383}
   camera: {fileID: 0}
   feet: {fileID: 5139119970151091190}
-  lifeManager: {fileID: 0}
   _currentStateID: 0
   sound: {fileID: 0}
   speedStore: 0
@@ -6701,7 +6700,6 @@ MonoBehaviour:
   Player: {fileID: 0}
   Animator: {fileID: 0}
   _playerLife: 3
-  isDead: 0
   timingRespawn: 0
   _actualise: 1
 --- !u!114 &316098767056571885
@@ -14143,11 +14141,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[8].DecreaseTime
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153233042903435635, guid: db794785034641148bad1abaf24b014e,
-        type: 3}
-      propertyPath: sounds.Array.data[15].volume
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db794785034641148bad1abaf24b014e, type: 3}
