@@ -170,7 +170,7 @@ public class TimeMenu : MonoBehaviour
             if (TimeSystem.actualTime != TimeOfDay.Day && !isBroken)
             {
                 _isChanging = true;
-                _timeManager.targetTime = TimeOfDay.Day;
+                TimeSystem.targetTime = TimeOfDay.Day;
                 StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
@@ -180,7 +180,7 @@ public class TimeMenu : MonoBehaviour
             if (TimeSystem.actualTime != TimeOfDay.Morning && !isBroken)
             {
                 _isChanging = true;
-                _timeManager.targetTime = TimeOfDay.Morning;
+                TimeSystem.targetTime = TimeOfDay.Morning;
                 StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
@@ -190,7 +190,7 @@ public class TimeMenu : MonoBehaviour
             if (TimeSystem.actualTime != TimeOfDay.Night && !isBroken)
             {
                 _isChanging = true;
-                _timeManager.targetTime = TimeOfDay.Night;
+                TimeSystem.targetTime = TimeOfDay.Night;
                 StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }
@@ -200,7 +200,7 @@ public class TimeMenu : MonoBehaviour
             if (TimeSystem.actualTime != TimeOfDay.Noon && !isBroken)
             {
                 _isChanging = true;
-                _timeManager.targetTime = TimeOfDay.Noon;
+                TimeSystem.targetTime = TimeOfDay.Noon;
                 StartCoroutine(_timeManager.ChangeTimeV2());
                 CanvasGroup.alpha = 0;
             }

@@ -17,7 +17,7 @@ public class TimeSystem : MonoBehaviour
 
     [Header("")]
     public TimeOfDay startingTime;
-    [HideInInspector] public TimeOfDay targetTime = TimeOfDay.Null;
+    [HideInInspector] public static TimeOfDay targetTime = TimeOfDay.Null;
     [HideInInspector] public static TimeOfDay actualTime;
     [HideInInspector] public static float currentTime;                 // current time used in transition
     [SerializeField] private float _transitionTime = 2f;        // time in second to go from the actual time to the next one
@@ -118,7 +118,6 @@ public class TimeSystem : MonoBehaviour
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
-        Debug.Log("play sound morning");
 
         _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;

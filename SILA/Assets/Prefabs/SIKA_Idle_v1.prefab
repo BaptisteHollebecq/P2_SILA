@@ -6660,6 +6660,7 @@ MonoBehaviour:
   player: {fileID: 3778589855829006383}
   camera: {fileID: 0}
   feet: {fileID: 5139119970151091190}
+  lifeManager: {fileID: 0}
   _currentStateID: 0
   sound: {fileID: 0}
   speedStore: 0
@@ -6685,6 +6686,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  maxAngle: 0
 --- !u!114 &8544735446438489458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6700,7 +6702,9 @@ MonoBehaviour:
   Player: {fileID: 0}
   Animator: {fileID: 0}
   _playerLife: 3
-  timingRespawn: 0
+  isDead: 0
+  timingRespawn: 2.5
+  timingcontrols: 1
   _actualise: 1
 --- !u!114 &316098767056571885
 MonoBehaviour:
@@ -6715,6 +6719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   take: {fileID: 8300000, guid: 637fc689901250441a48bb8eb0619929, type: 3}
+  repair: 0
 --- !u!114 &3882664644691106079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6731,6 +6736,9 @@ MonoBehaviour:
   slopeAngles: 0
   slopeDirection: {x: 0, y: 0, z: 0}
   isOnSlope: 0
+  wuatisGroud:
+    serializedVersion: 2
+    m_Bits: 0
   checkForSlope: 0
   debugRayCast: 1
 --- !u!82 &2482303177156778905

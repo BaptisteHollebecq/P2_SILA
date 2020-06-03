@@ -56,7 +56,6 @@ public class Stele : MonoBehaviour
         if (isBroken)
         {
             timeMenu.isBroken = true;
-
         }
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
         _respawn.CheckPoint();

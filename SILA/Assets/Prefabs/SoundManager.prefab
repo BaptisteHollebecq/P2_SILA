@@ -208,12 +208,12 @@ MonoBehaviour:
     loop: 1
     oneShot: 0
     DecreaseTime: 0
-  - name: Jump
+  - name: Jump0
     type: 1
-    audioclip: {fileID: 8300000, guid: 27f5e89a7bcde85478a379ac8e76cbe3, type: 3}
-    volume: 0.4
+    audioclip: {fileID: 8300000, guid: d25bc28bddfd19b4e9ec332737cec8e8, type: 3}
+    volume: 0.3
     loop: 0
-    oneShot: 0
+    oneShot: 1
     DecreaseTime: 0
   - name: Dash
     type: 1
@@ -317,6 +317,27 @@ MonoBehaviour:
     type: 1
     audioclip: {fileID: 8300000, guid: 715f330954ebf8c4cbb82e8afa8a1204, type: 3}
     volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump1
+    type: 1
+    audioclip: {fileID: 8300000, guid: 82abf3db793716445b24520654bf4119, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump2
+    type: 1
+    audioclip: {fileID: 8300000, guid: 97fbc912d0025704b9c206967eef7bce, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump3
+    type: 1
+    audioclip: {fileID: 8300000, guid: 7ef4b1753a111cb4c9e80f7f333bc68c, type: 3}
+    volume: 0.3
     loop: 0
     oneShot: 1
     DecreaseTime: 0
