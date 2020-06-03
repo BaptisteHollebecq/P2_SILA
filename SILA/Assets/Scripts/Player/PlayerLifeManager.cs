@@ -94,6 +94,9 @@ public class PlayerLifeManager : MonoBehaviour
 		Animator.SetBool("Respawn", true);
 		Animator.SetBool("DeathWater", false);
 		Animator.SetBool("DeathPykes", false);
+		Animator.SetBool("Jump", false);
+		Animator.SetBool("Fly", false);
+		Animator.SetBool("Fall", false);
 	}
 
     IEnumerator Timer()
