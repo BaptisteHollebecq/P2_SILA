@@ -56,4 +56,7 @@ public abstract class FSMState
 
 	public abstract void Reason ();
 	public abstract void Act ();
+
+	public virtual void FixedReason() { }
+	public virtual void FixedAct() { }
 }

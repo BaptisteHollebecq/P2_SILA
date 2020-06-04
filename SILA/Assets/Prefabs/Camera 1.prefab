@@ -4766,10 +4766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f001eeab198554194105e06200c521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSpeed: 5
-  _particleNumber: 0
+  _particleSpeed: 0.2
+  _particleNumber: 5
   _particleLife: 5
-  _transitionParticleSpeed: 150
+  _transitionParticleSpeed: 15
   _transitionParticleNumber: 2000
   _transitionParticleLife: 0.5
 --- !u!1 &5424354313221334438
@@ -4914,6 +4914,8 @@ GameObject:
   - component: {fileID: 5424354313889683832}
   - component: {fileID: 5424354313889683838}
   - component: {fileID: 5424354313889683839}
+  - component: {fileID: 5225122993390476940}
+  - component: {fileID: 6022644153030568502}
   m_Layer: 0
   m_Name: Camera (1)
   m_TagString: MainCamera
@@ -4987,3 +4989,42 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5424354313889683833}
   m_Enabled: 1
+--- !u!114 &5225122993390476940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424354313889683833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 933bd34393334344d9b73e3178f476e5, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &6022644153030568502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424354313889683833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e2b6d1fb7aaa4584f14d9b2cac2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PostProcessShader: {fileID: 4800000, guid: ca864573117261a4b865c09886864429, type: 3}
+  BloomThreshold: 0
+  BloomExtra: 0
+  BloomAmount: 0
+  BloomSpread: 1
+  _sunLight: {fileID: 0}
+  GodRayGlow: 1
+  GodRayAmount: 0.35
+  GodRayLength: 1
+  GodRaySteps: 20
