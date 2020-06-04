@@ -144,13 +144,20 @@ public class PlayerControllerV2 : MonoBehaviour
         string step = "step";
         step += rand.ToString();
         sound.Play(step);
-        _stepParticle_L.Emit(100);
-        _stepParticle_R.Emit(100);
-
     }
+	public void StepSoundSnow()
+	{
+		int rand = Random.Range(0, 9);
+		string step = "step";
+		step += rand.ToString();
+		sound.Play(step);
 
-    
-    public void WindInertie(Vector3 direction , float force, float duration)
+		_stepParticle_L.Emit(100);
+		_stepParticle_R.Emit(100);
+
+	}
+
+	public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
         windForce = force;

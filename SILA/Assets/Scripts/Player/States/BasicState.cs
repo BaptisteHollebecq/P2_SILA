@@ -224,7 +224,6 @@ public class BasicState : FSMState
 			if (_rb.velocity.y < -0.2f)
 				_isJumping = false;
 
-			RaycastHit hitSnowGround;
 			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
 				_animator.SetFloat("Snow", 1);
 			else
