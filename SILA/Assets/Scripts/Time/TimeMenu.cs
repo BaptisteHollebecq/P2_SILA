@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TimeMenu : MonoBehaviour
 {
@@ -56,19 +53,19 @@ public class TimeMenu : MonoBehaviour
     private void EndTransitionTime()
     {
         _isChanging = false;
-        switch (_actualTime)
+        switch (TimeSystem.actualTime)
         {
             case TimeOfDay.Morning:
-                _arrow.rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+                _arrow.rotation = new Quaternion(0,0,.7f,.7f);
                 break;
             case TimeOfDay.Day:
-                _arrow.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
+                _arrow.rotation = new Quaternion(0, 0, 0, 1);
                 break;
             case TimeOfDay.Noon:
-                _arrow.rotation = Quaternion.AngleAxis(270f, Vector3.forward);
+                _arrow.rotation = new Quaternion(0, 0, -.7f, .7f);
                 break;
             case TimeOfDay.Night:
-                _arrow.rotation = Quaternion.AngleAxis(180f, Vector3.forward);
+                _arrow.rotation = new Quaternion(0, 0, -1, 0);
                 break;
         }
         CanvasGroup.alpha = 1;
@@ -78,21 +75,7 @@ public class TimeMenu : MonoBehaviour
     {
         if (!_isActive)
         {
-            switch (_actualTime)
-            {
-                case TimeOfDay.Morning:
-                    _arrow.rotation = Quaternion.AngleAxis(90f, Vector3.forward);
-                    break;
-                case TimeOfDay.Day:
-                    _arrow.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
-                    break;
-                case TimeOfDay.Noon:
-                    _arrow.rotation = Quaternion.AngleAxis(270f, Vector3.forward);
-                    break;
-                case TimeOfDay.Night:
-                    _arrow.rotation = Quaternion.AngleAxis(180f, Vector3.forward);
-                    break;
-            }
+            
             if (isBroken)
             {
                 if (isBroken)
@@ -108,9 +91,21 @@ public class TimeMenu : MonoBehaviour
             _isActive = true;
 			CanvasGroup.alpha = 1;
             Hud.Hide();
-            _actualTime = TimeSystem.actualTime;
-            //Debug.Log(_actualTime);
-            
+            switch (TimeSystem.actualTime)
+            {
+                case TimeOfDay.Morning:
+                    _arrow.rotation = new Quaternion(0, 0, .7f, .7f);
+                    break;
+                case TimeOfDay.Day:
+                    _arrow.rotation = new Quaternion(0, 0, 0, 1);
+                    break;
+                case TimeOfDay.Noon:
+                    _arrow.rotation = new Quaternion(0, 0, -.7f, .7f);
+                    break;
+                case TimeOfDay.Night:
+                    _arrow.rotation = new Quaternion(0, 0, -1, 0);
+                    break;
+            }
         }
     }
 
@@ -127,9 +122,7 @@ public class TimeMenu : MonoBehaviour
                 if (!_isChanging)
                     TurnArrow(stickInput); 
             }
-
-
-
+            Debug.Log(_arrow.rotation);
             if (Input.GetButtonDown("B"))
             {
                 if (!_isChanging)

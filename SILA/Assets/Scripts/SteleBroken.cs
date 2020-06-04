@@ -62,6 +62,9 @@ public class SteleBroken : Stele
             stelePart2.SetActive(false);
             stelePart1.SetActive(false);
         }
+
+        TimeMenu.MenuDisplayed += HideBill;
+        TimeMenu.MenuQuited += ShowBill;
     }
 
    public override void Repair(GameObject player)

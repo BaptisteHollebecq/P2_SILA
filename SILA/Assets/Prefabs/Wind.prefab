@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debug: 0
   windForce: 50
+  inertieDuration: 2
   volume: 0.8
 --- !u!82 &6445811560387011168
 AudioSource:
