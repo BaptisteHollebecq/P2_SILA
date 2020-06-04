@@ -6668,11 +6668,14 @@ MonoBehaviour:
   isOnMap: 0
   canDash: 0
   dashTimer: 0
+  _stepParticle_L: {fileID: 3488196681592454195}
+  _stepParticle_R: {fileID: 8996006049514026261}
+  _fieldOfView: 60
   moveSpeed: 13
   airSpeed: 7
-  jumpForce: 17
+  jumpForce: 19
   dashSpeed: 45
-  dashDuration: 0.2
+  dashDuration: 0.3
   dashReset: 1.2
   flySpeed: 20
   flyGravityScale: 6
@@ -6680,9 +6683,9 @@ MonoBehaviour:
   smoothTime: 0.02
   gravityScale: 3
   lowerJumpFall: 4
-  airRotation: 50
-  groundedRotation: 60
-  jumpBufferTimer: 0.15
+  airRotation: 65
+  groundedRotation: 70
+  jumpBufferTimer: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1280
@@ -6701,9 +6704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Animator: {fileID: 7827649148271150918}
+  sound: {fileID: 0}
   _playerLife: 3
   isDead: 0
   timingRespawn: 1
+  timingcontrols: 0
   _actualise: 1
 --- !u!114 &316098767056571885
 MonoBehaviour:
@@ -6718,6 +6723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   take: {fileID: 8300000, guid: 637fc689901250441a48bb8eb0619929, type: 3}
+  repair: 0
 --- !u!114 &3882664644691106079
 MonoBehaviour:
   m_ObjectHideFlags: 0

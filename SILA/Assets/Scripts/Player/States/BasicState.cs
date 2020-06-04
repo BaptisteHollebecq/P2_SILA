@@ -11,6 +11,7 @@ public class BasicState : FSMState
 	Animator _animator;
 	SlopeDetector _slopeDetector;
 	LayerMask _whatIsGround;
+	LayerMask _whatIsSnow;
 	float _distToGround;
 
 	float _moveSpeed;
@@ -34,6 +35,7 @@ public class BasicState : FSMState
 
 	bool _hasJumped;
 	bool _canJump;
+	bool _isJumping;
 	float _jumpTimer;
 	float _maxJumpTimer;
 
@@ -47,7 +49,7 @@ public class BasicState : FSMState
 	Vector3 cameraRight;        // vector right "normalisé" de la cam
 	Vector3 cameraUp;
 
-	public BasicState(GameObject playerGO, PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask, Animator anim)
+	public BasicState(GameObject playerGO, PlayerControllerV2 scriptPlayer, Transform player, Camera cam, Collider collider, LayerMask groundMask, Animator anim, LayerMask snowGround)
 	{
 		ID = StateID.Basic;
 		_rb = scriptPlayer._playerRb;
@@ -59,6 +61,7 @@ public class BasicState : FSMState
 		_moveSpeed = scriptPlayer.moveSpeed;
 		_airSpeed = scriptPlayer.airSpeed;
 		_whatIsGround = groundMask;
+		_whatIsSnow = snowGround;
 		_distToGround = _playerCollider.bounds.extents.y - 0.8f;
 		_lowerJumpFall = scriptPlayer.lowerJumpFall;
 		_gravityScale = scriptPlayer.gravityScale;
@@ -144,14 +147,14 @@ public class BasicState : FSMState
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			/*if (IsGrounded())
+			if (IsGrounded() && !_isJumping)
 			{
-				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;											//      INPUT = ZERO
+				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
 			}
 			else
 			{
-				_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-			}*/
+				_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			}
 		}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 		else                                                                                                    //
 		{                                                                                                       //
@@ -159,16 +162,16 @@ public class BasicState : FSMState
 			if (_difAngle > 4)                                                                                  //
 			{                                                                                                   //      SINON
 				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
 				else if(!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
 			else if (_difAngle < 4)                                                                            //
 			{                                                                                                   //
 				if (IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
 				else if (!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}
 
 			_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
@@ -197,20 +200,20 @@ public class BasicState : FSMState
 			_moveSpeed = _airSpeed;
 
 			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
-		if (Mathf.Abs(_rb.velocity.y) > 70)
-			moveDirection.y = -71;
+			if (Mathf.Abs(_rb.velocity.y) > 70)
+				moveDirection.y = -71;
 
-		if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
-			moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
+			if (moveDirection.y > 0 && !Input.GetButton("Jump") || moveDirection.y > 0 && !Input.GetButton("Jump"))
+				moveDirection += Vector3.up * Physics.gravity.y * (_lowerJumpFall - 1) * Time.deltaTime;
 
-		if(!_hasJumped)
-		{
-			_canJump = true;
-			_jumpTimer += Time.deltaTime;
-		}
+			if(!_hasJumped)
+			{
+				_canJump = true;
+				_jumpTimer += Time.deltaTime;
+			}
 
-        if (_rb.velocity.y < -11)
-            _canPlayGrounded = true;
+			if (_rb.velocity.y < -11)
+				_canPlayGrounded = true;
         }
 		else
 		{
@@ -218,13 +221,22 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-            /*if (_canPlayGrounded)
+			if (_rb.velocity.y < -0.2f)
+				_isJumping = false;
+
+			RaycastHit hitSnowGround;
+			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
+				_animator.SetFloat("Snow", 1);
+			else
+				_animator.SetFloat("Snow", 0);
+
+			/*if (_canPlayGrounded)
             {
                 _playerScript.sound.Play("Grounded");
                 _canPlayGrounded = false;
             }*/
 
-        }
+		}
 
 		if(_jumpTimer > _maxJumpTimer)
 		{
@@ -241,6 +253,7 @@ public class BasicState : FSMState
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
 			_animator.SetBool("Jump", true);
+			_isJumping = true;
 			_canJump = false;
 			_hasJumped = true;
 			_rb.velocity = Vector3.zero;
@@ -306,10 +319,11 @@ public class BasicState : FSMState
 			_animator.SetFloat("MoveSpeed", 0);
 			_animator.SetBool("Idle", true);
 		}
-		
+
 
 		#endregion
 
+			
 
 		_rb.velocity = moveDirection;
 	}
