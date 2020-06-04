@@ -32,8 +32,6 @@ Transform:
   m_Children:
   - {fileID: 1453753780526753835}
   - {fileID: 4457306833511206878}
-  - {fileID: 2233452896316812231}
-  - {fileID: 7189057230798499668}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dfad0383b8f074ea119b60872b6d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug: 0
+  _debug: 0
   windForce: 50
   inertieDuration: 2
   volume: 0.8
@@ -279,6 +277,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1453753780247620244}
+  - {fileID: 7189057230798499668}
+  - {fileID: 2233452896316812231}
   m_Father: {fileID: 1453753779231559195}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -191.65298, z: 0}
@@ -307,13 +307,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2758735769665317137}
-  m_LocalRotation: {x: -0, y: -0.9948339, z: -0, w: -0.10151622}
-  m_LocalPosition: {x: -0.3800001, y: -0.5799999, z: -15.3}
-  m_LocalScale: {x: 12.496002, y: 12.496, z: 12.496002}
+  m_LocalRotation: {x: -0, y: 0.12030358, z: -0, w: 0.9927372}
+  m_LocalPosition: {x: 6.6, y: -0.5799999, z: 30.3}
+  m_LocalScale: {x: 12.496004, y: 12.496, z: 12.496004}
   m_Children: []
-  m_Father: {fileID: 1453753779231559195}
+  m_Father: {fileID: 1453753780526753835}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 13.819, z: 0}
 --- !u!198 &779735545292211506
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -1586,8 +1586,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0.14509805}
-        key1: {r: 1, g: 1, b: 1, a: 0.6392157}
-        key2: {r: 0, g: 0, b: 0, a: 0.53333336}
+        key1: {r: 1, g: 1, b: 1, a: 0.07058824}
+        key2: {r: 0, g: 0, b: 0, a: 0.06666667}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1602,10 +1602,10 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 15998
+        atime1: 17733
         atime2: 48959
         atime3: 65535
-        atime4: 0
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
@@ -5151,13 +5151,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5731513973998274339}
-  m_LocalRotation: {x: -0, y: -0.9948339, z: -0, w: -0.10151622}
-  m_LocalPosition: {x: -0.3800006, y: -0.029999971, z: 12.91}
+  m_LocalRotation: {x: -0.0006838756, y: 0.11576075, z: -0.014789143, w: 0.9931668}
+  m_LocalPosition: {x: -2.6, y: -0.029999971, z: -14.49}
   m_LocalScale: {x: 10.718485, y: 10.718485, z: 10.718485}
   m_Children: []
-  m_Father: {fileID: 1453753779231559195}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1453753780526753835}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0.11800001, y: 13.295001, z: -1.692}
 --- !u!198 &6037240092627579749
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5294,7 +5294,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7788,7 +7788,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7841,7 +7841,7 @@ ParticleSystem:
     strengthY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7894,7 +7894,7 @@ ParticleSystem:
     strengthZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7946,7 +7946,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 1
     frequency: 0.33
-    damping: 1
+    damping: 0
     octaves: 1
     octaveMultiplier: 0.5
     octaveScale: 2
@@ -7954,7 +7954,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.35
+      scalar: 14
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9109,7 +9109,7 @@ ParticleSystem:
     attachRibbonsToTransform: 0
     colorOverLifetime:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -9188,8 +9188,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7219456
         - serializedVersion: 3
-          time: 0.47147673
-          value: 0.4137773
+          time: 0.5074246
+          value: 0.12564054
           inSlope: 0.009584535
           outSlope: 0.009584535
           tangentMode: 0
