@@ -26,12 +26,12 @@ Transform:
   m_GameObject: {fileID: 2109999130952781064}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.022377126, y: 0.022377124, z: 0.022377126}
   m_Children:
   - {fileID: 42940032589419715}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -40.021004, z: 0}
 --- !u!95 &5015148642790576737
 Animator:
   serializedVersion: 3
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7810691341726058985}
   - component: {fileID: 1598159015915910577}
   - component: {fileID: 7956123389063592040}
+  - component: {fileID: 1088360831927370609}
   m_Layer: 0
   m_Name: SPIKES
   m_TagString: Untagged
@@ -175,6 +176,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!114 &1088360831927370609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6278833778690962353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1
 --- !u!1 &8090810790664428395
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +204,9 @@ GameObject:
   - component: {fileID: 7107077569245153251}
   - component: {fileID: 6800785611927612918}
   - component: {fileID: 7956123390418436392}
+  - component: {fileID: 9125406983841726152}
+  - component: {fileID: 7276292790483025659}
+  - component: {fileID: 6764196532086499892}
   m_Layer: 0
   m_Name: VineGround 1
   m_TagString: Untagged
@@ -267,3 +287,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!65 &9125406983841726152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090810790664428395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 320, y: 100, z: 300}
+  m_Center: {x: -21.5, y: 17.183445, z: 26.429825}
+--- !u!114 &7276292790483025659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090810790664428395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076bfc27ea887d84e9c5b372a08b2cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1
+--- !u!114 &6764196532086499892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090810790664428395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1

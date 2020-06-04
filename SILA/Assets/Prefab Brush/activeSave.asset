@@ -12,16 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cb495ffbca0404d878640680165899, type: 3}
   m_Name: activeSave
   m_EditorClassIdentifier: 
-  prefabList:
-  - {fileID: 2788733908529306950, guid: e42eaed222f61714e9d22c096ac2d141, type: 3}
-  - {fileID: 3697873605811482287, guid: 920dd455d3dfd6840a52e76e2e19dd18, type: 3}
-  - {fileID: 3108043729349841624, guid: 862bfe85c10581f499e513efa540288d, type: 3}
+  prefabList: []
   paintType: 0
-  brushSize: 40
+  brushSize: 1
   minBrushSize: 0.1
-  maxBrushSize: 40
-  paintDeltaDistance: 10
-  maxPaintDeltaDistance: 10
+  maxBrushSize: 20
+  paintDeltaDistance: 0.4
+  maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
   prefabsPerStroke: 1
   maxprefabsPerStroke: 20
@@ -29,11 +26,11 @@ MonoBehaviour:
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
-  checkLayer: 1
+  checkLayer: 0
   checkTag: 0
   checkSlope: 0
   requiredTagMask: 0
-  requiredLayerMask: 32
+  requiredLayerMask: 0
   minRequiredSlope: 0
   maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
@@ -41,15 +38,15 @@ MonoBehaviour:
   draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
-  parentingStyle: 2
+  parentingStyle: 0
   parent: {fileID: 0}
   rotateToMatchSurface: 0
   rotateSurfaceDirection: 0
-  randomizeRotation: 1
+  randomizeRotation: 0
   minXRotation: 0
-  maxXRotation: 10
+  maxXRotation: 0
   minYRotation: 0
-  maxYRotation: 180
+  maxYRotation: 0
   minZRotation: 0
   maxZRotation: 0
   scaleType: 0
@@ -75,9 +72,9 @@ MonoBehaviour:
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
   eraseDetection: 0
-  paintBrushHotKey: 98
-  paintBrushHoldKey: 0
-  removeBrushHotKey: 101
-  removeBrushHoldKey: 0
+  paintBrushHotKey: 112
+  paintBrushHoldKey: 1
+  removeBrushHotKey: 306
+  removeBrushHoldKey: 1
   disableBrushHotKey: 105
-  disableBrushHoldKey: 0
+  disableBrushHoldKey: 1
