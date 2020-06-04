@@ -21,7 +21,7 @@ public class Branch : MonoBehaviour
         {
             case TimeOfDay.Morning:
                 {
-                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z+60);
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z+ angle);
                     break;
                 }
             case TimeOfDay.Day:
@@ -31,12 +31,12 @@ public class Branch : MonoBehaviour
                 }
             case TimeOfDay.Noon:
                 {
-                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 60);
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + angle);
                     break;
                 }
             case TimeOfDay.Night:
                 {
-                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 60);
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + angle);
                     break;
                 }
         }
