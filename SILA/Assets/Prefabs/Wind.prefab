@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1453753779231558117}
   - component: {fileID: 8064112558853299394}
   - component: {fileID: 6445811560387011168}
+  - component: {fileID: 563537340468396599}
   m_Layer: 0
   m_Name: Wind
   m_TagString: Untagged
@@ -169,6 +170,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &563537340468396599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453753779231558116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21358cc212114da4cb51847ee0aae340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dawn: 0
+  day: 0
+  twilight: 0
+  night: 0
+  _list:
+  - {fileID: 5731513973998274339}
+  - {fileID: 2758735769665317137}
 --- !u!1 &1453753780247620247
 GameObject:
   m_ObjectHideFlags: 0
