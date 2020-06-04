@@ -146,7 +146,7 @@ Material:
     - _Strength: 2
     - _Strength1: 0.86
     - _TessMax: 25
-    - _TessMaxDisp: 25
+    - _TessMaxDisp: 10
     - _TessMin: 10
     - _TessPhongStrength: 0.423
     - _TessValue: 32

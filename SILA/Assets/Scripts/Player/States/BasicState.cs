@@ -159,16 +159,16 @@ public class BasicState : FSMState
 			if (_difAngle > 4)                                                                                  //
 			{                                                                                                   //      SINON
 				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
 				else if(!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
 			else if (_difAngle < 4)                                                                            //
 			{                                                                                                   //
 				if (IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
 				else if (!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}
 
 			_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;

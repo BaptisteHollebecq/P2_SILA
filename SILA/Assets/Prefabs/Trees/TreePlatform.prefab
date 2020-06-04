@@ -1,49 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2582357435941611899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5212696934405902050}
-  - component: {fileID: 2740104872361001993}
-  m_Layer: 8
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5212696934405902050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2582357435941611899}
-  m_LocalRotation: {x: -0.00022633556, y: 0.11525176, z: -0.0019507472, w: 0.9933344}
-  m_LocalPosition: {x: -0.38, y: 0.843, z: -0.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2901123636550036545}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 13.236001, z: -0.22500001}
---- !u!65 &2740104872361001993
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2582357435941611899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.3968053, y: 1, z: 1.6156085}
-  m_Center: {x: -1.402054, y: -6.14036e-10, z: 0.5646738}
 --- !u!1 &6378706088921465699
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &4513008026854930527
 Transform:
@@ -148,7 +104,9 @@ GameObject:
   - component: {fileID: 8461752278608550723}
   - component: {fileID: 7633882078526721362}
   - component: {fileID: 1176096633993255646}
-  m_Layer: 0
+  - component: {fileID: 6889250856337761569}
+  - component: {fileID: 5323710323794895473}
+  m_Layer: 8
   m_Name: BranchPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,6 +186,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!65 &6889250856337761569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479068536934726612}
+  m_Material: {fileID: 13400000, guid: ee6844e89d80f234ca5bc3f70faf700f, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 458.54416, y: 52.364635, z: 297.95938}
+  m_Center: {x: -263.86777, y: 684.1506, z: 32.196976}
+--- !u!114 &5323710323794895473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479068536934726612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76471a1ee0e6b6947a2b76df4eb90a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 0
+  Nuit: 0
 --- !u!1 &7166274559632657721
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,9 +259,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 85
-  m_Height: 1500
+  m_Height: 1102.1582
   m_Direction: 1
-  m_Center: {x: 0, y: 475.16, z: 0}
+  m_Center: {x: 0, y: 438.2638, z: 0}
 --- !u!1 &7449513276771999999
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,12 +286,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7449513276771999999}
-  m_LocalRotation: {x: -0, y: -0.67290044, z: -0, w: 0.73973316}
-  m_LocalPosition: {x: -10, y: 278, z: -12}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 427, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 1562309063021494029}
-  - {fileID: 5212696934405902050}
   m_Father: {fileID: 6136402323687358250}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
