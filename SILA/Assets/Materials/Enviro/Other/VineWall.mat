@@ -111,7 +111,6 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SnowDeposit: 9.7
     - _SnowHeight: 0.75
-    - _SnowHeightSetting: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticHighLights: 0
@@ -123,9 +122,9 @@ Material:
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlitterInt: {r: 3.6611679, g: 3.6611679, b: 3.6611679, a: 0}
+    - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SnowEmissive: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
+    - _SnowEmissive: {r: 0.9324728, g: 0.9324728, b: 0.9324728, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}

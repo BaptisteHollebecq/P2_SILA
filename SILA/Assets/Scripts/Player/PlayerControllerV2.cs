@@ -44,7 +44,11 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField]
     private ParticleSystem _stepParticle_R;
     [SerializeField]
-    private float _fieldOfView = 60;
+    private ParticleSystem _dashSnowDetection;
+    [SerializeField]
+    private ParticleSystem _dashSnowParticle;
+    [SerializeField]
+    private float _fieldOfView;
 
     [Header("Player")]
 	public float moveSpeed;

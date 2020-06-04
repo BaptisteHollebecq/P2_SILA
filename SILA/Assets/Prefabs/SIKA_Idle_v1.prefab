@@ -988,7 +988,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1091,66 +1091,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - serializedVersion: 2
-      time: 0
-      countCurve:
-        serializedVersion: 2
-        minMaxState: 0
-        scalar: 0
-        minScalar: 30
-        maxCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        minCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-      cycleCount: 0
-      repeatInterval: 0.01
-      probability: 1
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 0
     curve:
@@ -6063,7 +6005,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 0
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -10040,7 +9982,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649158178422236131}
   serializedVersion: 6
-  lengthInSec: 1
+  lengthInSec: 60
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -10115,7 +10057,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 60
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10600,7 +10542,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10000
+    maxNumParticles: 1000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -16201,7 +16143,6 @@ GameObject:
   - component: {fileID: 316098767056571885}
   - component: {fileID: 3882664644691106079}
   - component: {fileID: 2482303177156778905}
-  - component: {fileID: 7844319483737974634}
   m_Layer: 0
   m_Name: SIKA_Idle_v1
   m_TagString: Player
@@ -16296,34 +16237,35 @@ MonoBehaviour:
   feet: {fileID: 5139119970151091190}
   lifeManager: {fileID: 0}
   _currentStateID: 0
-  sound: {fileID: 7869007573391908301}
+  sound: {fileID: 0}
   speedStore: 0
   isGrounded: 0
   isOnMap: 0
   canDash: 0
   dashTimer: 0
-  _stepParticle_L: {fileID: 3157203306769769277}
-  _stepParticle_R: {fileID: 478325242687246713}
-  _fieldOfView: 60
-  moveSpeed: 13
-  airSpeed: 13
-  jumpForce: 25
-  dashSpeed: 40
-  dashDuration: 0.3
-  dashReset: 0.3
-  flySpeed: 15
+  _stepParticle_L: {fileID: 0}
+  _stepParticle_R: {fileID: 0}
+  _dashSnowDetection: {fileID: 0}
+  _dashSnowParticle: {fileID: 0}
+  _fieldOfView: 0
+  moveSpeed: 11
+  airSpeed: 7
+  jumpForce: 17
+  dashSpeed: 45
+  dashDuration: 0.2
+  dashReset: 1.2
+  flySpeed: 20
   flyGravityScale: 6
   jumpGravity: 6
-  smoothTime: 0
-  gravityScale: 0.8
-  lowerJumpFall: 10
-  airRotation: 0.8
+  smoothTime: 0.02
+  gravityScale: 3
+  lowerJumpFall: 4
+  airRotation: 1
   groundedRotation: 1.2
-  jumpBufferTimer: 0.15
+  jumpBufferTimer: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  maxAngle: 0
 --- !u!114 &8544735446438489458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16336,7 +16278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c5fcb984f57694690592ff4ecebe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 5139119969349804214}
+  Player: {fileID: 0}
   Animator: {fileID: 0}
   _playerLife: 3
   isDead: 0
@@ -16355,7 +16297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   take: {fileID: 8300000, guid: 637fc689901250441a48bb8eb0619929, type: 3}
-  repair: 0
 --- !u!114 &3882664644691106079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16372,9 +16313,6 @@ MonoBehaviour:
   slopeAngles: 0
   slopeDirection: {x: 0, y: 0, z: 0}
   isOnSlope: 0
-  wuatisGroud:
-    serializedVersion: 2
-    m_Bits: 0
   checkForSlope: 0
   debugRayCast: 1
 --- !u!82 &2482303177156778905
@@ -16473,22 +16411,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7844319483737974634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3778589855829006383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1341bee4bd618914394caa769a071c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectSnowCollision_L: {fileID: 7089246905113088766}
-  _objectSnowCollision_R: {fileID: 1039764446809418509}
-  _particleSystem_L: {fileID: 3488196681592454195}
-  _particleSystem_R: {fileID: 8996006049514026261}
 --- !u!1 &3849726389215978872
 GameObject:
   m_ObjectHideFlags: 0
@@ -18495,7 +18417,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 0
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -22688,7 +22610,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6703723456124239292}
   m_Enabled: 1
-  m_CastShadows: 2
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -22697,7 +22619,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6849e8821229f74db541fcbbf07bfe2, type: 2}
+  - {fileID: -3620572297651811420, guid: f926f35745a19c9428d139dc7c5b8345, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23310,7 +23232,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7747300630897307688}
   serializedVersion: 6
-  lengthInSec: 1
+  lengthInSec: 60
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -23385,7 +23307,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 60
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -23870,7 +23792,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10000
+    maxNumParticles: 1000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -28308,7 +28230,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1.5
-      minScalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -28361,7 +28283,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1.5
-      minScalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -28414,7 +28336,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1.5
-      minScalar: 3
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -28998,7 +28920,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 0
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -33453,15 +33375,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6095459095820539070}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7869007573391908301 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4153233042903435635, guid: db794785034641148bad1abaf24b014e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6095459095820539070}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a362693ef2b04c54c9be723ac95a57ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

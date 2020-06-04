@@ -106,7 +106,7 @@ Material:
     - _FoamDepth1: 0
     - _FoamFalloff: 10
     - _FoamFalloff1: 0
-    - _Glaciation: -Infinity
+    - _Glaciation: 1
     - _Glaciation1: -14.42
     - _HeightLayer1: 0.9
     - _HeightLayer2: 0.8

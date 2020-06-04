@@ -13,7 +13,10 @@ public class PlayerTracks : MonoBehaviour
     private ParticleSystem _particleSystem_L;
     [SerializeField]
     private ParticleSystem _particleSystem_R;
-   
+    [SerializeField]
+    private ParticleSystem _snowParticle_L;
+    [SerializeField]
+    private ParticleSystem _snowParticle_R;
 
     RaycastHit _groundHit;
 
@@ -32,7 +35,8 @@ public class PlayerTracks : MonoBehaviour
     {
         EmitWhenGrounded(_objectSnowCollision_L, _particleSystem_L);
         EmitWhenGrounded(_objectSnowCollision_R, _particleSystem_R);
-        
+        ActivateWhenGrounded(_objectSnowCollision_R, _snowParticle_L);
+        ActivateWhenGrounded(_objectSnowCollision_R, _snowParticle_R);
 
     }
 
@@ -48,5 +52,15 @@ public class PlayerTracks : MonoBehaviour
         }    
     }
 
-    
+    private void ActivateWhenGrounded(GameObject objectSnowCollision, ParticleSystem particleSystem)
+    {
+        if (Physics.Raycast(objectSnowCollision.transform.position, Vector3.down, out _groundHit, 0.4f, _layerMask))
+        {
+            //particleSystem.emission
+        }
+        else
+        {
+            particleSystem.enableEmission = false;
+        }
+    }
 }
