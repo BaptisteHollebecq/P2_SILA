@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 3697873605811482287, guid: 920dd455d3dfd6840a52e76e2e19dd18, type: 3}
   - {fileID: 3108043729349841624, guid: 862bfe85c10581f499e513efa540288d, type: 3}
   paintType: 0
-  brushSize: 1
+  brushSize: 40
   minBrushSize: 0.1
   maxBrushSize: 40
   paintDeltaDistance: 10
