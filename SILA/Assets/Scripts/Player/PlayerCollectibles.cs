@@ -11,6 +11,8 @@ public class PlayerCollectibles : MonoBehaviour
     private AudioSource _source;
     public AudioClip take;
 
+    [HideInInspector] public int repair = 0;
+
     private bool _change = false;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class PlayerCollectibles : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _maskCollectibles = 0;
         _life.Life += 1;
+        _life.MaxLife += 1;
         _change = false;
     }
 

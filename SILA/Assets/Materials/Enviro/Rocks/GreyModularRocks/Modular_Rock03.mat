@@ -184,7 +184,7 @@ Material:
     - _RimColor: {r: 0.5457247, g: 0.70837605, b: 0.9473069, a: 0}
     - _RimColor1: {r: 1, g: 1, b: 1, a: 0}
     - _SnowColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SnowEmissive: {r: 1.0721184, g: 1.0721184, b: 1.0721184, a: 0}
+    - _SnowEmissive: {r: 0.8352941, g: 0.8352941, b: 0.8352941, a: 1}
     - _SnowEmissive1: {r: 0, g: 0, b: 0, a: 0}
     - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}

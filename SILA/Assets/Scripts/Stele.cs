@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Stele : MonoBehaviour
 {
@@ -8,13 +11,14 @@ public class Stele : MonoBehaviour
     public SpriteRenderer ySprite;
     public TimeMenu timeMenu;
     [Header("BrokenTime")]
-    private bool isBroken = false;
+    protected bool isBroken = false;
+    protected int brokenPart = 0;
     [SerializeField] public bool brokenDay = false;
     [SerializeField] public bool brokenNight = false;
     [SerializeField] public bool brokenMorning = false;
     [SerializeField] public bool brokenNoon = false;
 
-    private PlayerLifeManager _respawn;
+    protected PlayerLifeManager _respawn;
 
     private void Awake()
     {
@@ -30,11 +34,11 @@ public class Stele : MonoBehaviour
         TimeMenu.MenuDisplayed -= HideBill;
         TimeMenu.MenuQuited -= ShowBill;
     }
-    private void HideBill()
+    protected void HideBill()
     {
         ySprite.gameObject.SetActive(false);
     }
-    private void ShowBill()
+    protected void ShowBill()
     {
         ySprite.gameObject.SetActive(true);
     }
@@ -43,6 +47,8 @@ public class Stele : MonoBehaviour
     {
         if (!brokenDay && !brokenNight && !brokenMorning && !brokenNoon)
             isBroken = false;
+        if (brokenPart == 0)
+            isBroken = false;
     }
 
     public void Interact ()
@@ -50,15 +56,6 @@ public class Stele : MonoBehaviour
         if (isBroken)
         {
             timeMenu.isBroken = true;
-            if (brokenDay)
-                timeMenu.brokenDay = true;
-            if (brokenNight)
-                timeMenu.brokenNight = true;
-            if (brokenMorning)
-                timeMenu.brokenMorning = true;
-            if (brokenNoon)
-                timeMenu.brokenNoon = true;
-
         }
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
         _respawn.CheckPoint();
@@ -80,5 +77,10 @@ public class Stele : MonoBehaviour
             ySprite.gameObject.SetActive(false);
             _respawn = null;
         }
+    }
+
+    public virtual void Repair(GameObject obj)
+    {
+
     }
 }

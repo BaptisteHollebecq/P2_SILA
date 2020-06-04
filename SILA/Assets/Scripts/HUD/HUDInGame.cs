@@ -96,8 +96,6 @@ public class HUDInGame : MonoBehaviour
 
     private void ActualiseLife()
     {
-        Debug.Log("PlayerLife == " + _lifeManager.Life);
-        Debug.Log("PlayerMaxLife == " + _lifeManager.MaxLife);
         CleanList();
         Vector3 ImgPos = new Vector3(260,980,0);
         int i = 0;
@@ -115,7 +113,6 @@ public class HUDInGame : MonoBehaviour
             _healthBar.Add(HpColor);
             i++;
         }
-        Debug.Log("la variable i vaut == " + i);
         while (i < _lifeManager.MaxLife)
         {
             Image HpColor = Instantiate(_placeHolderLifeColo, ImgPos, Quaternion.identity, transform.GetChild(0).transform);

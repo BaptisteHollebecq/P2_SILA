@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TimeMenu : MonoBehaviour
 {
@@ -35,10 +32,10 @@ public class TimeMenu : MonoBehaviour
     private void Awake()
     {
         Initialize();
-        _daySprite = transform.GetChild(0);
-        _nightSprite = transform.GetChild(1);
-        _morningSprite = transform.GetChild(2);
-        _noonSprite = transform.GetChild(3);
+        _daySprite = transform.GetChild(1);
+        _nightSprite = transform.GetChild(2);
+        _morningSprite = transform.GetChild(3);
+        _noonSprite = transform.GetChild(4);
 
     }
 
@@ -56,6 +53,21 @@ public class TimeMenu : MonoBehaviour
     private void EndTransitionTime()
     {
         _isChanging = false;
+        switch (TimeSystem.actualTime)
+        {
+            case TimeOfDay.Morning:
+                _arrow.rotation = new Quaternion(0,0,.7f,.7f);
+                break;
+            case TimeOfDay.Day:
+                _arrow.rotation = new Quaternion(0, 0, 0, 1);
+                break;
+            case TimeOfDay.Noon:
+                _arrow.rotation = new Quaternion(0, 0, -.7f, .7f);
+                break;
+            case TimeOfDay.Night:
+                _arrow.rotation = new Quaternion(0, 0, -1, 0);
+                break;
+        }
         CanvasGroup.alpha = 1;
     }
 
@@ -63,36 +75,35 @@ public class TimeMenu : MonoBehaviour
     {
         if (!_isActive)
         {
+            
             if (isBroken)
             {
-                if (brokenDay)
+                if (isBroken)
                     _daySprite.gameObject.SetActive(false);
-                if (brokenNight)
+                if (isBroken)
                     _nightSprite.gameObject.SetActive(false);
-                if (brokenNoon)
+                if (isBroken)
                     _noonSprite.gameObject.SetActive(false);
-                if (brokenMorning)
+                if (isBroken)
                     _morningSprite.gameObject.SetActive(false);
             }
                 MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
             Hud.Hide();
-            _actualTime = TimeSystem.actualTime;
-            //Debug.Log(_actualTime);
-            switch (_actualTime)
+            switch (TimeSystem.actualTime)
             {
                 case TimeOfDay.Morning:
-                    _arrow.rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+                    _arrow.rotation = new Quaternion(0, 0, .7f, .7f);
                     break;
                 case TimeOfDay.Day:
-                    _arrow.rotation = Quaternion.AngleAxis(0f, Vector3.forward);
+                    _arrow.rotation = new Quaternion(0, 0, 0, 1);
                     break;
                 case TimeOfDay.Noon:
-                    _arrow.rotation = Quaternion.AngleAxis(270f, Vector3.forward);
+                    _arrow.rotation = new Quaternion(0, 0, -.7f, .7f);
                     break;
                 case TimeOfDay.Night:
-                    _arrow.rotation = Quaternion.AngleAxis(180f, Vector3.forward);
+                    _arrow.rotation = new Quaternion(0, 0, -1, 0);
                     break;
             }
         }
@@ -111,9 +122,7 @@ public class TimeMenu : MonoBehaviour
                 if (!_isChanging)
                     TurnArrow(stickInput); 
             }
-
-
-
+            Debug.Log(_arrow.rotation);
             if (Input.GetButtonDown("B"))
             {
                 if (!_isChanging)
@@ -151,7 +160,7 @@ public class TimeMenu : MonoBehaviour
 
         if (_arrowAngle > -45f && _arrowAngle <= 45f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Day && !brokenDay)
+            if (TimeSystem.actualTime != TimeOfDay.Day && !isBroken)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Day;
@@ -161,7 +170,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 45f && _arrowAngle <= 135f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Morning && !brokenMorning)
+            if (TimeSystem.actualTime != TimeOfDay.Morning && !isBroken)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Morning;
@@ -171,7 +180,7 @@ public class TimeMenu : MonoBehaviour
         }
         else if (_arrowAngle > 135f || _arrowAngle <= -135f)
         {
-            if (TimeSystem.actualTime != TimeOfDay.Night && !brokenNight)
+            if (TimeSystem.actualTime != TimeOfDay.Night && !isBroken)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Night;
@@ -181,7 +190,7 @@ public class TimeMenu : MonoBehaviour
         }
         else
         {
-            if (TimeSystem.actualTime != TimeOfDay.Noon && !brokenNoon)
+            if (TimeSystem.actualTime != TimeOfDay.Noon && !isBroken)
             {
                 _isChanging = true;
                 _timeManager.targetTime = TimeOfDay.Noon;

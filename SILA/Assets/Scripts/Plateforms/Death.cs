@@ -8,6 +8,7 @@ public class Death : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
+            Debug.Log("player on water");
             collision.transform.GetComponent<PlayerLifeManager>().DeathWater();
         }
     }

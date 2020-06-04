@@ -13,6 +13,7 @@ public class PlayerTracks : MonoBehaviour
     private ParticleSystem _particleSystem_L;
     [SerializeField]
     private ParticleSystem _particleSystem_R;
+   
 
     RaycastHit _groundHit;
 
@@ -31,6 +32,7 @@ public class PlayerTracks : MonoBehaviour
     {
         EmitWhenGrounded(_objectSnowCollision_L, _particleSystem_L);
         EmitWhenGrounded(_objectSnowCollision_R, _particleSystem_R);
+        
 
     }
 
@@ -45,4 +47,6 @@ public class PlayerTracks : MonoBehaviour
             particleSystem.emissionRate = 0f;
         }    
     }
+
+    
 }

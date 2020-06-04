@@ -94,6 +94,7 @@ public class BasicState : FSMState
 	{
 		_isGrounded = Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
 
+
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 			_isGrounded = false;
 
@@ -158,16 +159,16 @@ public class BasicState : FSMState
 			if (_difAngle > 4)                                                                                  //
 			{                                                                                                   //      SINON
 				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
 				else if(!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
 			else if (_difAngle < 4)                                                                            //
 			{                                                                                                   //
 				if (IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
 				else if (!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-4f, _difAngle), 0f) * _airRotation * Time.deltaTime);
 			}
 
 			_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
@@ -248,7 +249,7 @@ public class BasicState : FSMState
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
 
-            _playerScript.sound.Play("Jump");
+            JumpSound();
         }
 
         #endregion
@@ -312,6 +313,15 @@ public class BasicState : FSMState
 
 		_rb.velocity = moveDirection;
 	}
+
+
+    void JumpSound()
+    {
+        string s = "Jump";
+        s += Random.Range(0, 4).ToString();
+        _playerScript.sound.Play(s);
+    }
+
 
 	public override void FixedAct()
 	{
