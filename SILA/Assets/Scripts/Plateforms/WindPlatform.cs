@@ -10,7 +10,7 @@ public class WindPlatform : MonoBehaviour
     private bool _isGrounded = false;
     private MeshRenderer _renderer;
 
-    public bool Debug = false;
+    public bool _debug = false;
     public float windForce;
     public float inertieDuration = 5f;
 
@@ -33,10 +33,13 @@ public class WindPlatform : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("son option master == " + HUDOptions._params[0]);
+        Debug.Log("son option enviro == " + HUDOptions._params[1]);
+
+        _source.volume = volume * HUDOptions._params[0] * HUDOptions._params[1];
         _windDirection = transform.GetChild(0).transform.forward;
         if (_collider.enabled == true)
         {
-            _source.volume = volume * HUDOptions._params[0] * HUDOptions._params[1];
             if (!_source.isPlaying)
             {   
                 _source.loop = true;

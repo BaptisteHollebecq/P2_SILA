@@ -2867,7 +2867,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _FogDensityMorning: 0.007
+  _FogDensityMorning: 0.005
   _lightIntensityDay: 0.9
   sunRotationDay: {x: 140, y: -90, z: 0}
   _colorDay:
@@ -3015,7 +3015,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _FogDensityDay: 0.005
+  _FogDensityDay: 0.003
   _lightIntensityNoon: 0.8
   sunRotationNoon: {x: 155, y: -90, z: 20}
   _colorNoon:
@@ -3163,7 +3163,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _FogDensityNoon: 0.01
+  _FogDensityNoon: 0.008
   _lightIntensityNight: 0.5
   sunRotationNight: {x: -200, y: -90, z: 0}
   _colorNight:
