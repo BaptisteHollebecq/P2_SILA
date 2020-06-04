@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Branch : MonoBehaviour
 {
-    public Transform bas;
-    public Transform haut;
+    public float angle;
 
     bool _ismovin = false;
 
@@ -19,22 +18,22 @@ public class Branch : MonoBehaviour
         {
             case TimeOfDay.Morning:
                 {
-                    transform.rotation = bas.rotation;
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
                     break;
                 }
             case TimeOfDay.Day:
                 {
-                    transform.rotation = haut.rotation;
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                     break;
                 }
             case TimeOfDay.Noon:
                 {
-                    transform.rotation = bas.rotation;
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
                     break;
                 }
             case TimeOfDay.Night:
                 {
-                    transform.rotation = bas.rotation;
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
                     break;
                 }
         }
@@ -52,9 +51,7 @@ public class Branch : MonoBehaviour
     {
         if (!_ismovin)
         {
-            Debug.Log("la branch tombe");
-            Debug.Log(transform.rotation + "and en bas is " + bas.rotation);
-            StartCoroutine(RotateBranch(bas, timing));
+            StartCoroutine(RotateBranch(false, timing));
             _ismovin = true;
         }
     }
@@ -63,24 +60,29 @@ public class Branch : MonoBehaviour
     {
         if (!_ismovin)
         {
-            Debug.Log("la branch monte");
-            Debug.Log(transform.rotation + "and en haut is " + haut.rotation);
-            StartCoroutine(RotateBranch(haut, timing));
+            StartCoroutine(RotateBranch(true, timing));
             _ismovin = true;
         }
     }
 
-    IEnumerator RotateBranch(Transform target, float timing)
+    IEnumerator RotateBranch(bool rise, float timing)
     {
-        var initRot = transform.rotation;
+
+        var initRot = transform.localRotation;
 
         for (float f = 0; f < 1; f += Time.deltaTime / timing)
         {
-            transform.rotation = Quaternion.Lerp(initRot, target.rotation, f);
+            if (rise)
+                transform.localRotation = Quaternion.Lerp(initRot, Quaternion.Euler(0, 0, 0), f);
+            else
+                transform.localRotation = Quaternion.Lerp(initRot, Quaternion.Euler(0, 0, angle), f);
             yield return null;
         }
 
-        transform.rotation = target.rotation;
+        if (rise)
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        else
+            transform.localRotation = Quaternion.Euler(0, 0, 60);
         _ismovin = false;
     }
 
