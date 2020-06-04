@@ -45,6 +45,7 @@ public class OnSteleState : FSMState
 
 	public override void Act()
 	{
+		_rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 
 	public override void DoBeforeEntering()
@@ -56,6 +57,7 @@ public class OnSteleState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+		_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
 	}
 }

@@ -24,7 +24,7 @@ public class PlayerTracks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _layerMask = LayerMask.GetMask("Ground");
+        _layerMask = LayerMask.GetMask("SnowGround");
     }
 
     // Update is called once per frame

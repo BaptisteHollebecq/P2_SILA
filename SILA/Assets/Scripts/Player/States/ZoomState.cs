@@ -5,11 +5,12 @@ public class ZoomState : FSMState
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
 
+	GameObject _player;
 	PlayerControllerV2 _playerScript;
 	Rigidbody _rb;
 	Vector3 _moveDirection;
 
-	public ZoomState(Rigidbody rigidbody, PlayerControllerV2 player)
+	public ZoomState(Rigidbody rigidbody, PlayerControllerV2 player, GameObject	playerGO)
 	{
 		ID = StateID.Zoom;
 		_rb = rigidbody;
@@ -25,7 +26,7 @@ public class ZoomState : FSMState
 
 	public override void Act()
 	{
-
+		_rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 
 	public override void DoBeforeEntering()
@@ -37,6 +38,7 @@ public class ZoomState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+		_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
 	}
 }
