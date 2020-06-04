@@ -539,7 +539,7 @@ PrefabInstance:
     - target: {fileID: 5424354313889683838, guid: d06dd765b536db64bb2314e3e31c2172,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 4294967295
+      value: 3221226807
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06dd765b536db64bb2314e3e31c2172, type: 3}
@@ -1751,11 +1751,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1692681349}
-    - target: {fileID: 5139119969349804214, guid: a8490bf00209b38459d7944ec6ca93ae,
-        type: 3}
-      propertyPath: whatIsSnow.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 8544735446438489458, guid: a8490bf00209b38459d7944ec6ca93ae,
         type: 3}
       propertyPath: Player

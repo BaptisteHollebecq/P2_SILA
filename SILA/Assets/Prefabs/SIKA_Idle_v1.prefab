@@ -1233,7 +1233,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11490,8 +11490,8 @@ MonoBehaviour:
   isOnMap: 0
   canDash: 0
   dashTimer: 0
-  _stepParticle_L: {fileID: 3488196681592454195}
-  _stepParticle_R: {fileID: 8996006049514026261}
+  _stepParticle_L: {fileID: 1591309219511541387}
+  _stepParticle_R: {fileID: 2182062200990209344}
   _fieldOfView: 60
   moveSpeed: 13
   airSpeed: 7
@@ -11513,7 +11513,7 @@ MonoBehaviour:
     m_Bits: 1280
   whatIsSnow:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   maxAngle: 60
 --- !u!114 &8544735446438489458
 MonoBehaviour:
@@ -28960,7 +28960,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
