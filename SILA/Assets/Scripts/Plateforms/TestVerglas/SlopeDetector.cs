@@ -60,8 +60,6 @@ public class SlopeDetector : MonoBehaviour
                 isOnSlope = false;
             else
                 isOnSlope = true;
-			Debug.Log("slopeAngles == " + slopeAngles);
-			//Debug.Log("isOnSlope == " + isOnSlope);
 		}
     }
 
