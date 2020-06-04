@@ -23,5 +23,5 @@ MonoBehaviour:
   DistanceDamping: 0.8
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   BlendOnEnter: {fileID: 0}

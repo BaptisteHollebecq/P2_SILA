@@ -189,7 +189,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);
 		steleState.AddTransition(Transition.Basic, StateID.Basic);
 
-		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
+		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer, player);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
 
 
