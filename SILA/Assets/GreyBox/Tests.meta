@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:SILA/Assets/GreyBox/Tests.meta
 guid: 44f61f7a871611f4293993f4afc031b0
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 781820eaeca53bd43a4b846dc654f354
+NativeFormatImporter:
+>>>>>>> Prod_Loïc:SILA/Assets/Meshes/Character/Dash_Air_Sika_with_event_snow.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -63,6 +63,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float groundedRotation;
 	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
+	public LayerMask whatIsSnow;
 	public float maxAngle;
 
 	float _distToGround;
@@ -143,13 +144,20 @@ public class PlayerControllerV2 : MonoBehaviour
         string step = "step";
         step += rand.ToString();
         sound.Play(step);
-        _stepParticle_L.Emit(100);
-        _stepParticle_R.Emit(100);
-
     }
+	public void StepSoundSnow()
+	{
+		int rand = Random.Range(0, 9);
+		string step = "step";
+		step += rand.ToString();
+		sound.Play(step);
 
-    
-    public void WindInertie(Vector3 direction , float force, float duration)
+		_stepParticle_L.Emit(100);
+		_stepParticle_R.Emit(100);
+
+	}
+
+	public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
         windForce = force;
@@ -178,7 +186,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	private void MakeFSM()
 	{
-		BasicState basicState = new BasicState(player, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
+		BasicState basicState = new BasicState(player, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator, whatIsSnow);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
 		basicState.AddTransition(Transition.Death, StateID.Death);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);
@@ -201,7 +209,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);
 		steleState.AddTransition(Transition.Basic, StateID.Basic);
 
-		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
+		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer, player);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
 
 
