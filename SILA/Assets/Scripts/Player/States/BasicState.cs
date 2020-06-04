@@ -217,12 +217,14 @@ public class BasicState : FSMState
         }
 		else
 		{
-			_hasJumped = false;
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
 			if (_rb.velocity.y < -0.2f)
+			{
+				_hasJumped = false;
 				_isJumping = false;
+			}
 
 			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
 				_animator.SetFloat("Snow", 1);
@@ -251,11 +253,12 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
+			_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			_rb.velocity = Vector3.zero;
 			_animator.SetBool("Jump", true);
 			_isJumping = true;
 			_canJump = false;
 			_hasJumped = true;
-			_rb.velocity = Vector3.zero;
 			moveDirection.y = 0;
 			//Debug.Log("Je saute !");
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
