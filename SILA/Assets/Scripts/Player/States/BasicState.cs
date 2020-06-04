@@ -92,6 +92,8 @@ public class BasicState : FSMState
 	{
 		_isGrounded = Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
 
+        Debug.Log(_slopeDetector.slopeAngles);
+
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 			_isGrounded = false;
 
