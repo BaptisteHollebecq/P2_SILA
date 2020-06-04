@@ -94,7 +94,6 @@ public class BasicState : FSMState
 	{
 		_isGrounded = Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround);
 
-        Debug.Log(_slopeDetector.slopeAngles);
 
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 			_isGrounded = false;
@@ -250,7 +249,7 @@ public class BasicState : FSMState
 			_rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 			_gravityScale = Mathf.SmoothDamp(_gravityScale, _jumpGravity, ref _refDamp, _smoothTime);
 
-            _playerScript.sound.Play("Jump");
+            JumpSound();
         }
 
         #endregion
@@ -314,6 +313,15 @@ public class BasicState : FSMState
 
 		_rb.velocity = moveDirection;
 	}
+
+
+    void JumpSound()
+    {
+        string s = "Jump";
+        s += Random.Range(0, 4).ToString();
+        _playerScript.sound.Play(s);
+    }
+
 
 	public override void FixedAct()
 	{
