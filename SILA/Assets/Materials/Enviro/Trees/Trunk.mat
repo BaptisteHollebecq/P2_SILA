@@ -126,6 +126,6 @@ Material:
     - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SnowEmissive: {r: 0.9324728, g: 0.9324728, b: 0.9324728, a: 0}
+    - _SnowEmissive: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
