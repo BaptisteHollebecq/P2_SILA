@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6843246487594346967
+--- !u!1 &5303637699103544028
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7539942444848569284}
-  - component: {fileID: 1583093384188912114}
-  - component: {fileID: 5099427593393937675}
-  - component: {fileID: 443959109121898174}
-  - component: {fileID: 3303941707917265207}
+  - component: {fileID: 9205665209005973711}
+  - component: {fileID: 187481046742604537}
+  - component: {fileID: 5883557567962932736}
+  - component: {fileID: 4232155997916091061}
   m_Layer: 0
-  m_Name: Spikes
+  m_Name: Totem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7539942444848569284
+--- !u!4 &9205665209005973711
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843246487594346967}
-  m_LocalRotation: {x: 0.000000047078487, y: 0.7071068, z: -0.000000047078487, w: 0.7071068}
-  m_LocalPosition: {x: -3.1520376, y: 35.407, z: -2.2144856}
-  m_LocalScale: {x: 18.239725, y: 18.239725, z: 18.239725}
+  m_GameObject: {fileID: 5303637699103544028}
+  m_LocalRotation: {x: -0.6698207, y: -0.2265839, z: -0.2265839, w: 0.6698207}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1583093384188912114
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -37.379}
+--- !u!33 &187481046742604537
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843246487594346967}
-  m_Mesh: {fileID: -5424261203141322660, guid: 2fdfd3f9e495f564287af8b8c070b385, type: 3}
---- !u!23 &5099427593393937675
+  m_GameObject: {fileID: 5303637699103544028}
+  m_Mesh: {fileID: 1811395168194850891, guid: 8a22ecfbba5e5a148a30c777b14a1c0e, type: 3}
+--- !u!23 &5883557567962932736
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843246487594346967}
+  m_GameObject: {fileID: 5303637699103544028}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 15e3848dad92e334296b215982174342, type: 2}
+  - {fileID: 2100000, guid: 663b7b087aba3df41b42be7f0f8e837c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,34 +79,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &443959109121898174
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843246487594346967}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2fdfd3f9e495f564287af8b8c070b385, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3303941707917265207
+--- !u!114 &4232155997916091061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6843246487594346967}
+  m_GameObject: {fileID: 5303637699103544028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af68473490319d54cb4525483be195ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a6eded815e8476419051e08777334f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heighsnow: 0
