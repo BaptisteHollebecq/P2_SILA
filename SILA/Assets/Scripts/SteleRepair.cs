@@ -15,7 +15,7 @@ public class SteleRepair : MonoBehaviour
             _player = other.gameObject.GetComponent<PlayerCollectibles>();
             _controller = other.gameObject.GetComponent<PlayerControllerV2>();
 
-                while (_player.repair > 0 && _controller.isGrounded)
+                while (_player.repair > 0)
                 {
                     stele.Repair(_player.gameObject);
                     _player.repair--;
