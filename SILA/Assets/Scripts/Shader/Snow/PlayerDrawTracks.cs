@@ -1,0 +1,151 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerDrawTracks : MonoBehaviour
+{
+    public RenderTexture rendertexture;
+    public bool debug;
+
+    private RenderTexture _splatMap;
+    [Header("Components")]
+    public Shader drawShader;
+    public Shader snowTrack_Shader;
+    private Material _drawMaterial;
+
+    public GameObject[] terrain;
+    public Material[] _snowMaterial;
+
+    public Transform[] ObjectsTracing;
+    RaycastHit _groundHit;
+    int _layerMask;
+
+    private GameObject tempgameobject;
+
+    [Header("Properties")]
+    [Range(1, 1500)]
+    public float brushSize;
+    [Range(0, 10)]
+    public float brushStrenght;
+    // Start is called before the first frame update
+
+    public Vector2 float0;
+
+    public Vector3 tempCoordinates;
+
+    PlayerController playercontroller;
+
+    public Vector3 moveDirection;
+
+    public SnowHeight snowHeight;
+
+    [ContextMenu("Get Every _ground layer")]
+    void FindGameObjectWithTags()
+    {
+        terrain = GameObject.FindGameObjectsWithTag("Ground");
+        
+        
+    }
+
+    void Start()
+    {
+        
+        _layerMask = LayerMask.GetMask("Ground");
+
+
+        _drawMaterial = new Material(drawShader);
+
+        _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+
+        for (int i = 0; i < terrain.Length; i++)
+        {
+            _snowMaterial[i] = terrain[i].GetComponent<MeshRenderer>().material;
+           _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+            
+        }
+
+
+        playercontroller = GetComponentInParent<PlayerController>();
+
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector2 playerPos = new Vector2(-transform.position.x, -transform.position.z);
+        
+
+        for (int i = 0; i < terrain.Length; i++)
+        {
+            _snowMaterial[i].SetVector("_PositionPlayer", playerPos);
+            _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+        }
+
+        
+        moveDirection = (transform.position - tempCoordinates) * 0.07f / 20;
+        tempCoordinates = transform.position;
+
+        _drawMaterial.SetTexture("Texture", rendertexture);
+
+        for (int i = 0; i < ObjectsTracing.Length; i++)
+        {
+
+            if (Physics.Raycast(ObjectsTracing[i].position, Vector3.down, out _groundHit, 0.4f, _layerMask))
+            {
+                tempgameobject = _groundHit.transform.gameObject;
+
+                //_drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x,_groundHit.textureCoord.y, 0, 0));
+                
+                _drawMaterial.SetVector("_Center", new Vector4(0.5f, 0.5f, 0, 0));
+                
+
+                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
+
+                //tempCoordinates = _groundHit.textureCoord;
+
+                _drawMaterial.SetFloat("Strenght", brushStrenght);
+                _drawMaterial.SetFloat("Size", 10/brushSize);
+                RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(_splatMap, temp);
+                Graphics.Blit(temp, _splatMap, _drawMaterial);
+                RenderTexture.ReleaseTemporary(temp);
+                
+            }
+            else
+            {
+                _drawMaterial.SetFloat("Strenght", 0);
+                _drawMaterial.SetVector("_moveDirection", new Vector4(moveDirection.x, moveDirection.z, 0, 0));
+                RenderTexture temp = RenderTexture.GetTemporary(_splatMap.width, _splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(_splatMap, temp);
+                Graphics.Blit(temp, _splatMap, _drawMaterial);
+                RenderTexture.ReleaseTemporary(temp);
+            }
+
+        }
+
+        if (TimeSystem.currentTime >= 0.24f && TimeSystem.currentTime <= 0.245f)
+        {
+            
+            for (int i = 0; i < terrain.Length; i++)
+            {
+                _splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+                _snowMaterial[i].SetTexture("_RenderTexture", _splatMap);
+                
+            }
+            
+        }
+    }
+
+    private void OnGUI()
+    {
+
+        if (debug)
+        {
+            //Debug.DrawRay(ObjectsTracing[0].position, Vector3.down * 5, Color.red);
+            GUI.DrawTexture(new Rect(0, 0, 256, 256), _splatMap, ScaleMode.ScaleToFit, false, 1);
+            
+        }
+    }
+}
+

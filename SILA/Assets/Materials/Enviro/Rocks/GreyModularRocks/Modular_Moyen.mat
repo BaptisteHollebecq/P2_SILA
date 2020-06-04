@@ -155,7 +155,8 @@ Material:
     - _SnowAOThreshold: -3.77
     - _SnowDeposit: 47.51
     - _SnowEmission: 0.33
-    - _SnowHeight: 1
+    - _SnowHeight: 0.7849997
+    - _SnowHeightSetting: 0
     - _SnowSmoothness: 0
     - _SpecularHighlights: 1
     - _SpecularInt: 0.1

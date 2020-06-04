@@ -105,7 +105,7 @@ Material:
     - _FoamDepth1: 0
     - _FoamFalloff: 10
     - _FoamFalloff1: 0
-    - _Glaciation: 1
+    - _Glaciation: 0.56999946
     - _Glaciation1: -14.42
     - _IceDepthTransparency: 0
     - _IcePower: -1
