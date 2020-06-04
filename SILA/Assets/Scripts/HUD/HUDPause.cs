@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HUDPause : MonoBehaviour
 {
@@ -159,7 +160,7 @@ public class HUDPause : MonoBehaviour
                     }
                 case "Quit":
                     {
-                        //LOAD LE MENU PRINCIPAL
+                        SceneManager.LoadScene(0);
                         break;
                     }
             }
