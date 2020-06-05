@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7400884790839146479}
   - component: {fileID: 8165314968465966074}
   - component: {fileID: 6166131168388807248}
+  - component: {fileID: 7145486399937294698}
   m_Layer: 0
   m_Name: Tronc
   m_TagString: Untagged
@@ -184,6 +185,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!136 &7145486399937294698
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109265091632435996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 69
+  m_Height: 2418.5103
+  m_Direction: 1
+  m_Center: {x: 0, y: 1000, z: 0}
 --- !u!1 &2788733908529306950
 GameObject:
   m_ObjectHideFlags: 0

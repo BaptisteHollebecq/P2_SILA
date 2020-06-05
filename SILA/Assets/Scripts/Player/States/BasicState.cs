@@ -116,29 +116,21 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Y"))
 		{
-            if (_playerScript.onstele)
-            {
-                _playerScript.zeStele.Interact();
-                _playerScript.SetTransition(Transition.Stele);
-            }
-            else if (IsGrounded())
-                _playerScript.SetTransition(Transition.Zooming);
+			RaycastHit hitStele;
+			Physics.Raycast(_transformPlayer.position, Vector3.down, out hitStele, 10);
+			Debug.DrawRay(_transformPlayer.position, Vector3.down, Color.red, 10);
+			if (hitStele.transform.TryGetComponent(out Stele stele))
+			{
+				stele.Interact();
+				_playerScript.SetTransition(Transition.Stele);
+			}
+			else if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround))
+			{
+					_playerScript.SetTransition(Transition.Zooming);
+			}
+		}
 
-
-            #region old
-            /* RaycastHit hitStele;
-             Physics.Raycast(_transformPlayer.position, Vector3.down, out hitStele, 10);
-             Debug.DrawRay(_transformPlayer.position, Vector3.down, Color.red, 10);
-             if (hitStele.transform.TryGetComponent(out Stele stele))
-
-             else if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround))
-             {
-                     _playerScript.SetTransition(Transition.Zooming);
-             }*/
-            #endregion
-        }
-
-        if (!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
+		if(!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
 		{
 			_playerScript.SetTransition(Transition.Flying);
 		}
@@ -158,14 +150,14 @@ public class BasicState : FSMState
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			/*if (IsGrounded() && !_isJumping && !_isOnSlope)
+			if (IsGrounded() && !_isJumping && !_isOnSlope)
 			{
 				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
 			}
 			else
 			{
 				_rb.constraints = RigidbodyConstraints.FreezeRotation;
-			}*/
+			}
 		}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 		else                                                                                                    //
 		{                                                                                                       //
@@ -185,7 +177,7 @@ public class BasicState : FSMState
 					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
 			}
 
-			//_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
 		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
@@ -270,7 +262,7 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
-			//_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 			_rb.velocity = Vector3.zero;
 			_animator.SetBool("Jump", true);
 			_isJumping = true;
