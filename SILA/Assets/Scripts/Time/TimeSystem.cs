@@ -193,7 +193,7 @@ public class TimeSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("n"))
+       /* if (Input.GetKeyDown("n"))
         {
             targetTime = TimeOfDay.Night;
             StartCoroutine(ChangeTimeV2());
@@ -216,7 +216,7 @@ public class TimeSystem : MonoBehaviour
             targetTime = TimeOfDay.Noon;
             StartCoroutine(ChangeTimeV2());
             _menu = false;
-        }
+        }*/
 
     }
 
