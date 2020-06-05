@@ -17,6 +17,7 @@ public class HUDOptions : MonoBehaviour
 
     private bool _canswitch = true;
     private bool _canchange = true;
+    [HideInInspector] public bool _isActive = false;
 
     private void Awake()
     {
@@ -32,49 +33,52 @@ public class HUDOptions : MonoBehaviour
 
     private void Update()
     {
-        if (_canswitch)
+        if (_isActive)
         {
-            float _inputVertical = Input.GetAxis("Vertical");
-            if (_inputVertical == 1)
+            if (_canswitch)
             {
-                _index--;
-                if (_index == -1)
-                    _index = Options.Count - 1;
-                _canswitch = false;
-                StartCoroutine(ResetSwitch());
-                AdjustSelection();
+                float _inputVertical = Input.GetAxis("Vertical");
+                if (_inputVertical == 1)
+                {
+                    _index--;
+                    if (_index == -1)
+                        _index = Options.Count - 1;
+                    _canswitch = false;
+                    StartCoroutine(ResetSwitch());
+                    AdjustSelection();
+                }
+                else if (_inputVertical == -1)
+                {
+
+                    _index++;
+                    if (_index == Options.Count)
+                        _index = 0;
+                    _canswitch = false;
+                    StartCoroutine(ResetSwitch());
+                    AdjustSelection();
+                }
             }
-            else if (_inputVertical == -1)
+            if (_canchange)
             {
-               
-                _index++;
-                if (_index == Options.Count)
-                    _index = 0;
-                _canswitch = false;
-                StartCoroutine(ResetSwitch());
-                AdjustSelection();
-            }
-        }
-        if (_canchange)
-        {
-            float _inputHorizontal = Input.GetAxis("Horizontal");
-            if (_inputHorizontal == 1)
-            {
-                _params[_index] += 0.1f;
-                if (_params[_index] > 1)
-                    _params[_index] = 1;
-                _canchange = false;
-                StartCoroutine(ResetChange());
-                AdjustCursors();
-            }
-            else if (_inputHorizontal == -1)
-            {
-                _params[_index] -= 0.1f;
-                if (_params[_index] < 0)
-                    _params[_index] = 0;
-                _canchange = false;
-                StartCoroutine(ResetChange());
-                AdjustCursors();
+                float _inputHorizontal = Input.GetAxis("Horizontal");
+                if (_inputHorizontal == 1)
+                {
+                    _params[_index] += 0.1f;
+                    if (_params[_index] > 1)
+                        _params[_index] = 1;
+                    _canchange = false;
+                    StartCoroutine(ResetChange());
+                    AdjustCursors();
+                }
+                else if (_inputHorizontal == -1)
+                {
+                    _params[_index] -= 0.1f;
+                    if (_params[_index] < 0)
+                        _params[_index] = 0;
+                    _canchange = false;
+                    StartCoroutine(ResetChange());
+                    AdjustCursors();
+                }
             }
         }
     }
