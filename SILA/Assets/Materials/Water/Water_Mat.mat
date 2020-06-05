@@ -113,7 +113,7 @@ Material:
     - _IceSpecular: 0.641
     - _IceTransparency: 0
     - _Metalness: 1
-    - _NormalScale: 0.2
+    - _NormalScale: 0.1
     - _ParallaxOffset: 0.001
     - _Sharpness: 1.13
     - _SmallWaveTile: 0
@@ -132,7 +132,7 @@ Material:
     - _WaterFalloff1: -0.91
     - _WaterSmoothness: 1
     - _WaterSpecular: 0.35
-    - _WaveSpeed: 0.01
+    - _WaveSpeed: 0.007
     - __dirty: 0
     - _yes: 0
     m_Colors:
