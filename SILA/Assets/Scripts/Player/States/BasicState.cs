@@ -141,7 +141,7 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		Debug.Log(_resetJump);
+		//Debug.Log(_resetJump);
 		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 		if (stickInput.magnitude < _deadZone)
