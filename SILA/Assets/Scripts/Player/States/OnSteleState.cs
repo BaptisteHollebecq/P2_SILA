@@ -68,6 +68,7 @@ public class OnSteleState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+
 		_animator.SetBool("PryOut", false);
 		_animationTimer = 0;
 		_startTimer = false;
