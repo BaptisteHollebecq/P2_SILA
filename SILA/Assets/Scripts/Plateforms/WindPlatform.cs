@@ -33,8 +33,8 @@ public class WindPlatform : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("son option master == " + HUDOptions._params[0]);
-        Debug.Log("son option enviro == " + HUDOptions._params[1]);
+        /*Debug.Log("son option master == " + HUDOptions._params[0]);
+        Debug.Log("son option enviro == " + HUDOptions._params[1]);*/
 
         _source.volume = volume * HUDOptions._params[0] * HUDOptions._params[1];
         _windDirection = transform.GetChild(0).transform.forward;
