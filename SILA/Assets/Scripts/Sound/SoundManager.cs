@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
         if (!menu)
         {
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            Debug.LogWarning("Awake Ambiance volume " + AmbianceVolume);
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -104,6 +105,7 @@ public class SoundManager : MonoBehaviour
         if (!menu)
         {
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            Debug.LogWarning("Update Ambiance volume " + AmbianceVolume);
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -153,16 +155,16 @@ public class SoundManager : MonoBehaviour
         Sound s = Array.Find(sounds, Sound => Sound.name == name);
         if (s == null)
         {
-            Debug.LogWarning("Error : sound "+name+" not found");
+            Debug.LogWarning("Error : sound " + name + " not found");
             return;
         }
-
         switch (s.type)
         {
             case SoundType.ambiance:
                 {
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
+                    Debug.LogWarning("Play Ambiance volume "+ AmbianceVolume);
                     AmbianceSource.clip = s.audioclip;
                     if (s.oneShot)
                         AmbianceSource.PlayOneShot(s.audioclip);

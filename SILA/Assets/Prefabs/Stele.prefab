@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3093784981648334733}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TargetCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3093784982954863420}
   - component: {fileID: 3093784982954863421}
   - component: {fileID: 3093784982954863395}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FLoatingY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3093784983296573459}
   - component: {fileID: 3093784983296573458}
   - component: {fileID: 3093784983296573457}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Stele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,8 +189,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.90000004, y: 1.2234142, z: 0.90000004}
-  m_Center: {x: 0, y: 0.2917071, z: 0}
+  m_Size: {x: 0.9, y: 1, z: 0.9}
+  m_Center: {x: 0, y: 0.18, z: 0}
 --- !u!114 &5335163237811443071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,14 +204,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
---- !u!64 &6804195502868274747
+--- !u!64 &6406727265850404858
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3355228132353388106}
-  m_Material: {fileID: 13400000, guid: ee6844e89d80f234ca5bc3f70faf700f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 313082767947254422}
   - component: {fileID: 4457285913377083439}
   - component: {fileID: 1471382831932223216}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FLoatingY (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
