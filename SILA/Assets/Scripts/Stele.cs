@@ -19,6 +19,7 @@ public class Stele : MonoBehaviour
     [SerializeField] public bool brokenNoon = false;
 
     protected PlayerLifeManager _respawn;
+    protected PlayerControllerV2 controller;
 
     private void Awake()
     {
@@ -62,21 +63,26 @@ public class Stele : MonoBehaviour
 	}
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Player")
+        if (other.tag == "Player")
         {
             ySprite.gameObject.SetActive(true);
-            _respawn = collision.transform.GetComponent<PlayerLifeManager>();
+            _respawn = other.transform.GetComponent<PlayerLifeManager>();
+            controller = other.transform.GetComponent<PlayerControllerV2>();
+            controller.onstele = true;
+            controller.zeStele = this;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.transform.tag == "Player")
+        if (other.tag == "Player")
         {
             ySprite.gameObject.SetActive(false);
             _respawn = null;
+            controller.onstele = false;
+            controller = null;
         }
     }
 

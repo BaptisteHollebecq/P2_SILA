@@ -77,6 +77,10 @@ public class PlayerControllerV2 : MonoBehaviour
     private float windDuration;
     private bool activeWind;
 
+    [HideInInspector]
+    public bool onstele = false;
+    [HideInInspector]
+    public Stele zeStele;
 
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()

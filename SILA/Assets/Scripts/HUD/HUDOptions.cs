@@ -24,6 +24,7 @@ public class HUDOptions : MonoBehaviour
         {
             _cursors.Add(obj.transform.GetChild(0));
             _params.Add(1);
+            Debug.Log((obj.transform.GetChild(0).name));
         }
         AdjustCursors();
         AdjustSelection();

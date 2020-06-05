@@ -41,12 +41,12 @@ public class SoundManager : MonoBehaviour
     [HideInInspector] public float MusicVolume;
     //test
 
-    private void Awake()
+    private void Start()
     {
         if (!menu)
         {
+
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-            Debug.LogWarning("Awake Ambiance volume " + AmbianceVolume);
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -54,11 +54,8 @@ public class SoundManager : MonoBehaviour
         }
         else
             MusicVolume = musicVolume;
-    }
 
-    private void Start()
-    {
-            switch (TimeSystem.actualTime)
+        switch (TimeSystem.actualTime)
             {
                 case TimeOfDay.Morning:
                     {
@@ -105,7 +102,7 @@ public class SoundManager : MonoBehaviour
         if (!menu)
         {
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-            Debug.LogWarning("Update Ambiance volume " + AmbianceVolume);
+
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -164,7 +161,7 @@ public class SoundManager : MonoBehaviour
                 {
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
-                    Debug.LogWarning("Play Ambiance volume "+ AmbianceVolume);
+
                     AmbianceSource.clip = s.audioclip;
                     if (s.oneShot)
                         AmbianceSource.PlayOneShot(s.audioclip);
