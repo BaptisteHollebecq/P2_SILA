@@ -200,7 +200,7 @@ public class TimeSystem : MonoBehaviour
             _menu = false;
         }
         if (Input.GetKeyDown("a"))
-        {*
+        {
             targetTime = TimeOfDay.Morning;
             StartCoroutine(ChangeTimeV2());
             _menu = false;
@@ -230,7 +230,7 @@ public class TimeSystem : MonoBehaviour
 
         while (actualTime != targetTime && targetTime != TimeOfDay.Null)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
 
             _transitionSlide += Time.fixedDeltaTime / (_transitionTime * timeScale);
 
