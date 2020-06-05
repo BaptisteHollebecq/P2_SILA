@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8064112558853299394}
   - component: {fileID: 6445811560387011168}
   - component: {fileID: 563537340468396599}
+  - component: {fileID: 4550672568762742701}
   m_Layer: 0
   m_Name: Wind
   m_TagString: Untagged
@@ -189,6 +190,22 @@ MonoBehaviour:
   _list:
   - {fileID: 5731513973998274339}
   - {fileID: 2758735769665317137}
+--- !u!114 &4550672568762742701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453753779231558116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76471a1ee0e6b6947a2b76df4eb90a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 0
+  Crepuscule: 1
+  Nuit: 0
 --- !u!1 &1453753780247620247
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +309,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453753780526753834}
-  m_LocalRotation: {x: -0, y: -0.9948339, z: 0, w: -0.10151622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -301,7 +318,7 @@ Transform:
   - {fileID: 2233452896316812231}
   m_Father: {fileID: 1453753779231559195}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -191.65298, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2758735769665317137
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,13 +344,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2758735769665317137}
-  m_LocalRotation: {x: -0, y: 0.12030358, z: -0, w: 0.9927372}
-  m_LocalPosition: {x: 6.6, y: -0.5799999, z: 30.3}
-  m_LocalScale: {x: 12.496004, y: 12.496, z: 12.496004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.46, y: -0.03, z: 0.3}
+  m_LocalScale: {x: 10.718485, y: 10.718485, z: 10.718485}
   m_Children: []
   m_Father: {fileID: 1453753780526753835}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 13.819, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.11800001, y: 13.295001, z: -1.692}
 --- !u!198 &779735545292211506
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -417,7 +434,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -470,7 +487,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -961,7 +978,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 4
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1048,7 +1065,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 6.47
+      value: 0.8
       mode: 0
       spread: 0
       speed:
@@ -1605,9 +1622,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.14509805}
-        key1: {r: 1, g: 1, b: 1, a: 0.07058824}
-        key2: {r: 0, g: 0, b: 0, a: 0.06666667}
+        key0: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.09803922}
+        key2: {r: 0, g: 0, b: 0, a: 0.09803922}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1622,8 +1639,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 17733
-        atime2: 48959
+        atime1: 16384
+        atime2: 49151
         atime3: 65535
         atime4: 65535
         atime5: 0
@@ -5038,7 +5055,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 6.23
+  m_LengthScale: 4
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -5067,6 +5084,7 @@ GameObject:
   - component: {fileID: 3245238664922403765}
   - component: {fileID: 6804890294036608320}
   - component: {fileID: 3430429082826015480}
+  - component: {fileID: 2985737580193690259}
   m_Layer: 0
   m_Name: Debug
   m_TagString: Untagged
@@ -5146,6 +5164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b929939c319eb144a95b5b31294babe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2985737580193690259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248006536576153927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 0
+  Crepuscule: 0
+  Nuit: 0
 --- !u!1 &5731513973998274339
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,8 +5205,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5731513973998274339}
-  m_LocalRotation: {x: -0.0006838756, y: 0.11576075, z: -0.014789143, w: 0.9931668}
-  m_LocalPosition: {x: -2.6, y: -0.029999971, z: -14.49}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.46, y: -0.03, z: -14.59}
   m_LocalScale: {x: 10.718485, y: 10.718485, z: 10.718485}
   m_Children: []
   m_Father: {fileID: 1453753780526753835}
@@ -5261,7 +5295,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5313,9 +5347,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 3
-      minScalar: 5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5805,7 +5839,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 4
     angle: 0
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5892,7 +5926,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.17
+      value: 0.6
       mode: 0
       spread: 0
       speed:
@@ -6011,7 +6045,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6487,7 +6521,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 1, g: 1, b: 1, a: 0}
+        key2: {r: 1, g: 1, b: 1, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -6502,10 +6536,10 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 41634
+        atime1: 19853
         atime2: 65535
-        atime3: 0
-        atime4: 0
+        atime3: 65535
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
@@ -7808,7 +7842,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7965,7 +7999,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 1
-    frequency: 0.33
+    frequency: 0.15
     damping: 0
     octaves: 1
     octaveMultiplier: 0.5
@@ -7974,7 +8008,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 14
+      scalar: 7
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9065,7 +9099,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9115,14 +9149,14 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.2
+    minVertexDistance: 0.1
     textureMode: 0
     ribbonCount: 2
     shadowBias: 0.5
     worldSpace: 0
-    dieWithParticles: 1
+    dieWithParticles: 0
     sizeAffectsWidth: 1
-    sizeAffectsLifetime: 1
+    sizeAffectsLifetime: 0
     inheritParticleColor: 1
     generateLightingData: 0
     splitSubEmitterRibbons: 0
