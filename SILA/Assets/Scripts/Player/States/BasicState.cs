@@ -42,6 +42,7 @@ public class BasicState : FSMState
     bool _canPlayGrounded = false;
     bool _isGrounded;
     bool _soundground;
+	bool _isOnSlope;
 
 	Camera _camera;
 	Vector3 moveDirection;
@@ -147,7 +148,7 @@ public class BasicState : FSMState
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			if (IsGrounded() && !_isJumping)
+			if (IsGrounded() && !_isJumping && !_isOnSlope)
 			{
 				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
 			}
@@ -186,8 +187,11 @@ public class BasicState : FSMState
 		_slopeDetector.checkForSlope = true;
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 		{
+			_isOnSlope = true;
 			stickInput = Vector3.SmoothDamp(stickInput, Vector3.zero, ref _refVectorDamp, 0.01f);
 		}
+		else
+			_isOnSlope = false;
 
 		float _yStored = _rb.velocity.y;
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
