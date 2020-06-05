@@ -160,22 +160,22 @@ public class BasicState : FSMState
 		else                                                                                                    //
 		{                                                                                                       //
 			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-			if (_difAngle > 4)                                                                                  //
+			if (_difAngle > 1)                                                                                  //
 			{                                                                                                   //      SINON
 				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                  //      ROTATE LE PLAYER POUR 
-				else if(!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
-			}                                                                                                   //      L'ALIGNER AVEC LA CAMERA 
-			else if (_difAngle < 4)                                                                            //
-			{                                                                                                   //
-				if (IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _groundRotation * Time.deltaTime);                                //
-				else if (!IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(-7f, _difAngle), 0f) * _airRotation * Time.deltaTime);
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _groundRotation * Time.deltaTime), 0f));               //      ROTATE LE PLAYER POUR 
+				else if(!IsGrounded())														
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _airRotation * Time.deltaTime), 0f));	
+			}                                                                                                //      L'ALIGNER AVEC LA CAMERA 
+			else if (_difAngle < -1)                                                                         //
+			{                                                                                                //
+				if (IsGrounded())															
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_groundRotation * Time.deltaTime), 0f));                             //
+				else if (!IsGrounded())														
+					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
 			}
 
-			_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
 		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
@@ -224,7 +224,7 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 			{
 				_hasJumped = false;
 				_isJumping = false;
@@ -274,6 +274,7 @@ public class BasicState : FSMState
         #endregion
 
 
+		_rb.velocity = moveDirection;
 
 		#region Animator
 
@@ -298,7 +299,7 @@ public class BasicState : FSMState
 
 		if (IsGrounded())
 		{
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 			{
 				_animator.SetBool("Jump", false);
 				_animator.SetBool("Fall", true);
@@ -309,7 +310,7 @@ public class BasicState : FSMState
 		}	
 		else
 		{
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 				_animator.SetBool("Fall", true);
 
 			_animator.SetBool("Grounded", false);
@@ -331,7 +332,6 @@ public class BasicState : FSMState
 
 			
 
-		_rb.velocity = moveDirection;
 	}
 
 

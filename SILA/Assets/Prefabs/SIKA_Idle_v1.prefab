@@ -11495,19 +11495,19 @@ MonoBehaviour:
   _stepParticle_R: {fileID: 2182062200990209344}
   _fieldOfView: 60
   moveSpeed: 13
-  airSpeed: 7
-  jumpForce: 19
-  dashSpeed: 45
+  airSpeed: 13
+  jumpForce: 25
+  dashSpeed: 40
   dashDuration: 0.3
-  dashReset: 1.2
-  flySpeed: 20
+  dashReset: 0.3
+  flySpeed: 15
   flyGravityScale: 6
   jumpGravity: 6
-  smoothTime: 0.02
-  gravityScale: 3
-  lowerJumpFall: 4
-  airRotation: 65
-  groundedRotation: 70
+  smoothTime: 0
+  gravityScale: 0.8
+  lowerJumpFall: 10
+  airRotation: 350
+  groundedRotation: 450
   jumpBufferTimer: 0.3
   whatIsGround:
     serializedVersion: 2
@@ -33364,11 +33364,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 156331504535071292}
     m_Modifications:
-    - target: {fileID: 354193450502098055, guid: db794785034641148bad1abaf24b014e,
-        type: 3}
-      propertyPath: m_Name
-      value: SoundManager
-      objectReference: {fileID: 0}
     - target: {fileID: 8223670706283592331, guid: db794785034641148bad1abaf24b014e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33423,6 +33418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 354193450502098055, guid: db794785034641148bad1abaf24b014e,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 4153233042903435635, guid: db794785034641148bad1abaf24b014e,
         type: 3}
