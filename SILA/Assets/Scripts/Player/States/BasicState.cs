@@ -232,7 +232,7 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.1f)
+			if (_rb.velocity.y < -0.01f)
 			{
 				_hasJumped = false;
 				_isJumping = false;
@@ -294,7 +294,7 @@ public class BasicState : FSMState
 		else if (stickInput.magnitude > 0.5f)
 		{
 			_animator.SetBool("Walk", false);
-			_animator.SetBool("Run", true);
+
 			_animator.SetFloat("RunSpeed", stickInput.magnitude);
 		}
 
