@@ -200,7 +200,7 @@ public class TimeSystem : MonoBehaviour
             _menu = false;
         }
         if (Input.GetKeyDown("a"))
-        {
+        {*
             targetTime = TimeOfDay.Morning;
             StartCoroutine(ChangeTimeV2());
             _menu = false;

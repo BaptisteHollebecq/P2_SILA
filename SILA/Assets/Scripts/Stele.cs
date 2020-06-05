@@ -61,18 +61,19 @@ public class Stele : MonoBehaviour
         _respawn.CheckPoint();
 	}
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             ySprite.gameObject.SetActive(true);
-            _respawn = other.GetComponent<PlayerLifeManager>();
+            _respawn = collision.transform.GetComponent<PlayerLifeManager>();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             ySprite.gameObject.SetActive(false);
             _respawn = null;
