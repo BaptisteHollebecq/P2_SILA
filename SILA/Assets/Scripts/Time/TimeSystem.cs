@@ -87,8 +87,10 @@ public class TimeSystem : MonoBehaviour
     private bool _menu = true;
     private bool _canswitch = true;
 
-    private void Awake()
+    private void Start()
     {
+        RenderSettings.fog = true;
+
         _sunRotationMorning.eulerAngles = sunRotationMorning;
         _sunRotationDay.eulerAngles = sunRotationDay;
         _sunRotationNoon.eulerAngles = sunRotationNoon;
@@ -186,10 +188,6 @@ public class TimeSystem : MonoBehaviour
         RenderSettings.fogDensity = _FogDensityNight;
     }
 
-    private void Start()
-    {
-        RenderSettings.fog = true;
-    }
 
     private void Update()
     {
