@@ -224,7 +224,7 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 			{
 				_hasJumped = false;
 				_isJumping = false;
@@ -299,7 +299,7 @@ public class BasicState : FSMState
 
 		if (IsGrounded())
 		{
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 			{
 				_animator.SetBool("Jump", false);
 				_animator.SetBool("Fall", true);
@@ -310,7 +310,7 @@ public class BasicState : FSMState
 		}	
 		else
 		{
-			if (_rb.velocity.y < -0.2f)
+			if (_rb.velocity.y < -0.1f)
 				_animator.SetBool("Fall", true);
 
 			_animator.SetBool("Grounded", false);
