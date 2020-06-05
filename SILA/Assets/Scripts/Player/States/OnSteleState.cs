@@ -4,6 +4,7 @@ using UnityEngine;
 public class OnSteleState : FSMState
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
+    public static event Action SteleQuited;
 
 	PlayerControllerV2 _playerScript;
 	Rigidbody _rb;
@@ -46,7 +47,7 @@ public class OnSteleState : FSMState
 
 	public override void Act()
 	{
-		Debug.Log(_animationTimer);
+		//Debug.Log(_animationTimer);
 		_rb.constraints = RigidbodyConstraints.FreezeAll;
 
 		if (_canQuit && Input.GetButtonDown("B"))
@@ -74,5 +75,7 @@ public class OnSteleState : FSMState
 		_startTimer = false;
 		_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
-	}
+        SteleQuited?.Invoke();
+
+    }
 }

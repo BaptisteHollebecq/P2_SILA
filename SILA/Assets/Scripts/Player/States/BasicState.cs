@@ -116,15 +116,12 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Y"))
 		{
-			RaycastHit hitStele;
-			Physics.Raycast(_transformPlayer.position, Vector3.down, out hitStele, 10);
-			Debug.DrawRay(_transformPlayer.position, Vector3.down, Color.red, 10);
-			if (hitStele.transform.TryGetComponent(out Stele stele))
+			if (_playerScript.onstele)
 			{
-				stele.Interact();
+				_playerScript.zeStele.Interact();
 				_playerScript.SetTransition(Transition.Stele);
 			}
-			else if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround))
+			else
 			{
 					_playerScript.SetTransition(Transition.Zooming);
 			}
@@ -144,7 +141,7 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		Debug.Log(_resetJump);
+		//Debug.Log(_resetJump);
 		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 		if (stickInput.magnitude < _deadZone)
@@ -295,6 +292,7 @@ public class BasicState : FSMState
 		else if (stickInput.magnitude > 0.5f)
 		{
 			_animator.SetBool("Walk", false);
+
 			_animator.SetFloat("RunSpeed", stickInput.magnitude);
 		}
 
