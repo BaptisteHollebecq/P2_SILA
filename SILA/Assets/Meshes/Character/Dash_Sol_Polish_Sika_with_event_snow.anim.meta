@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 12af314efb9c2bd4c9ecedd4ad190d01
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+=======
 guid: b5ada27a2509260418f58943fb5d88ea
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
+>>>>>>> Prod_Baptiste
   userData: 
   assetBundleName: 
   assetBundleVariant: 

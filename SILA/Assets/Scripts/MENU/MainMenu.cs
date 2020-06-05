@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public SceneField GameScene;
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _originalPos;
+    [SerializeField] private Canvas LoadingScreen;
     [SerializeField] private float _transitionTime;
 
 
@@ -44,6 +45,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        LoadingScreen.gameObject.SetActive(false);
         if (HorizontalMenu)
             _inputParam = "Horizontal";
         else
@@ -165,6 +167,7 @@ public class MainMenu : MonoBehaviour
         {
             case "PosPlay":
                 {
+                    LoadingScreen.gameObject.SetActive(true);
                     SceneManager.LoadScene(GameScene.SceneName);
                     break;
                 }

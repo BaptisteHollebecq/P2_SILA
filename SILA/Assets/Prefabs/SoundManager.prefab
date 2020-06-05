@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a362693ef2b04c54c9be723ac95a57ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: 0
   musicVolume: 0.1
   sounds:
   - name: AmbianceDay
@@ -344,6 +345,13 @@ MonoBehaviour:
   - name: Death
     type: 3
     audioclip: {fileID: 8300000, guid: aa3a33bf2517a634490acab018e22c70, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: lilDeath
+    type: 3
+    audioclip: {fileID: 8300000, guid: e83eeaadc2d11534097a1cc13f28b40a, type: 3}
     volume: 0.3
     loop: 0
     oneShot: 1

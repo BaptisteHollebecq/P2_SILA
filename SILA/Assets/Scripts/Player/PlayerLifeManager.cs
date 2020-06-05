@@ -76,7 +76,11 @@ public class PlayerLifeManager : MonoBehaviour
     public void Death()
     {
 		isDead = true;
-        sound.Play("Death");
+        if (_playerLife == 1)
+            sound.Play("Death");
+        else
+            sound.Play("lilDeath");
+
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
     }
 

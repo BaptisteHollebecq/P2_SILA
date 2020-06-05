@@ -35,11 +35,11 @@ public class WindPlatform : MonoBehaviour
     {
         Debug.Log("son option master == " + HUDOptions._params[0]);
         Debug.Log("son option enviro == " + HUDOptions._params[1]);
+
         _source.volume = volume * HUDOptions._params[0] * HUDOptions._params[1];
         _windDirection = transform.GetChild(0).transform.forward;
         if (_collider.enabled == true)
         {
-
             if (!_source.isPlaying)
             {   
                 _source.loop = true;

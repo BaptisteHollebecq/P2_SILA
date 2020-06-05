@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5603562428699100407}
   - component: {fileID: 8418884991412289252}
   - component: {fileID: 7504495362839269098}
+  - component: {fileID: 49307582469606537}
   m_Layer: 0
   m_Name: Spike01
   m_TagString: Untagged
@@ -92,6 +93,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!114 &49307582469606537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3446561544663265698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1
 --- !u!1 &4412357178181857424
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +121,9 @@ GameObject:
   - component: {fileID: 5327328845330596199}
   - component: {fileID: 879073902481080679}
   - component: {fileID: 8801462277942983588}
+  - component: {fileID: 1264589672620251669}
+  - component: {fileID: 7602493159375497721}
+  - component: {fileID: 4428341130069416309}
   m_Layer: 0
   m_Name: Ronces01
   m_TagString: Untagged
@@ -184,6 +204,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!65 &1264589672620251669
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412357178181857424}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0522428, y: 9.039799, z: 9.688399}
+  m_Center: {x: 1.4594632, y: 3.0224311, z: -0.6680191}
+--- !u!114 &7602493159375497721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412357178181857424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76471a1ee0e6b6947a2b76df4eb90a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 0
+--- !u!114 &4428341130069416309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412357178181857424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1
 --- !u!1 &7384976710126410742
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +295,7 @@ GameObject:
   - component: {fileID: 3552156594551267082}
   - component: {fileID: 1670690438672520182}
   - component: {fileID: 1012580789}
+  - component: {fileID: 6684349894191441040}
   m_Layer: 0
   m_Name: Leaf01
   m_TagString: Untagged
@@ -323,3 +389,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!114 &6684349894191441040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734327237972370504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 1
+  Crepuscule: 1
+  Nuit: 1
