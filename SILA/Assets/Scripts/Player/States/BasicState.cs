@@ -232,7 +232,7 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.1f)
+			if (_rb.velocity.y < -0.01f)
 			{
 				_hasJumped = false;
 				_isJumping = false;
@@ -289,13 +289,12 @@ public class BasicState : FSMState
 		if (stickInput.magnitude <= 0.5f)
 		{
 			_animator.SetBool("Walk", true);
-			_animator.speed = ((stickInput.magnitude / 0.5f)) + 1;
+			_animator.SetFloat("WalkSpeed", (stickInput.magnitude / 0.5f) + 1);
 		}
 		else if (stickInput.magnitude > 0.5f)
 		{
 			_animator.SetBool("Walk", false);
-			//_animator.SetBool("Run", true);
-			_animator.speed = stickInput.magnitude;
+			_animator.SetFloat("RunSpeed", stickInput.magnitude);
 		}
 
 		/*if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") > 0.5f || Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") < 0.5f)
