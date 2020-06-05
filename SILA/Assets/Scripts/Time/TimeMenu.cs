@@ -50,6 +50,12 @@ public class TimeMenu : MonoBehaviour
         _timeManager = GetComponentInParent<TimeSystem>();
     }
 
+    private void OnDestroy()
+    {
+        CameraMaster.MovedToPivot -= DisplayMenu;
+        TimeSystem.EndedTransition -= EndTransitionTime;
+    }
+
     private void EndTransitionTime()
     {
         _isChanging = false;
@@ -122,8 +128,9 @@ public class TimeMenu : MonoBehaviour
                 if (!_isChanging)
                     TurnArrow(stickInput); 
             }
-            Debug.Log(_arrow.rotation);
-            if (Input.GetButtonDown("B"))
+            //Debug.Log(_arrow.rotation);
+
+            if (Input.GetButtonDown("B") && _isActive)
             {
                 if (!_isChanging)
                 {
