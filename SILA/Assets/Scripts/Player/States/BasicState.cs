@@ -38,6 +38,8 @@ public class BasicState : FSMState
 	bool _isJumping;
 	float _jumpTimer;
 	float _maxJumpTimer;
+	float _resetJump;
+	float _resetJumpTimer = 0.2f;
 
     bool _canPlayGrounded = false;
     bool _isGrounded;
@@ -142,7 +144,7 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		
+		Debug.Log(_resetJump);
 		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 		if (stickInput.magnitude < _deadZone)
@@ -224,11 +226,14 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.01f)
+			if(_resetJump > _resetJumpTimer || _resetJump == 0)
 			{
+				_animator.SetBool("Jump", false);
+				_resetJump = 0;
 				_hasJumped = false;
 				_isJumping = false;
 			}
+	
 
 			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
 				_animator.SetFloat("Snow", 1);
@@ -271,6 +276,10 @@ public class BasicState : FSMState
             JumpSound();
         }
 
+		if(_isJumping)
+		{
+			_resetJump += Time.deltaTime;
+		}
         #endregion
 
 
@@ -298,12 +307,6 @@ public class BasicState : FSMState
 
 		if (IsGrounded())
 		{
-			if (_rb.velocity.y < -0.1f)
-			{
-				_animator.SetBool("Jump", false);
-				_animator.SetBool("Fall", true);
-			}
-
 			_animator.SetBool("Grounded", true);
 			_animator.SetBool("Fall", false);
 		}	
