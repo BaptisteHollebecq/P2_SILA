@@ -56,7 +56,7 @@ public class OnSteleState : FSMState
 		}
 
 		if(_startTimer)
-			_animationTimer += Time.deltaTime;
+			_animationTimer += Time.fixedDeltaTime;
 	}
 
 	public override void DoBeforeEntering()

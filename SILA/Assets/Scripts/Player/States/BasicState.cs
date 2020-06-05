@@ -192,14 +192,14 @@ public class BasicState : FSMState
 
 		GetCamSettings();
 
-		_slopeDetector.checkForSlope = true;
+		/*_slopeDetector.checkForSlope = true;
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 		{
 			_isOnSlope = true;
 			stickInput = Vector3.SmoothDamp(stickInput, Vector3.zero, ref _refVectorDamp, 0.01f);
 		}
 		else
-			_isOnSlope = false;
+			_isOnSlope = false;*/
 
 		float _yStored = _rb.velocity.y;
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
@@ -232,11 +232,10 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.01f)
-			{
-				_hasJumped = false;
-				_isJumping = false;
-			}
+			
+			_hasJumped = false;
+			_isJumping = false;
+			
 
 			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
 				_animator.SetFloat("Snow", 1);
