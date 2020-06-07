@@ -11516,6 +11516,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   maxAngle: 60
+  onstele: 0
+  zeStele: {fileID: 0}
 --- !u!114 &8544735446438489458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33364,6 +33366,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 156331504535071292}
     m_Modifications:
+    - target: {fileID: 354193450502098055, guid: db794785034641148bad1abaf24b014e,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8223670706283592331, guid: db794785034641148bad1abaf24b014e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33418,11 +33425,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354193450502098055, guid: db794785034641148bad1abaf24b014e,
-        type: 3}
-      propertyPath: m_Name
-      value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 4153233042903435635, guid: db794785034641148bad1abaf24b014e,
         type: 3}

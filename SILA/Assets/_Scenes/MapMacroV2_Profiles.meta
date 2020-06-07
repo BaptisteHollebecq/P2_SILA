@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:SILA/Assets/_Scenes/MapMacroV2_Profiles.meta
 guid: 6ec214dbc7966c947a36b9fdce9cb4d6
+=======
+guid: 931cf14a50977ca42bf330a7c4e15b15
+>>>>>>> LD:SILA/Assets/Materials/UI.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

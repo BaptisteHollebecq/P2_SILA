@@ -80,7 +80,6 @@ public class DashState : FSMState
 		_dashTimer = 0;
 		GetCamSettings();
 		Vector2 stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
         if (stickInput != Vector2.zero)
             _playerScript.sound.Play("Dash");
 

@@ -38,6 +38,8 @@ public class BasicState : FSMState
 	bool _isJumping;
 	float _jumpTimer;
 	float _maxJumpTimer;
+	float _resetJump;
+	float _resetJumpTimer = 0.2f;
 
     bool _canPlayGrounded = false;
     bool _isGrounded;
@@ -114,15 +116,12 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Y"))
 		{
-			RaycastHit hitStele;
-			Physics.Raycast(_transformPlayer.position, Vector3.down, out hitStele, 10);
-			Debug.DrawRay(_transformPlayer.position, Vector3.down, Color.red, 10);
-			if (hitStele.transform.TryGetComponent(out Stele stele))
+			if (_playerScript.onstele)
 			{
-				stele.Interact();
+				_playerScript.zeStele.Interact();
 				_playerScript.SetTransition(Transition.Stele);
 			}
-			else if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsGround))
+			else
 			{
 					_playerScript.SetTransition(Transition.Zooming);
 			}
@@ -142,7 +141,7 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		
+		//Debug.Log(_resetJump);
 		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 		if (stickInput.magnitude < _deadZone)
@@ -224,11 +223,14 @@ public class BasicState : FSMState
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
-			if (_rb.velocity.y < -0.1f)
+			if(_resetJump > _resetJumpTimer || _resetJump == 0)
 			{
+				_animator.SetBool("Jump", false);
+				_resetJump = 0;
 				_hasJumped = false;
 				_isJumping = false;
 			}
+	
 
 			if (Physics.Raycast(_transformPlayer.position, -Vector3.up, _distToGround + 0.12f, _whatIsSnow))
 				_animator.SetFloat("Snow", 1);
@@ -271,6 +273,10 @@ public class BasicState : FSMState
             JumpSound();
         }
 
+		if(_isJumping)
+		{
+			_resetJump += Time.deltaTime;
+		}
         #endregion
 
 
@@ -281,13 +287,13 @@ public class BasicState : FSMState
 		if (stickInput.magnitude <= 0.5f)
 		{
 			_animator.SetBool("Walk", true);
-			_animator.speed = ((stickInput.magnitude / 0.5f)) + 1;
+			_animator.SetFloat("WalkSpeed", (stickInput.magnitude / 0.5f) + 1);
 		}
 		else if (stickInput.magnitude > 0.5f)
 		{
 			_animator.SetBool("Walk", false);
-			_animator.SetBool("Run", true);
-			_animator.speed = stickInput.magnitude;
+
+			_animator.SetFloat("RunSpeed", stickInput.magnitude);
 		}
 
 		/*if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") > 0.5f || Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.3f && Input.GetAxis("Vertical") < 0.5f)
@@ -299,12 +305,6 @@ public class BasicState : FSMState
 
 		if (IsGrounded())
 		{
-			if (_rb.velocity.y < -0.1f)
-			{
-				_animator.SetBool("Jump", false);
-				_animator.SetBool("Fall", true);
-			}
-
 			_animator.SetBool("Grounded", true);
 			_animator.SetBool("Fall", false);
 		}	

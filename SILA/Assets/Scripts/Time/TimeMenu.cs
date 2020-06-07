@@ -29,6 +29,8 @@ public class TimeMenu : MonoBehaviour
     private Transform _morningSprite;
     private Transform _noonSprite;
 
+    private bool _canQuit = false;
+
     private void Awake()
     {
         Initialize();
@@ -43,11 +45,19 @@ public class TimeMenu : MonoBehaviour
     {
         CameraMaster.MovedToPivot += DisplayMenu;
         TimeSystem.EndedTransition += EndTransitionTime;
+        OnSteleState.SteleQuited += CloseTimeMenu;
 
         CanvasGroup = transform.GetComponent<CanvasGroup>();
 		CanvasGroup.alpha = 0;
 		_arrow = transform.GetChild(transform.childCount - 1);
         _timeManager = GetComponentInParent<TimeSystem>();
+    }
+
+    private void OnDestroy()
+    {
+        CameraMaster.MovedToPivot -= DisplayMenu;
+        TimeSystem.EndedTransition -= EndTransitionTime;
+        OnSteleState.SteleQuited -= CloseTimeMenu;
     }
 
     private void EndTransitionTime()
@@ -69,6 +79,7 @@ public class TimeMenu : MonoBehaviour
                 break;
         }
         CanvasGroup.alpha = 1;
+        _canQuit = true;
     }
 
     private void DisplayMenu()
@@ -90,6 +101,7 @@ public class TimeMenu : MonoBehaviour
                 MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
+            _canQuit = true;
             Hud.Hide();
             switch (TimeSystem.actualTime)
             {
@@ -122,16 +134,13 @@ public class TimeMenu : MonoBehaviour
                 if (!_isChanging)
                     TurnArrow(stickInput); 
             }
-            Debug.Log(_arrow.rotation);
-            if (Input.GetButtonDown("B"))
+            //Debug.Log(_arrow.rotation);
+
+            if (Input.GetButtonDown("B") && _isActive && _canQuit)
             {
                 if (!_isChanging)
                 {
-                    _isActive = false;
-                    CanvasGroup.alpha = 0;
-                    Hud.Show();
-                    MenuQuited?.Invoke();
-                    ResetBrokenTime();
+                    CloseTimeMenu();
                 }
             }
             if (Input.GetButtonDown("A"))
@@ -140,6 +149,17 @@ public class TimeMenu : MonoBehaviour
             }
         }
     }
+
+    private void CloseTimeMenu()
+    {
+        _isActive = false;
+        _canQuit = false;
+        CanvasGroup.alpha = 0;
+        Hud.Show();
+        MenuQuited?.Invoke();
+        ResetBrokenTime();
+    }
+
 
     private void ResetBrokenTime()
     {

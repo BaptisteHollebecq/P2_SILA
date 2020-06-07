@@ -41,12 +41,12 @@ public class SoundManager : MonoBehaviour
     [HideInInspector] public float MusicVolume;
     //test
 
-    private void Awake()
+    private void Start()
     {
         if (!menu)
         {
+
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-            Debug.LogWarning("Awake Ambiance volume " + AmbianceVolume);
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -54,11 +54,8 @@ public class SoundManager : MonoBehaviour
         }
         else
             MusicVolume = musicVolume;
-    }
 
-    private void Start()
-    {
-            switch (TimeSystem.actualTime)
+        switch (TimeSystem.actualTime)
             {
                 case TimeOfDay.Morning:
                     {
@@ -105,7 +102,6 @@ public class SoundManager : MonoBehaviour
         if (!menu)
         {
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-            Debug.LogWarning("Update Ambiance volume " + AmbianceVolume);
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -158,13 +154,15 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Error : sound " + name + " not found");
             return;
         }
+        /*Debug.LogWarning("Playing : " + name + " at "+ s.volume * AmbianceVolume +" of volume");
+        Debug.LogWarning("Volume sound at " + s.volume + " times Options sounds at " + AmbianceVolume);*/
         switch (s.type)
         {
             case SoundType.ambiance:
                 {
+                    AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
-                    Debug.LogWarning("Play Ambiance volume "+ AmbianceVolume);
                     AmbianceSource.clip = s.audioclip;
                     if (s.oneShot)
                         AmbianceSource.PlayOneShot(s.audioclip);
@@ -174,6 +172,7 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.character:
                 {
+                    CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
                     CharacterSource.loop = s.loop;
                     CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
@@ -185,6 +184,7 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.environement:
                 {
+                    EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     EnvironementSource.loop = s.loop;
                     EnvironementSource.volume = s.volume * EnvironementVolume;
                     EnvironementSource.clip = s.audioclip;
@@ -196,6 +196,7 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.transition:
                 {
+                    TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     TransitionSource.loop = s.loop;
                     TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;

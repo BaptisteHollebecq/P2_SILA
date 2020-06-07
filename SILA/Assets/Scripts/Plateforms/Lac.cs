@@ -10,7 +10,7 @@ public class Lac : MonoBehaviour
     private void Awake()
     {
         _collision = transform.GetChild(0);
-        Debug.Log(_collision);
+        //Debug.Log(_collision);
     }
 
     // Update is called once per frame

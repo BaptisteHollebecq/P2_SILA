@@ -221,7 +221,7 @@ MonoBehaviour:
     audioclip: {fileID: 8300000, guid: 8d90510f7d227874aaad7da697c64e0f, type: 3}
     volume: 0.3
     loop: 0
-    oneShot: 0
+    oneShot: 1
     DecreaseTime: 0
   - name: Grounded
     type: 1

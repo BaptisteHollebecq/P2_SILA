@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:SILA/Assets/Shaders/Enviro/TriPlanar_Function.asset.meta
 guid: e83a3664c53c7d04993ca572e15cd8f8
 NativeFormatImporter:
+=======
+guid: eade07b64638fed4b85cef669ae88dc3
+folderAsset: yes
+DefaultImporter:
+>>>>>>> LD:SILA/Assets/Shaders/UI.meta
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
