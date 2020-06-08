@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 1607342958030207602, guid: 6fff9e98058802a4e9d2018e5d7fde49, type: 3}
+  - {fileID: 2109999130952781064, guid: f3b2cd4f06bc54444bd657d8f49f1e91, type: 3}
   paintType: 0
   brushSize: 1
   minBrushSize: 0.1
   maxBrushSize: 20
-  paintDeltaDistance: 6
-  maxPaintDeltaDistance: 10
+  paintDeltaDistance: 20
+  maxPaintDeltaDistance: 20
   minPaintDeltaDistance: 0.1
   prefabsPerStroke: 1
   maxprefabsPerStroke: 20
@@ -31,7 +31,7 @@ MonoBehaviour:
   checkTag: 0
   checkSlope: 0
   requiredTagMask: 0
-  requiredLayerMask: 8
+  requiredLayerMask: 160
   minRequiredSlope: 0
   maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
@@ -45,9 +45,9 @@ MonoBehaviour:
   rotateSurfaceDirection: 0
   randomizeRotation: 0
   minXRotation: 0
-  maxXRotation: 0
+  maxXRotation: 10
   minYRotation: 0
-  maxYRotation: 0
+  maxYRotation: 180
   minZRotation: 0
   maxZRotation: 0
   scaleType: 0
@@ -73,9 +73,9 @@ MonoBehaviour:
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
   eraseDetection: 0
-  paintBrushHotKey: 112
-  paintBrushHoldKey: 1
-  removeBrushHotKey: 306
-  removeBrushHoldKey: 1
+  paintBrushHotKey: 98
+  paintBrushHoldKey: 0
+  removeBrushHotKey: 101
+  removeBrushHoldKey: 0
   disableBrushHotKey: 105
   disableBrushHoldKey: 0

@@ -113,7 +113,7 @@ Material:
     - _IceSpecular: 0.641
     - _IceTransparency: 0
     - _Metalness: 1
-    - _NormalScale: 0.1
+    - _NormalScale: 0.05
     - _ParallaxOffset: 0.001
     - _Sharpness: 1.13
     - _SmallWaveTile: 0
