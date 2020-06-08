@@ -49,10 +49,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _IceNormal:
         m_Texture: {fileID: 2800000, guid: cd93b77a2b8fe68489720b1c3bb3b3e1, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _IceParallax:
-        m_Texture: {fileID: 2800000, guid: 4a6f6e43ff9506a44a2e9e70872ac64b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 77b5ab2a32417dd4a88fd15902b3a59d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IceTexture:
@@ -107,9 +107,11 @@ Material:
     - _FoamFalloff1: 0
     - _Glaciation: -Infinity
     - _Glaciation1: -14.42
+    - _HeightParallax: 0.95
+    - _HeightParallax2: 0.9
     - _IceDepthTransparency: 0
     - _IcePower: -1
-    - _IceSmoothness: 0.654
+    - _IceSmoothness: 0.501
     - _IceSpecular: 0.641
     - _IceTransparency: 0
     - _Metalness: 1
@@ -145,7 +147,7 @@ Material:
     - _GlaceColor: {r: 1, g: 1, b: 1, a: 0}
     - _IceColor: {r: 1, g: 1, b: 1, a: 0}
     - _IceTransparencyColor: {r: 0, g: 0, b: 0, a: 0}
-    - _ScaleOffSetIce: {r: 10, g: 10, b: 0, a: 0}
+    - _ScaleOffSetIce: {r: 1, g: 1, b: 0, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _ShalowColor1: {r: 0, g: 0, b: 0, a: 0}
     - _Vector0: {r: 1, g: 1, b: 0, a: 0}
