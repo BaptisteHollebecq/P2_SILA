@@ -73,8 +73,7 @@ public class HUDMap : MonoBehaviour
         {
             OpenMap();
         }
-
-        if (Input.GetButtonDown("B") && _isOpen)
+        else if (Input.GetButtonDown("B") && _isOpen || Input.GetButtonDown("Select") && _isOpen)
         {
             CloseMap();
         }

@@ -9,7 +9,7 @@ public class HUDInGame : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private PlayerLifeManager _lifeManager;
     [SerializeField] private PlayerCollectibles _collectibles;
-    [SerializeField] private CanvasGroup _visibility;
+    public CanvasGroup _visibility;
     [SerializeField] private float transitionTime;
 
     [Header("TimeOfDays")]
@@ -55,6 +55,10 @@ public class HUDInGame : MonoBehaviour
     private int _checkLifeChangement = -1;
     private bool _isShowed = true;
 
+    private void Awake()
+    {
+        transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
+    }
 
     private void Update()
     {
@@ -93,6 +97,7 @@ public class HUDInGame : MonoBehaviour
     {
         StartCoroutine(FadeHud(_visibility, _visibility.alpha, 1, transitionTime));
     }
+
 
     private void ActualiseLife()
     {
