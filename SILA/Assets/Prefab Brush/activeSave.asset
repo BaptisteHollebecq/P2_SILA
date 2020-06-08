@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 2109999130952781064, guid: f3b2cd4f06bc54444bd657d8f49f1e91, type: 3}
+  - {fileID: 1607342958030207602, guid: 6fff9e98058802a4e9d2018e5d7fde49, type: 3}
   paintType: 0
   brushSize: 1
   minBrushSize: 0.1
@@ -27,7 +27,7 @@ MonoBehaviour:
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
-  checkLayer: 1
+  checkLayer: 0
   checkTag: 0
   checkSlope: 0
   requiredTagMask: 0
@@ -43,9 +43,9 @@ MonoBehaviour:
   parent: {fileID: 0}
   rotateToMatchSurface: 0
   rotateSurfaceDirection: 0
-  randomizeRotation: 0
+  randomizeRotation: 1
   minXRotation: 0
-  maxXRotation: 10
+  maxXRotation: 0
   minYRotation: 0
   maxYRotation: 180
   minZRotation: 0
