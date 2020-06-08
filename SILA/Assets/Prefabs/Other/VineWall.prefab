@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8418884991412289252}
   - component: {fileID: 7504495362839269098}
   - component: {fileID: 49307582469606537}
+  - component: {fileID: 9089034266109111718}
   m_Layer: 0
   m_Name: Spike01
   m_TagString: Untagged
@@ -109,6 +110,18 @@ MonoBehaviour:
   Jour: 1
   Crepuscule: 1
   Nuit: 1
+--- !u!114 &9089034266109111718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3446561544663265698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03857d83eb6a2fa4ca361c21c36ab330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4412357178181857424
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +137,7 @@ GameObject:
   - component: {fileID: 1264589672620251669}
   - component: {fileID: 7602493159375497721}
   - component: {fileID: 4428341130069416309}
+  - component: {fileID: 2089320232362067296}
   m_Layer: 0
   m_Name: Ronces01
   m_TagString: Untagged
@@ -249,6 +263,18 @@ MonoBehaviour:
   Jour: 1
   Crepuscule: 1
   Nuit: 1
+--- !u!114 &2089320232362067296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412357178181857424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03857d83eb6a2fa4ca361c21c36ab330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7384976710126410742
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +322,7 @@ GameObject:
   - component: {fileID: 1670690438672520182}
   - component: {fileID: 1012580789}
   - component: {fileID: 6684349894191441040}
+  - component: {fileID: 3602702420899851517}
   m_Layer: 0
   m_Name: Leaf01
   m_TagString: Untagged
@@ -405,3 +432,15 @@ MonoBehaviour:
   Jour: 1
   Crepuscule: 1
   Nuit: 1
+--- !u!114 &3602702420899851517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734327237972370504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03857d83eb6a2fa4ca361c21c36ab330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

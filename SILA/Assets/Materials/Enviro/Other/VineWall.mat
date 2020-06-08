@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: VineWall
-  m_Shader: {fileID: 4800000, guid: 55a0b0d65b21f7b46aceb189bd545281, type: 3}
+  m_Shader: {fileID: 4800000, guid: ab82a9d4ec531ef449e747eaffc768e2, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -95,22 +95,30 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Hardness: 0.1
+    - _HeightLimit: 10.68
+    - _HeightLimit1: 6.21
     - _HighlightCellOffset: -0.95
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
     - _LightInfluence: 0.37
+    - _Melting: 1
+    - _Melting1: 0
+    - _MeltingColorLimit: 1.68
+    - _MeltingColorLimit1: 5.08
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Param_Lenght: -1.27
+    - _Param_Lenght1: -0.03
     - _RimOffset: 0.6
     - _RimPower: 0.4
     - _ShadowContribution: 1
     - _SmoothnessTextureChannel: 0
     - _SnowDeposit: 9.7
-    - _SnowHeight: 1.25
+    - _SnowHeight: 0.75
     - _SnowHeightSetting: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -125,6 +133,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterInt: {r: 3.6611679, g: 3.6611679, b: 3.6611679, a: 0}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _MeltingColor: {r: 0, g: 2.994764, b: 5.3403134, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
     - _SnowEmissive: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
