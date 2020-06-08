@@ -106,11 +106,18 @@ public class CameraMaster : LockModeStateMachine
 		UpdateLockState (CameraLockState.Idle);
 	}
 
-	#endregion
+    private void OnDestroy()
+    {
+        OnSteleState.PlayerStateChanged -= UpdateLockState;
+        ZoomState.PlayerStateChanged -= UpdateLockState;
+        Stele.SteleInteracted -= SetCameraLookPivot;
+    }
 
-	#region Lock Mode State Machine
+    #endregion
 
-	protected override void OnLockStateEnter ()
+    #region Lock Mode State Machine
+
+    protected override void OnLockStateEnter ()
 	{
 		switch (LockState)
 		{

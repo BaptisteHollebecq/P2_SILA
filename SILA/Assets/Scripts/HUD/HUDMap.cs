@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HUDMap : MonoBehaviour
 {
     [SerializeField] private PlayerControllerV2 _player;
-    [SerializeField] private List<Zone> _zones;
+    public List<Zone> _zones;
     [SerializeField] private Transform _allZones;
 
 
