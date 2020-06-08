@@ -19,7 +19,6 @@ public class PlayerLifeManager : MonoBehaviour
 
     public float timingcontrols;
 
-    private bool die = false;
 
     private Transform deadBlack;
     private CanvasGroup deadVisibility;

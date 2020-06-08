@@ -160,7 +160,8 @@ public class SoundManager : MonoBehaviour
         {
             case SoundType.ambiance:
                 {
-                    AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+                    if (!menu)
+                        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
                     AmbianceSource.clip = s.audioclip;
@@ -172,7 +173,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.character:
                 {
-                    CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
+                    if (!menu)
+                        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
                     CharacterSource.loop = s.loop;
                     CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
@@ -184,7 +186,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.environement:
                 {
-                    EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
+                    if (!menu)
+                        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     EnvironementSource.loop = s.loop;
                     EnvironementSource.volume = s.volume * EnvironementVolume;
                     EnvironementSource.clip = s.audioclip;
@@ -196,7 +199,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.transition:
                 {
-                    TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+                    if (!menu)
+                        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     TransitionSource.loop = s.loop;
                     TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;

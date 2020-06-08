@@ -55,9 +55,13 @@ public class HUDInGame : MonoBehaviour
     private int _checkLifeChangement = -1;
     private bool _isShowed = true;
 
+    private Text textEndGame;
+
     private void Awake()
     {
         transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
+        transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
+        textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
     }
 
     private void Update()
@@ -174,8 +178,21 @@ public class HUDInGame : MonoBehaviour
 
     private void ActualiseCollectibleCount()
     {
-        _placeHolderCollectiblesCount.text = _collectibles.GetCollectibles().ToString();
+        string s = "Congrats you collected ";
+        int collectible = _collectibles.GetCollectibles();
+        int pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
+
+        s += pourcentage.ToString();
+        s += "% of all collectibles and saved ";
+
+        int saved = 347 * (pourcentage / 100) + 70;
+
+        s += saved.ToString();
+        s += " people from your tribe";
+
+        textEndGame.text = s;
     }
+
 
     private void ActualiseTODIcon()
     {

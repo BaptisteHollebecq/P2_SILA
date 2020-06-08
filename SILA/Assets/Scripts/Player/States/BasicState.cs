@@ -181,7 +181,7 @@ public class BasicState : FSMState
 		if (stickInputR.magnitude < _deadZone)
 			stickInputR = Vector2.zero;
 
-        Debug.LogWarning((Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1)));
+        //Debug.LogWarning((Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1)));
 
 		GetCamSettings();
 
