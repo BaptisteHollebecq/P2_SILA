@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3103931079808270107
 Transform:
@@ -65,7 +65,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &42940032589419715
 Transform:
@@ -95,14 +95,13 @@ GameObject:
   - component: {fileID: 7810691341726058985}
   - component: {fileID: 1598159015915910577}
   - component: {fileID: 7956123389063592040}
-  - component: {fileID: 1088360831927370609}
   - component: {fileID: 2799189877967396943}
   m_Layer: 0
   m_Name: SPIKES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3104274552173715582
 Transform:
@@ -143,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33091367574f24c4c9a487c6c645b773, type: 2}
+  - {fileID: 2100000, guid: 60134c964df2661438b3dcc8697a7806, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,22 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
---- !u!114 &1088360831927370609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6278833778690962353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Aube: 1
-  Jour: 1
-  Crepuscule: 1
-  Nuit: 1
 --- !u!114 &2799189877967396943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,14 +202,13 @@ GameObject:
   - component: {fileID: 7956123390418436392}
   - component: {fileID: 9125406983841726152}
   - component: {fileID: 7276292790483025659}
-  - component: {fileID: 6764196532086499892}
   - component: {fileID: 1295930882680049508}
   m_Layer: 0
   m_Name: VineGround 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1063984212807672099
 Transform:
@@ -267,7 +249,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d6cccf0567a80514fb1d4d845fa06a2f, type: 2}
+  - {fileID: 2100000, guid: 5819250b4852dbd4ba229eeba2513e6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -327,22 +309,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aube: 0
-  Jour: 1
-  Crepuscule: 1
-  Nuit: 1
---- !u!114 &6764196532086499892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090810790664428395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Aube: 1
   Jour: 1
   Crepuscule: 1
   Nuit: 1

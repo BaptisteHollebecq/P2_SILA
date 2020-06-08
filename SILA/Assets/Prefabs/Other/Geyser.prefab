@@ -76,7 +76,7 @@ MonoBehaviour:
   RestingTime: 1
   ActiveTime: 1
   ChargingTime: 2
-  PushForce: 15
+  PushForce: 30
   charging: {fileID: 8300000, guid: e9b84e3e2bdd5804796df22b0b4afe25, type: 3}
   explode: {fileID: 8300000, guid: 6c2d9312486027b49b05ed21b88f1546, type: 3}
 --- !u!82 &1321311732212111863
