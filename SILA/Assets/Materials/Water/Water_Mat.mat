@@ -21,7 +21,7 @@ Material:
     m_TexEnvs:
     - _Albedo:
         m_Texture: {fileID: 2800000, guid: 732858e138af22f4b8954569440f82b9, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _Albedo2:
         m_Texture: {fileID: 0}
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Foam:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9c9923e81cf2ef349915824e0a1b12b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Foam1:
@@ -76,10 +76,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d4ef717bdd61a1b4bb34a8626107aefe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample5:
+        m_Texture: {fileID: 2800000, guid: 7396d8283d9546a47b19041de42366c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: ea8738c3ec6ed684188ae5136f811377, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Vignette:
+        m_Texture: {fileID: 2800000, guid: d4ef717bdd61a1b4bb34a8626107aefe, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 0.25, y: 0.25}
     - _WaterNormal:
+        m_Texture: {fileID: 2800000, guid: 7396d8283d9546a47b19041de42366c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterNormal1:
         m_Texture: {fileID: 2800000, guid: 7396d8283d9546a47b19041de42366c3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -101,25 +117,34 @@ Material:
     - _Float1: 0
     - _Float2: 1
     - _Float3: 0
-    - _FoamDepth: 1.77
+    - _FoamDepth: -1.26
     - _FoamDepth1: 0
-    - _FoamFalloff: 10
+    - _FoamFalloff: -0.78
     - _FoamFalloff1: 0
     - _Glaciation: -Infinity
     - _Glaciation1: -14.42
-    - _HeightParallax: 0.95
-    - _HeightParallax2: 0.9
+    - _HeightParallax: 0.99
+    - _HeightParallax2: 0.98
     - _IceDepthTransparency: 0
     - _IcePower: -1
-    - _IceSmoothness: 0.501
-    - _IceSpecular: 0.641
+    - _IceSmoothness: 1
+    - _IceSpecular: 0.651
     - _IceTransparency: 0
     - _Metalness: 1
-    - _NormalScale: 0.1
+    - _NormalScale: 0.2
+    - _NormalScale1: 0.2
+    - _NormalScaleDistort: 0.005
     - _ParallaxOffset: 0.001
     - _Sharpness: 1.13
     - _SmallWaveTile: 0
     - _Smoothness: 1
+    - _Specular: 66.8
+    - _Specular1: 46.22
+    - _SpecularInt: 3
+    - _SpecularInt1: 1.6
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessValue: 4
     - _Tesselation: 8
     - _Thresholdtemp: 0
     - _TransAmbient: 0.2
@@ -130,28 +155,33 @@ Material:
     - _Translucency: 1
     - _WaterDepth: 0
     - _WaterDepth1: 2.43
+    - _WaterDistortionInt: 1
     - _WaterFalloff: -3.52
     - _WaterFalloff1: -0.91
     - _WaterSmoothness: 1
-    - _WaterSpecular: 0.35
-    - _WaveSpeed: 0.007
+    - _WaterSpecular: 0.601
+    - _WaveSpeed: 0.003
     - __dirty: 0
+    - _glaciation: 0
+    - _temp: 0
     - _yes: 0
     m_Colors:
     - _Color0: {r: 1, g: 1, b: 1, a: 0}
-    - _Color1: {r: 0.34349412, g: 0.65575993, b: 0.7830189, a: 0}
+    - _Color1: {r: 0.3570065, g: 0.57376045, b: 0.8117648, a: 0}
     - _Color2: {r: 0, g: 0, b: 0, a: 0}
     - _Color3: {r: 1, g: 1, b: 1, a: 0}
     - _DeepColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0}
     - _DeepColor1: {r: 1, g: 1, b: 1, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
     - _GlaceColor: {r: 1, g: 1, b: 1, a: 0}
-    - _IceColor: {r: 1, g: 1, b: 1, a: 0}
+    - _IceColor: {r: 3.9999995, g: 3.9999995, b: 3.9999995, a: 0}
     - _IceTransparencyColor: {r: 0, g: 0, b: 0, a: 0}
     - _ScaleOffSetIce: {r: 1, g: 1, b: 0, a: 0}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
     - _ShalowColor1: {r: 0, g: 0, b: 0, a: 0}
+    - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _Vector0: {r: 1, g: 1, b: 0, a: 0}
     - _Water1: {r: 0, g: 0, b: 0, a: 0}
     - _Water2: {r: 0, g: 0, b: 0, a: 0}
-    - _WaterColor: {r: 0, g: 0.9625001, b: 1, a: 0}
+    - _WaterColor: {r: 0, g: 0.08066312, b: 0.8018868, a: 0}
     - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
