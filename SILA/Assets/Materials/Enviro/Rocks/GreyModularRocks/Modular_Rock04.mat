@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Modular_Rock04
-  m_Shader: {fileID: 4800000, guid: 55a0b0d65b21f7b46aceb189bd545281, type: 3}
+  m_Shader: {fileID: 4800000, guid: 637a5b29790da7d43ac905a9bacc7ddc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 5f387ef182d3ab040bdf61206389eb56, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AOTex:
         m_Texture: {fileID: 2800000, guid: 5f387ef182d3ab040bdf61206389eb56, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CurvatureMap:
+        m_Texture: {fileID: 2800000, guid: a2e3b7a878664bc46a1ab68f9c7fd84c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CurvatureTex:
@@ -103,6 +111,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TriplanarTex:
+        m_Texture: {fileID: 2800000, guid: cf6cc13252a926143bbd18a389b9f0c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -155,7 +167,7 @@ Material:
     - _SnowAOThreshold: -3.77
     - _SnowDeposit: 47.51
     - _SnowEmission: 0.33
-    - _SnowHeight: 0.5
+    - _SnowHeight: 1
     - _SnowHeightSetting: 0
     - _SnowSmoothness: 0
     - _SpecularHighlights: 1
@@ -164,6 +176,7 @@ Material:
     - _SrcBlend: 1
     - _StaticHighLights: 0
     - _StaticHighLights1: 0
+    - _TriplanarHardness: 0.2
     - _UVSec: 0
     - _VolumSnowHeight: 1
     - _ZWrite: 1
@@ -172,9 +185,10 @@ Material:
     - _distanceGlitter1: 0
     m_Colors:
     - _AlbedoColor: {r: 0.41568628, g: 0.67058825, b: 0.7372549, a: 0}
-    - _BaseTint: {r: 0.3529412, g: 0.38431376, b: 0.41960788, a: 0}
+    - _BaseTint: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
     - _BaseTint1: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CurvatureTint: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
@@ -189,6 +203,7 @@ Material:
     - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _ToonRampTint1: {r: 0, g: 0, b: 0, a: 0}
+    - _UVControl: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
     - _UVControlScreenMask1: {r: 0, g: 0, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0, b: 0, a: 0}
