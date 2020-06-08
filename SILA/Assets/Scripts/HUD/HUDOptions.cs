@@ -11,6 +11,7 @@ public class HUDOptions : MonoBehaviour
     static public List<float> _params = new List<float>();
 
     public Transform selectionIcon;
+    public Transform CheckIcon;
 
     private int _index = 0;
     private Vector3 _pos;
@@ -60,7 +61,7 @@ public class HUDOptions : MonoBehaviour
             if (_canchange)
             {
                 float _inputHorizontal = Input.GetAxis("Horizontal");
-                if (_inputHorizontal == 1)
+                if (_inputHorizontal == 1 && !(_index == Options.Count - 1))
                 {
                     _params[_index] += 0.1f;
                     if (_params[_index] > 1)
@@ -69,7 +70,7 @@ public class HUDOptions : MonoBehaviour
                     StartCoroutine(ResetChange());
                     AdjustCursors();
                 }
-                else if (_inputHorizontal == -1)
+                else if (_inputHorizontal == -1 && !(_index == Options.Count - 1))
                 {
                     _params[_index] -= 0.1f;
                     if (_params[_index] < 0)
@@ -79,12 +80,28 @@ public class HUDOptions : MonoBehaviour
                     AdjustCursors();
                 }
             }
+            if (Input.GetButtonDown("A"))
+            {
+                if (_index == Options.Count - 1)
+                {
+                    if (PlayerControllerV2.inverted)
+                    {
+                        PlayerControllerV2.inverted = false;
+                        CheckIcon.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        PlayerControllerV2.inverted = true;
+                        CheckIcon.gameObject.SetActive(true) ;
+                    }
+                }
+            }
         }
     }
 
     private void AdjustSelection()
     {
-        _pos = new Vector3(-500, ((140 - ((_index + 1) * 105))), 0);
+        _pos = new Vector3(-500, ((216 - ((_index + 1) * 105))), 0);
         selectionIcon.localPosition = _pos;
     }
 

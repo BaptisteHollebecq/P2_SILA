@@ -142,7 +142,7 @@ public class BasicState : FSMState
 	public override void Act()
 	{
 		//Debug.Log(_resetJump);
-		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		stickInput = new Vector2(Input.GetAxis("Horizontal"), (Input.GetAxis("Vertical")));
 
 		if (stickInput.magnitude < _deadZone)
 		{
@@ -177,9 +177,11 @@ public class BasicState : FSMState
 			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
-		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), (Input.GetAxis("VerticalCamera")));
 		if (stickInputR.magnitude < _deadZone)
 			stickInputR = Vector2.zero;
+
+        Debug.LogWarning((Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1)));
 
 		GetCamSettings();
 

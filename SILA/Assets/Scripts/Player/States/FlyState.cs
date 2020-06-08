@@ -86,7 +86,7 @@ public class FlyState : FSMState
 			}
 		}
 
-		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1));
 		if (stickInputR.magnitude < _deadZone)
 			stickInputR = Vector2.zero;
 
