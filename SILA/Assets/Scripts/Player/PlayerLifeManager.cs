@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
+    public HUDInGame hud;
 	public Animator Animator;
     public SoundManager sound;
 
@@ -20,6 +21,8 @@ public class PlayerLifeManager : MonoBehaviour
 
     private bool die = false;
 
+    private Transform deadBlack;
+    private CanvasGroup deadVisibility;
 
     private int _maxlife;
     [HideInInspector] public int MaxLife { get { return _maxlife; } set { _maxlife = value; } }
@@ -35,6 +38,8 @@ public class PlayerLifeManager : MonoBehaviour
         _checkPoint = Player.transform.position;
         _maxlife = _playerLife;
         sound = Player.sound;
+        deadBlack = hud.transform.GetChild(1);
+        deadVisibility = deadBlack.GetComponent<CanvasGroup>();
     }
 
 	void Update()
@@ -86,9 +91,14 @@ public class PlayerLifeManager : MonoBehaviour
 
     private IEnumerator SwitchCanDie()
     {
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 1, timingRespawn));
+        StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 0, timingRespawn));
+
         yield return new WaitForSeconds(timingRespawn); // timingRespawn a modifier pour laisser le temsp a l'anim de se jouer
         Respawn();
     }
+
+
 
     public void Respawn()
     {
@@ -102,7 +112,10 @@ public class PlayerLifeManager : MonoBehaviour
         }
         StartCoroutine(Controls());
 
-		Animator.SetBool("Respawn", true);
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
+        StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 1, timingcontrols));
+
+        Animator.SetBool("Respawn", true);
 		Animator.SetBool("DeathWater", false);
 		Animator.SetBool("DeathPykes", false);
 		Animator.SetBool("Jump", false);

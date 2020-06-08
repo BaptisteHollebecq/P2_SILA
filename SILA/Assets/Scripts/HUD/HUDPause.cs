@@ -139,7 +139,18 @@ public class HUDPause : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
+        if (Input.GetButtonDown("Select") && _isOpen)
+        {
+            if (_isOnMap)
+            {
+                _isOnMap = false;
+                map.CloseMap();
+                _groupButtons.alpha = 1;
+                CloseAll();
+            }
+        }
+
+            if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
         {
             switch(titles[_index])
             {
