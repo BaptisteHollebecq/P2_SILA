@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceMelting : MonoBehaviour
+public class IceBridgeMelting : MonoBehaviour
 {
     private float melting;
     
@@ -28,7 +28,7 @@ public class IceMelting : MonoBehaviour
 
         //heighsnow /= 2;
 
-        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_Melting", (1-(2*melting)));
+        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_Melting", Mathf.Clamp(((1-(2*melting))+ 1),0,1));
         gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowCavity", (1-melting)*-20f);
     }
 }
