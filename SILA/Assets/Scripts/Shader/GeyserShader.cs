@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceMelting : MonoBehaviour
+public class GeyserShader : MonoBehaviour
 {
     private float melting;
+
+    [SerializeField]
+    private float _geyserControl;
     
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,7 @@ public class IceMelting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        melting = Mathf.Abs(2 * (TimeSystem.currentTime - 0.25f));
+        melting = Mathf.Abs(2 * (_geyserControl/10));
 
         if (melting < 1)
         {
@@ -28,7 +31,7 @@ public class IceMelting : MonoBehaviour
 
         //heighsnow /= 2;
 
-        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_Melting", (1-(2*melting)));
-        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowCavity", (1-melting)*-20f);
+        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_BottomStrenght", (2*melting) + 0.03f);
+        
     }
 }
