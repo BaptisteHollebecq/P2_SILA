@@ -105,7 +105,7 @@ Material:
     - _FoamDepth1: 0
     - _FoamFalloff: 10
     - _FoamFalloff1: 0
-    - _Glaciation: 1
+    - _Glaciation: -3.461531e+33
     - _Glaciation1: -14.42
     - _HeightParallax: 0.95
     - _HeightParallax2: 0.9
