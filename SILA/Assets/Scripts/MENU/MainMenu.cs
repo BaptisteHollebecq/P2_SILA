@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
             _inputParam = "Vertical";
             _invert = true;
         }
-        _canvastitre = transform.GetChild(5);
+        _canvastitre = transform.GetChild(2);
         _canvaGrouptitre = _canvastitre.GetComponent<CanvasGroup>();
 
         _canvas = transform.GetChild(0);
