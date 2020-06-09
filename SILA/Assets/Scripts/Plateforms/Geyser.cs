@@ -16,6 +16,11 @@ public class Geyser : MonoBehaviour
     public AudioClip charging;
     public AudioClip explode;
 
+    [SerializeField]
+    private float speedAct;
+    [SerializeField]
+    private float speedDes;
+
     private AudioSource _source;
     private bool _started = false;
     private float _timer = 0;
@@ -91,8 +96,8 @@ public class Geyser : MonoBehaviour
                         {
                             if (water._geyserControl > 0)
                             {
-                                water._geyserControl -= 0.07f;
-                                wind._geyserControl -= 0.07f;
+                                water._geyserControl -= 0.05f;
+                                wind._geyserControl -= 0.05f;
                             }
                             else
                             {
@@ -120,8 +125,8 @@ public class Geyser : MonoBehaviour
                         {
                             if (water._geyserControl < 1)
                             {
-                                water._geyserControl += 0.1f;
-                                wind._geyserControl += 0.1f;
+                                water._geyserControl += 0.02f;
+                                wind._geyserControl += 0.02f;
                             }
                             else
                             {

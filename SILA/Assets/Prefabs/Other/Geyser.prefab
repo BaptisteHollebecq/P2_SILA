@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3193337846163019153}
   - component: {fileID: 3193337846163019166}
   - component: {fileID: 3193337846163019152}
+  - component: {fileID: 3847553579344642799}
   m_Layer: 0
   m_Name: Wind
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193337846163019164}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0050376, y: -0.13, z: -0.01}
+  m_LocalPosition: {x: 0.0050376, y: -0.52, z: -0.01}
   m_LocalScale: {x: 6, y: 6, z: 4.6593914}
   m_Children: []
   m_Father: {fileID: 3193337846171498696}
@@ -92,6 +93,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _geyserControl: 0
+--- !u!114 &3847553579344642799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193337846163019164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 0
+  Crepuscule: 1
+  Nuit: 0
 --- !u!1 &3193337846171498708
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,12 +171,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Start: 0
-  RestingTime: 2
-  ActiveTime: 2
-  ChargingTime: 2
+  RestingTime: 3
+  ActiveTime: 5
+  ChargingTime: 3
   PushForce: 30
+  water: {fileID: 3193337847035763707}
+  wind: {fileID: 3193337846163019152}
   charging: {fileID: 8300000, guid: e9b84e3e2bdd5804796df22b0b4afe25, type: 3}
   explode: {fileID: 8300000, guid: 6c2d9312486027b49b05ed21b88f1546, type: 3}
+  speedAct: 0.008
+  speedDes: 0.002
 --- !u!82 &3193337846171498711
 AudioSource:
   m_ObjectHideFlags: 0
@@ -380,6 +401,7 @@ GameObject:
   - component: {fileID: 3193337847035763704}
   - component: {fileID: 3193337847035763705}
   - component: {fileID: 3193337847035763707}
+  - component: {fileID: 8815697332414297336}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -395,7 +417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193337847035763655}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0050376, y: -0.13, z: -0.01}
+  m_LocalPosition: {x: 0.0050376, y: -0.52, z: -0.01}
   m_LocalScale: {x: 4.6593914, y: 4.6593914, z: 4.6593914}
   m_Children: []
   m_Father: {fileID: 3193337846171498696}
@@ -460,3 +482,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _geyserControl: 0
+--- !u!114 &8815697332414297336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193337847035763655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d154294ef4e2df4598898f07bd70749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aube: 0
+  Jour: 0
+  Crepuscule: 1
+  Nuit: 0

@@ -90,7 +90,7 @@ Material:
     - _HeightLimit: 0.74
     - _HeightScale: 0.15
     - _Heightmuliplier: 2
-    - _Melting: 1
+    - _Melting: 0
     - _MeltingColorLimit: 0.44
     - _Metallic: 0
     - _Mode: 0
