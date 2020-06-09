@@ -183,12 +183,14 @@ public class HUDInGame : MonoBehaviour
         int pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
 
         s += pourcentage.ToString();
-        s += "% of all collectibles and saved ";
+        s += "% of all collectibles\n";
 
-        int saved = 347 * (pourcentage / 100) + 70;
+        int dead = 70 * (1-(pourcentage / 100));
+        int saved = 347 - dead;
 
+        s += dead.ToString() + " peoples died\n";
         s += saved.ToString();
-        s += " people from your tribe";
+        s += " people from your tribe remains";
 
         textEndGame.text = s;
     }
