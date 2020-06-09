@@ -404,7 +404,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 4185e99649f40be4584c1732c4267200, type: 3}
+  - {fileID: 2100000, guid: 28f99327af1b93f4ab2275cb6f5df89a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -814,6 +814,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 919a598ff84e2a044b3b8ba6a013e2d7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28f99327af1b93f4ab2275cb6f5df89a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919a598ff84e2a044b3b8ba6a013e2d7, type: 3}
 --- !u!4 &4849517538267759631 stripped
@@ -895,6 +900,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: a859e858addaee24abb92edd840baa59,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28f99327af1b93f4ab2275cb6f5df89a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a859e858addaee24abb92edd840baa59, type: 3}
 --- !u!4 &8097665149226902572 stripped
@@ -976,6 +986,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 7b65cb5e7f703274a88f51bd7fdb5983,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28f99327af1b93f4ab2275cb6f5df89a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b65cb5e7f703274a88f51bd7fdb5983, type: 3}
 --- !u!1 &5757714094094386232 stripped
@@ -1057,6 +1072,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: b7098ffb887871540ba35f3cdbceb281,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28f99327af1b93f4ab2275cb6f5df89a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7098ffb887871540ba35f3cdbceb281, type: 3}
 --- !u!1 &2981127383180784845 stripped

@@ -59,6 +59,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -126,7 +130,7 @@ Material:
     - _GlitterInt1: {r: 2.8301888, g: 2.8301888, b: 2.8301888, a: 0}
     - _SnowEmissive: {r: 1, g: 1, b: 1, a: 0}
     - _SnowEmissive1: {r: 1, g: 1, b: 1, a: 0}
-    - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
+    - _ToonRampTint: {r: 0.109803915, g: 0.67816204, b: 1, a: 0}
     - _ToonRampTint1: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
     - _UVControlScreenMask1: {r: 1, g: 1, b: 0, a: 0}
