@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7133671484586408594}
   - component: {fileID: 4142976001141239404}
   - component: {fileID: 6764965775795517506}
+  - component: {fileID: 8872682761223200522}
   m_Layer: 8
   m_Name: LacPlatform
   m_TagString: Untagged
@@ -157,3 +158,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af68473490319d54cb4525483be195ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8872682761223200522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754055796471600640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2c8a915634a094dbba020fa176c318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveOnMorning: 1
+  ActiveOnNoon: 0

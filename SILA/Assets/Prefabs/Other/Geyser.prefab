@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Start: 0
-  RestingTime: 1
-  ActiveTime: 1
+  RestingTime: 2
+  ActiveTime: 2
   ChargingTime: 2
   PushForce: 30
   charging: {fileID: 8300000, guid: e9b84e3e2bdd5804796df22b0b4afe25, type: 3}
