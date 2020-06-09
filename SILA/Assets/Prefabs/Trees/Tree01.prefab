@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5852394254722529087}
   - component: {fileID: 6046020016649229910}
   - component: {fileID: 6166131167237808099}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Feuilles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8165314968465966074}
   - component: {fileID: 6166131168388807248}
   - component: {fileID: 7145486399937294698}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tronc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218447372668841813}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
