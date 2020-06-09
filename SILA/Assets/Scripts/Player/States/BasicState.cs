@@ -147,7 +147,7 @@ public class BasicState : FSMState
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			if (IsGrounded() && !_isJumping && !_isOnSlope)
+			if (IsGrounded() && !_isJumping && !_isOnSlope && _slopeDetector.slopeAngles != 90)
 			{
 				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
 			}
