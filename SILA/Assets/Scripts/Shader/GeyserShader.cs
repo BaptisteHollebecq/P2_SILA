@@ -7,7 +7,7 @@ public class GeyserShader : MonoBehaviour
     private float melting;
 
     [SerializeField]
-    private float _geyserControl;
+    public float _geyserControl;
     
     // Start is called before the first frame update
     void Start()

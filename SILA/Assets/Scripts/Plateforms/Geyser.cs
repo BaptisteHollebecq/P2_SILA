@@ -10,6 +10,9 @@ public class Geyser : MonoBehaviour
     public float ChargingTime;
     public float PushForce;
 
+    public GeyserShader water;
+    public GeyserShader wind;
+
     public AudioClip charging;
     public AudioClip explode;
 
@@ -28,6 +31,8 @@ public class Geyser : MonoBehaviour
         _collider = GetComponent<BoxCollider>();
         _rb = null;
         _source = GetComponent<AudioSource>();
+        water._geyserControl = 1;
+        wind._geyserControl = 1;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,6 +89,16 @@ public class Geyser : MonoBehaviour
                         }
                     case State.Active:
                         {
+                            if (water._geyserControl > 0)
+                            {
+                                water._geyserControl -= 0.07f;
+                                wind._geyserControl -= 0.07f;
+                            }
+                            else
+                            {
+                                water._geyserControl = 0f;
+                                wind._geyserControl = 0f;
+                            }
 
                             float force = PushForce;
                             if (_rb != null)
@@ -103,7 +118,16 @@ public class Geyser : MonoBehaviour
                         }
                     case State.Resting:
                         {
-
+                            if (water._geyserControl < 1)
+                            {
+                                water._geyserControl += 0.1f;
+                                wind._geyserControl += 0.1f;
+                            }
+                            else
+                            {
+                                water._geyserControl = 1f;
+                                wind._geyserControl = 1f;
+                            }
                             if (_timer / 50 >= RestingTime)
                             {
                                 _source.PlayOneShot(charging);
@@ -116,8 +140,14 @@ public class Geyser : MonoBehaviour
 
             }
         }
+        else
+        {
+            water._geyserControl = 1;
+            wind._geyserControl = 1;
+        }
 
     }
+
 
     private IEnumerator DecreaseVolume(AudioSource source, float time)
     {
