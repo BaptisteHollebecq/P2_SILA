@@ -8,7 +8,7 @@ public class HUDInGame : MonoBehaviour
 {
     [Header("Scripts")]
     [SerializeField] private PlayerLifeManager _lifeManager;
-    [SerializeField] private PlayerCollectibles _collectibles;
+    public PlayerCollectibles _collectibles;
     public CanvasGroup _visibility;
     [SerializeField] private float transitionTime;
 
@@ -49,6 +49,10 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private Image _placeHolderTodColo;
     [SerializeField] private Image _placeHolderFirstHp;
     [SerializeField] private Text _placeHolderCollectiblesCount;
+    [SerializeField] private CanvasGroup canvasGraine;
+    [SerializeField] private float timingShow;
+    [SerializeField] private float timingStay;
+    [SerializeField] private float timingHide;
 
     private List<Image> _healthBar = new List<Image>();
 
@@ -62,6 +66,7 @@ public class HUDInGame : MonoBehaviour
         transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
         transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
         textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
+        canvasGraine.alpha = 0;
     }
 
     private void Update()
@@ -134,6 +139,18 @@ public class HUDInGame : MonoBehaviour
             _healthBar.Add(HpColor);
             i++;
         }
+    }
+
+    public void ShowJauge()
+    {
+        StartCoroutine(FadeHud(canvasGraine, canvasGraine.alpha, 1, timingShow));
+        StartCoroutine(HideGraine());
+    }
+
+    IEnumerator HideGraine()
+    {
+        yield return new WaitForSeconds(timingShow + timingStay);
+        StartCoroutine(FadeHud(canvasGraine, canvasGraine.alpha, 0, timingHide));
     }
 
     private void CleanList()

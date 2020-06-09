@@ -50,6 +50,7 @@ public class PlayerCollectibles : MonoBehaviour
     public void AddCollectibles(int nbr)
     {
         _collectibles+=nbr;
+        _life.ShowJauge();
         _source.PlayOneShot(take);
     }
 
