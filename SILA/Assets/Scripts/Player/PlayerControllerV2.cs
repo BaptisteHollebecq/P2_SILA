@@ -83,6 +83,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public Stele zeStele;
 
     public static bool inverted = false;
+    [HideInInspector] public bool onG = false;
 
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()

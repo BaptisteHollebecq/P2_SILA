@@ -59,6 +59,10 @@ public class PlayerLifeManager : MonoBehaviour
         _checkPoint = Player.transform.position;
     }
 
+    public void ShowJauge()
+    {
+        hud.ShowJauge();
+    }
 
     public void DeathWater()
     {
