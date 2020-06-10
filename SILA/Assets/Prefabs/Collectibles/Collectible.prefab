@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Zone: 0
-  delta: 60
-  speed: 2.5
+  delta: 80
+  speed: 1

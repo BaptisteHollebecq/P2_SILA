@@ -18,7 +18,7 @@ public class Collectibles : MonoBehaviour
         map = GameObject.Find("HUDMap").GetComponent<HUDMap>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         float i = Mathf.Sin(Time.time * speed);
 

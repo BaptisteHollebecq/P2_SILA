@@ -122,5 +122,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel: {r: 0, g: 27.31876, b: 27.60784, a: 0}
     - _MeltingEmissionColor: {r: 0.3867548, g: 2.623205, b: 3.564869, a: 0}
-    - _SnowColor: {r: 1.498039, g: 1.498039, b: 1.498039, a: 0}
+    - _SnowColor: {r: 1.9999998, g: 1.9999998, b: 1.9999998, a: 0}
     - _Surfacecolor: {r: 0, g: 0.5368862, b: 1, a: 0}

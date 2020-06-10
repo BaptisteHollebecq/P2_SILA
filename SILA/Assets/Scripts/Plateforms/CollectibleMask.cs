@@ -9,7 +9,7 @@ public class CollectibleMask : MonoBehaviour
     public int delta = 100;
     public float speed = 1;
 
-   private void Update()
+   private void FixedUpdate()
    {
         float i = Mathf.Sin(Time.time * speed);
 

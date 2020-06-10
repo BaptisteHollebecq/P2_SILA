@@ -8,7 +8,7 @@ public class SteleFragment : MonoBehaviour
 
     public int delta = 100;
 
-    private void Update()
+    private void FixedUpdate()
     {
         float i = Mathf.Sin(Time.time);
 
