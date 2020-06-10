@@ -5,7 +5,7 @@ public class ZoomState : FSMState
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
 
-	GameObject _player;
+	Transform _player;
 	PlayerControllerV2 _playerScript;
 	Rigidbody _rb;
 	Vector3 _moveDirection;
@@ -15,6 +15,7 @@ public class ZoomState : FSMState
 		ID = StateID.Zoom;
 		_rb = rigidbody;
 		_playerScript = player;
+		_player = playerGO.transform.Find("Sika");
 	}
 	public override void Reason()
 	{
@@ -27,6 +28,7 @@ public class ZoomState : FSMState
 	public override void Act()
 	{
 		_rb.constraints = RigidbodyConstraints.FreezeAll;
+		//_player.gameObject.SetActive(false);           // Player invisible
 	}
 
 	public override void DoBeforeEntering()
@@ -38,6 +40,7 @@ public class ZoomState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+		//_player.gameObject.SetActive(true);           // Player visible
 		_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
 	}

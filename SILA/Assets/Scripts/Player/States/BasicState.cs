@@ -195,7 +195,6 @@ public class BasicState : FSMState
 
 		if (!IsGrounded())
 		{
-			_gravityScale = _gravityStore;
 
 			_moveSpeed = _airSpeed;
 
@@ -211,7 +210,8 @@ public class BasicState : FSMState
 				_canJump = true;
 				_jumpTimer += Time.deltaTime;
 			}
-
+			
+	
 			if (_rb.velocity.y < -11)
 				_canPlayGrounded = true;
         }
@@ -273,7 +273,9 @@ public class BasicState : FSMState
 		{
 			_resetJump += Time.deltaTime;
 		}
-        #endregion
+		else
+			_gravityScale = _gravityStore;
+		#endregion
 
 
 		_rb.velocity = moveDirection;
