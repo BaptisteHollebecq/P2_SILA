@@ -41,6 +41,11 @@ public class TimeMenu : MonoBehaviour
 
     }
 
+    public void HideALLHUD()
+    { 
+        MenuDisplayed?.Invoke();
+    }
+
     private void Initialize()
     {
         CameraMaster.MovedToPivot += DisplayMenu;
@@ -98,7 +103,7 @@ public class TimeMenu : MonoBehaviour
                 if (isBroken)
                     _morningSprite.gameObject.SetActive(false);
             }
-                MenuDisplayed?.Invoke();
+            MenuDisplayed?.Invoke();
             _isActive = true;
 			CanvasGroup.alpha = 1;
             _canQuit = true;

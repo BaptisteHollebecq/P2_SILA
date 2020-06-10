@@ -195,15 +195,16 @@ public class HUDInGame : MonoBehaviour
 
     private void ActualiseCollectibleCount()
     {
-        string s = "Congrats you collected ";
-        int collectible = _collectibles.GetCollectibles();
-        int pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
+        string s = "You collected ";
+
+        float collectible = _collectibles.GetCollectibles();
+        float pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
 
         s += pourcentage.ToString();
         s += "% of all collectibles\n";
 
-        int dead = 70 * (1-(pourcentage / 100));
-        int saved = 347 - dead;
+        int dead = Mathf.FloorToInt( 70 * (1-(pourcentage / 100)));
+        float saved = 347 - dead;
 
         s += dead.ToString() + " peoples died\n";
         s += saved.ToString();
