@@ -33,6 +33,7 @@ public class TriggerEndGame : MonoBehaviour
             StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 1, timingFade));
             StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 0, timingFade));
 
+            HUDOptions._params[2] = 0;
         }
     }
 }
