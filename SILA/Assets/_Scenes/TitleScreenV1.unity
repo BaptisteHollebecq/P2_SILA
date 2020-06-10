@@ -5414,16 +5414,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 3543287166211769069, guid: 453427a17a9c0864e985db6c1209412f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 553
-      objectReference: {fileID: 0}
-    - target: {fileID: 3543287166211769069, guid: 453427a17a9c0864e985db6c1209412f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 236
-      objectReference: {fileID: 0}
     - target: {fileID: 6034474576657418704, guid: 453427a17a9c0864e985db6c1209412f,
         type: 3}
       propertyPath: m_IsActive
@@ -5453,6 +5443,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543287166211769069, guid: 453427a17a9c0864e985db6c1209412f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 553
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543287166211769069, guid: 453427a17a9c0864e985db6c1209412f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 236
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065609377216182826, guid: 453427a17a9c0864e985db6c1209412f,
+        type: 3}
+      propertyPath: m_Text
+      value: "Antoine Cuvilliez - Concept art, chara modelling\r\nLouis Hilaire -
+        Lead, Level design & Art\r\nMartin Calujek - GD, Enviro Art\r\nClement Rigolli
+        - GD, SD\r\nBaptiste Hollebecq - Game prog system\r\nLo\xEFc Mouray - Game
+        prog character\r\nGuillaume Leclercq - Lead, Tech art\n\nSpecial thanks to
+        Logan Berdah for making the ost"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453427a17a9c0864e985db6c1209412f, type: 3}
