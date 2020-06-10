@@ -184,7 +184,7 @@ public class HUDPause : MonoBehaviour
                     }
                 case "Quit":
                     {
-                        SceneManager.LoadScene(0);
+                        Application.Quit();
                         break;
                     }
             }
