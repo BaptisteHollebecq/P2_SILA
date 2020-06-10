@@ -23,6 +23,7 @@ public class BasicState : FSMState
 	float _gravityScale;
 	float _jumpGravity;
 	float _speedStore;
+	float _gravityStore;
 
 	Vector2 stickInput;
 
@@ -77,6 +78,7 @@ public class BasicState : FSMState
 		_smoothTime = scriptPlayer.smoothTime;
 		_player = playerGO;
 		_slopeDetector = playerGO.GetComponent<SlopeDetector>();
+		_gravityStore = scriptPlayer.gravityScale;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -144,20 +146,11 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		Debug.Log(_resetJump);
 		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			if (IsGrounded() && !_isJumping && !_isOnSlope && _slopeDetector.slopeAngles != 90)
-			{
-				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
-			}
-			else
-			{
-				_rb.constraints = RigidbodyConstraints.FreezeRotation;
-			}
 		}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 		else                                                                                                    //
 		{                                                                                                       //
@@ -176,8 +169,6 @@ public class BasicState : FSMState
 				else if (!IsGrounded())														
 					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
 			}
-
-			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
 		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
@@ -186,14 +177,15 @@ public class BasicState : FSMState
 
 		GetCamSettings();
 
-		_slopeDetector.checkForSlope = true;
+		/*_slopeDetector.checkForSlope = true;
 		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
 		{
 			_isOnSlope = true;
-			stickInput = Vector3.SmoothDamp(stickInput, Vector3.zero, ref _refVectorDamp, 0.01f);
+			stickInput = Vector3.zero;
 		}
 		else
-			_isOnSlope = false;
+			_isOnSlope = false;*/
+
 
 		float _yStored = _rb.velocity.y;
 		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
@@ -203,6 +195,8 @@ public class BasicState : FSMState
 
 		if (!IsGrounded())
 		{
+			_gravityScale = _gravityStore;
+
 			_moveSpeed = _airSpeed;
 
 			moveDirection += Vector3.up * Physics.gravity.y * (_gravityScale - 1) * Time.deltaTime;
@@ -262,7 +256,6 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
-			_rb.constraints = RigidbodyConstraints.FreezeRotation;
 			_rb.velocity = Vector3.zero;
 			_animator.SetBool("Jump", true);
 			_isJumping = true;
@@ -313,7 +306,7 @@ public class BasicState : FSMState
 		}	
 		else
 		{
-			if (_rb.velocity.y < -0.1f)
+			if (_rb.velocity.y < -1f)
 				_animator.SetBool("Fall", true);
 
 			_animator.SetBool("Grounded", false);

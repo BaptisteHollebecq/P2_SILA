@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Geyser : MonoBehaviour
 {
+	public Animator Anim;
     public float Start;
     public float RestingTime;
     public float ActiveTime;
@@ -32,6 +33,9 @@ public class Geyser : MonoBehaviour
     {
         if (other.GetComponent<Rigidbody>() != null)
         {
+			if (other.CompareTag("Player"))
+				Anim.SetBool("Geyser", true);
+
             _rb = other.GetComponent<Rigidbody>();
             if (_rb.velocity.y < 0)
                 _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
@@ -40,7 +44,10 @@ public class Geyser : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        _rb = null;
+		if (other.CompareTag("Player"))
+			Anim.SetBool("Geyser", false);
+
+		_rb = null;
     }
 
     private void Update()
