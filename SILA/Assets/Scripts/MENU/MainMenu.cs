@@ -34,6 +34,9 @@ public class MainMenu : MonoBehaviour
     private Transform _canvas;
     private CanvasGroup _canvaGroup;
 
+    private Transform _canvastitre;
+    private CanvasGroup _canvaGrouptitre;
+
     private Transform _canvasback;
     private CanvasGroup _canvaGroupback;
 
@@ -53,6 +56,9 @@ public class MainMenu : MonoBehaviour
             _inputParam = "Vertical";
             _invert = true;
         }
+        _canvastitre = transform.GetChild(2);
+        _canvaGrouptitre = _canvastitre.GetComponent<CanvasGroup>();
+
         _canvas = transform.GetChild(0);
         _canvaGroup = _canvas.GetComponent<CanvasGroup>();
 
@@ -126,6 +132,7 @@ public class MainMenu : MonoBehaviour
             {
                 StartCoroutine(MoveToPivot(positions[_index], _transitionTime));
                 _canvaGroup.alpha = 0;
+                _canvaGrouptitre.alpha = 0;
                 _source.PlayOneShot(sonSelect);
             }
         }
@@ -186,6 +193,7 @@ public class MainMenu : MonoBehaviour
                     else
                     {
                         _canvaGroup.alpha = 1;
+                        _canvaGrouptitre.alpha = 1;
                         _canvaGroupback.alpha = 0;
                     }
                     break;

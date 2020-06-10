@@ -102,7 +102,6 @@ public class SoundManager : MonoBehaviour
         if (!menu)
         {
             AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-
             CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
             EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
             TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
@@ -155,13 +154,16 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("Error : sound " + name + " not found");
             return;
         }
+        /*Debug.LogWarning("Playing : " + name + " at "+ s.volume * AmbianceVolume +" of volume");
+        Debug.LogWarning("Volume sound at " + s.volume + " times Options sounds at " + AmbianceVolume);*/
         switch (s.type)
         {
             case SoundType.ambiance:
                 {
+                    if (!menu)
+                        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
-
                     AmbianceSource.clip = s.audioclip;
                     if (s.oneShot)
                         AmbianceSource.PlayOneShot(s.audioclip);
@@ -171,6 +173,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.character:
                 {
+                    if (!menu)
+                        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
                     CharacterSource.loop = s.loop;
                     CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
@@ -182,6 +186,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.environement:
                 {
+                    if (!menu)
+                        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     EnvironementSource.loop = s.loop;
                     EnvironementSource.volume = s.volume * EnvironementVolume;
                     EnvironementSource.clip = s.audioclip;
@@ -193,6 +199,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.transition:
                 {
+                    if (!menu)
+                        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     TransitionSource.loop = s.loop;
                     TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;

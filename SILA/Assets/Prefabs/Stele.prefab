@@ -134,8 +134,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3093784983296573459}
   - component: {fileID: 976068094486632111}
-  - component: {fileID: 4556548762190571522}
-  - component: {fileID: 8184374707751054663}
   m_Layer: 8
   m_Name: Stele
   m_TagString: Untagged
@@ -171,40 +169,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 1, z: 0.7}
-  m_Center: {x: 0, y: 0.06, z: 0}
---- !u!114 &4556548762190571522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093784983296573551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb0693f051043340afc9ef0078bcab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraPivotOnInteract: {fileID: 3093784981648334733}
-  ySprite: {fileID: 3093784982954863421}
-  timeMenu: {fileID: 0}
-  brokenDay: 0
-  brokenNight: 0
-  brokenMorning: 0
-  brokenNoon: 0
---- !u!65 &8184374707751054663
+  m_Size: {x: 0.96471226, y: 0.98096657, z: 0.8256178}
+  m_Center: {x: -0.03235631, y: 0.050483286, z: 0.013323116}
+--- !u!65 &1173646113743837904
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093784983296573551}
+  m_GameObject: {fileID: 3355228132353388106}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.96, y: 1, z: 0.84}
-  m_Center: {x: 0, y: 0.36, z: 0.0014349938}
+  m_Size: {x: 3.865409, y: 3.774457, z: 1.6469127}
+  m_Center: {x: 0.010112286, y: -0.36638123, z: 1.2136139}
 --- !u!64 &1302101228226985106
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -219,6 +198,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 6905216903053467735, guid: 49eda8a38a61f26478f613a0b110b350, type: 3}
+--- !u!114 &1588904537967893681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355228132353388106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb0693f051043340afc9ef0078bcab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPivotOnInteract: {fileID: 3093784981648334733}
+  ySprite: {fileID: 3093784982954863421}
+  timeMenu: {fileID: 0}
+  brokenDay: 0
+  brokenNight: 0
+  brokenMorning: 0
+  brokenNoon: 0
 --- !u!114 &5335163237811443071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +241,6 @@ GameObject:
   - component: {fileID: 6750930600550284388}
   - component: {fileID: 313082767947254422}
   - component: {fileID: 4457285913377083439}
-  - component: {fileID: 1471382831932223216}
   m_Layer: 8
   m_Name: FLoatingY (1)
   m_TagString: Untagged
@@ -304,7 +301,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6da0ffadbdd39794e852f3a3e974d429, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9339623, g: 0.9088582, b: 0.383277, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -326,134 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f22197a9f62584291d811eb58f56c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1471382831932223216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4096090440238483428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d87e61ca46c6949858b7ec5388c3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorMorning:
-    serializedVersion: 2
-    key0: {r: 0.80392164, g: 0.47450984, b: 0.17254902, a: 1}
-    key1: {r: 0.81568635, g: 0.14509805, b: 0.2627451, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  colorDay:
-    serializedVersion: 2
-    key0: {r: 0.81568635, g: 0.14901961, b: 0.2627451, a: 1}
-    key1: {r: 0.098039225, g: 0.26666668, b: 0.7960785, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  colorNoon:
-    serializedVersion: 2
-    key0: {r: 0.09019608, g: 0.27058825, b: 0.80392164, a: 1}
-    key1: {r: 0.38431376, g: 0.15686275, b: 0.7254902, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  colorNight:
-    serializedVersion: 2
-    key0: {r: 0.3803922, g: 0.15686275, b: 0.7254902, a: 1}
-    key1: {r: 0.7960785, g: 0.47058827, b: 0.18431373, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
 --- !u!1001 &6751396272887658307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,6 +330,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3093784983296573459}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 49eda8a38a61f26478f613a0b110b350,
+        type: 3}
+      propertyPath: m_Name
+      value: Stele_full
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 49eda8a38a61f26478f613a0b110b350,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 49eda8a38a61f26478f613a0b110b350,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -530,16 +409,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.50000024
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 49eda8a38a61f26478f613a0b110b350,
-        type: 3}
-      propertyPath: m_Name
-      value: Stele_full
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 49eda8a38a61f26478f613a0b110b350,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 49eda8a38a61f26478f613a0b110b350,
         type: 3}

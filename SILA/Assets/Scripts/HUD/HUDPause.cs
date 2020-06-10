@@ -25,6 +25,7 @@ public class HUDPause : MonoBehaviour
     private CanvasGroup _groupCommands;
     private CanvasGroup _groupOptions;
 
+    private HUDOptions hudOptions;
 
     List<Text> buttons = new List<Text>();
     private string _inputParam;
@@ -58,6 +59,7 @@ public class HUDPause : MonoBehaviour
         _groupCommands.alpha = 0;
         _groupButtons.alpha = 0;
 
+        hudOptions = transform.GetChild(1).GetComponent<HUDOptions>();
 
         foreach (Transform child in allButtons)
         {
@@ -121,6 +123,7 @@ public class HUDPause : MonoBehaviour
             else if (_isOnOptions)
             {
                 _isOnOptions = false;
+                hudOptions._isActive = false;
                 _groupOptions.alpha = 0;
                 _groupButtons.alpha = 1;
             }
@@ -136,7 +139,18 @@ public class HUDPause : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
+        if (Input.GetButtonDown("Select") && _isOpen)
+        {
+            if (_isOnMap)
+            {
+                _isOnMap = false;
+                map.CloseMap();
+                _groupButtons.alpha = 1;
+                CloseAll();
+            }
+        }
+
+            if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
         {
             switch(titles[_index])
             {
@@ -148,6 +162,7 @@ public class HUDPause : MonoBehaviour
                 case "Options":
                     {
                         _isOnOptions = true;
+                        hudOptions._isActive = true;
                         _groupOptions.alpha = 1;
                         _groupButtons.alpha = 0;
                         break;
@@ -169,7 +184,7 @@ public class HUDPause : MonoBehaviour
                     }
                 case "Quit":
                     {
-                        SceneManager.LoadScene(0);
+                        Application.Quit();
                         break;
                     }
             }

@@ -8,8 +8,8 @@ public class HUDInGame : MonoBehaviour
 {
     [Header("Scripts")]
     [SerializeField] private PlayerLifeManager _lifeManager;
-    [SerializeField] private PlayerCollectibles _collectibles;
-    [SerializeField] private CanvasGroup _visibility;
+    public PlayerCollectibles _collectibles;
+    public CanvasGroup _visibility;
     [SerializeField] private float transitionTime;
 
     [Header("TimeOfDays")]
@@ -49,12 +49,25 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private Image _placeHolderTodColo;
     [SerializeField] private Image _placeHolderFirstHp;
     [SerializeField] private Text _placeHolderCollectiblesCount;
+    [SerializeField] private CanvasGroup canvasGraine;
+    [SerializeField] private float timingShow;
+    [SerializeField] private float timingStay;
+    [SerializeField] private float timingHide;
 
     private List<Image> _healthBar = new List<Image>();
 
     private int _checkLifeChangement = -1;
     private bool _isShowed = true;
 
+    private Text textEndGame;
+
+    private void Awake()
+    {
+        transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
+        transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
+        textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
+        canvasGraine.alpha = 0;
+    }
 
     private void Update()
     {
@@ -94,6 +107,7 @@ public class HUDInGame : MonoBehaviour
         StartCoroutine(FadeHud(_visibility, _visibility.alpha, 1, transitionTime));
     }
 
+
     private void ActualiseLife()
     {
         CleanList();
@@ -125,6 +139,18 @@ public class HUDInGame : MonoBehaviour
             _healthBar.Add(HpColor);
             i++;
         }
+    }
+
+    public void ShowJauge()
+    {
+        StartCoroutine(FadeHud(canvasGraine, canvasGraine.alpha, 1, timingShow));
+        StartCoroutine(HideGraine());
+    }
+
+    IEnumerator HideGraine()
+    {
+        yield return new WaitForSeconds(timingShow + timingStay);
+        StartCoroutine(FadeHud(canvasGraine, canvasGraine.alpha, 0, timingHide));
     }
 
     private void CleanList()
@@ -169,8 +195,23 @@ public class HUDInGame : MonoBehaviour
 
     private void ActualiseCollectibleCount()
     {
-        _placeHolderCollectiblesCount.text = _collectibles.GetCollectibles().ToString();
+        string s = "Congrats you collected ";
+        int collectible = _collectibles.GetCollectibles();
+        int pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
+
+        s += pourcentage.ToString();
+        s += "% of all collectibles\n";
+
+        int dead = 70 * (1-(pourcentage / 100));
+        int saved = 347 - dead;
+
+        s += dead.ToString() + " peoples died\n";
+        s += saved.ToString();
+        s += " people from your tribe remains";
+
+        textEndGame.text = s;
     }
+
 
     private void ActualiseTODIcon()
     {

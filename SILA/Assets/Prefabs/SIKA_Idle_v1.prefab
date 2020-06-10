@@ -11531,12 +11531,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  hud: {fileID: 0}
   Animator: {fileID: 7827649148271150918}
   sound: {fileID: 0}
   _playerLife: 3
   isDead: 0
-  timingRespawn: 1
-  timingcontrols: 0
+  timingRespawn: 2.5
+  timingcontrols: 1
   _actualise: 1
 --- !u!114 &316098767056571885
 MonoBehaviour:

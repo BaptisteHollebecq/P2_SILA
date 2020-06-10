@@ -87,18 +87,18 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightLimit: 6.21
+    - _HeightLimit: 0.05
     - _HeightScale: 0.15
     - _Heightmuliplier: 2
-    - _MaxEmission: 0
+    - _MaxEmission: 2
     - _Melting: 0
-    - _MeltingColorLimit: 5.08
+    - _MeltingColorLimit: 0.07
     - _Metallic: 0
     - _Mode: 0
     - _Normalscale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Param_Lenght: -0.03
+    - _Param_Lenght: 0
     - _SmoothnessTextureChannel: 0
     - _SnowCavity: -10
     - _Snowdeposit: 33.22
@@ -118,9 +118,9 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deepcolor: {r: 0, g: 1.0117648, b: 1.7803922, a: 0}
+    - _Deepcolor: {r: 0, g: 1.011765, b: 1.780392, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel: {r: 0, g: 27.318756, b: 27.607843, a: 0}
-    - _MeltingEmissionColor: {r: 0.38675478, g: 2.6232047, b: 3.5648694, a: 0}
-    - _SnowColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+    - _Fresnel: {r: 0, g: 1.4901961, b: 1.4980392, a: 0}
+    - _MeltingEmissionColor: {r: 0.3867548, g: 2.623205, b: 3.564869, a: 0}
+    - _SnowColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 0}
     - _Surfacecolor: {r: 0, g: 0.5368862, b: 1, a: 0}

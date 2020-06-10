@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 7256399020590788627}
   - component: {fileID: 4643371082551897608}
   - component: {fileID: 7661174332497541847}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tronc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &7963393482420247497
 Transform:
@@ -119,12 +119,12 @@ GameObject:
   - component: {fileID: 4959887418373407958}
   - component: {fileID: 5045485038931617215}
   - component: {fileID: 4643371081691878105}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Feuilles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &4236269112202787377
 Transform:
@@ -209,12 +209,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363144136950897852}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tree02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &363144136950897852
 Transform:

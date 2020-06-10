@@ -106,11 +106,18 @@ public class CameraMaster : LockModeStateMachine
 		UpdateLockState (CameraLockState.Idle);
 	}
 
-	#endregion
+    private void OnDestroy()
+    {
+        OnSteleState.PlayerStateChanged -= UpdateLockState;
+        ZoomState.PlayerStateChanged -= UpdateLockState;
+        Stele.SteleInteracted -= SetCameraLookPivot;
+    }
 
-	#region Lock Mode State Machine
+    #endregion
 
-	protected override void OnLockStateEnter ()
+    #region Lock Mode State Machine
+
+    protected override void OnLockStateEnter ()
 	{
 		switch (LockState)
 		{
@@ -291,7 +298,7 @@ public class CameraMaster : LockModeStateMachine
 
 			case CameraLockState.Flight:
 				_mouseX = Input.GetAxis ("HorizontalCamera") * Behaviour.Sensitivity.x;
-				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;
+				_mouseY = Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1) * Behaviour.Sensitivity.y;
 				if (_mouseX != 0 || _mouseY != 0)
 					Rotate (_mouseY, _mouseX);
 				break;

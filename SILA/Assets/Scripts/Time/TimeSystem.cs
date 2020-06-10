@@ -11,6 +11,7 @@ public class TimeSystem : MonoBehaviour
     public static event System.Action<float> StatedMorningToDay;
     public static event System.Action<float> StatedDayToNoon;
 
+    public bool BuildMode = false;
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -191,31 +192,33 @@ public class TimeSystem : MonoBehaviour
 
     private void Update()
     {
-       /* if (Input.GetKeyDown("n"))
+        if (!BuildMode)
         {
-            targetTime = TimeOfDay.Night;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
+            if (Input.GetKeyDown("n"))
+            {
+                targetTime = TimeOfDay.Night;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("a"))
+            {
+                targetTime = TimeOfDay.Morning;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("j"))
+            {
+                targetTime = TimeOfDay.Day;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("c"))
+            {
+                targetTime = TimeOfDay.Noon;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
         }
-        if (Input.GetKeyDown("a"))
-        {
-            targetTime = TimeOfDay.Morning;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }
-        if (Input.GetKeyDown("j"))
-        {
-            targetTime = TimeOfDay.Day;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }
-        if (Input.GetKeyDown("c"))
-        {
-            targetTime = TimeOfDay.Noon;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }*/
-
     }
 
     public IEnumerator ChangeTimeV2()
