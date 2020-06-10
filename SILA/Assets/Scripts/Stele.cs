@@ -26,6 +26,8 @@ public class Stele : MonoBehaviour
         if (brokenDay || brokenMorning || brokenNight || brokenNoon)
             isBroken = true;
 
+        ySprite.gameObject.SetActive(false);
+
         TimeMenu.MenuDisplayed += HideBill;
         TimeMenu.MenuQuited += ShowBill;
     }
@@ -80,6 +82,7 @@ public class Stele : MonoBehaviour
         if (other.tag == "Player")
         {
             ySprite.gameObject.SetActive(false);
+            timeMenu.HideALLHUD();
             _respawn = null;
             controller.onstele = false;
             controller = null;
