@@ -23,6 +23,7 @@ public class BasicState : FSMState
 	float _gravityScale;
 	float _jumpGravity;
 	float _speedStore;
+    float _gravityStore;
 
 	Vector2 stickInput;
 
@@ -77,6 +78,7 @@ public class BasicState : FSMState
 		_smoothTime = scriptPlayer.smoothTime;
 		_player = playerGO;
 		_slopeDetector = playerGO.GetComponent<SlopeDetector>();
+        _gravityStore = scriptPlayer.gravityScale;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -147,14 +149,6 @@ public class BasicState : FSMState
 		if (stickInput.magnitude < _deadZone)
 		{
 			stickInput = Vector2.zero;
-			if (IsGrounded() && !_isJumping && !_isOnSlope && !_playerScript.onG)
-			{
-				_rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;   //      INPUT = ZERO
-			}
-			else
-			{
-				_rb.constraints = RigidbodyConstraints.FreezeRotation;
-			}
 		}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 		else                                                                                                    //
 		{                                                                                                       //
@@ -174,7 +168,7 @@ public class BasicState : FSMState
 					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
 			}
 
-			_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			
 		}
 
 		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), (Input.GetAxis("VerticalCamera")));
@@ -261,7 +255,7 @@ public class BasicState : FSMState
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
-			_rb.constraints = RigidbodyConstraints.FreezeRotation;
+			
 			_rb.velocity = Vector3.zero;
 			_animator.SetBool("Jump", true);
 			_isJumping = true;
@@ -277,8 +271,13 @@ public class BasicState : FSMState
 
 		if(_isJumping)
 		{
+
 			_resetJump += Time.deltaTime;
 		}
+        else
+        {
+            _gravityScale = _gravityStore;
+        }
         #endregion
 
 
