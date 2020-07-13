@@ -36,11 +36,14 @@ public class BasicState : FSMState
 
 	bool _hasJumped;
 	bool _canJump;
+	bool _canInput;
 	bool _isJumping;
 	float _jumpTimer;
 	float _maxJumpTimer;
 	float _resetJump;
 	float _resetJumpTimer = 0.2f;
+	float _wallJumpTimer;
+	float _wallJumpTimerCount;
 
     bool _canPlayGrounded = false;
     bool _isGrounded;
@@ -79,6 +82,8 @@ public class BasicState : FSMState
 		_player = playerGO;
 		_slopeDetector = playerGO.GetComponent<SlopeDetector>();
 		_gravityStore = scriptPlayer.gravityScale;
+		_wallJumpTimer = scriptPlayer.jumpWallTimer;
+		_canInput = true;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -143,54 +148,56 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-
-		stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-		if (stickInput.magnitude < _deadZone)
+		if(_canInput)
 		{
-			stickInput = Vector2.zero;
-		}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
-		else                                                                                                    //
-		{                                                                                                       //
-			_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
-			if (_difAngle > 1)                                                                                  //
-			{                                                                                                   //      SINON
-				if(IsGrounded())
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _groundRotation * Time.deltaTime), 0f));               //      ROTATE LE PLAYER POUR 
-				else if(!IsGrounded())														
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _airRotation * Time.deltaTime), 0f));	
-			}                                                                                                //      L'ALIGNER AVEC LA CAMERA 
-			else if (_difAngle < -1)                                                                         //
-			{                                                                                                //
-				if (IsGrounded())															
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_groundRotation * Time.deltaTime), 0f));                             //
-				else if (!IsGrounded())														
-					_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
+			stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+			if (stickInput.magnitude < _deadZone)
+			{
+				stickInput = Vector2.zero;
+			}																										//     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
+			else                                                                                                    //
+			{                                                                                                       //
+				_difAngle = SignedAngle(_transformPlayer.forward, new Vector3(moveDirection.x, 0f, moveDirection.z), Vector3.up);   //
+				if (_difAngle > 1)                                                                                  //
+				{                                                                                                   //      SINON
+					if(IsGrounded())
+						_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _groundRotation * Time.deltaTime), 0f));               //      ROTATE LE PLAYER POUR 
+					else if(!IsGrounded())														
+						_transformPlayer.Rotate(new Vector3(0f, Mathf.Min(_difAngle, _airRotation * Time.deltaTime), 0f));	
+				}                                                                                                //      L'ALIGNER AVEC LA CAMERA 
+				else if (_difAngle < -1)                                                                         //
+				{                                                                                                //
+					if (IsGrounded())															
+						_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_groundRotation * Time.deltaTime), 0f));                             //
+					else if (!IsGrounded())														
+						_transformPlayer.Rotate(new Vector3(0f, Mathf.Max(_difAngle, -_airRotation * Time.deltaTime), 0f));
+				}
 			}
+
+			Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), (Input.GetAxis("VerticalCamera")));
+			if (stickInputR.magnitude < _deadZone)
+				stickInputR = Vector2.zero;
+
+			//Debug.LogWarning((Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1)));
+
+			GetCamSettings();
+
+			/*_slopeDetector.checkForSlope = true;
+			if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
+			{
+				_isOnSlope = true;
+				stickInput = Vector3.zero;
+			}
+			else
+				_isOnSlope = false;*/
+
+
+			float _yStored = _rb.velocity.y;
+			moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
+			moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
+			moveDirection.y = _yStored;
 		}
-
-		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), (Input.GetAxis("VerticalCamera")));
-		if (stickInputR.magnitude < _deadZone)
-			stickInputR = Vector2.zero;
-
-        //Debug.LogWarning((Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1)));
-
-		GetCamSettings();
-
-		/*_slopeDetector.checkForSlope = true;
-		if (_slopeDetector.slopeAngles > _playerScript.maxAngle && _slopeDetector.slopeAngles != 90)
-		{
-			_isOnSlope = true;
-			stickInput = Vector3.zero;
-		}
-		else
-			_isOnSlope = false;*/
-
-
-		float _yStored = _rb.velocity.y;
-		moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
-		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
-		moveDirection.y = _yStored;
 
 
 		if (!IsGrounded())
@@ -217,6 +224,7 @@ public class BasicState : FSMState
         }
 		else
 		{
+			_canInput = true;
 			_jumpTimer = 0;
 			_moveSpeed = _speedStore;
 
@@ -249,13 +257,28 @@ public class BasicState : FSMState
 			_canJump = false;
 		}
 
+		if (_wallJumpTimerCount > _wallJumpTimer)
+		{
+			if (_rb.velocity.y > 1)
+			{
+				stickInput = Vector2.zero;
+				moveDirection = Vector3.zero;
+				_canInput = false;
+				_rb.AddForce(Vector3.down * 10, ForceMode.Force);
+			}
+			_wallJumpTimerCount = 0;
+		}
+
 		//Debug.Log(_jumpTimer);
 		//Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
-        #region Jump
+			#region Jump
 
 
 		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
+			if (_wallJumpTimerCount > 0)
+				_wallJumpTimerCount = 0;
+
 			_rb.velocity = Vector3.zero;
 			_animator.SetBool("Jump", true);
 			_isJumping = true;
@@ -271,6 +294,7 @@ public class BasicState : FSMState
 
 		if(_isJumping)
 		{
+			_wallJumpTimerCount += Time.deltaTime;
 			_resetJump += Time.deltaTime;
 		}
 		else
