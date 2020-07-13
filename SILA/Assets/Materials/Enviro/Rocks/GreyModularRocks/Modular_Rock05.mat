@@ -180,7 +180,7 @@ Material:
     - _UVSec: 0
     - _VolumSnowHeight: 1
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     - _distanceGlitter: 20
     - _distanceGlitter1: 0
     m_Colors:
