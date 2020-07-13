@@ -19,11 +19,14 @@ public class Stele : MonoBehaviour
     [SerializeField] public bool brokenNoon = false;
 
     protected PlayerLifeManager _respawn;
+    protected PlayerControllerV2 controller;
 
     private void Awake()
     {
         if (brokenDay || brokenMorning || brokenNight || brokenNoon)
             isBroken = true;
+
+        ySprite.gameObject.SetActive(false);
 
         TimeMenu.MenuDisplayed += HideBill;
         TimeMenu.MenuQuited += ShowBill;
@@ -56,18 +59,21 @@ public class Stele : MonoBehaviour
         if (isBroken)
         {
             timeMenu.isBroken = true;
-
         }
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
         _respawn.CheckPoint();
 	}
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             ySprite.gameObject.SetActive(true);
-            _respawn = other.GetComponent<PlayerLifeManager>();
+            _respawn = other.transform.GetComponent<PlayerLifeManager>();
+            controller = other.transform.GetComponent<PlayerControllerV2>();
+            controller.onstele = true;
+            controller.zeStele = this;
         }
     }
 
@@ -76,7 +82,10 @@ public class Stele : MonoBehaviour
         if (other.tag == "Player")
         {
             ySprite.gameObject.SetActive(false);
+            timeMenu.HideALLHUD();
             _respawn = null;
+            controller.onstele = false;
+            controller = null;
         }
     }
 

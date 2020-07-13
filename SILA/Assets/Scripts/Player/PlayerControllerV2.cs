@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControllerV2 : MonoBehaviour
 { 
-
+    
 	[Header("Setup Manuel")]
 	public Animator animator;
 	public GameObject player;
@@ -38,7 +38,15 @@ public class PlayerControllerV2 : MonoBehaviour
 	[HideInInspector]
 	public float dashTimer;
 
-	[Header("Player")]
+    [Header("Particle System")]
+    [SerializeField]
+    private ParticleSystem _stepParticle_L;
+    [SerializeField]
+    private ParticleSystem _stepParticle_R;
+    [SerializeField]
+    private float _fieldOfView = 60;
+
+    [Header("Player")]
 	public float moveSpeed;
 	public float airSpeed;
 	public float jumpForce;
@@ -55,6 +63,8 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float groundedRotation;
 	public float jumpBufferTimer;
 	public LayerMask whatIsGround;
+	public LayerMask whatIsSnow;
+	public float maxAngle;
 
 	float _distToGround;
     bool _isGrounded;
@@ -67,9 +77,13 @@ public class PlayerControllerV2 : MonoBehaviour
     private float windDuration;
     private bool activeWind;
 
+    [HideInInspector]
+    public bool onstele = false;
+    [HideInInspector]
+    public Stele zeStele;
 
-
-
+    public static bool inverted = false;
+    [HideInInspector] public bool onG = false;
 
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }
 	public void Start()
@@ -82,7 +96,8 @@ public class PlayerControllerV2 : MonoBehaviour
 		_distToGround = _collider.bounds.extents.y - 0.8f;
 		dashTimer = dashReset + 1;
 		MakeFSM();
-	}
+        
+    }
 	private void Update()
 	{
         if (!isOnMap)
@@ -90,7 +105,7 @@ public class PlayerControllerV2 : MonoBehaviour
             _fsm.CurrentState.Reason();
             _fsm.CurrentState.Act();
         }
-
+        
 		_currentStateID = _fsm.CurrentID;
 
 		isGrounded = IsGrounded();
@@ -112,14 +127,22 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (activeWind)
-        {
-            Debug.Log("inertie wind");
+		if (!isOnMap)
+		{
+			_fsm.CurrentState.FixedReason();	
+			_fsm.CurrentState.FixedAct();		
+		}										
+												
+		if (activeWind)							
+        {										
+            Debug.Log("inertie wind");			
             _playerRb.AddForce(windDirection * windForce);
             windForce -= (initialWindForce * Time.fixedDeltaTime) / windDuration;
             if (windForce <= 0)
                 activeWind = false;
         }
+
+        camera.fieldOfView = _fieldOfView;
     }
 
     public void StepSound()
@@ -128,9 +151,20 @@ public class PlayerControllerV2 : MonoBehaviour
         string step = "step";
         step += rand.ToString();
         sound.Play(step);
-
     }
-    public void WindInertie(Vector3 direction , float force, float duration)
+	public void StepSoundSnow()
+	{
+		int rand = Random.Range(0, 9);
+		string step = "step";
+		step += rand.ToString();
+		sound.Play(step);
+
+		_stepParticle_L.Emit(100);
+		_stepParticle_R.Emit(100);
+
+	}
+
+	public void WindInertie(Vector3 direction , float force, float duration)
     {
         windDirection = direction;
         windForce = force;
@@ -159,7 +193,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
 	private void MakeFSM()
 	{
-		BasicState basicState = new BasicState(_scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
+		BasicState basicState = new BasicState(player, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator, whatIsSnow);
 		basicState.AddTransition(Transition.Dashing, StateID.Dash);
 		basicState.AddTransition(Transition.Death, StateID.Death);
 		basicState.AddTransition(Transition.Stele, StateID.OnStele);
@@ -182,7 +216,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		OnSteleState steleState = new OnSteleState(_scriptOnPlayer, player, animator);
 		steleState.AddTransition(Transition.Basic, StateID.Basic);
 
-		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer);
+		ZoomState zoomState = new ZoomState(_playerRb, _scriptOnPlayer, player);
 		zoomState.AddTransition(Transition.Basic, StateID.Basic);
 
 

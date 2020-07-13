@@ -28,7 +28,7 @@ public class IceMelting : MonoBehaviour
 
         //heighsnow /= 2;
 
-        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_Melting", 1-(2*melting));
+        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_Melting", (1-(2*melting)));
         gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowCavity", (1-melting)*-20f);
     }
 }

@@ -86,7 +86,7 @@ public class FlyState : FSMState
 			}
 		}
 
-		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera"));
+		Vector2 stickInputR = new Vector2(Input.GetAxis("HorizontalCamera"), Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1));
 		if (stickInputR.magnitude < _deadZone)
 			stickInputR = Vector2.zero;
 
@@ -96,7 +96,7 @@ public class FlyState : FSMState
 			moveDirection = (cameraRight.normalized * stickInput.x) + (cameraForward.normalized * stickInput.y);
 		else if (stickInput.magnitude < _deadZone)
 			moveDirection = _transformPlayer.forward.normalized;
-		 
+		
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
 

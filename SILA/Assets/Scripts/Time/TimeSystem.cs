@@ -8,9 +8,10 @@ public class TimeSystem : MonoBehaviour
     public static event System.Action EndedTransition;
     public static event System.Action StartedTransition;
 
-    public static event System.Action StatedMorningToDay;
-    public static event System.Action StatedDayToNoon;
+    public static event System.Action<float> StatedMorningToDay;
+    public static event System.Action<float> StatedDayToNoon;
 
+    public bool BuildMode = false;
 
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Light _light;
@@ -87,8 +88,10 @@ public class TimeSystem : MonoBehaviour
     private bool _menu = true;
     private bool _canswitch = true;
 
-    private void Awake()
+    private void Start()
     {
+        RenderSettings.fog = true;
+
         _sunRotationMorning.eulerAngles = sunRotationMorning;
         _sunRotationDay.eulerAngles = sunRotationDay;
         _sunRotationNoon.eulerAngles = sunRotationNoon;
@@ -118,7 +121,6 @@ public class TimeSystem : MonoBehaviour
     {
         sound.Stop("Transition");
         sound.Play("AmbianceDawn");
-        Debug.Log("play sound morning");
 
         _lightTransform.rotation = _sunRotationMorning;
         _light.intensity = _lightIntensityMorning;
@@ -187,38 +189,36 @@ public class TimeSystem : MonoBehaviour
         RenderSettings.fogDensity = _FogDensityNight;
     }
 
-    private void Start()
-    {
-        RenderSettings.fog = true;
-    }
 
     private void Update()
     {
-        if (Input.GetKeyDown("n"))
+        if (!BuildMode)
         {
-            targetTime = TimeOfDay.Night;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
+            if (Input.GetKeyDown("n"))
+            {
+                targetTime = TimeOfDay.Night;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("a"))
+            {
+                targetTime = TimeOfDay.Morning;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("j"))
+            {
+                targetTime = TimeOfDay.Day;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
+            if (Input.GetKeyDown("c"))
+            {
+                targetTime = TimeOfDay.Noon;
+                StartCoroutine(ChangeTimeV2());
+                _menu = false;
+            }
         }
-        if (Input.GetKeyDown("a"))
-        {
-            targetTime = TimeOfDay.Morning;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }
-        if (Input.GetKeyDown("j"))
-        {
-            targetTime = TimeOfDay.Day;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }
-        if (Input.GetKeyDown("c"))
-        {
-            targetTime = TimeOfDay.Noon;
-            StartCoroutine(ChangeTimeV2());
-            _menu = false;
-        }
-
     }
 
     public IEnumerator ChangeTimeV2()
@@ -231,13 +231,13 @@ public class TimeSystem : MonoBehaviour
 
         while (actualTime != targetTime && targetTime != TimeOfDay.Null)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
 
             _transitionSlide += Time.fixedDeltaTime / (_transitionTime * timeScale);
 
             if (actualTime == TimeOfDay.Morning)
             {
-               // StatedMorningToDay?.Invoke();
+                StatedMorningToDay?.Invoke(_transitionTime * timeScale);
 
                 _light.color = _colorMorning.Evaluate(_transitionSlide);
                 RenderSettings.ambientSkyColor = _SkyColorMorning.Evaluate(_transitionSlide);
@@ -252,7 +252,7 @@ public class TimeSystem : MonoBehaviour
             }
             else if (actualTime == TimeOfDay.Day)
             {
-                // StatedMorningToDay?.Invoke();
+                StatedDayToNoon?.Invoke(_transitionTime * timeScale);
 
                 _light.color = _colorDay.Evaluate(_transitionSlide);
                 RenderSettings.ambientSkyColor = _SkyColorDay.Evaluate(_transitionSlide);
@@ -267,7 +267,6 @@ public class TimeSystem : MonoBehaviour
             }
             else if (actualTime == TimeOfDay.Noon)
             {
-                // StatedMorningToDay?.Invoke();
 
                 _light.color = _colorNoon.Evaluate(_transitionSlide);
                 RenderSettings.ambientSkyColor = _SkyColorNoon.Evaluate(_transitionSlide);
@@ -282,7 +281,6 @@ public class TimeSystem : MonoBehaviour
             }
             else if (actualTime == TimeOfDay.Night)
             {
-                // StatedMorningToDay?.Invoke();
 
                 _light.color = _colorNight.Evaluate(_transitionSlide);
                 RenderSettings.ambientSkyColor = _SkyColorNight.Evaluate(_transitionSlide);
@@ -329,6 +327,7 @@ public class TimeSystem : MonoBehaviour
         }
         _menu = true;
         _canswitch = true;
+
         yield return null;
     }
 

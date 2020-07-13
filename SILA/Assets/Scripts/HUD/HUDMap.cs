@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HUDMap : MonoBehaviour
 {
     [SerializeField] private PlayerControllerV2 _player;
-    [SerializeField] private List<Zone> _zones;
+    public List<Zone> _zones;
     [SerializeField] private Transform _allZones;
 
 
@@ -73,8 +73,7 @@ public class HUDMap : MonoBehaviour
         {
             OpenMap();
         }
-
-        if (Input.GetButtonDown("B") && _isOpen)
+        else if (Input.GetButtonDown("B") && _isOpen || Input.GetButtonDown("Select") && _isOpen)
         {
             CloseMap();
         }

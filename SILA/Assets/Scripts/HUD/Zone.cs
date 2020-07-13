@@ -35,7 +35,7 @@ public class Zone : MonoBehaviour
 
     private void Update()
     {
-        if (_collectibles == 0 && !_done)
+        if (_collectibles <= 0 && !_done)
         {
             _done = true;
             HideCollectibles();

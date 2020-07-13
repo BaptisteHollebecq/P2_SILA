@@ -10,8 +10,16 @@ public class Geyser : MonoBehaviour
     public float ChargingTime;
     public float PushForce;
 
+    public GeyserShader water;
+    public GeyserShader wind;
+
     public AudioClip charging;
     public AudioClip explode;
+
+    [SerializeField]
+    private float speedAct;
+    [SerializeField]
+    private float speedDes;
 
     private AudioSource _source;
     private bool _started = false;
@@ -21,11 +29,15 @@ public class Geyser : MonoBehaviour
     private enum State { Charging, Active, Resting };
     private State actualState;
 
+    private PlayerControllerV2 _controller;
+
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
         _rb = null;
         _source = GetComponent<AudioSource>();
+        water._geyserControl = 1;
+        wind._geyserControl = 1;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,84 +45,114 @@ public class Geyser : MonoBehaviour
         if (other.GetComponent<Rigidbody>() != null)
         {
             _rb = other.GetComponent<Rigidbody>();
+            _controller = other.GetComponent<PlayerControllerV2>();
             if (_rb.velocity.y < 0)
                 _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+            _controller.onG = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        _controller.onG = false;
         _rb = null;
     }
 
     private void Update()
     {
-        _source.volume = .3f * HUDOptions._params[0] * HUDOptions._params[1];
+        _source.volume = .15f * HUDOptions._params[0] * HUDOptions._params[1];
     }
 
     private void FixedUpdate()
     {
-
-        if (Time.timeSinceLevelLoad >= Start && !_started)
+        if (TimeSystem.actualTime == TimeOfDay.Noon)
         {
-            _started = true;
-            actualState = State.Charging;
-            
-            _source.PlayOneShot(charging);
-        }
-
-        if (_started)
-        {
-            _timer++;
-            switch (actualState)
+            if (Time.timeSinceLevelLoad >= Start && !_started)
             {
-                case State.Charging:
-                    {
-                        //PLAY CHARGING ANIMATION HERE
+                _started = true;
+                actualState = State.Charging;
 
-                        if (_timer / 50 >= ChargingTime)
-                        {
-                            _source.PlayOneShot(explode);
-                            actualState = State.Active;
-                            _timer = 0;
-                        }
-                        break;
-                    }
-                case State.Active:
-                    {
-
-                        float force = PushForce;
-                        if (_rb != null)
-                        {
-                            _rb.AddForce(Vector3.up * (force * 10));
-                        }
-                        if (force < PushForce * 2)
-                            force += 2;
-
-                        if (_timer / 50 >= ActiveTime)
-                        {
-                            actualState = State.Resting;
-                            StartCoroutine(DecreaseVolume(_source, .5f));
-                            _timer = 0;
-                        }
-                        break;
-                    }
-                case State.Resting:
-                    {
-                        
-                        if (_timer / 50 >= RestingTime)
-                        {
-                            _source.PlayOneShot(charging);
-                            actualState = State.Charging;
-                            _timer = 0;
-                        }
-                        break;
-                    }
+                _source.PlayOneShot(charging);
             }
 
+            if (_started)
+            {
+                _timer++;
+                switch (actualState)
+                {
+                    case State.Charging:
+                        {
+                            //PLAY CHARGING ANIMATION HERE
+
+                            if (_timer / 50 >= ChargingTime)
+                            {
+                                _source.PlayOneShot(explode);
+                                actualState = State.Active;
+                                _timer = 0;
+                            }
+                            break;
+                        }
+                    case State.Active:
+                        {
+                            if (water._geyserControl > 0)
+                            {
+                                water._geyserControl -= 0.05f;
+                                wind._geyserControl -= 0.05f;
+                            }
+                            else
+                            {
+                                water._geyserControl = 0f;
+                                wind._geyserControl = 0f;
+                            }
+
+                            float force = PushForce;
+                            if (_rb != null)
+                            {
+                                _rb.AddForce(Vector3.up * (force * 10));
+                            }
+                            if (force < PushForce * 2)
+                                force += 2;
+
+                            if (_timer / 50 >= ActiveTime)
+                            {
+                                actualState = State.Resting;
+                                StartCoroutine(DecreaseVolume(_source, .2f));
+                                _timer = 0;
+                            }
+                            break;
+                        }
+                    case State.Resting:
+                        {
+                            if (water._geyserControl < 1)
+                            {
+                                water._geyserControl += 0.02f;
+                                wind._geyserControl += 0.02f;
+                            }
+                            else
+                            {
+                                water._geyserControl = 1f;
+                                wind._geyserControl = 1f;
+                            }
+                            if (_timer / 50 >= RestingTime)
+                            {
+                                _source.PlayOneShot(charging);
+                                actualState = State.Charging;
+                                _timer = 0;
+                            }
+                            break;
+                        }
+                }
+
+            }
+        }
+        else
+        {
+            water._geyserControl = 1;
+            wind._geyserControl = 1;
         }
 
     }
+
 
     private IEnumerator DecreaseVolume(AudioSource source, float time)
     {

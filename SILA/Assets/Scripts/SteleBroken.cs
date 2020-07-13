@@ -62,6 +62,9 @@ public class SteleBroken : Stele
             stelePart2.SetActive(false);
             stelePart1.SetActive(false);
         }
+
+        TimeMenu.MenuDisplayed += HideBill;
+        TimeMenu.MenuQuited += ShowBill;
     }
 
    public override void Repair(GameObject player)
@@ -98,8 +101,7 @@ public class SteleBroken : Stele
 
     IEnumerator RepairMe(GameObject obj, Transform origin, GameObject player)
     {
-        Debug.Log(obj + "se trouve en " + obj.transform.position + " et a pour origin " + origin.position);
-        Debug.Log("tandis que le player se trouve en " + player.transform.position);
+
 
         obj.transform.localPosition = player.transform.position;
         obj.transform.localRotation = player.transform.rotation;

@@ -8,8 +8,12 @@ public class PlayerCollectibles : MonoBehaviour
     private int _maskCollectibles = 0;
     private PlayerLifeManager _life;
 
+    public HUDMap hud;
+    [HideInInspector] public int maxCollec = 0;
+
     private AudioSource _source;
     public AudioClip take;
+
     [HideInInspector] public int repair = 0;
 
     private bool _change = false;
@@ -18,6 +22,11 @@ public class PlayerCollectibles : MonoBehaviour
     {
         _source = GetComponent<AudioSource>();
         _life = GetComponent<PlayerLifeManager>();
+
+        foreach(Zone z in hud._zones)
+        {
+            maxCollec += z._collectibles;
+        }
     }
 
     private void Update()
@@ -41,6 +50,7 @@ public class PlayerCollectibles : MonoBehaviour
     public void AddCollectibles(int nbr)
     {
         _collectibles+=nbr;
+        _life.ShowJauge();
         _source.PlayOneShot(take);
     }
 

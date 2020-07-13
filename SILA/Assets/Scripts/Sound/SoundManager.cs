@@ -22,6 +22,7 @@ public class Sound
 
 public class SoundManager : MonoBehaviour
 {
+    public bool menu = false;
     [Range(0, 1)] public float musicVolume;
     public Sound[] sounds;
 
@@ -40,102 +41,108 @@ public class SoundManager : MonoBehaviour
     [HideInInspector] public float MusicVolume;
     //test
 
-    private void Awake()
-    {
-        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
-        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
-    }
-
     private void Start()
     {
-        switch (TimeSystem.actualTime)
+        if (!menu)
         {
-            case TimeOfDay.Morning:
-                {
-                    MusicMorningSource.volume = MusicVolume;
-                    MusicDaySource.volume = 0;
-                    MusicTwilightSource.volume = 0;
-                    MusicNightSource.volume = 0;
-                    break;
-                }
-            case TimeOfDay.Day:
-                {
-                    MusicMorningSource.volume = 0;
-                    MusicDaySource.volume = MusicVolume;
-                    MusicTwilightSource.volume = 0;
-                    MusicNightSource.volume = 0;
-                    break;
-                }
-            case TimeOfDay.Noon:
-                {
-                    MusicMorningSource.volume = 0;
-                    MusicDaySource.volume = 0;
-                    MusicTwilightSource.volume = MusicVolume;
-                    MusicNightSource.volume = 0;
-                    break;
-                }
-            case TimeOfDay.Night:
-                {
-                    MusicMorningSource.volume = 0;
-                    MusicDaySource.volume = 0;
-                    MusicTwilightSource.volume = 0;
-                    MusicNightSource.volume = MusicVolume;
-                    break;
-                }
-        }
 
-        MusicMorningSource.Play();
-        MusicDaySource.Play();
-        MusicTwilightSource.Play();
-        MusicNightSource.Play();
+            AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
+            EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
+        }
+        else
+            MusicVolume = musicVolume;
+
+        switch (TimeSystem.actualTime)
+            {
+                case TimeOfDay.Morning:
+                    {
+                        MusicMorningSource.volume = MusicVolume;
+                        MusicDaySource.volume = 0;
+                        MusicTwilightSource.volume = 0;
+                        MusicNightSource.volume = 0;
+                        break;
+                    }
+                case TimeOfDay.Day:
+                    {
+                        MusicMorningSource.volume = 0;
+                        MusicDaySource.volume = MusicVolume;
+                        MusicTwilightSource.volume = 0;
+                        MusicNightSource.volume = 0;
+                        break;
+                    }
+                case TimeOfDay.Noon:
+                    {
+                        MusicMorningSource.volume = 0;
+                        MusicDaySource.volume = 0;
+                        MusicTwilightSource.volume = MusicVolume;
+                        MusicNightSource.volume = 0;
+                        break;
+                    }
+                case TimeOfDay.Night:
+                    {
+                        MusicMorningSource.volume = 0;
+                        MusicDaySource.volume = 0;
+                        MusicTwilightSource.volume = 0;
+                        MusicNightSource.volume = MusicVolume;
+                        break;
+                    }
+            }
+
+            MusicMorningSource.Play();
+            MusicDaySource.Play();
+            MusicTwilightSource.Play();
+            MusicNightSource.Play();
     }
 
     private void Update()
     {
-        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
-        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
-        MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
-
-
-        switch (TimeSystem.actualTime)
+        if (!menu)
         {
-            case TimeOfDay.Morning:
-                {
-                    MusicMorningSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
-                    MusicDaySource.volume = MusicVolume * TimeSystem._transitionSlide;
-                    MusicTwilightSource.volume = 0;
-                    MusicNightSource.volume = 0;
-                    break;
-                }
-            case TimeOfDay.Day:
-                {
-                    MusicMorningSource.volume = 0;
-                    MusicDaySource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
-                    MusicTwilightSource.volume = MusicVolume * TimeSystem._transitionSlide;
-                    MusicNightSource.volume = 0;
-                    break;
-                }
-            case TimeOfDay.Noon:
-                {
-                    MusicMorningSource.volume = 0;
-                    MusicDaySource.volume = 0;
-                    MusicTwilightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
-                    MusicNightSource.volume = MusicVolume * TimeSystem._transitionSlide;
-                    break;
-                }
-            case TimeOfDay.Night:
-                {
-                    MusicMorningSource.volume = MusicVolume * TimeSystem._transitionSlide;
-                    MusicDaySource.volume = 0;
-                    MusicTwilightSource.volume = 0;
-                    MusicNightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
-                    break;
-                }
+            AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
+            EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
+            MusicVolume = HUDOptions._params[0] * HUDOptions._params[3] * musicVolume;
+
+
+            switch (TimeSystem.actualTime)
+            {
+                case TimeOfDay.Morning:
+                    {
+                        MusicMorningSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                        MusicDaySource.volume = MusicVolume * TimeSystem._transitionSlide;
+                        MusicTwilightSource.volume = 0;
+                        MusicNightSource.volume = 0;
+                        break;
+                    }
+                case TimeOfDay.Day:
+                    {
+                        MusicMorningSource.volume = 0;
+                        MusicDaySource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                        MusicTwilightSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                        MusicNightSource.volume = 0;
+                        break;
+                    }
+                case TimeOfDay.Noon:
+                    {
+                        MusicMorningSource.volume = 0;
+                        MusicDaySource.volume = 0;
+                        MusicTwilightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                        MusicNightSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                        break;
+                    }
+                case TimeOfDay.Night:
+                    {
+                        MusicMorningSource.volume = MusicVolume * TimeSystem._transitionSlide;
+                        MusicDaySource.volume = 0;
+                        MusicTwilightSource.volume = 0;
+                        MusicNightSource.volume = MusicVolume * (1 - TimeSystem._transitionSlide);
+                        break;
+                    }
+            }
         }
     }
 
@@ -144,14 +151,17 @@ public class SoundManager : MonoBehaviour
         Sound s = Array.Find(sounds, Sound => Sound.name == name);
         if (s == null)
         {
-            Debug.LogWarning("Error : sound "+name+" not found");
+            Debug.LogWarning("Error : sound " + name + " not found");
             return;
         }
-
+        /*Debug.LogWarning("Playing : " + name + " at "+ s.volume * AmbianceVolume +" of volume");
+        Debug.LogWarning("Volume sound at " + s.volume + " times Options sounds at " + AmbianceVolume);*/
         switch (s.type)
         {
             case SoundType.ambiance:
                 {
+                    if (!menu)
+                        AmbianceVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     AmbianceSource.loop = s.loop;
                     AmbianceSource.volume = s.volume * AmbianceVolume;
                     AmbianceSource.clip = s.audioclip;
@@ -163,6 +173,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.character:
                 {
+                    if (!menu)
+                        CharacterVolume = HUDOptions._params[0] * HUDOptions._params[2];
                     CharacterSource.loop = s.loop;
                     CharacterSource.volume = s.volume * CharacterVolume;
                     CharacterSource.clip = s.audioclip;
@@ -174,6 +186,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.environement:
                 {
+                    if (!menu)
+                        EnvironementVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     EnvironementSource.loop = s.loop;
                     EnvironementSource.volume = s.volume * EnvironementVolume;
                     EnvironementSource.clip = s.audioclip;
@@ -185,6 +199,8 @@ public class SoundManager : MonoBehaviour
                 }
             case SoundType.transition:
                 {
+                    if (!menu)
+                        TransitionVolume = HUDOptions._params[0] * HUDOptions._params[1];
                     TransitionSource.loop = s.loop;
                     TransitionSource.volume = s.volume * TransitionVolume;
                     TransitionSource.clip = s.audioclip;

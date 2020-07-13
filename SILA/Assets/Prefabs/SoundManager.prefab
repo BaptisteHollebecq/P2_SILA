@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a362693ef2b04c54c9be723ac95a57ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: 0
   musicVolume: 0.1
   sounds:
   - name: AmbianceDay
@@ -208,19 +209,19 @@ MonoBehaviour:
     loop: 1
     oneShot: 0
     DecreaseTime: 0
-  - name: Jump
+  - name: Jump0
     type: 1
-    audioclip: {fileID: 8300000, guid: 27f5e89a7bcde85478a379ac8e76cbe3, type: 3}
+    audioclip: {fileID: 8300000, guid: d25bc28bddfd19b4e9ec332737cec8e8, type: 3}
     volume: 0.4
     loop: 0
-    oneShot: 0
+    oneShot: 1
     DecreaseTime: 0
   - name: Dash
     type: 1
     audioclip: {fileID: 8300000, guid: 8d90510f7d227874aaad7da697c64e0f, type: 3}
     volume: 0.3
     loop: 0
-    oneShot: 0
+    oneShot: 1
     DecreaseTime: 0
   - name: Grounded
     type: 1
@@ -317,6 +318,41 @@ MonoBehaviour:
     type: 1
     audioclip: {fileID: 8300000, guid: 715f330954ebf8c4cbb82e8afa8a1204, type: 3}
     volume: 0.1
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump1
+    type: 1
+    audioclip: {fileID: 8300000, guid: 82abf3db793716445b24520654bf4119, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump2
+    type: 1
+    audioclip: {fileID: 8300000, guid: 97fbc912d0025704b9c206967eef7bce, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Jump3
+    type: 1
+    audioclip: {fileID: 8300000, guid: 7ef4b1753a111cb4c9e80f7f333bc68c, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: Death
+    type: 3
+    audioclip: {fileID: 8300000, guid: aa3a33bf2517a634490acab018e22c70, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
+  - name: lilDeath
+    type: 3
+    audioclip: {fileID: 8300000, guid: e83eeaadc2d11534097a1cc13f28b40a, type: 3}
+    volume: 0.3
     loop: 0
     oneShot: 1
     DecreaseTime: 0
@@ -755,7 +791,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 35e51d3bead3e134cb8252caff4118a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3dd78984b79101747a0f44d479d62f28, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

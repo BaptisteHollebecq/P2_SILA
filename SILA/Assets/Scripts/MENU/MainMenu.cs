@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public SceneField GameScene;
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _originalPos;
+    [SerializeField] private Canvas LoadingScreen;
     [SerializeField] private float _transitionTime;
 
 
@@ -32,10 +33,22 @@ public class MainMenu : MonoBehaviour
 
     private Transform _canvas;
     private CanvasGroup _canvaGroup;
+
+    private Transform _canvastitre;
+    private CanvasGroup _canvaGrouptitre;
+
+    private Transform _canvasback;
+    private CanvasGroup _canvaGroupback;
+
+    private AudioSource _source;
+    public AudioClip sonMove;
+    public AudioClip sonSelect;
+
     private bool _invert = false;
 
     private void Awake()
     {
+        LoadingScreen.gameObject.SetActive(false);
         if (HorizontalMenu)
             _inputParam = "Horizontal";
         else
@@ -43,11 +56,19 @@ public class MainMenu : MonoBehaviour
             _inputParam = "Vertical";
             _invert = true;
         }
+        _canvastitre = transform.GetChild(2);
+        _canvaGrouptitre = _canvastitre.GetComponent<CanvasGroup>();
+
         _canvas = transform.GetChild(0);
         _canvaGroup = _canvas.GetComponent<CanvasGroup>();
 
+        _canvasback = transform.GetChild(1);
+        _canvaGroupback = _canvasback.GetComponent<CanvasGroup>();
+        _canvaGroupback.alpha = 0;
 
-        foreach(Transform child in _canvas)
+        _source = GetComponent<AudioSource>();
+
+        foreach (Transform child in _canvas)
         {
             Text txt = child.GetComponent<Text>();
             buttons.Add(txt);
@@ -84,6 +105,8 @@ public class MainMenu : MonoBehaviour
                     _index = 0;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
+                _source.PlayOneShot(sonMove);
+                
                 ResetButtons();
             }
             else if (_input == -1)
@@ -93,8 +116,10 @@ public class MainMenu : MonoBehaviour
                     _index = _canvas.transform.childCount - 1;
                 _canswitch = false;
                 StartCoroutine(ResetSwitch());
+                _source.PlayOneShot(sonMove);
                 ResetButtons();
             }
+
         }
 
         if (Input.GetButtonDown("A"))
@@ -107,6 +132,8 @@ public class MainMenu : MonoBehaviour
             {
                 StartCoroutine(MoveToPivot(positions[_index], _transitionTime));
                 _canvaGroup.alpha = 0;
+                _canvaGrouptitre.alpha = 0;
+                _source.PlayOneShot(sonSelect);
             }
         }
         if (Input.GetButtonDown("B"))
@@ -115,6 +142,8 @@ public class MainMenu : MonoBehaviour
             {
                 StartCoroutine(MoveToPivot(_originalPos, _transitionTime));
                 _canReturn = false;
+                _canvaGroupback.alpha = 0;
+                _source.PlayOneShot(sonSelect);
             }
         }
     }
@@ -145,6 +174,7 @@ public class MainMenu : MonoBehaviour
         {
             case "PosPlay":
                 {
+                    LoadingScreen.gameObject.SetActive(true);
                     SceneManager.LoadScene(GameScene.SceneName);
                     break;
                 }
@@ -156,9 +186,16 @@ public class MainMenu : MonoBehaviour
             default:
                 {
                     if (_actualPos != _originalPos)
+                    {
                         _canReturn = true;
+                        _canvaGroupback.alpha = 1;
+                    }
                     else
+                    {
                         _canvaGroup.alpha = 1;
+                        _canvaGrouptitre.alpha = 1;
+                        _canvaGroupback.alpha = 0;
+                    }
                     break;
                 }
         }

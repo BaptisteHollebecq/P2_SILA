@@ -87,17 +87,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HeightLimit: 0.88
+    - _HeightLimit: 0.74
     - _HeightScale: 0.15
     - _Heightmuliplier: 2
-    - _Melting: 0
+    - _Melting: 1
     - _MeltingColorLimit: 0.44
     - _Metallic: 0
     - _Mode: 0
     - _Normalscale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Param_Lenght: -0.06
+    - _Param_Lenght: -0.05
     - _SmoothnessTextureChannel: 0
     - _SnowCavity: -10
     - _Snowdeposit: 33.22

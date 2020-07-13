@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HUDPause : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class HUDPause : MonoBehaviour
     private Transform _canvasButtons;
     private Transform _canvasCommands;
     private Transform _canvasOptions;
+
+    private CanvasGroup _groupButtons;
+    private CanvasGroup _groupCommands;
+    private CanvasGroup _groupOptions;
+
+    private HUDOptions hudOptions;
 
     List<Text> buttons = new List<Text>();
     private string _inputParam;
@@ -44,10 +51,15 @@ public class HUDPause : MonoBehaviour
         _canvasOptions = transform.GetChild(1);
         _canvasCommands = transform.GetChild(2);
 
-        _canvasButtons.gameObject.SetActive(false);
-        _canvasCommands.gameObject.SetActive(false);
-        _canvasOptions.gameObject.SetActive(false);
+        _groupOptions = _canvasOptions.GetComponent<CanvasGroup>();
+        _groupCommands = _canvasCommands.GetComponent<CanvasGroup>();
+        _groupButtons = _canvasButtons.GetComponent<CanvasGroup>();
 
+        _groupOptions.alpha = 0;
+        _groupCommands.alpha = 0;
+        _groupButtons.alpha = 0;
+
+        hudOptions = transform.GetChild(1).GetComponent<HUDOptions>();
 
         foreach (Transform child in allButtons)
         {
@@ -90,7 +102,7 @@ public class HUDPause : MonoBehaviour
             if (!_isOpen)
             {
                 _isOpen = true;
-                _canvasButtons.gameObject.SetActive(true);
+                _groupButtons.alpha = 1;
                 _player.isOnMap = true;
                 Time.timeScale = 0;
             }
@@ -105,20 +117,21 @@ public class HUDPause : MonoBehaviour
             if (_isOnCommands)
             {
                 _isOnCommands = false;
-                _canvasCommands.gameObject.SetActive(false);
-                _canvasButtons.gameObject.SetActive(true);
+                _groupCommands.alpha = 0;
+                _groupButtons.alpha = 1;
             }
             else if (_isOnOptions)
             {
                 _isOnOptions = false;
-                _canvasOptions.gameObject.SetActive(false);
-                _canvasButtons.gameObject.SetActive(true);
+                hudOptions._isActive = false;
+                _groupOptions.alpha = 0;
+                _groupButtons.alpha = 1;
             }
             else if (_isOnMap)
             {
                 _isOnMap = false;
                 map.CloseMap();
-                _canvasButtons.gameObject.SetActive(true);
+                _groupButtons.alpha = 1;
             }
             else
             {
@@ -126,7 +139,18 @@ public class HUDPause : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
+        if (Input.GetButtonDown("Select") && _isOpen)
+        {
+            if (_isOnMap)
+            {
+                _isOnMap = false;
+                map.CloseMap();
+                _groupButtons.alpha = 1;
+                CloseAll();
+            }
+        }
+
+            if (Input.GetButtonDown("A") && _isOpen && !_isOnOptions && !_isOnMap)
         {
             switch(titles[_index])
             {
@@ -138,15 +162,16 @@ public class HUDPause : MonoBehaviour
                 case "Options":
                     {
                         _isOnOptions = true;
-                        _canvasOptions.gameObject.SetActive(true);
-                        _canvasButtons.gameObject.SetActive(false);
+                        hudOptions._isActive = true;
+                        _groupOptions.alpha = 1;
+                        _groupButtons.alpha = 0;
                         break;
                     }
                 case "Commands":
                     {
                         _isOnCommands = true;
-                        _canvasCommands.gameObject.SetActive(true);
-                        _canvasButtons.gameObject.SetActive(false);
+                        _groupCommands.alpha = 1;
+                        _groupButtons.alpha = 0;
                         break;
                     }
                 case "Map":
@@ -154,12 +179,12 @@ public class HUDPause : MonoBehaviour
                         _isOnMap = true;
                         map._isInPause = true;
                         map.OpenMap();
-                        _canvasButtons.gameObject.SetActive(false);
+                        _groupButtons.alpha = 0;
                         break;
                     }
                 case "Quit":
                     {
-                        //LOAD LE MENU PRINCIPAL
+                        Application.Quit();
                         break;
                     }
             }
@@ -171,9 +196,9 @@ public class HUDPause : MonoBehaviour
         _isOpen = false;
         if (_isOnMap)
             map.CloseMap();
-        _canvasButtons.gameObject.SetActive(false);
-        _canvasCommands.gameObject.SetActive(false);
-        _canvasOptions.gameObject.SetActive(false);
+        _groupOptions.alpha = 0;
+        _groupCommands.alpha = 0;
+        _groupButtons.alpha = 0;
         _isOnCommands = false;
         _isOnOptions = false;
         _isOnMap = false;

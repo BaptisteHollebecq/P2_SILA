@@ -4,12 +4,17 @@ using UnityEngine;
 public class OnSteleState : FSMState
 {
 	public static event Action<CameraLockState> PlayerStateChanged;
+    public static event Action SteleQuited;
 
 	PlayerControllerV2 _playerScript;
 	Rigidbody _rb;
 	Animator _animator;
 	bool _canQuit;
 	Vector3 _moveDirection;
+
+	float _animationTimer;
+	float _pryOut = 1;
+	bool _startTimer = false;
 
 	public OnSteleState(PlayerControllerV2 player, GameObject playerGO, Animator anim)
 	{
@@ -35,16 +40,24 @@ public class OnSteleState : FSMState
 
 	public override void Reason()
 	{
-		if(_canQuit && Input.GetButtonDown("B"))
-		{
-			_animator.SetBool("Pry", false);
+		if(_animationTimer > _pryOut)
 			_playerScript.SetTransition(Transition.Basic);
-		}
 
 	}
 
 	public override void Act()
 	{
+		//Debug.Log(_animationTimer);
+		_rb.constraints = RigidbodyConstraints.FreezeAll;
+
+		if (_canQuit && Input.GetButtonDown("B"))
+		{
+			_animator.SetBool("Pry", false);
+			_startTimer = true;
+		}
+
+		if(_startTimer)
+			_animationTimer += Time.fixedDeltaTime;
 	}
 
 	public override void DoBeforeEntering()
@@ -56,6 +69,13 @@ public class OnSteleState : FSMState
 
 	public override void DoBeforeLeaving()
 	{
+
+		_animator.SetBool("PryOut", false);
+		_animationTimer = 0;
+		_startTimer = false;
+		_rb.constraints = RigidbodyConstraints.FreezeRotation;
 		PlayerStateChanged?.Invoke(CameraLockState.Idle);
-	}
+        SteleQuited?.Invoke();
+
+    }
 }

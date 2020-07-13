@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerLifeManager : MonoBehaviour
 {
     public PlayerControllerV2 Player;
+    public HUDInGame hud;
 	public Animator Animator;
+    public SoundManager sound;
 
     [SerializeField] private int _playerLife = 3;
     [HideInInspector] public int Life { get { return _playerLife; } set { _playerLife = value; } }
@@ -14,11 +16,15 @@ public class PlayerLifeManager : MonoBehaviour
 	[HideInInspector] public bool isDead;
 
 	public float timingRespawn;
-    private bool die = false;
 
+    public float timingcontrols;
+
+
+    private Transform deadBlack;
+    private CanvasGroup deadVisibility;
 
     private int _maxlife;
-    [HideInInspector] public int MaxLife { get { return _maxlife; } set { MaxLife = value; } }
+    [HideInInspector] public int MaxLife { get { return _maxlife; } set { _maxlife = value; } }
 
     [SerializeField] private float _actualise;
 
@@ -30,6 +36,9 @@ public class PlayerLifeManager : MonoBehaviour
     {
         _checkPoint = Player.transform.position;
         _maxlife = _playerLife;
+        sound = Player.sound;
+        deadBlack = hud.transform.GetChild(1);
+        deadVisibility = deadBlack.GetComponent<CanvasGroup>();
     }
 
 	void Update()
@@ -50,6 +59,10 @@ public class PlayerLifeManager : MonoBehaviour
         _checkPoint = Player.transform.position;
     }
 
+    public void ShowJauge()
+    {
+        hud.ShowJauge();
+    }
 
     public void DeathWater()
     {
@@ -71,14 +84,24 @@ public class PlayerLifeManager : MonoBehaviour
     public void Death()
     {
 		isDead = true;
+        if (_playerLife == 1)
+            sound.Play("Death");
+        else
+            sound.Play("lilDeath");
+
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
     }
 
     private IEnumerator SwitchCanDie()
     {
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 1, timingRespawn));
+        StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 0, timingRespawn));
+
         yield return new WaitForSeconds(timingRespawn); // timingRespawn a modifier pour laisser le temsp a l'anim de se jouer
         Respawn();
     }
+
+
 
     public void Respawn()
     {
@@ -90,11 +113,24 @@ public class PlayerLifeManager : MonoBehaviour
             _playerLife = _maxlife;
             transform.position = _checkPoint;
         }
-		isDead = false; //rendre les controls au joueur qqpart par ici normalement
-		Animator.SetBool("Respawn", true);
+        StartCoroutine(Controls());
+
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
+        StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 1, timingcontrols));
+
+        Animator.SetBool("Respawn", true);
 		Animator.SetBool("DeathWater", false);
 		Animator.SetBool("DeathPykes", false);
+		Animator.SetBool("Jump", false);
+		Animator.SetBool("Fly", false);
+		Animator.SetBool("Fall", false);
 	}
+
+    IEnumerator Controls()
+    {
+        yield return new WaitForSeconds(timingcontrols);
+        isDead = false; //rendre les controls au joueur qqpart par ici normalement
+    }
 
     IEnumerator Timer()
     {
