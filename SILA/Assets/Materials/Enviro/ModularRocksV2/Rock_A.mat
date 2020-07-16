@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Modular_Big
+  m_Name: Rock_A
   m_Shader: {fileID: 4800000, guid: 637a5b29790da7d43ac905a9bacc7ddc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AO:
-        m_Texture: {fileID: 2800000, guid: 1eca7ca6420dc99478f43dc124c8370b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a2aaa035dcab2eb43b3ede30ed97cb0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AOTex:
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CurvatureMap:
-        m_Texture: {fileID: 2800000, guid: 6663670eeab43b745b7fb8da11445442, type: 3}
+        m_Texture: {fileID: 2800000, guid: 227a78e8113cbb040af5254beac31c44, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CurvatureTex:
@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 148864b2a1816c94f8d8df7df892589b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 38ee696e0bb442f41b3f405d9998802a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap1:
@@ -122,7 +122,7 @@ Material:
     m_Floats:
     - _BaseCellOffset: 0
     - _BaseCellOffset1: 0
-    - _BaseCellSharpness: 0.837
+    - _BaseCellSharpness: 0.67
     - _BaseCellSharpness1: 0.01
     - _BiasDistance: 20
     - _BiasDistance1: 20
@@ -131,6 +131,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeThreshold: 0.474
+    - _Float0: 1.23
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -165,18 +166,22 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SnowAOThreshold: 0
-    - _SnowDeposit: 47.51
+    - _SnowDeposit: 2
     - _SnowEmission: 0.33
-    - _SnowHeight: 1
-    - _SnowHeightSetting: 0
+    - _SnowHeight: 0.5
+    - _SnowHeightSetting: 0.33
+    - _SnowNoiseScale: 0.2
+    - _SnowOffset: -0.68
     - _SnowSmoothness: 0
+    - _SnowSoftEdge: 0.53
     - _SpecularHighlights: 1
     - _SpecularInt: 0.1
     - _SpecularScale: 2.23
     - _SrcBlend: 1
     - _StaticHighLights: 0
     - _StaticHighLights1: 0
-    - _TriplanarHardness: 0.2
+    - _TempSnowHeight: 0.28
+    - _TriplanarHardness: 0.25
     - _UVSec: 0
     - _VolumSnowHeight: 1
     - _ZWrite: 1
@@ -188,7 +193,7 @@ Material:
     - _BaseTint: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
     - _BaseTint1: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CurvatureTint: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    - _CurvatureTint: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
