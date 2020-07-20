@@ -62,6 +62,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float airRotation;
 	public float groundedRotation;
 	public float jumpBufferTimer;
+	public float jumpWallTimer;
 	public LayerMask whatIsGround;
 	public LayerMask whatIsSnow;
 	public float maxAngle;
