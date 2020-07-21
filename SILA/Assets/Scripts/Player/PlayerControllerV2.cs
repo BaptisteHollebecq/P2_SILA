@@ -82,8 +82,12 @@ public class PlayerControllerV2 : MonoBehaviour
     public bool onstele = false;
     [HideInInspector]
     public Stele zeStele;
+	[HideInInspector]
+	public bool NearRessources = false;
+	[HideInInspector]
+	public bool harvesting = false;
 
-    public static bool inverted = false;
+	public static bool inverted = false;
     [HideInInspector] public bool onG = false;
 
     public void SetTransition(Transition t) { _fsm.PerformTransition(t); }

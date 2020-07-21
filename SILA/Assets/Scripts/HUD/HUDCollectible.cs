@@ -7,6 +7,7 @@ public class HUDCollectible : MonoBehaviour
 {
     public Transform jauge;
     public Transform cursor;
+    public Text CollectibleNumber;
 
     public Color valided;
 
@@ -21,9 +22,12 @@ public class HUDCollectible : MonoBehaviour
     private void Update()
     {
         int collectible = _collectibles.GetCollectibles();
-        
+
+        CollectibleNumber.text = collectible.ToString();
+
         float pourcentage = Mathf.FloorToInt((collectible * 100) / _collectibles.maxCollec);
-       
+        if (pourcentage > 100)
+            pourcentage = 100;
         float posYCursor = -220 + (320 * (pourcentage/100));
 
         cursor.localPosition = new Vector3(cursor.localPosition.x, posYCursor, cursor.localPosition.z);
@@ -35,5 +39,6 @@ public class HUDCollectible : MonoBehaviour
         {
             jauge.GetComponent<Image>().color = valided;
         }
+
     }
 }

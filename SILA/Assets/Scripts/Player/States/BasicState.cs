@@ -3,6 +3,8 @@
 
 public class BasicState : FSMState
 {
+	public static event System.Action Harvested;
+
 	PlayerControllerV2 _playerScript;
 	GameObject _player;
 	Transform _transformPlayer;
@@ -128,9 +130,22 @@ public class BasicState : FSMState
 				_playerScript.zeStele.Interact();
 				_playerScript.SetTransition(Transition.Stele);
 			}
+			else if (_playerScript.NearRessources && !_playerScript.harvesting)
+            {
+				Harvested?.Invoke();
+				_playerScript.harvesting = true;
+
+				// LANCER UNE ANIMATION DE RECOLTE ANTOINE ET LOIC C4EST VOTRE TAF !!!!!!!!!!!!
+				// ET A LA FIN DE L4ANIM IL FAUT METTRE UN EVENT QUI REMET HARVESTING A FALSE (si vous voulez je fais ca)
+
+				_playerScript.harvesting = false; // en attendant je met ca mais faut retirer une fois l'anim mise en place
+
+
+				Debug.Log("harvesting");
+			}
 			else
 			{
-					_playerScript.SetTransition(Transition.Zooming);
+				_playerScript.SetTransition(Transition.Zooming);
 			}
 		}
 
