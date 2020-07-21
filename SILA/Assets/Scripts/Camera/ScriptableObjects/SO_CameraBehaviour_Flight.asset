@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2059a088ac8a34e4aaf4b018397a0ca5, type: 3}
   m_Name: SO_CameraBehaviour_Flight
   m_EditorClassIdentifier: 
-  Height: 1
-  MaxDistance: 8
-  MinPitch: -50
-  MaxPitch: 50
-  LocalOffset: {x: 0, y: 0, z: 0}
+  Height: 1.8
+  MaxDistance: 10
+  MinPitch: -10
+  MaxPitch: 20
+  LocalOffset: {x: 0.25, y: 0.5, z: 0}
   LocalRotation: {x: 0, y: 0, z: 0}
-  Sensitivity: {x: 2.5, y: 2.5}
+  Sensitivity: {x: 0, y: 0}
   RotationDamping: 0.05
   DistanceDamping: 0.15
   CollisionMask:
     serializedVersion: 2
     m_Bits: 3328
-  BlendOnEnter: {fileID: 11400000, guid: 479ff5d937ab5364eb538fc0a04d6cec, type: 2}
+  BlendOnEnter: {fileID: 0}
