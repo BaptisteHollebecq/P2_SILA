@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerLifeManager : MonoBehaviour
 {
+    public static event System.Action TookDamage;
+
     public PlayerControllerV2 Player;
     public HUDInGame hud;
 	public Animator Animator;
@@ -88,7 +90,7 @@ public class PlayerLifeManager : MonoBehaviour
             sound.Play("Death");
         else
             sound.Play("lilDeath");
-
+        TookDamage?.Invoke();
         StartCoroutine(SwitchCanDie()); // a la fin de l acoroutine die=true et le jouer respawn
     }
 

@@ -55,6 +55,7 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private float timingHide;
 
     private List<Image> _healthBar = new List<Image>();
+    private List<Image> _healthBarlost = new List<Image>();
 
     private int _checkLifeChangement = -1;
     private bool _isShowed = true;
@@ -63,10 +64,17 @@ public class HUDInGame : MonoBehaviour
 
     private void Awake()
     {
+        PlayerLifeManager.TookDamage += ChangeColor;
+
         transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
         transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
         textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
         canvasGraine.alpha = 0;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerLifeManager.TookDamage -= ChangeColor;
     }
 
     private void Update()
@@ -108,10 +116,15 @@ public class HUDInGame : MonoBehaviour
     }
 
 
+    private void ChangeColor()
+    {
+        _healthBar[_healthBar.Count - 1].color = Color.red;
+    }
+
     private void ActualiseLife()
     {
         CleanList();
-        Vector3 ImgPos = new Vector3(260,980,0);
+        Vector3 ImgPos = _placeHolderLife.transform.position;
         int i = 0;
         while (i < _lifeManager.Life)
         {
@@ -123,20 +136,24 @@ public class HUDInGame : MonoBehaviour
             ImgPos.x += 70;
             Hp.overrideSprite = _hp;
             HpColor.overrideSprite = _hpColo;
-            _healthBar.Add(Hp);
             _healthBar.Add(HpColor);
+            _healthBar.Add(Hp);
+
             i++;
         }
         while (i < _lifeManager.MaxLife)
         {
             Image HpColor = Instantiate(_placeHolderLifeColo, ImgPos, Quaternion.identity, transform.GetChild(0).transform);
             Image Hp = Instantiate(_placeHolderLife, ImgPos, Quaternion.identity, HpColor.transform);
-            
+
+
+            Hp.gameObject.SetActive(true);
+            HpColor.gameObject.SetActive(true);
             ImgPos.x += 70;
             Hp.overrideSprite = _hpLosed;
             HpColor.overrideSprite = _hpLosedColo;
-            _healthBar.Add(Hp);
-            _healthBar.Add(HpColor);
+            _healthBarlost.Add(Hp);
+            _healthBarlost.Add(HpColor);
             i++;
         }
     }
@@ -159,7 +176,12 @@ public class HUDInGame : MonoBehaviour
         {
             Destroy(img.gameObject);
         }
+        foreach (Image img in _healthBarlost)
+        {
+            Destroy(img.gameObject);
+        }
         _healthBar = new List<Image>();
+        _healthBarlost = new List<Image>();
     }
 
     private void ActualiseMaskIcon()
