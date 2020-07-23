@@ -87,7 +87,10 @@ public class DashState : FSMState
         _difAngle = SignedAngle(_playerTransform.forward, dashDirection, Vector3.up);
 		_playerTransform.Rotate(new Vector3(0f, _difAngle, 0f));
 
-		dashDir = dashDirection.normalized * _dashSpeed;
+		if (stickInput != Vector2.zero)
+			dashDir = dashDirection.normalized * _dashSpeed;
+		else
+			dashDir = _playerTransform.forward.normalized * _dashSpeed;
 	}
 
 	public override void DoBeforeLeaving()
