@@ -17767,6 +17767,118 @@ AnimationClip:
     path: 
     classID: 114
     script: {fileID: 11500000, guid: d621be04636b547488ce035e4aa1a340, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverDistance.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_L/Sika_Bone_Arm_Shoulder_L/Sika_Bone_Arm_Elbow_L/Vfx_Dash_feather_L
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverDistance.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_R/Sika_Bone_Arm_Shoulder_R/Sika_Bone_Arm_Elbow_R/Vfx_Dash_feather_R
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_L/Sika_Bone_Arm_Shoulder_L/Sika_Bone_Arm_Elbow_L/Vfx_Dash_Trail_L
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_R/Sika_Bone_Arm_Shoulder_R/Sika_Bone_Arm_Elbow_R/Vfx_Dash_Trail_R
+    classID: 198
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 30
   m_WrapMode: 0
@@ -20466,6 +20578,34 @@ AnimationClip:
     - serializedVersion: 2
       path: 977089176
       attribute: 1173142787
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4285870511
+      attribute: 1589456374
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 133344616
+      attribute: 1589456374
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 888880559
+      attribute: 2883525743
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 702860801
+      attribute: 2883525743
       script: {fileID: 0}
       typeID: 198
       customType: 27
@@ -85045,6 +85185,118 @@ AnimationClip:
     path: 
     classID: 114
     script: {fileID: 11500000, guid: d621be04636b547488ce035e4aa1a340, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverDistance.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_L/Sika_Bone_Arm_Shoulder_L/Sika_Bone_Arm_Elbow_L/Vfx_Dash_feather_L
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverDistance.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_R/Sika_Bone_Arm_Shoulder_R/Sika_Bone_Arm_Elbow_R/Vfx_Dash_feather_R
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_L/Sika_Bone_Arm_Shoulder_L/Sika_Bone_Arm_Elbow_L/Vfx_Dash_Trail_L
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4666667
+        value: 25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Sika_Bone_Spine_Hip/Sika_Bone_Spine_Spine01/Sika_Bone_Spine_Spine02/Sika_Bone_Spine_Spine03/Sika_Bone_Arm_Clavicula_R/Sika_Bone_Arm_Shoulder_R/Sika_Bone_Arm_Elbow_R/Vfx_Dash_Trail_R
+    classID: 198
+    script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2

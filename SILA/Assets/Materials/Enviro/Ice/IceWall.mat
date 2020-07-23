@@ -107,20 +107,20 @@ Material:
     - _SpecularInt: 1.6
     - _SrcBlend: 1
     - _TessValue: 1
-    - _TransAmbient: 0.056
+    - _TransAmbient: 0.81
     - _TransDirect: 0.051
     - _TransNormalDistortion: 0.031
     - _TransScattering: 2.2
     - _TransShadow: 1
-    - _Translucency: 2.2
+    - _Translucency: 50
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deepcolor: {r: 0, g: 1.0117648, b: 1.7803922, a: 0}
+    - _Deepcolor: {r: 0, g: 1.0237638, b: 1.7939348, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel: {r: 0, g: 27.318756, b: 27.607843, a: 0}
+    - _Fresnel: {r: 8, g: 8, b: 8, a: 0}
     - _MeltingEmissionColor: {r: 0.38675478, g: 2.6232047, b: 3.5648694, a: 0}
-    - _SnowColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
+    - _SnowColor: {r: 2, g: 2, b: 2, a: 0}
     - _Surfacecolor: {r: 0, g: 0.5368862, b: 1, a: 0}

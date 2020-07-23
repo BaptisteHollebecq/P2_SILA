@@ -131,6 +131,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeThreshold: 0.474
+    - _Float0: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -169,13 +170,17 @@ Material:
     - _SnowEmission: 0.33
     - _SnowHeight: 0.405
     - _SnowHeightSetting: 0
+    - _SnowNoiseScale: 0
+    - _SnowOffset: 0
     - _SnowSmoothness: 0
+    - _SnowSoftEdge: 0
     - _SpecularHighlights: 1
     - _SpecularInt: 0.1
     - _SpecularScale: 2.23
     - _SrcBlend: 1
     - _StaticHighLights: 0
     - _StaticHighLights1: 0
+    - _TempSnowHeight: 0
     - _TriplanarHardness: 0.2
     - _UVSec: 0
     - _VolumSnowHeight: 1
