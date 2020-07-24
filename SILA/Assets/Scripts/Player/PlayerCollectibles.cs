@@ -42,8 +42,9 @@ public class PlayerCollectibles : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         _maskCollectibles = 0;
-        _life.Life += 1;
         _life.MaxLife += 1;
+        _life.Life += _life.MaxLife;
+
         _change = false;
     }
 
