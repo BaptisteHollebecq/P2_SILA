@@ -13,6 +13,13 @@ public class NewCheckPoints : MonoBehaviour
         {
             _life = other.GetComponent<PlayerLifeManager>();
             _life._position = other.transform.position;
+            if (_life.checkPoints.Count != 0)
+            {
+                foreach (NewCheckPoints n in _life.checkPoints)
+                {
+                    n.TurnOff();
+                }
+            }
             _life.checkPoints.Add(this);
             //CHANGER APPARENCE TOTEM
         }

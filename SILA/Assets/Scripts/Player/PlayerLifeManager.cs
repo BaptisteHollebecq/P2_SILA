@@ -122,17 +122,19 @@ public class PlayerLifeManager : MonoBehaviour
             checkPoints = new List<NewCheckPoints>();
             _position = transform.position;
         }
+        Animator.SetBool("Respawn", true);
+        Animator.SetBool("DeathWater", false);
+        Animator.SetBool("DeathPykes", false);
+        Animator.SetBool("Jump", false);
+        Animator.SetBool("Fly", false);
+        Animator.SetBool("Fall", false);
+
         StartCoroutine(Controls());
 
         StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
         StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 1, timingcontrols));
 
-        Animator.SetBool("Respawn", true);
-		Animator.SetBool("DeathWater", false);
-		Animator.SetBool("DeathPykes", false);
-		Animator.SetBool("Jump", false);
-		Animator.SetBool("Fly", false);
-		Animator.SetBool("Fall", false);
+       
 	}
 
     IEnumerator Controls()
