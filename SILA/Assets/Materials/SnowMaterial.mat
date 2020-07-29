@@ -157,7 +157,7 @@ Material:
     - _TransShadow: 0.9
     - _Translucency: 1
     - _WrapperValue: 0.5
-    - __dirty: 0
+    - __dirty: 1
     - _distanceGlitter: 20
     - _distanceGlitter1: 20
     m_Colors:
