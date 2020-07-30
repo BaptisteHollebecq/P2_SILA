@@ -28,9 +28,8 @@ public class SnowHeight : MonoBehaviour
         {
             heighsnow = 1 - (Mathf.Repeat(heighsnow, 1));
         }
-       
-        //heighsnow /= 2;
 
         gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowHeight", heighsnow + 0.25f);
+        gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_SnowTracks", 1 - TimeSystem._transitionSlide);
     }
 }

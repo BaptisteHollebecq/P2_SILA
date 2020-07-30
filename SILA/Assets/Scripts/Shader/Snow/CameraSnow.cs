@@ -18,6 +18,13 @@ public class CameraSnow : MonoBehaviour
     [SerializeField]
     private float SnowCameraHeight;
 
+    [SerializeField]
+    private GameObject _snowTracksParticle_L;
+    [SerializeField]
+    private GameObject _snowTracksParticle_R;
+    [SerializeField]
+    private GameObject _snowDashTracksParticle;
+
     [ContextMenu("Get Every _ground ")]
     void FindGameObjectWithTags()
     {
@@ -51,6 +58,19 @@ public class CameraSnow : MonoBehaviour
 
 
         }
-        
+
+        if (TimeSystem._transitionSlide > 0.9f)
+        {
+            _snowTracksParticle_L.active = false;
+            _snowTracksParticle_R.active = false;
+            _snowDashTracksParticle.active = false;
+        }
+        else
+        {
+            _snowTracksParticle_L.active = true;
+            _snowTracksParticle_R.active = true;
+            _snowDashTracksParticle.active = true;
+        }
+
     }
 }
