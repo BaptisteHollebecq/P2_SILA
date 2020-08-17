@@ -100,7 +100,7 @@ Material:
     - _Debug_SnowHeight: 0.52
     - _EdgeLength: 10
     - _Float0: 5
-    - _Float1: 0.5
+    - _Float1: 1
     - _Float5: 1.36
     - _Float8: 4
     - _Float9: 0
@@ -138,6 +138,7 @@ Material:
     - _Scale: 1
     - _SmoothNess: 0
     - _SnowHeight: 0.75
+    - _SnowTracks: 1
     - _Snow_Emissive: 0.434
     - _Snow_Metalness: 0
     - _Snow_Smoothness: 0.46
