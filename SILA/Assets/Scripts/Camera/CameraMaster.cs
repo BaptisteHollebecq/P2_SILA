@@ -100,6 +100,7 @@ public class CameraMaster : LockModeStateMachine
 		Behaviour = _behaviours[0];
 
 		OnSteleState.PlayerStateChanged += UpdateLockState;
+		FlyState.PlayerStateChanged += UpdateLockState;
 		ZoomState.PlayerStateChanged += UpdateLockState;
 		Stele.SteleInteracted += SetCameraLookPivot;
 
@@ -109,6 +110,7 @@ public class CameraMaster : LockModeStateMachine
     private void OnDestroy()
     {
         OnSteleState.PlayerStateChanged -= UpdateLockState;
+        FlyState.PlayerStateChanged -= UpdateLockState;
         ZoomState.PlayerStateChanged -= UpdateLockState;
         Stele.SteleInteracted -= SetCameraLookPivot;
     }
@@ -157,6 +159,7 @@ public class CameraMaster : LockModeStateMachine
 			Debug.Log ("(Camera Master) Blending behaviors.");
 			if (!newBehaviour.BlendOnEnter)
 				Debug.Log ("No blend settings, using Default");
+			Debug.Log(Behaviour);
 		}
 
 		if (awake)
@@ -295,12 +298,14 @@ public class CameraMaster : LockModeStateMachine
 		switch (LockState)
 		{
 			case CameraLockState.Idle:
+				_mouseX = Input.GetAxis("HorizontalCamera") * Behaviour.Sensitivity.x;
+				_mouseY = Input.GetAxis("VerticalCamera") * Behaviour.Sensitivity.y;
+				if (_mouseX != 0 || _mouseY != 0)
+					Rotate(_mouseY, _mouseX);
+				break;
 
 			case CameraLockState.Flight:
-				_mouseX = Input.GetAxis ("HorizontalCamera") * Behaviour.Sensitivity.x;
-				_mouseY = Input.GetAxis("VerticalCamera") * (PlayerControllerV2.inverted ? -1 : 1) * Behaviour.Sensitivity.y;
-				if (_mouseX != 0 || _mouseY != 0)
-					Rotate (_mouseY, _mouseX);
+				Recenter();
 				break;
 
 			case CameraLockState.Fight:
