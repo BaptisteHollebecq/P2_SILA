@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterV2
+  m_Shader: {fileID: 4800000, guid: 55f229479d93bbd41b6be39241e66ab9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DistortionNormal:
+        m_Texture: {fileID: 2800000, guid: 9c9923e81cf2ef349915824e0a1b12b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamTexture:
+        m_Texture: {fileID: 2800000, guid: bd5ef806a7fff5648a61fddab704ff77, type: 3}
+        m_Scale: {x: 50, y: 50}
+        m_Offset: {x: 0, y: 0}
+    - _IceAlbedo:
+        m_Texture: {fileID: 2800000, guid: 732858e138af22f4b8954569440f82b9, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _IceNormal:
+        m_Texture: {fileID: 2800000, guid: cd93b77a2b8fe68489720b1c3bb3b3e1, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _IceParallax:
+        m_Texture: {fileID: 2800000, guid: 4a6f6e43ff9506a44a2e9e70872ac64b, type: 3}
+        m_Scale: {x: 50, y: 50}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 9c9923e81cf2ef349915824e0a1b12b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 9c9923e81cf2ef349915824e0a1b12b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: d70604ee8c8cc4547a00c1e17d0d469a, type: 3}
+        m_Scale: {x: -1.85, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: dd05d57765dcb144496c7b0952492eef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Vignette:
+        m_Texture: {fileID: 2800000, guid: dd05d57765dcb144496c7b0952492eef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DepthInt: 7
+    - _DistorsionAmount: 0.03
+    - _DistorsionInt: 0
+    - _DistortionInt: 0.25
+    - _DistortionSpeed: 0.01
+    - _EdgeDetectionFallof: 4.08
+    - _Float0: 0.08
+    - _Float1: 1
+    - _Float2: -62.5
+    - _Float3: 2.6
+    - _Float4: 0.25
+    - _FoamDepth1: -6.21
+    - _FoamEdgeFallof: 11.12
+    - _FoamFalloff1: 0.88
+    - _FoamInt: 0.14
+    - _FoamIntensity: 2.89
+    - _FoamSpeed: 0.09
+    - _Glaciation: 0
+    - _Glaciation_: 0
+    - _HeightParallax: 1
+    - _IceNormalScale: 1.25
+    - _IceTransparency: 0
+    - _Metalness: 0.08
+    - _NormalScale: -0.38
+    - _NormalWaveSpeed: 0.01
+    - _Smoothness: 1
+    - _SpecularInt: 109.75
+    - _SpecularThreshold: 1.93
+    - _TimeScale: 0.01
+    - _Transparency: 1
+    - _WaterHeight: 0.69
+    - _WaterHeightdebug: -62
+    - _WaveIntensity: 0.2
+    - _WaveSpeed: 1.3
+    - __dirty: 0
+    m_Colors:
+    - _Color0: {r: 8, g: 8, b: 8, a: 0}
+    - _DepthColor: {r: 0, g: 0.16111732, b: 0.6132076, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
+    - _IceColor: {r: 8, g: 8, b: 8, a: 0}
+    - _ParallaxColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecularColor: {r: 0, g: 1, b: 0.533381, a: 0}
+    - _Vector1: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _WaterColor: {r: 0, g: 0.5975609, b: 1, a: 0}
