@@ -121,7 +121,7 @@ Material:
     - _FoamDepth1: 0
     - _FoamFalloff: -0.78
     - _FoamFalloff1: 0
-    - _Glaciation: -Infinity
+    - _Glaciation: 1
     - _Glaciation1: -14.42
     - _HeightParallax: 0.99
     - _HeightParallax2: 0.98
@@ -131,9 +131,9 @@ Material:
     - _IceSpecular: 0.651
     - _IceTransparency: 0
     - _Metalness: 1
-    - _NormalScale: 0.2
+    - _NormalScale: 1
     - _NormalScale1: 0.2
-    - _NormalScaleDistort: 0.005
+    - _NormalScaleDistort: 0.05
     - _ParallaxOffset: 0.001
     - _Sharpness: 1.13
     - _SmallWaveTile: 0
