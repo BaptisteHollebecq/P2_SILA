@@ -20,6 +20,7 @@ public class FlyState : FSMState
 	float _fallStore;
 	float _deadZone = 0.25f;
 	float _difAngle;
+	bool _canAccelerate;
 
 	Vector2 _stickInput;
 	Camera _camera;
@@ -59,7 +60,7 @@ public class FlyState : FSMState
 			_playerScript.SetTransition(Transition.Basic);
 		}
 
-		if (_playerScript.canDash && Input.GetButtonDown("Dash") && _stickInput != Vector2.zero)
+		if (_playerScript.canDash && Input.GetButtonDown("Dash"))
 			_playerScript.SetTransition(Transition.Dashing);
 
 		if (_playerScript.lifeManager.isDead)
@@ -77,6 +78,7 @@ public class FlyState : FSMState
 		if (_stickInput.magnitude < _deadZone)
 		{
 			_stickInput = Vector2.zero;
+			_canAccelerate = true;
 		}                                                                                                       //     SI LE JOUEUR NE TOUCHE PAS AU JOYSTICK   
 		else                                                                                                    //
 		{                                                                                                       //
@@ -99,7 +101,7 @@ public class FlyState : FSMState
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
 
-		if (Input.GetAxis("Vertical") > 0)
+		if (Input.GetAxis("Vertical") > 0 && _canAccelerate)
 		{
 			_moveSpeed = _moveSpeed + _stickInput.y;
 			_fallSpeed = _fallSpeed + _stickInput.y;
@@ -129,6 +131,11 @@ public class FlyState : FSMState
 
 	public override void DoBeforeEntering()
 	{
+		_canAccelerate = false; 
+
+		_moveSpeed = _speedStore;
+		_fallSpeed = _fallStore;
+
 		_animator.SetBool("Jump", false);
 		_animator.SetBool("Fall", false);
 		_animator.SetBool("Fly", true);
