@@ -75,7 +75,7 @@ public class HUDInGame : MonoBehaviour
         HideTutoHUD.EnteredZoneHide += HideTuto;
 
 
-        transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
+        //transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
         transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
         textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
         canvasGraine.alpha = 0;
@@ -246,7 +246,7 @@ public class HUDInGame : MonoBehaviour
         s += pourcentage.ToString();
         s += "% of all collectibles\n";
 
-        int dead = Mathf.FloorToInt( 70 * (1-(pourcentage / 100)));
+        int dead = Mathf.FloorToInt(70 * (1 - (pourcentage / 100)));
         float saved = 347 - dead;
 
         s += dead.ToString() + " peoples died\n";

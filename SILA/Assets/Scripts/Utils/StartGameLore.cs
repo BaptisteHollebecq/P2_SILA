@@ -9,6 +9,7 @@ public class StartGameLore : MonoBehaviour
     public CanvasGroup textCanvas;
     public CanvasGroup imageCanvas;
     public CanvasGroup remainingCanvas;
+    public CanvasGroup blackScreen;
     public Text text;
     [Header("")]
     [Tooltip("temps pour que le texte soit completement invisible")] 
@@ -87,9 +88,16 @@ public class StartGameLore : MonoBehaviour
             }
             else if (_endit)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(BlackScreen());
             }
         }
+    }
+
+    IEnumerator BlackScreen()
+    {
+        StartCoroutine(FadeHud(blackScreen, blackScreen.alpha, 1, .5f));
+        yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public IEnumerator FadeHud(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)

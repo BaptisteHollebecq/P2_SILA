@@ -42,9 +42,15 @@ public class PlayerLifeManager : MonoBehaviour
         sound = Player.sound;
         deadBlack = hud.transform.GetChild(1);
         deadVisibility = deadBlack.GetComponent<CanvasGroup>();
+        deadVisibility.alpha = 1;
     }
 
-	void Update()
+    private void Start()
+    {
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
+    }
+
+    void Update()
     {
         /*if (_save)
         {

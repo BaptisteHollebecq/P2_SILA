@@ -8,6 +8,8 @@ public class PlayerCollectibles : MonoBehaviour
     private int _maskCollectibles = 0;
     private PlayerLifeManager _life;
 
+    public DontDestroyCollectibles save;
+
     public HUDMap hud;
     [HideInInspector] public int maxCollec = 0;
 
@@ -65,6 +67,11 @@ public class PlayerCollectibles : MonoBehaviour
     public int GetCollectibles()
     {
         return _collectibles;
+    }
+
+    private void OnDestroy()
+    {
+        save.collectiblesCount = _collectibles;
     }
 
     public int GetMask()
