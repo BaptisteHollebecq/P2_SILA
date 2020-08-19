@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MapMacroV2.unity
     guid: cc5ecedc55c7a8240bdadf9838ffbe9e
+  - enabled: 1
+    path: Assets/_Scenes/ScoreScene.unity
+    guid: 5451c432d80b2cc42b213421fd448f0b
   - enabled: 0
     path: Assets/_Scenes/EndScreen.unity
     guid: ebeb329f397a7f6499d183d04ea886c8

@@ -6,21 +6,47 @@ using UnityEngine.UI;
 public class HUDScore : MonoBehaviour
 {
     public CanvasGroup blackScreenCanvas;
-    public CanvasGroup Collectibles;
-    public Image collectibleIcon;
+    public CanvasGroup CollectiblesCanvas;
+    public CanvasGroup OhowakCanvas;
+    public Text collectibleIcon;
     public Text CollectibleCount;
-    //public Text OhowakLost;
-    //public Text OhowakNbr;
+    private int _collectibles;
+    public Text OhowakLost;
+    public Text OhowakNbr;
+
+    public float growthDuration = 1;
 
     private void Start()
     {
-        Collectibles.alpha = 0;
+        CollectiblesCanvas.alpha = 0;
+        OhowakCanvas.alpha = 0;
+        _collectibles = FindObjectOfType<DontDestroyCollectibles>().GetComponent<DontDestroyCollectibles>().collectiblesCount;
         CollectibleCount.text = "0";
+        OhowakNbr.text = "0";
         StartCoroutine(FadeHud(blackScreenCanvas, blackScreenCanvas.alpha, .5f, 1));
-        StartCoroutine(FadeHud(Collectibles, Collectibles.alpha, 1, 1));
+        StartCoroutine(FadeHud(CollectiblesCanvas, CollectiblesCanvas.alpha, 1, 1));
         StartCoroutine(MoveToPivot(collectibleIcon.transform, new Vector3(-360, 200, 0), 1.5f));
+        StartCoroutine(CollecAnim());
     }
 
+    IEnumerator CollecAnim()
+    {
+        yield return new WaitForSeconds(1.5f);
+        float i = 0;
+        while (i <= _collectibles)
+        {
+            i++;
+            CollectibleCount.text = Mathf.Floor(i).ToString();
+            yield return new WaitForSeconds(growthDuration / _collectibles);
+        }
+        OhowakAnim();
+    }
+
+    void OhowakAnim()
+    {
+        StartCoroutine(FadeHud(OhowakCanvas, OhowakCanvas.alpha, 1, 1));
+        StartCoroutine(MoveToPivot(OhowakLost.transform, new Vector3(360, 200, 0), 1.5f));
+    }
 
 
 
