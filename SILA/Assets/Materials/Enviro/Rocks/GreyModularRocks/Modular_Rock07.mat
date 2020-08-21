@@ -170,7 +170,7 @@ Material:
     - _SnowHeight: 0.5
     - _SnowHeightSetting: 0
     - _SnowNoiseScale: 0
-    - _SnowOffset: 0
+    - _SnowOffset: -0.63
     - _SnowSmoothness: 0
     - _SnowSoftEdge: 0
     - _SpecularHighlights: 1
