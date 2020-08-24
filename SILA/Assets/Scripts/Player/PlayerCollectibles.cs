@@ -72,6 +72,7 @@ public class PlayerCollectibles : MonoBehaviour
     private void OnDestroy()
     {
         save.collectiblesCount = _collectibles;
+        save.maxCollectiblesCount = maxCollec;
     }
 
     public int GetMask()
