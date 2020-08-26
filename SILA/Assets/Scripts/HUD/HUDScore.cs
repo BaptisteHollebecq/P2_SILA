@@ -10,12 +10,14 @@ public class HUDScore : MonoBehaviour
     public CanvasGroup CollectiblesCanvas;
     public CanvasGroup OhowakCanvas;
     public CanvasGroup AButton;
+    public CanvasGroup EndPhrases;
     public Text collectibleIcon;
     public Text CollectibleCount;
     private int _collectibles;
     private int _maxCollec;
     public Text OhowakLost;
     public Text OhowakNbr;
+    public Text EndPhrase;
 
     public GameObject member;
 
@@ -41,6 +43,7 @@ public class HUDScore : MonoBehaviour
         CollectiblesCanvas.alpha = 0;
         OhowakCanvas.alpha = 0;
         AButton.alpha = 0;
+        EndPhrases.alpha = 0;
 
         _collectibles = FindObjectOfType<DontDestroyCollectibles>().GetComponent<DontDestroyCollectibles>().collectiblesCount;
         _maxCollec = FindObjectOfType<DontDestroyCollectibles>().GetComponent<DontDestroyCollectibles>().maxCollectiblesCount;
@@ -65,6 +68,11 @@ public class HUDScore : MonoBehaviour
 
     IEnumerator Quit()
     {
+        StartCoroutine(FadeHud(EndPhrases, EndPhrases.alpha, 1, 1));
+        yield return new WaitForSeconds(2);
+        EndPhrase.text = "";
+        EndPhrase.text += OhowakNbr.text;
+        EndPhrase.text += " Ohowak Died...";
         StartCoroutine(FadeHud(AButton, AButton.alpha, 1, 1));
         yield return new WaitForSeconds(1);
         _canQuit = true;
@@ -110,7 +118,7 @@ public class HUDScore : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         int x = 0;
-        for (int i = 0; i < dead; i++)
+        for (int i = 0; i <= dead; i++)
         {
             if (x > coef)
             {

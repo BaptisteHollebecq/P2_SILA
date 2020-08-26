@@ -7,10 +7,19 @@ public class DontDestroyCollectibles : MonoBehaviour
     public int collectiblesCount;
     public int maxCollectiblesCount;
 
-    private void Awake()
+    private static DontDestroyCollectibles _instance;
+
+    void Awake()
     {
-        if (FindObjectOfType<DontDestroyCollectibles>())
-            Destroy(gameObject);
-        DontDestroyOnLoad(this.gameObject);
+
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }
