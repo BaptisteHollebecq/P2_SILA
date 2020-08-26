@@ -416,10 +416,10 @@ MonoBehaviour:
   OhowakLost: {fileID: 4851163019760819786}
   OhowakNbr: {fileID: 492367045640356854}
   member: {fileID: 1436802999184857392, guid: 5c29b6e62bed5cd48bf9148b62b657ab, type: 3}
-  OhowakNumber: 30
+  OhowakNumber: 60
   growthDuration: 1
   CountDuration: 6
-  spawnRate: 0.2
+  spawnRate: 0.1
 --- !u!1 &4153901885697496663
 GameObject:
   m_ObjectHideFlags: 0

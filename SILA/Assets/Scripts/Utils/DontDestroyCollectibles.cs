@@ -9,8 +9,8 @@ public class DontDestroyCollectibles : MonoBehaviour
 
     private void Awake()
     {
-        if (FindObjectOfType<DontDestroyCollectibles>())
-            Destroy(gameObject);
+       /* if (FindObjectOfType<DontDestroyCollectibles>())
+            Destroy(gameObject);*/
         DontDestroyOnLoad(this.gameObject);
     }
 }
