@@ -61,6 +61,7 @@ public class Stele : MonoBehaviour
             timeMenu.isBroken = true;
         }
 		SteleInteracted?.Invoke(cameraPivotOnInteract);
+        _respawn.Life = _respawn.MaxLife;
         _respawn.CheckPoint();
 	}
 

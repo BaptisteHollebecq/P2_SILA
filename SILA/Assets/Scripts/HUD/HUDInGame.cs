@@ -49,7 +49,13 @@ public class HUDInGame : MonoBehaviour
     [SerializeField] private Image _placeHolderTodColo;
     [SerializeField] private Image _placeHolderFirstHp;
     [SerializeField] private Text _placeHolderCollectiblesCount;
+    [SerializeField] private Text _tutoText;
+
+    [Header("Canvas")]
     [SerializeField] private CanvasGroup canvasGraine;
+    [SerializeField] private CanvasGroup canvasTuto;
+
+    [Header("")]
     [SerializeField] private float timingShow;
     [SerializeField] private float timingStay;
     [SerializeField] private float timingHide;
@@ -65,8 +71,11 @@ public class HUDInGame : MonoBehaviour
     private void Awake()
     {
         PlayerLifeManager.TookDamage += ChangeColor;
+        ShowTutoHUD.EnteredZoneShow += ShowTuto;
+        HideTutoHUD.EnteredZoneHide += HideTuto;
 
-        transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
+
+        //transform.GetChild(1).GetComponent<CanvasGroup>().alpha = 0;
         transform.GetChild(2).GetComponent<CanvasGroup>().alpha = 0;
         textEndGame = transform.GetChild(2).GetChild(1).GetComponent<Text>();
         canvasGraine.alpha = 0;
@@ -75,6 +84,8 @@ public class HUDInGame : MonoBehaviour
     private void OnDestroy()
     {
         PlayerLifeManager.TookDamage -= ChangeColor;
+        ShowTutoHUD.EnteredZoneShow -= ShowTuto;
+        HideTutoHUD.EnteredZoneHide -= HideTuto;
     }
 
     private void Update()
@@ -115,6 +126,16 @@ public class HUDInGame : MonoBehaviour
         StartCoroutine(FadeHud(_visibility, _visibility.alpha, 1, transitionTime));
     }
 
+    public void ShowTuto(string text)
+    {
+        _tutoText.text = text;
+        StartCoroutine(FadeHud(canvasTuto, canvasTuto.alpha, 1, .5f));
+    }
+
+    public void HideTuto(string text)
+    {
+        StartCoroutine(FadeHud(canvasTuto, canvasTuto.alpha, 0, .5f));
+    }
 
     private void ChangeColor()
     {
@@ -225,7 +246,7 @@ public class HUDInGame : MonoBehaviour
         s += pourcentage.ToString();
         s += "% of all collectibles\n";
 
-        int dead = Mathf.FloorToInt( 70 * (1-(pourcentage / 100)));
+        int dead = Mathf.FloorToInt(70 * (1 - (pourcentage / 100)));
         float saved = 347 - dead;
 
         s += dead.ToString() + " peoples died\n";

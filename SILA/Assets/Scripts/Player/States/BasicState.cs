@@ -138,7 +138,7 @@ public class BasicState : FSMState
 				// LANCER UNE ANIMATION DE RECOLTE ANTOINE ET LOIC C4EST VOTRE TAF !!!!!!!!!!!!
 				// ET A LA FIN DE L4ANIM IL FAUT METTRE UN EVENT QUI REMET HARVESTING A FALSE (si vous voulez je fais ca)
 
-				_playerScript.harvesting = false; // en attendant je met ca mais faut retirer une fois l'anim mise en place
+				_playerScript.harvesting = false; // en attendant je met ca mais faut retirer une fois l'anim mise en place et le mettre en event a la fin de l'anim
 
 
 				Debug.Log("harvesting");

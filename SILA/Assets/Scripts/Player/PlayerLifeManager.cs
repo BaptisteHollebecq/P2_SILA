@@ -31,8 +31,9 @@ public class PlayerLifeManager : MonoBehaviour
     [SerializeField] private float _actualise;
 
     private bool _save = true;
-    private Vector3 _position;
+    [HideInInspector] public Vector3 _position;
     private Vector3 _checkPoint;
+    [HideInInspector] public List<NewCheckPoints> checkPoints = new List<NewCheckPoints>();
 
     private void Awake()
     {
@@ -41,11 +42,17 @@ public class PlayerLifeManager : MonoBehaviour
         sound = Player.sound;
         deadBlack = hud.transform.GetChild(1);
         deadVisibility = deadBlack.GetComponent<CanvasGroup>();
+        deadVisibility.alpha = 1;
     }
 
-	void Update()
+    private void Start()
     {
-        if (_save)
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
+    }
+
+    void Update()
+    {
+        /*if (_save)
         {
             if (Player.IsGrounded())
             {
@@ -53,7 +60,7 @@ public class PlayerLifeManager : MonoBehaviour
                 _save = false;
                 StartCoroutine(Timer());
             }
-        }
+        }*/
     }
 
     public void CheckPoint()
@@ -114,18 +121,26 @@ public class PlayerLifeManager : MonoBehaviour
         {
             _playerLife = _maxlife;
             transform.position = _checkPoint;
+            foreach (NewCheckPoints n in checkPoints)
+            {
+                n.TurnOff();
+            }
+            checkPoints = new List<NewCheckPoints>();
+            _position = transform.position;
         }
+        Animator.SetBool("Respawn", true);
+        Animator.SetBool("DeathWater", false);
+        Animator.SetBool("DeathPykes", false);
+        Animator.SetBool("Jump", false);
+        Animator.SetBool("Fly", false);
+        Animator.SetBool("Fall", false);
+
         StartCoroutine(Controls());
 
         StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 0, timingcontrols));
         StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 1, timingcontrols));
 
-        Animator.SetBool("Respawn", true);
-		Animator.SetBool("DeathWater", false);
-		Animator.SetBool("DeathPykes", false);
-		Animator.SetBool("Jump", false);
-		Animator.SetBool("Fly", false);
-		Animator.SetBool("Fall", false);
+       
 	}
 
     IEnumerator Controls()
