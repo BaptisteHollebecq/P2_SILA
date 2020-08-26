@@ -168,7 +168,7 @@ Material:
     - _SnowAOThreshold: 0
     - _SnowDeposit: 2
     - _SnowEmission: 0.33
-    - _SnowHeight: 1
+    - _SnowHeight: 0.5
     - _SnowHeightSetting: 0.33
     - _SnowNoiseScale: 0.2
     - _SnowOffset: -0.68
@@ -208,7 +208,7 @@ Material:
     - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _ToonRampTint1: {r: 1, g: 1, b: 1, a: 0}
-    - _UVControl: {r: 0.3, g: 0.3, b: 0, a: 0}
+    - _UVControl: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
     - _UVControlScreenMask1: {r: 1, g: 1, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0, b: 0, a: 0}
