@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SteleBroken
+  m_Name: SteleBrokenGlow
   m_Shader: {fileID: 4800000, guid: fd24b385512bc92429cfb97e9439674c, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 0
