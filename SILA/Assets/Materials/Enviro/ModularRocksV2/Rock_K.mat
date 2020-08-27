@@ -152,7 +152,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NormalInt: 2.72
-    - _NormalScale: 1
+    - _NormalScale: 0.94
     - _NormalScale1: 1
     - _NormalSnowInt: 0.5
     - _OcclusionStrength: 1

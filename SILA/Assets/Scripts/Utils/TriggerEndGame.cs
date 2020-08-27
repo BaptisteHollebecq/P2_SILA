@@ -16,7 +16,7 @@ public class TriggerEndGame : MonoBehaviour
         if (Input.GetButtonDown("A") || Input.GetButtonDown("Start"))
         {
             if (isOnEnd)
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
         }
     }
 
@@ -28,12 +28,18 @@ public class TriggerEndGame : MonoBehaviour
             _player = other.GetComponent<PlayerControllerV2>();
             _player.isOnMap = true;
 
-            CanvasGroup deadVisibility = hud.transform.GetChild(2).GetComponent<CanvasGroup>();
-
-            StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 1, timingFade));
-            StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 0, timingFade));
+            StartCoroutine(Endit());
 
             HUDOptions._params[2] = 0;
         }
+    }
+
+    IEnumerator Endit()
+    {
+        CanvasGroup deadVisibility = hud.transform.GetChild(1).GetComponent<CanvasGroup>();
+        StartCoroutine(hud.FadeHud(deadVisibility, deadVisibility.alpha, 1, timingFade));
+        StartCoroutine(hud.FadeHud(hud._visibility, hud._visibility.alpha, 0, timingFade));
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

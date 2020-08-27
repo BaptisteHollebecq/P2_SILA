@@ -102,7 +102,7 @@ Material:
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
     - _LightInfluence: 0.37
-    - _Melting: 1
+    - _Melting: -1
     - _Melting1: 0
     - _MeltingColorLimit: 0
     - _MeltingColorLimit1: 0.2
