@@ -113,7 +113,7 @@ Material:
     - _Hardness: 0.1
     - _Hardness1: 0.24
     - _HauteurNeige: -0.08
-    - _LightInfluence: 1
+    - _LightInfluence: 0.4
     - _LightInt: 0
     - _NoiseIntensity: 0.82
     - _NoiseStrenght: 0.3
