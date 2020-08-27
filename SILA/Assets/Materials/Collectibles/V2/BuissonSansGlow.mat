@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SteleBroken
-  m_Shader: {fileID: 4800000, guid: fd24b385512bc92429cfb97e9439674c, type: 3}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: BuissonSansGlow
+  m_Shader: {fileID: 4800000, guid: 5d3ea514e9e073a4b9ef144010afb4c2, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,15 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 11a80f9b909232544926f1a66992e032, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseColorRGBOutlineWidthA:
-        m_Texture: {fileID: 2800000, guid: 616437ec4638b8a40b8ea01338e6e41f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 48305bbc7e72e5a418d52022e641db6b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: b3d549799d69cf6499dcc6bb127ecb3d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -51,12 +47,8 @@ Material:
         m_Texture: {fileID: 2800000, guid: 1686cf316c886694c9a59b1a8c0563f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Highlight:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 616437ec4638b8a40b8ea01338e6e41f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -64,11 +56,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: ec20e5302f044fe49aecc41bc217d0b6, type: 3}
+        m_Texture: {fileID: 2800000, guid: e91fc48ab4d8db945b60a647ff0281d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 4e24e7d0393a2bd4f805319e875683c0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -108,11 +100,11 @@ Material:
     - _RimOffset: 0.6
     - _RimPower: 0.4
     - _ShadowContribution: 1
+    - _SinInt: 1
     - _SinSpeed: 0.5
     - _SmoothnessTextureChannel: 0
     - _SnowDeposit: 20
-    - _SnowHeight: 0.75
-    - _SnowHeightSetting: 0.37
+    - _SnowHeight: 1.25
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticHighLights: 0
@@ -121,13 +113,13 @@ Material:
     - __dirty: 0
     - _distanceGlitter: 20
     m_Colors:
-    - _BaseTint: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0}
+    - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlitterInt: {r: 3.6611679, g: 3.6611679, b: 3.6611679, a: 0}
+    - _GlitterInt: {r: 3.283019, g: 3.283019, b: 3.283019, a: 0}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SinColor: {r: 1, g: 0.6154238, b: 0, a: 0}
-    - _SnowEmissive: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0}
+    - _SinColor: {r: 1, g: 0.5587921, b: 0, a: 0}
+    - _SnowEmissive: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}
