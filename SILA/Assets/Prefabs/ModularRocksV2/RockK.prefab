@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4622503464836328497}
   - component: {fileID: 7476706698007419131}
   - component: {fileID: 7702425001026149396}
-  m_Layer: 0
+  - component: {fileID: 3522583848560897683}
+  m_Layer: 8
   m_Name: RockK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,3 +94,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &3522583848560897683
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989859204184127790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3234295026253833609, guid: 62d6e795ab1fbb24e9f189e54cf2ab03, type: 3}

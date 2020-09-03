@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4423004444916192524}
   - component: {fileID: 1911035124701782470}
   - component: {fileID: -8057018771843721243}
-  m_Layer: 0
+  - component: {fileID: -7776923103350703026}
+  m_Layer: 8
   m_Name: RockM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,3 +94,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &-7776923103350703026
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109669834224779283}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2364697057393045550, guid: 3b5af2ccd43b4164e89da39f34efd468, type: 3}

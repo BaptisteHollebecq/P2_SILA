@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: activeSave
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 2788733908529306950, guid: e42eaed222f61714e9d22c096ac2d141, type: 3}
-  - {fileID: 3697873605811482287, guid: 920dd455d3dfd6840a52e76e2e19dd18, type: 3}
-  - {fileID: 3108043729349841624, guid: 862bfe85c10581f499e513efa540288d, type: 3}
+  - {fileID: 1805689222072707283, guid: d8319a5d2c7d50b45ba81b66f6228273, type: 3}
   paintType: 0
-  brushSize: 20
+  brushSize: 2
   minBrushSize: 0.1
   maxBrushSize: 20
   paintDeltaDistance: 10
@@ -34,16 +32,16 @@ MonoBehaviour:
   checkSlope: 0
   requiredTagMask: 0
   requiredLayerMask: 0
-  minRequiredSlope: 0
-  maxRequiredSlope: 0
+  minRequiredSlope: 50.428955
+  maxRequiredSlope: 90
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
-  draggingAction: 1
+  draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
   parent: {fileID: 0}
-  rotateToMatchSurface: 0
+  rotateToMatchSurface: 1
   rotateSurfaceDirection: 0
   randomizeRotation: 1
   minXRotation: 0
@@ -52,10 +50,10 @@ MonoBehaviour:
   maxYRotation: 180
   minZRotation: 0
   maxZRotation: 0
-  scaleType: 0
+  scaleType: 1
   scaleApplicationType: 0
-  minScale: 1
-  maxScale: 1
+  minScale: 3
+  maxScale: 4
   minXScale: 1
   maxXScale: 1
   minYScale: 1

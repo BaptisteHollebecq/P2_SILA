@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8672595306684090691}
   - component: {fileID: 6899453273605995913}
   - component: {fileID: -4485075537327530794}
-  m_Layer: 0
+  - component: {fileID: -4680139388745590514}
+  m_Layer: 8
   m_Name: RockL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,3 +94,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heighsnow: 0
+--- !u!64 &-4680139388745590514
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953735576342715484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4451795310301279233, guid: cd4cdb8001428884dbf4a7cf91646b8f, type: 3}

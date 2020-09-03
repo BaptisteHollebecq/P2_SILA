@@ -168,7 +168,7 @@ Material:
     - _SnowAOThreshold: 0
     - _SnowDeposit: 2
     - _SnowEmission: 0.33
-    - _SnowHeight: 0.5
+    - _SnowHeight: 0
     - _SnowHeightSetting: 0.33
     - _SnowNoiseScale: 0.2
     - _SnowOffset: -0.68
