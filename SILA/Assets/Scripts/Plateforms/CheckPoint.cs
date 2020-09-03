@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip sound;
 
     private PlayerLifeManager _lifeManager;
 
@@ -13,6 +15,8 @@ public class CheckPoint : MonoBehaviour
         {
             _lifeManager = other.GetComponent<PlayerLifeManager>();
             _lifeManager.CheckPoint();
+
+            audioSource.PlayOneShot(sound);
         }
     }
 

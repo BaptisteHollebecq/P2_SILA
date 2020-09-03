@@ -6797,6 +6797,8 @@ MonoBehaviour:
   timingRespawn: 2.5
   timingcontrols: 1
   _actualise: 1
+  _position: {x: 0, y: 0, z: 0}
+  checkPoints: []
 --- !u!114 &316098767056571885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6809,10 +6811,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f417dde4449814082f50cfdfa263d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  save: {fileID: 0}
   hud: {fileID: 0}
   maxCollec: 0
-  take: {fileID: 8300000, guid: 637fc689901250441a48bb8eb0619929, type: 3}
+  take: {fileID: 8300000, guid: cd54682023cba694f881d319c6c6aaee, type: 3}
   repair: 0
+  sounds:
+  - {fileID: 8300000, guid: f0f88b192ad23834d9dd10829bac22b0, type: 3}
+  - {fileID: 8300000, guid: c42768d57b898ff4395cc439e92746b9, type: 3}
+  - {fileID: 8300000, guid: 1b32fe5f54aa9ff4d82a93bce69a130c, type: 3}
 --- !u!114 &3882664644691106079
 MonoBehaviour:
   m_ObjectHideFlags: 0

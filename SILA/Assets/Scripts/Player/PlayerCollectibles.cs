@@ -19,6 +19,8 @@ public class PlayerCollectibles : MonoBehaviour
     [HideInInspector] public int repair = 0;
 
     private bool _change = false;
+    private int soundNumber = 0;
+    public List<AudioClip> sounds = new List<AudioClip>();
 
     private void Awake()
     {
@@ -47,6 +49,8 @@ public class PlayerCollectibles : MonoBehaviour
         _life.MaxLife += 1;
         _life.Life += _life.MaxLife;
 
+        soundNumber = 0;
+
         _change = false;
     }
 
@@ -60,6 +64,10 @@ public class PlayerCollectibles : MonoBehaviour
     public void AddMask(int nbr)
     {
         _maskCollectibles += nbr;
+
+        _source.PlayOneShot(sounds[soundNumber]);
+        soundNumber++;
+
     }
 
 
