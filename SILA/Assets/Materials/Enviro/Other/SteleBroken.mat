@@ -108,6 +108,7 @@ Material:
     - _RimOffset: 0.6
     - _RimPower: 0.4
     - _ShadowContribution: 1
+    - _SinSpeed: 0.5
     - _SmoothnessTextureChannel: 0
     - _SnowDeposit: 20
     - _SnowHeight: 0.75
@@ -126,6 +127,7 @@ Material:
     - _GlitterInt: {r: 3.6611679, g: 3.6611679, b: 3.6611679, a: 0}
     - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SinColor: {r: 1, g: 0.6154238, b: 0, a: 0}
     - _SnowEmissive: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0}
     - _ToonRampTint: {r: 1, g: 1, b: 1, a: 0}
     - _UVControlScreenMask: {r: 1, g: 1, b: 0, a: 0}

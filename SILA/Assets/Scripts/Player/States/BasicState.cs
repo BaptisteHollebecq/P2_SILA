@@ -163,7 +163,7 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		if(_canInput)
+		if (_canInput)
 		{
 			stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 

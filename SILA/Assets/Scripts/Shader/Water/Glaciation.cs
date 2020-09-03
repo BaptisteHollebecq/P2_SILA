@@ -28,6 +28,8 @@ public class Glaciation : MonoBehaviour
        
         glace = (glace - 0.5f) * 4;
 
+        glace = Mathf.Clamp(glace, 0, 1);
+
         //glace = Mathf.Abs(2 * (TimeSystem.currentTime - 0.25f));
 
         //if (glace < 1)

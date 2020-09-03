@@ -66,6 +66,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public LayerMask whatIsGround;
 	public LayerMask whatIsSnow;
 	public float maxAngle;
+	public Transform transformRotator;
 
 	float _distToGround;
     bool _isGrounded;
@@ -210,7 +211,7 @@ public class PlayerControllerV2 : MonoBehaviour
 		dashState.AddTransition(Transition.Death, StateID.Death);
 		dashState.AddTransition(Transition.Flying, StateID.Fly);
 
-		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator);
+		FlyState flyState = new FlyState(_playerRb, _scriptOnPlayer, player.transform, camera, _collider, whatIsGround, animator, transformRotator);
 		flyState.AddTransition(Transition.Basic, StateID.Basic);
 		flyState.AddTransition(Transition.Death, StateID.Death);
 		flyState.AddTransition(Transition.Dashing, StateID.Dash);
