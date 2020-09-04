@@ -34,7 +34,7 @@ MonoBehaviour:
   requiredLayerMask: 0
   minRequiredSlope: 50.428955
   maxRequiredSlope: 90
-  prefabOriginOffset: {x: 0, y: 0, z: 0}
+  prefabOriginOffset: {x: 0, y: 0, z: -1.5}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
   draggingAction: 0
   rotationAxis: 0
