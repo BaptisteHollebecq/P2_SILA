@@ -163,12 +163,6 @@ public class BasicState : FSMState
 
 	public override void Act()
 	{
-		if (Input.GetButton("B"))
-			_animator.SetBool("Collect", true);
-		else
-			_animator.SetBool("Collect", false);
-			
-
 		if (_canInput)
 		{
 			stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
