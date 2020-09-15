@@ -103,8 +103,8 @@ Material:
     - _SinInt: 1
     - _SinSpeed: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SnowDeposit: 15
-    - _SnowHeight: 0.75
+    - _SnowDeposit: 50
+    - _SnowHeight: 0.25
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticHighLights: 0
