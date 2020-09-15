@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_CameraBehaviour_Flight
   m_EditorClassIdentifier: 
   Height: 1.8
-  MaxDistance: 10
+  MaxDistance: 5
   MinPitch: -10
   MaxPitch: 20
   LocalOffset: {x: 0.25, y: 0.5, z: 0}

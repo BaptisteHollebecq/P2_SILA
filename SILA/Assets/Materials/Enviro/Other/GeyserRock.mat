@@ -166,7 +166,7 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SnowAOThreshold: 0
-    - _SnowDeposit: 15
+    - _SnowDeposit: 20
     - _SnowEmission: 0.33
     - _SnowHeight: 0.405
     - _SnowHeightSetting: 0
