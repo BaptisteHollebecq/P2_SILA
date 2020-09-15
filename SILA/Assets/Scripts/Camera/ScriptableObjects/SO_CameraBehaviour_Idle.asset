@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2059a088ac8a34e4aaf4b018397a0ca5, type: 3}
   m_Name: SO_CameraBehaviour_Idle
   m_EditorClassIdentifier: 
-  Height: 1.2
-  MaxDistance: 3.5
+  Height: 1.8
+  MaxDistance: 6
   MinPitch: -60
   MaxPitch: 70
   LocalOffset: {x: 0.25, y: 0.5, z: 0}
