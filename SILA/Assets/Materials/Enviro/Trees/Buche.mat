@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TreePlatform
+  m_Name: Buche
   m_Shader: {fileID: 4800000, guid: 5d3ea514e9e073a4b9ef144010afb4c2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0

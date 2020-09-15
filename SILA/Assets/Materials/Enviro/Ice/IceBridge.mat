@@ -99,7 +99,7 @@ Material:
     - _Parallax: 0.02
     - _Param_Lenght: -0.05
     - _SmoothnessTextureChannel: 0
-    - _SnowCavity: -20
+    - _SnowCavity: -10
     - _Snowdeposit: 33.22
     - _Specular: 46.22
     - _SpecularHighlights: 1
