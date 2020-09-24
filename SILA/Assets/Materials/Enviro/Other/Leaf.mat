@@ -101,7 +101,7 @@ Material:
     - _IndirectDiffuseContribution: 1
     - _IndirectSpecularContribution: 1
     - _LightInfluence: 0.37
-    - _Melting: 0
+    - _Melting: -1
     - _MeltingColorLimit: 0
     - _Metallic: 0
     - _Mode: 0
@@ -113,8 +113,8 @@ Material:
     - _RimPower: 0.4
     - _ShadowContribution: 1
     - _SmoothnessTextureChannel: 0
-    - _SnowDeposit: 10
-    - _SnowHeight: 0.25
+    - _SnowDeposit: 15
+    - _SnowHeight: 0.75
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticHighLights: 0

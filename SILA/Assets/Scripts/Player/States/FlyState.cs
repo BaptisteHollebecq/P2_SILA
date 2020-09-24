@@ -25,6 +25,7 @@ public class FlyState : FSMState
 	bool _canAccelerate;
 	Vector3 _flyAngle;
 	float _difFlyAngle;
+	bool _isRotating = true;
 
 	float _refValue = 0.0f;
 
@@ -111,7 +112,15 @@ public class FlyState : FSMState
 
 		if (Input.GetAxis("Vertical") > 0 &&  _canAccelerate)
 		{
-			//_transformRotator.localRotation = new Quaternion(3, 0, 0, 0);
+			Vector3 to = new Vector3(Mathf.Abs(_difFlyAngle), Mathf.Abs(_transformRotator.eulerAngles.y), Mathf.Abs(_transformRotator.eulerAngles.z));
+			if (_isRotating && Vector3.Distance(_transformRotator.eulerAngles, to) > 0.01f)
+				_transformRotator.eulerAngles = Vector3.Lerp(_transformRotator.rotation.eulerAngles, to, Time.deltaTime * 2);
+			else
+			{
+				_transformRotator.eulerAngles = to;
+				_isRotating = false;
+			}
+				
 
 			if (_moveSpeed >= 40)
 				_moveSpeed = 50;
@@ -125,14 +134,17 @@ public class FlyState : FSMState
 		}
 		else
 		{
-			_moveSpeed = _speedStore;
-			_fallSpeed = _fallStore;
+			Vector3 resetRotating = new Vector3(0, _transformRotator.eulerAngles.y, _transformRotator.eulerAngles.z);
+
+			_transformRotator.eulerAngles = Vector3.Lerp(_transformRotator.rotation.eulerAngles, resetRotating, Time.deltaTime * 5);
+			if(_moveSpeed != _speedStore)
+				_moveSpeed = Mathf.Lerp(_moveSpeed,_speedStore,Time.deltaTime * 20);
+			if(_fallSpeed != _fallStore)
+				_fallSpeed = Mathf.Lerp(_fallSpeed, _fallStore, Time.deltaTime * 20);
 		}
 
 
 		GetCamSettings();
-
-		Debug.Log(_fallSpeed);
 
 		if (_stickInput.y > 0)
 			_rb.velocity = _flyAngle.normalized * _moveSpeed;
