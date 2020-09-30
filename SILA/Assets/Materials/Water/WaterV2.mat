@@ -81,7 +81,7 @@ Material:
     - _FoamInt: 0.14
     - _FoamIntensity: 2.89
     - _FoamSpeed: 0.09
-    - _Glaciation: 1
+    - _Glaciation: 0
     - _Glaciation_: 0
     - _HeightParallax: 1
     - _IceNormalScale: 1.25
