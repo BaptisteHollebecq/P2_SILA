@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Collectibles
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 1805689222072707283, guid: d8319a5d2c7d50b45ba81b66f6228273, type: 3}
+  - {fileID: 8753621742242326284, guid: 9838ca42a1f23c647b96a82fd52b9940, type: 3}
   paintType: 0
   brushSize: 2
   minBrushSize: 0.1
@@ -36,7 +36,7 @@ MonoBehaviour:
   maxRequiredSlope: 90
   prefabOriginOffset: {x: 0, y: 0, z: -1.5}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
-  draggingAction: 1
+  draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
