@@ -27,11 +27,11 @@ MonoBehaviour:
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
-  checkLayer: 0
+  checkLayer: 1
   checkTag: 0
   checkSlope: 0
   requiredTagMask: 0
-  requiredLayerMask: 0
+  requiredLayerMask: 160
   minRequiredSlope: 50.428955
   maxRequiredSlope: 90
   prefabOriginOffset: {x: 0, y: 0, z: -1.5}
@@ -41,7 +41,7 @@ MonoBehaviour:
   rotationSensitivity: 10
   parentingStyle: 2
   parent: {fileID: 0}
-  rotateToMatchSurface: 1
+  rotateToMatchSurface: 0
   rotateSurfaceDirection: 0
   randomizeRotation: 1
   minXRotation: 0

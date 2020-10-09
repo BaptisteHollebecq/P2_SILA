@@ -1976,7 +1976,6 @@ GameObject:
   - component: {fileID: 534980604}
   - component: {fileID: 534980603}
   - component: {fileID: 534980602}
-  - component: {fileID: 534980601}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -1984,18 +1983,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
   m_IsActive: 1
---- !u!114 &534980601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534980600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f22197a9f62584291d811eb58f56c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &534980602
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8198,7 +8185,6 @@ GameObject:
   - component: {fileID: 965903418}
   - component: {fileID: 965903417}
   - component: {fileID: 965903416}
-  - component: {fileID: 965903415}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -8206,18 +8192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
   m_IsActive: 1
---- !u!114 &965903415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965903414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f22197a9f62584291d811eb58f56c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &965903416
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8839,7 +8813,6 @@ GameObject:
   - component: {fileID: 1078330066}
   - component: {fileID: 1078330065}
   - component: {fileID: 1078330064}
-  - component: {fileID: 1078330063}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -8847,18 +8820,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
   m_IsActive: 1
---- !u!114 &1078330063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078330062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f22197a9f62584291d811eb58f56c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1078330064
 MeshCollider:
   m_ObjectHideFlags: 0
