@@ -20,9 +20,13 @@ public class NewCheckPoints : MonoBehaviour
         if (other.tag == "Player")
         {
             _life = other.GetComponent<PlayerLifeManager>();
-            _life._position = other.transform.position;
+            if (_life.Player.isGrounded)
+            {
+                _life._position = other.transform.position;
+                StartCoroutine(Fade(mat.GetFloat("_EmissiveInt"), emissiveValue, fadeDuration));
+            }
 
-            StartCoroutine(Fade(mat.GetFloat("_EmisiveInt"), emissiveValue, fadeDuration));
+           
         }
     }
 
