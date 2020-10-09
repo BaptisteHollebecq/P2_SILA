@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -170,17 +171,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6cb8a69fb4e014392da36637516332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Anim: {fileID: 3193337847017306103}
   Start: 0
   RestingTime: 3
   ActiveTime: 5
   ChargingTime: 3
   PushForce: 30
-  water: {fileID: 3193337847035763707}
-  wind: {fileID: 3193337846163019152}
   charging: {fileID: 8300000, guid: e9b84e3e2bdd5804796df22b0b4afe25, type: 3}
   explode: {fileID: 8300000, guid: 6c2d9312486027b49b05ed21b88f1546, type: 3}
-  speedAct: 0.008
-  speedDes: 0.002
 --- !u!82 &3193337846171498711
 AudioSource:
   m_ObjectHideFlags: 0
@@ -333,6 +331,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -445,6 +444,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

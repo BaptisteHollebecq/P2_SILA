@@ -9,12 +9,43 @@ public class ShowTutoHUD : MonoBehaviour
     public string tutoText;
     public SoundManager sound;
 
+    public float emissiveValue = 20;
+    public float fadeDuration = 1;
+    private Material mat;
+
+    private void Awake()
+    {
+        mat = GetComponent<Renderer>().material;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             EnteredZoneShow?.Invoke(tutoText);
             sound.Play("tuto");
+            StartCoroutine(Fade(mat.GetFloat("_EmisiveInt"), emissiveValue, fadeDuration));
         }
+    }
+    IEnumerator Fade(float start, float end, float duration)
+    {
+        float t = 0;
+        float emissive = start;
+
+        mat.SetFloat("_EmissiveInt", start);
+
+        while (t < duration)
+        {
+            t += Time.fixedDeltaTime;
+            float blend = Mathf.Clamp01(t / duration);
+
+            emissive = Mathf.Lerp(start, end, blend);
+
+            mat.SetFloat("_EmissiveInt", emissive);
+
+
+            yield return new WaitForEndOfFrame();
+        }
+        mat.SetFloat("_EmissiveInt", end);
     }
 }

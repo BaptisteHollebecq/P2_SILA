@@ -41,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d0fa22683e6d57a4687338135b91c90c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2c03d33a77c7ded409c4c4f7d7dc1bf0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -356,6 +356,13 @@ MonoBehaviour:
     loop: 0
     oneShot: 1
     DecreaseTime: 0
+  - name: tuto
+    type: 3
+    audioclip: {fileID: 8300000, guid: d651b71d045fd914f8e30d6ddfe3ac4d, type: 3}
+    volume: 0.3
+    loop: 0
+    oneShot: 1
+    DecreaseTime: 0
   AmbianceSource: {fileID: 1789455301390257532}
   AmbianceVolume: 0
   CharacterSource: {fileID: 8052933761186177729}
@@ -537,7 +544,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0fa792744f84ca344abd957e474ccb7d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 76ae20a57abb9d446bb33333ff715c11, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -791,7 +798,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3dd78984b79101747a0f44d479d62f28, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c7c767e69af645d44a5b909909b4d465, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1172,7 +1179,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 20deea3030ec82441a6921a8a85699cd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 067b69855c92c95439c03fc6d16677b1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

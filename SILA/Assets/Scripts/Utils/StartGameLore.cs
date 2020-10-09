@@ -11,6 +11,9 @@ public class StartGameLore : MonoBehaviour
     public CanvasGroup remainingCanvas;
     public CanvasGroup blackScreen;
     public Text text;
+    public List<AudioClip> sounds = new List<AudioClip>();
+    public AudioSource audioSource;
+
     [Header("")]
     [Tooltip("temps pour que le texte soit completement invisible")] 
     public float fadeOutText;
@@ -82,7 +85,11 @@ public class StartGameLore : MonoBehaviour
             {
                 _canpass = false;
                 if (!(_index > Lore.Count - 1))
+                {
                     StartCoroutine(NextText());
+                    int i = Random.Range(0,8);
+                    audioSource.PlayOneShot(sounds[i]);
+                }
                 else
                     StartCoroutine(StartGame());
             }

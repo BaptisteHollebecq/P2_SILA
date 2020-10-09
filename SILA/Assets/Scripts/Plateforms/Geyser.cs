@@ -94,12 +94,7 @@ public class Geyser : MonoBehaviour
                         if (force < PushForce * 2)
                             force += 2;
 
-                        if (_timer / 50 >= ActiveTime)
-                        {
-                            actualState = State.Resting;
-                            StartCoroutine(DecreaseVolume(_source, .5f));
-                            _timer = 0;
-                        }
+                    
                         break;
                     }
                 case State.Resting:

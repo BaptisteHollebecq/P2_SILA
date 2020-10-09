@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class NewCheckPoints : MonoBehaviour
 {
-    private PlayerLifeManager _life;
+    public float emissiveValue = 20;
+    public float fadeDuration = 1;
 
+    private PlayerLifeManager _life;
+    private Material mat;
+
+    private void Awake()
+    {
+        mat = GetComponent<Renderer>().material;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,16 +21,31 @@ public class NewCheckPoints : MonoBehaviour
         {
             _life = other.GetComponent<PlayerLifeManager>();
             _life._position = other.transform.position;
-            if (_life.checkPoints.Count != 0)
-            {
-                foreach (NewCheckPoints n in _life.checkPoints)
-                {
-                    n.TurnOff();
-                }
-            }
-            _life.checkPoints.Add(this);
-            //CHANGER APPARENCE TOTEM
+
+            StartCoroutine(Fade(mat.GetFloat("_EmisiveInt"), emissiveValue, fadeDuration));
         }
+    }
+
+    IEnumerator Fade(float start,float end, float duration)
+    {
+        float t = 0;
+        float emissive = start;
+
+        mat.SetFloat("_EmissiveInt", start);
+
+        while (t < duration)
+        {
+            t += Time.fixedDeltaTime;
+            float blend = Mathf.Clamp01(t / duration);
+
+            emissive = Mathf.Lerp(start, end, blend);
+
+            mat.SetFloat("_EmissiveInt", emissive);
+
+
+            yield return new WaitForEndOfFrame();
+        }
+        mat.SetFloat("_EmissiveInt", end);
     }
 
     private void OnTriggerExit(Collider other)
@@ -33,8 +56,4 @@ public class NewCheckPoints : MonoBehaviour
         }
     }
 
-    public void TurnOff()
-    {
-        //REMETTRE L'APPARENCE DE BASE
-    }
 }
