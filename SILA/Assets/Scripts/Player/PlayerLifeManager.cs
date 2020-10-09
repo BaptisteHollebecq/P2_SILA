@@ -33,7 +33,7 @@ public class PlayerLifeManager : MonoBehaviour
     private bool _save = true;
     [HideInInspector] public Vector3 _position;
     private Vector3 _checkPoint;
-    [HideInInspector] public List<NewCheckPoints> checkPoints = new List<NewCheckPoints>();
+    //[HideInInspector] public List<NewCheckPoints> checkPoints = new List<NewCheckPoints>();
 
     private void Awake()
     {
@@ -121,11 +121,6 @@ public class PlayerLifeManager : MonoBehaviour
         {
             _playerLife = _maxlife;
             transform.position = _checkPoint;
-            foreach (NewCheckPoints n in checkPoints)
-            {
-                n.TurnOff();
-            }
-            checkPoints = new List<NewCheckPoints>();
             _position = transform.position;
         }
         Animator.SetBool("Respawn", true);
