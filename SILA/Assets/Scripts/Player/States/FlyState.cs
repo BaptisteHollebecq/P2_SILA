@@ -80,7 +80,7 @@ public class FlyState : FSMState
 	public override void Act()
 	{
 		_stickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		_flyAngle = _transformPlayer.forward - new Vector3(0, Input.GetAxis("Vertical") * 2, 0);
+		_flyAngle = _transformPlayer.forward + new Vector3(0, Input.GetAxis("Vertical") * 2, 0);
 		Debug.DrawRay(_transformPlayer.position, _flyAngle, Color.blue);
 		_difFlyAngle = SignedAngle(_transformPlayer.forward, _flyAngle, Vector3.right);
 
@@ -110,7 +110,7 @@ public class FlyState : FSMState
 		moveDirection *= _moveSpeed * ((180 - Mathf.Abs(_difAngle)) / 180);
 		moveDirection.y = -_fallSpeed;
 
-		if (Input.GetAxis("Vertical") > 0 &&  _canAccelerate)
+		if (Input.GetAxis("Vertical") < 0 &&  _canAccelerate)
 		{
 			Vector3 to = new Vector3(Mathf.Abs(_difFlyAngle), Mathf.Abs(_transformRotator.eulerAngles.y), Mathf.Abs(_transformRotator.eulerAngles.z));
 			if (_isRotating && Vector3.Distance(_transformRotator.eulerAngles, to) > 0.01f)
@@ -125,12 +125,12 @@ public class FlyState : FSMState
 			if (_moveSpeed >= 40)
 				_moveSpeed = 50;
 			else
-				_moveSpeed = Mathf.SmoothDamp(_moveSpeed,((_moveSpeed * Mathf.Abs(_difFlyAngle / 5))), ref _refValue, 2f);
+				_moveSpeed = Mathf.SmoothDamp(_moveSpeed,((_moveSpeed * Mathf.Abs(-_difFlyAngle / 5))), ref _refValue, 2f);
 
 			if (_fallSpeed >= 20)
 				_fallSpeed = 30;
 			else
-				_fallSpeed = Mathf.SmoothDamp(_fallSpeed, ((_fallSpeed * Mathf.Abs(_difFlyAngle / 5))), ref _refValue, 2f);
+				_fallSpeed = Mathf.SmoothDamp(_fallSpeed, ((_fallSpeed * Mathf.Abs(-_difFlyAngle / 5))), ref _refValue, 2f);
 		}
 		else
 		{
@@ -146,7 +146,7 @@ public class FlyState : FSMState
 
 		GetCamSettings();
 
-		if (_stickInput.y > 0)
+		if (_stickInput.y < 0)
 			_rb.velocity = _flyAngle.normalized * _moveSpeed;
 		else
 			_rb.velocity = moveDirection;
