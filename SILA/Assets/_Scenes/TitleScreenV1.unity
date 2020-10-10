@@ -3831,6 +3831,11 @@ PrefabInstance:
       propertyPath: startingTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7196663059237923557, guid: 2cf65178479d3a94e9b9e08673809c4f,
+        type: 3}
+      propertyPath: BuildMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8849367353733179051, guid: 2cf65178479d3a94e9b9e08673809c4f,
         type: 3}
       propertyPath: m_LocalPosition.x

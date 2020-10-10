@@ -278,24 +278,24 @@ public class BasicState : FSMState
 			_canJump = false;
 		}
 
-		if (_wallJumpTimerCount > _wallJumpTimer)
-		{
-			if (_rb.velocity.y > 1)
-			{
-				stickInput = Vector2.zero;
-				moveDirection = Vector3.zero;
-				_canInput = false;
-				_rb.AddForce(Vector3.down * 10, ForceMode.Force);
-			}
-			_wallJumpTimerCount = 0;
-		}
+        if (_wallJumpTimerCount > _wallJumpTimer)
+        {
+            if (_rb.velocity.y > 1)
+            {
+                stickInput = Vector2.zero;
+                moveDirection = Vector3.zero;
+                _canInput = false;
+                _rb.AddForce(Vector3.down * 10, ForceMode.Force);
+            }
+            _wallJumpTimerCount = 0;
+        }
 
-		//Debug.Log(_jumpTimer);
-		//Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
-			#region Jump
+        //Debug.Log(_jumpTimer);
+        //Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
+        #region Jump
 
 
-		if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !_hasJumped || Input.GetButtonDown("Jump") && !IsGrounded() && _canJump)
 		{
 			if (_wallJumpTimerCount > 0)
 				_wallJumpTimerCount = 0;
@@ -315,9 +315,15 @@ public class BasicState : FSMState
 
 		if(_isJumping)
 		{
-			_wallJumpTimerCount += Time.deltaTime;
 			_resetJump += Time.deltaTime;
-		}
+			_wallJumpTimerCount += Time.deltaTime;
+/*			RaycastHit hit;
+            Physics.Raycast(_player.transform.position, _player.transform.forward, out hit, .5f);
+            if (hit.transform.tag == "WALL")
+            {
+				
+			}*/
+        }
 		else
 			_gravityScale = _gravityStore;
 		#endregion
