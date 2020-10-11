@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1775182453658178398}
   m_Layer: 0
   m_Name: RockJ
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

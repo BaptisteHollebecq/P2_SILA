@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7889193963007891211}
   m_Layer: 0
   m_Name: RockWallPetit
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -123,7 +124,7 @@ MeshCollider:
   m_Material: {fileID: 13400000, guid: ee6844e89d80f234ca5bc3f70faf700f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -1339696829984998664, guid: d8e19f14574aab4498553fc4d4762a87, type: 3}

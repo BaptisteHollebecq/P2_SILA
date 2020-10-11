@@ -29,15 +29,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _IceAlbedo:
         m_Texture: {fileID: 2800000, guid: 732858e138af22f4b8954569440f82b9, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _IceNormal:
         m_Texture: {fileID: 2800000, guid: cd93b77a2b8fe68489720b1c3bb3b3e1, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _IceParallax:
         m_Texture: {fileID: 2800000, guid: 4a6f6e43ff9506a44a2e9e70872ac64b, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 2800000, guid: 9c9923e81cf2ef349915824e0a1b12b2, type: 3}
@@ -81,7 +81,7 @@ Material:
     - _FoamInt: 0.14
     - _FoamIntensity: 2.89
     - _FoamSpeed: 0.09
-    - _Glaciation: 0
+    - _Glaciation: 1
     - _Glaciation_: 0
     - _HeightParallax: 1
     - _IceNormalScale: 1.25
@@ -103,8 +103,8 @@ Material:
     - _Color0: {r: 8, g: 8, b: 8, a: 0}
     - _DepthColor: {r: 0, g: 0.16111732, b: 0.6132076, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
-    - _IceColor: {r: 8, g: 8, b: 8, a: 0}
-    - _ParallaxColor: {r: 1, g: 1, b: 1, a: 0}
+    - _IceColor: {r: 1.1595588, g: 1.1595588, b: 1.1595588, a: 0}
+    - _ParallaxColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
     - _SpecularColor: {r: 0, g: 1, b: 0.533381, a: 0}
     - _Vector1: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _WaterColor: {r: 0, g: 0.5975609, b: 1, a: 0}

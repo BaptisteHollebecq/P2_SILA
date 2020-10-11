@@ -15,7 +15,7 @@ public class NewCheckPoints : MonoBehaviour
         mat = GetComponent<Renderer>().material;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {

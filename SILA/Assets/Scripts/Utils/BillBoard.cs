@@ -8,6 +8,6 @@ public class BillBoard : MonoBehaviour
     {
         Vector3 target = Camera.main.transform.position;
         target.y = transform.position.y;
-        transform.LookAt(target);
+        transform.LookAt(Camera.main.transform.position);
     }
 }

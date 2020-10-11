@@ -13,6 +13,8 @@ public class ShowTutoHUD : MonoBehaviour
     public float fadeDuration = 1;
     private Material mat;
 
+    private bool _used = false;
+
     private void Awake()
     {
         mat = GetComponent<Renderer>().material;
@@ -20,8 +22,9 @@ public class ShowTutoHUD : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !_used)
         {
+            _used = true;
             EnteredZoneShow?.Invoke(tutoText);
             sound.Play("tuto");
             StartCoroutine(Fade(mat.GetFloat("_EmisiveInt"), emissiveValue, fadeDuration));
