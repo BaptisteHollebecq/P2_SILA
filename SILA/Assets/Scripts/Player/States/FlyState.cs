@@ -23,6 +23,8 @@ public class FlyState : FSMState
 	float _deadZone = 0.25f;
 	float _difAngle;
 	bool _canAccelerate;
+	float _divider;
+	float _maxSpeed;
 	Vector3 _flyAngle;
 	float _difFlyAngle;
 	bool _isRotating = true;
@@ -52,6 +54,8 @@ public class FlyState : FSMState
 		_fallStore = _fallSpeed;
 		_airRotation = player.airRotation;
 		_transformRotator = rotator;
+		_divider = player.flyDivider;
+		_maxSpeed = player.maxFlySpeed;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
@@ -122,15 +126,15 @@ public class FlyState : FSMState
 			}
 				
 
-			if (_moveSpeed >= 40)
-				_moveSpeed = 50;
+			if (_moveSpeed >= _maxSpeed-2)
+				_moveSpeed = _maxSpeed;
 			else
-				_moveSpeed = Mathf.SmoothDamp(_moveSpeed,((_moveSpeed * Mathf.Abs(-_difFlyAngle / 5))), ref _refValue, 2f);
+				_moveSpeed = Mathf.SmoothDamp(_moveSpeed,((_moveSpeed * Mathf.Abs(-_difFlyAngle / _divider))), ref _refValue, 2f);
 
-			if (_fallSpeed >= 20)
-				_fallSpeed = 30;
+			if (_fallSpeed >= _maxSpeed-2)
+				_fallSpeed = _maxSpeed;
 			else
-				_fallSpeed = Mathf.SmoothDamp(_fallSpeed, ((_fallSpeed * Mathf.Abs(-_difFlyAngle / 5))), ref _refValue, 2f);
+				_fallSpeed = Mathf.SmoothDamp(_fallSpeed, ((_fallSpeed * Mathf.Abs(-_difFlyAngle / _divider))), ref _refValue, 2f);
 		}
 		else
 		{
