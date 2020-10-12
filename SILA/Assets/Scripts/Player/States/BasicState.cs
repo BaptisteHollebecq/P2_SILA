@@ -143,10 +143,10 @@ public class BasicState : FSMState
 
 				Debug.Log("harvesting");
 			}
-			else
-			{
-				_playerScript.SetTransition(Transition.Zooming);
-			}
+		}
+		if (Input.GetButtonDown("Zoom"))
+		{
+			_playerScript.SetTransition(Transition.Zooming);
 		}
 
 		if(!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
@@ -282,13 +282,22 @@ public class BasicState : FSMState
         {
             if (_rb.velocity.y > 1)
             {
-                stickInput = Vector2.zero;
-                moveDirection = Vector3.zero;
-                _canInput = false;
-                _rb.AddForce(Vector3.down * 10, ForceMode.Force);
+				RaycastHit hit;
+				if (Physics.Raycast(_player.transform.position, _player.transform.forward, out hit, 1f))
+				{
+					if (hit.transform.tag == "WALL")
+					{
+						stickInput = Vector2.zero;
+						moveDirection = Vector3.zero;
+						_canInput = false;
+						_rb.AddForce(Vector3.down * 10, ForceMode.Force);
+						_wallJumpTimerCount = 0;
+					}
+				}
             }
-            _wallJumpTimerCount = 0;
-        }
+			else
+				_wallJumpTimerCount = 0;
+		}
 
         //Debug.Log(_jumpTimer);
         //Debug.DrawRay(_transformPlayer.position, _transformPlayer.forward, Color.red);
@@ -315,15 +324,9 @@ public class BasicState : FSMState
 
 		if(_isJumping)
 		{
-			_resetJump += Time.deltaTime;
+			_resetJump += Time.deltaTime;			
 			_wallJumpTimerCount += Time.deltaTime;
-/*			RaycastHit hit;
-            Physics.Raycast(_player.transform.position, _player.transform.forward, out hit, .5f);
-            if (hit.transform.tag == "WALL")
-            {
-				
-			}*/
-        }
+		}
 		else
 			_gravityScale = _gravityStore;
 		#endregion
