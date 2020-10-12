@@ -143,10 +143,10 @@ public class BasicState : FSMState
 
 				Debug.Log("harvesting");
 			}
-			else
-			{
-				_playerScript.SetTransition(Transition.Zooming);
-			}
+		}
+		if (Input.GetButtonDown("Zoom"))
+		{
+			_playerScript.SetTransition(Transition.Zooming);
 		}
 
 		if(!IsGrounded() && Input.GetButtonDown("Jump") && !_canJump)
