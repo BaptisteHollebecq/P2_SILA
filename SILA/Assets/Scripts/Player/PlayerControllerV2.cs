@@ -63,7 +63,7 @@ public class PlayerControllerV2 : MonoBehaviour
 	public float groundedRotation;
 	public float jumpBufferTimer;
 	public float jumpWallTimer;
-	public float maxFlySpeed;
+	public float maxFlyFallSpeed;
 	public float flyDivider;
 	public LayerMask whatIsGround;
 	public LayerMask whatIsSnow;

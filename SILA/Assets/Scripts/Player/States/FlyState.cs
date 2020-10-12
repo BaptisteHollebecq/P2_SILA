@@ -55,7 +55,7 @@ public class FlyState : FSMState
 		_airRotation = player.airRotation;
 		_transformRotator = rotator;
 		_divider = player.flyDivider;
-		_maxSpeed = player.maxFlySpeed;
+		_maxSpeed = player.maxFlyFallSpeed;
 	}
 
 	public static float SignedAngle(Vector3 from, Vector3 to, Vector3 normal)
