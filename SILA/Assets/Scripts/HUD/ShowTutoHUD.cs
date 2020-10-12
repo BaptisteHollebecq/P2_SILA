@@ -27,7 +27,7 @@ public class ShowTutoHUD : MonoBehaviour
             _used = true;
             EnteredZoneShow?.Invoke(tutoText);
             sound.Play("tuto");
-            StartCoroutine(Fade(mat.GetFloat("_EmisiveInt"), emissiveValue, fadeDuration));
+            StartCoroutine(Fade(mat.GetFloat("_EmissiveInt"), emissiveValue, fadeDuration));
         }
     }
     IEnumerator Fade(float start, float end, float duration)
